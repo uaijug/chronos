@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+  xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui">
+<ui:composition template="/WEB-INF/layout/template.xhtml">
+  <ui:define name="body">
+    <f:metadata>
+      <f:viewParam name="id" value="#{addressController.idAddress}" />
+      <f:event listener="#{addressController.load}" type="preRenderView" />
+    </f:metadata>
+    <h:form id="formAddress">
+      <p:growl id="messages" showDetail="true" autoUpdate="true"
+			showSummary="false" />
+      <p:panel header="#{msg['label.address']}"
+        styleClass="form-cadastro">
+        <p:focus for="txtDescription" />
+        <table width="95%">
+          <tr>
+            <td class="form-cadastro-label"><h:outputLabel
+                value="#{msg['label.address.id']}:" for="txtId"
+                rendered="#{addressController.address.id != null}" /></td>
+            <td colspan="2">
+            <h:outputText value="#{addressController.address.id}" id="txtId" rendered="#{addressController.address.id != null}" /></td>
+          </tr>
+          <tr>
+            <td class="form-cadastro-label"><h:outputLabel
+                value="#{msg['label.address.street']}:" for="txtDescription" /></td>
+            <td><p:inputText value="#{addressController.address.street}" id="txtDescription" required="true" maxlength="50" /></td>
+            <td><p:message id="msgDescription" for="txtDescription" /></td>
+          </tr>          
+           <tr>
+            <td class="form-cadastro-label"><h:outputLabel value="#{msg['label.address.city']}:" for="txtCity" /></td>
+            <td><h:selectOneMenu id="txtCity" value="#{addressController.address.city}" converter="GenericConverter">
+   				  <f:selectItems value="#{addressController.citys}" />
+				</h:selectOneMenu>
+            </td>
+            <td><p:message id="msgCity" for="txtCity" /></td>
+          </tr>
+        </table>
+
+        <f:facet name="footer">
+          <p:commandButton action="#{addressController.register}" ajax="false" id="btnSave"
+            value="#{msg['label.address.new']}" icon="ui-icon-circle-check" />
+          <p:commandButton value="#{msg['label.cancel']}" immediate="true"
+            icon="ui-icon-cancel" action="#{addressController.cancelar}" ajax="false " />
+        </f:facet>
+      </p:panel>
+    </h:form>
+  </ui:define>
+</ui:composition>
+</html>

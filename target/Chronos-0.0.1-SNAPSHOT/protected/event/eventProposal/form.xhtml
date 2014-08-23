@@ -1,0 +1,177 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<ui:composition template="/WEB-INF/layout/template.xhtml">
+	<ui:define name="body">
+		<f:metadata>
+			<f:viewParam name="id"
+				value="#{eventProposalController.idEventProposal}" />
+			<f:event listener="#{eventProposalController.load}"
+				type="preRenderView" />
+		</f:metadata>
+		<h:form id="formEventProposal">
+			<p:growl id="messages" showDetail="true" autoUpdate="true"
+			showSummary="false" />
+			<p:panel header="#{msg['label.eventProposals']}"
+				styleClass="form-cadastro">
+				<p:focus for="txtDescription" />
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.eventProposal.id']}:"
+								for="txtId"
+								rendered="#{eventProposalController.eventProposal.id != null}" styleClass="control-label"/>
+
+							<h:outputText
+									value="#{eventProposalController.eventProposal.id}" id="txtId"
+									rendered="#{eventProposalController.eventProposal.id != null}" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.eventProposal.event']}:"
+								for="txtEvent" styleClass="control-label"/>
+
+							<p:selectOneMenu id="txtEvent"
+								value="#{eventProposalController.eventProposal.event}"
+								converter="GenericConverter" styleClass="form-control">
+								<f:selectItems value="#{eventProposalController.events}" />
+							</p:selectOneMenu>
+							<p:message id="msgEvent" for="txtEvent" errorClass="errorMessage"/>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.eventProposal.description']}:"
+								for="txtEmail" styleClass="control-label"/>
+							<br />
+							<p:editor
+								value="#{eventProposalController.eventProposal.description}"
+								id="txtDescription" required="true" maxlength="50" />
+							<p:message id="msgDescription" for="txtDescription" errorClass="errorMessage"/>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.eventProposal.createDate']}:"
+								for="txtCreateDate" styleClass="control-label"/>
+							<br />
+							<p:calendar id="txtCreateDate"
+								value="#{eventProposalController.eventProposal.createDate}"
+								locale="pt_BR" navigator="true" pattern="dd/MM/yyyy"
+								showButtonPanel="true" showOn="button">
+								<f:convertDateTime type="date" dateStyle="medium"
+									pattern="dd/MM/yyyy" timeZone="GMT-3" locale="pt_BR" />
+							</p:calendar>
+							<p:message id="msgCreateDate" for="txtCreateDate" errorClass="errorMessage"/>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.eventProposal.schedule']}:"
+								for="txtSchedule" styleClass="control-label"/><br />
+							<p:editor
+								value="#{eventProposalController.eventProposal.schedule}"
+								id="txtSchedule" required="true" maxlength="50" />
+							<p:message id="msgSchedule" for="txtSchedule" errorClass="errorMessage"/>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.eventProposal.macroThemes']}:"
+								for="txtMacroThemes" styleClass="control-label"/>
+							<br />
+							<p:editor
+								value="#{eventProposalController.eventProposal.macroThemes}"
+								id="txtMacroThemes" required="true" maxlength="50" />
+							<p:message id="msgMacroThemes" for="txtMacroThemes" errorClass="errorMessage"/>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel
+								value="#{msg['label.eventProposal.targetAudience']}:"
+								for="txtTargetAudience" styleClass="control-label"/>
+							<br />
+							<p:editor
+								value="#{eventProposalController.eventProposal.targetAudience}"
+								id="txtTargetAudience" required="true" maxlength="50" />
+							<p:message id="msgTargetAudience" for="txtTargetAudience" errorClass="errorMessage"/>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.eventProposal.expenses']}:"
+								for="txtExpenses" styleClass="control-label"/>
+							<br />
+							<p:editor
+								value="#{eventProposalController.eventProposal.expenses}"
+								id="txtExpenses" required="true" maxlength="50" />
+							<p:message id="msgExpenses" for="txtExpenses" errorClass="errorMessage"/>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.eventProposal.budget']}:"
+								for="txtBudget" styleClass="control-label"/>
+							<br />
+							<p:editor value="#{eventProposalController.eventProposal.budget}"
+								id="txtBudget" required="true" maxlength="50" />
+							<p:message id="msgBudget" for="txtBudget" errorClass="errorMessage"/>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel
+								value="#{msg['label.eventProposal.formsOfDissemination']}:"
+								for="txtFormsOfDissemination" styleClass="control-label"/>
+							<br />
+							<p:editor
+								value="#{eventProposalController.eventProposal.formsOfDissemination}"
+								id="txtFormsOfDissemination" required="true" maxlength="50" />
+							<p:message id="msgFormsOfDissemination"
+								for="txtFormsOfDissemination" errorClass="errorMessage"/>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<f:facet name="footer">
+								<p:commandButton action="#{eventProposalController.register}"
+									ajax="false" id="btnSave"
+									value="#{msg['label.new']}"
+									icon="ui-icon-circle-check" />
+								<p:commandButton value="#{msg['label.cancel']}" immediate="true"
+									icon="ui-icon-cancel"
+									action="#{eventProposalController.cancelar}" ajax="false " />
+							</f:facet>
+						</div>
+					</div>
+				</div>
+			</p:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

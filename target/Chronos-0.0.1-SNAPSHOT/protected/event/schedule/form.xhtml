@@ -1,0 +1,150 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<ui:composition template="/WEB-INF/layout/template.xhtml">
+	<ui:define name="body">
+		<f:metadata>
+			<f:viewParam name="id" value="#{scheduleController.idSchedule}" />
+			<f:event listener="#{scheduleController.load}" type="preRenderView" />
+		</f:metadata>
+		<h:form id="formSchedule">
+			<p:growl id="messages" showDetail="true" autoUpdate="true"
+			showSummary="false" />
+			<p:panel header="#{msg['label.schedules']}"
+				styleClass="form-cadastro">
+				<p:focus for="txtDescription" />
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.schedule.id']}:" for="txtId"
+								rendered="#{scheduleController.schedule.id != null}" styleClass="control-label" />
+							
+							<h:outputText
+									value="#{scheduleController.schedule.id}" id="txtId"
+									rendered="#{scheduleController.schedule.id != null}" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.schedule.event']}:"
+								for="txtEvent" styleClass="control-label" />
+							
+							<p:selectOneMenu id="txtEvent"
+									value="#{scheduleController.schedule.event}"
+									converter="GenericConverter" styleClass="form-control">
+									<f:selectItems value="#{scheduleController.eventMains}" />
+								</p:selectOneMenu>
+							<p:message id="msgEvent" for="txtEvent" errorClass="errorMessage" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.schedule.description']}:"
+								for="txtDescription" styleClass="control-label" />
+							
+							<p:inputText
+									value="#{scheduleController.schedule.title}"
+									id="txtDescription" required="true" maxlength="50" styleClass="form-control" />
+							<p:message id="msgDescription" for="txtDescription" errorClass="errorMessage" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.schedule.startTime']}:" for="" styleClass="control-label" />
+							<br />
+							<p:calendar id="txtStartTime"
+									value="#{scheduleController.schedule.startTime}" locale="pt_BR"
+									navigator="true" pattern="HH:mm" timeOnly="true"
+									showButtonPanel="true" />
+							<p:message id="msgStartTime" for="txtStartTime" errorClass="errorMessage" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.schedule.endTime']}:"
+								for="txtEndTime" styleClass="control-label" />
+							<br />
+							<p:calendar id="txtEndTime"
+									value="#{scheduleController.schedule.endTime}" locale="pt_BR"
+									navigator="true" pattern="HH:mm" timeOnly="true"
+									showButtonPanel="true" />
+							<p:message id="msgEndTime" for="txtEndTime" errorClass="errorMessage" />
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.schedule.scheduleTypes']}:"
+								for="txtScheduleTypes" styleClass="control-label" />
+							
+							<p:selectOneMenu id="txtScheduleTypes"
+									value="#{scheduleController.schedule.scheduleType}"
+									converter="GenericConverter" styleClass="form-control">
+									<f:selectItems value="#{scheduleController.scheduleTypes}" />
+								</p:selectOneMenu>
+							<p:message id="msgScheduleTypes" for="txtScheduleTypes" errorClass="errorMessage" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.schedule.date']}:"
+								for="txtDate" styleClass="control-label" />
+							<br />
+							<p:calendar id="txtDate"
+									value="#{scheduleController.schedule.date}" locale="pt_BR"
+									navigator="true" pattern="dd/MM/yyyy" showButtonPanel="true" showOn="button">
+									<f:convertDateTime type="date" dateStyle="medium"
+										pattern="dd/MM/yyyy" timeZone="GMT-3" locale="pt_BR" />
+								</p:calendar>
+							<p:message id="msgDate" for="txtDate" errorClass="errorMessage" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.schedule.shortDescription']}:"
+								for="txtShortDescription" styleClass="control-label" />
+							<br />
+							<p:editor
+									value="#{scheduleController.schedule.shortDescription}"
+									id="txtShortDescription" required="true" maxlength="50"/>
+							<p:message id="msgShortDescription"
+									for="txtShortDescription" errorClass="errorMessage" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<f:facet name="footer">
+								<p:commandButton action="#{scheduleController.register}"
+									ajax="false" id="btnSave" value="#{msg['label.schedule.new']}"
+									icon="ui-icon-circle-check" />
+								<p:commandButton value="#{msg['label.cancel']}" immediate="true"
+									icon="ui-icon-cancel" action="#{scheduleController.cancelar}"
+									ajax="false " />
+							</f:facet>
+						</div>
+					</div>
+				</div>
+			</p:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

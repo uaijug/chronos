@@ -1,0 +1,171 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<ui:composition template="/WEB-INF/layout/template.xhtml">
+	<ui:define name="body">
+		<f:metadata>
+			<f:viewParam name="id" value="#{cashFlowController.idCashFlow}" />
+			<f:event listener="#{cashFlowController.load}" type="preRenderView" />
+		</f:metadata>
+		<h:form id="formCashFlow">
+			<p:growl id="messages" showDetail="true" autoUpdate="true"
+			showSummary="false" />
+			<p:panel header="#{msg['label.cashFlows']}"
+				styleClass="form-cadastro">
+				<p:focus for="txtDescription" />
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.cashFlow.id']}:" for="txtId"
+								rendered="#{cashFlowController.cashFlow.id != null}" styleClass="control-label" />
+							<h:outputText value="#{cashFlowController.cashFlow.id}"
+								id="txtId" rendered="#{cashFlowController.cashFlow.id != null}" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.cashFlow.event']}:"
+								for="txtEvent" styleClass="control-label" />
+							<p:selectOneMenu id="txtEvent"
+								value="#{cashFlowController.cashFlow.event}"
+								converter="GenericConverter" styleClass="form-control">
+								<f:selectItems value="#{cashFlowController.events}" />
+								<!--  // receita ou despesa. -->
+							</p:selectOneMenu>
+							<p:message id="msgEvent" for="txtEvent" errorClass="errorMessage" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.cashFlow.company']}:"
+								for="txtCompany" styleClass="control-label" />
+							<p:selectOneMenu id="txtCompany"
+								value="#{cashFlowController.cashFlow.company}"
+								converter="GenericConverter" styleClass="form-control">
+								<f:selectItems value="#{cashFlowController.companys}" />
+								<!--  // receita ou despesa. -->
+							</p:selectOneMenu>
+							<p:message id="msgCompany" for="txtCompany" errorClass="errorMessage" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.cashFlow.cashFlowCategory']}:"
+								for="txtCashFlowCategory" styleClass="control-label" />
+							<p:selectOneMenu id="txtCashFlowCategory"
+								value="#{cashFlowController.cashFlow.cashFlowCategory}"
+								converter="GenericConverter" styleClass="form-control">
+								<f:selectItems value="#{cashFlowController.cashFlowCategorys}" />
+								<!--  // receita ou despesa. -->
+							</p:selectOneMenu>
+							<p:message id="msgCashFlowCategory" for="txtCashFlowCategory" errorClass="errorMessage" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.cashFlow.description']}:"
+								for="txtDescription" styleClass="control-label" />
+							<p:inputText value="#{cashFlowController.cashFlow.description}"
+								id="txtDescription" required="true" maxlength="50" styleClass="form-control" />
+							<p:message id="msgDescription" for="txtDescription" errorClass="errorMessage" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.cashFlow.datePayment']}:"
+								for="txtdatePayment" styleClass="control-label" /><br />
+							<p:calendar id="txtDatePayment"
+								value="#{cashFlowController.cashFlow.datePayment}"
+								locale="pt_BR" navigator="true" pattern="dd/MM/yyyy"
+								showButtonPanel="true">
+								<f:convertDateTime type="date" dateStyle="medium"
+									pattern="dd/MM/yyyy" timeZone="GMT-3" locale="pt_BR" />
+							</p:calendar>
+							<p:message id="msgdatePayment" for="txtDatePayment" errorClass="errorMessage" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.cashFlow.cashFlowType']}:"
+								for="txtControl" styleClass="control-label" />
+							<p:selectOneMenu id="txtControl"
+								value="#{cashFlowController.cashFlow.cashFlowType}"
+								converter="GenericConverter" styleClass="form-control">
+								<f:selectItems value="#{cashFlowController.cashFlowTypes}" />
+								<!--  // receita ou despesa. -->
+							</p:selectOneMenu>
+							<p:message id="msgControl" for="txtControl" errorClass="errorMessage" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.cashFlow.value']}:"
+								for="txtvalue" styleClass="control-label" />
+							<p:inputText value="#{cashFlowController.cashFlow.value}"
+								id="txtvalue" required="true" maxlength="50" styleClass="form-control" />
+							<p:message id="msgvalue" for="txtvalue" errorClass="errorMessage" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel
+								value="#{msg['label.cashFlow.percentageInterest']}:"
+								for="txtpercentageInterest" styleClass="control-label" />
+							<p:inputText
+								value="#{cashFlowController.cashFlow.percentageInterest}"
+								id="txtpercentageInterest" required="true" maxlength="50" styleClass="form-control" />
+							<p:message id="msgpercentageInterest" for="txtpercentageInterest" errorClass="errorMessage" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel
+								value="#{msg['label.cashFlow.valueTotalPayment']}:"
+								for="txtvalueTotalPayment" styleClass="control-label" />
+							<p:inputText
+								value="#{cashFlowController.cashFlow.valueTotalPayment}"
+								id="txtvalueTotalPayment" required="true" maxlength="50" styleClass="form-control" />
+							<p:message id="msgvalueTotalPayment" for="txtvalueTotalPayment" errorClass="errorMessage" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<f:facet name="footer">
+								<p:commandButton action="#{cashFlowController.register}"
+									ajax="false" id="btnSave" value="#{msg['label.cashFlow.new']}"
+									icon="ui-icon-circle-check" />
+								<p:commandButton value="#{msg['label.cancel']}" immediate="true"
+									icon="ui-icon-cancel" action="#{cashFlowController.cancelar}"
+									ajax="false " />
+							</f:facet>
+						</div>
+					</div>
+				</div>
+			</p:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<f:view xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile" 
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	contentType="text/html"
+	renderKitId="PRIMEFACES_MOBILE">
+        <pm:page title="UaiJUG Mobile - v0.1">
+ 			<link href="/javax.faces.resource/primefaces.css.jsf?ln=primefaces" rel="stylesheet" type="text/css"/>
+ 			
+            <pm:view id="main" swatch="d">
+              <h:form id="listMembersForm">
+                <pm:header title="GPM - v0.1" fixed="true" swatch="b">
+	                <f:facet name="left">
+						<p:button value="Sobre" icon="info" href="#about" />
+					</f:facet>
+                    <f:facet name="right">
+                    	<p:commandButton value="Novo Membro" iconPos="notext" icon="plus" action="#{memberController.novoMember()}" update=":memberForm:content" />
+                    </f:facet>
+                </pm:header>
+                
+                <pm:content>
+                    <p:dataList id="membersList" value="#{memberController.members}" var="member">
+                    	  <f:attribute name="filter" value="true" />
+                        <f:attribute name="placeholder" value="Search" />
+                        <f:attribute name="autoDividers" value="true" />
+                        <f:attribute name="icon" value="grid" />
+                        <f:attribute name="iconSplit" value="true" /> 
+                        <p:column>
+	                       <p:commandLink action="pm:new?transition=slide" update=":memberForm:content">
+	                           <h2>Nome: #{member.name} </h2>
+							   <p>email: #{member.email} <br /> cpf: #{member.cpf} </p>
+							   <f:setPropertyActionListener value="#{member}"
+									target="#{memberController.member}" />
+	                        </p:commandLink>
+	                        <a href="tel:#{member.email}" onclick="dlgBasic.show()">Call</a>
+	                    </p:column>
+	                    <f:facet name="footer">
+							<strong>#{fn:length(memberController.members)} Members</strong>
+						</f:facet>
+					</p:dataList>
+                </pm:content>
+                <pm:footer fixed="true">
+                    <p>GPM - Gerador de Pedidos M��veis - v0.1</p>
+                </pm:footer>
+                
+                <p:dialog id="basicDialog" header="Basic Dialog" widgetVar="dlg1">  
+    <h:outputText value="Resistance to PrimeFaces is futile!" />  
+</p:dialog>
+              </h:form>
+            </pm:view>
+                    
+            <pm:view id="about">
+                <pm:header title="Sobre" fixed="true">
+                    <f:facet name="left">
+                        <p:button value="Voltar" icon="back" href="#main" />
+                    </f:facet>
+                </pm:header>
+                <pm:content>
+                    <h2>Armazem Armarinho</h2>
+                    <p>Rua das Perdizes, n�� 123, Centro</p>
+                </pm:content>
+                <pm:footer fixed="true">
+                    <p>GPM - Gerador de Pedidos M��veis - v0.1</p>
+                </pm:footer>
+            </pm:view>
+            
+            <pm:view id="new" swatch="d">
+              <h:form id="memberForm">
+                <pm:header title="Member" fixed="true" swatch="b">
+                    <f:facet name="left">
+                        <p:button value="Voltar" icon="back" href="#main" />
+                    </f:facet>
+                    <f:facet name="right">
+						<p:commandButton value="Salvar"
+							actionListener="#{memberController.mSave()}" 
+							update=":memberForm:content" iconPos="none"
+							oncomplete="PrimeFaces.back()" />
+					</f:facet>
+                </pm:header>
+                <pm:content>
+                 	  <p:messages id="messages" />	
+                      
+                       <p:outputPanel id="content" layout="block">
+                            <p:inputText value="#{memberController.member.name}" label="Name:" />
+                            <p:inputText value="#{memberController.member.email}" label="e-mail:" />
+                            <p:inputText value="#{memberController.member.cpf}" label="cpf:" />
+                        </p:outputPanel>
+                   
+                </pm:content>
+              </h:form>
+            </pm:view>
+
+        </pm:page>
+    </f:view>
+</html>

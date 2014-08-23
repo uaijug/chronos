@@ -1,0 +1,206 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<ui:composition template="/WEB-INF/layout/template.xhtml">
+	<ui:define name="body">
+		<f:metadata>
+			<f:viewParam name="id" value="#{speakerController.idSpeaker}" />
+			<f:event listener="#{speakerController.load}" type="preRenderView" />
+		</f:metadata>
+		<h:form id="formSpeaker">
+			<p:growl id="messages" showDetail="true" autoUpdate="true"
+			showSummary="false" />
+			<p:panel header="#{msg['label.speakers']}" styleClass="form-cadastro">
+				<p:focus for="txtName" />
+
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.speaker.id']}:" for="txtId"
+								rendered="#{speakerController.speaker.id != null}" styleClass="control-label" />
+							<h:outputText value="#{speakerController.speaker.id}" id="txtId"
+								rendered="#{speakerController.speaker.id != null}" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.speaker.name']}:"
+								for="txtName" styleClass="control-label" />
+							<p:inputText value="#{speakerController.speaker.name}"
+								id="txtName" required="true" maxlength="50" styleClass="form-control" />
+							<p:message id="msgName" for="txtName" errorClass="errorMessage" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.speaker.company']}:"
+								for="txtCompany" styleClass="control-label" />
+							<h:selectOneMenu id="txtCompany"
+								value="#{speakerController.speaker.company}"
+								converter="GenericConverter" styleClass="form-control">
+								<f:selectItems value="#{speakerController.companys}" />
+							</h:selectOneMenu>
+							<p:message id="msgCompany" for="txtCompany" errorClass="errorMessage" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.speaker.event']}:"
+								for="txtEvent" styleClass="control-label" />
+							<p:selectOneMenu id="txtEvent"
+								value="#{speakerController.speaker.event}"
+								converter="GenericConverter" styleClass="form-control">
+								<f:selectItems value="#{speakerController.events}" />
+							</p:selectOneMenu>
+							<p:message id="msgEvent" for="txtEvent" errorClass="errorMessage" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.speaker.address']}:"
+								for="txtAddress" styleClass="control-label" />
+							<p:selectOneMenu id="txtAddress"
+								value="#{speakerController.speaker.address}"
+								converter="GenericConverter" styleClass="form-control">
+								<f:selectItems value="#{speakerController.addresses}" />
+							</p:selectOneMenu>
+							<p:message id="msgAddress" for="txtAddress" errorClass="errorMessage" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.speaker.birth-date']}:"
+								for="txtBirthDate" styleClass="control-label" /><br />
+							<p:calendar id="txtBirthDate"
+								value="#{speakerController.speaker.birthDate}" locale="pt_BR"
+								navigator="true" pattern="dd/MM/yyyy" showButtonPanel="true">
+								<f:convertDateTime type="date" dateStyle="medium"
+									pattern="dd/MM/yyyy" timeZone="GMT-3" locale="pt_BR" />
+							</p:calendar>
+							<p:message id="msgBirthDate" for="txtBirthDate" errorClass="errorMessage" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.speaker.email']}:"
+								for="txtEmail" styleClass="control-label" />
+							<p:inputText value="#{speakerController.speaker.email}"
+								id="txtEmail" required="true" maxlength="50" styleClass="form-control" />
+							<p:message id="msgEmail" for="txtEmail" errorClass="errorMessage" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.speaker.picture']}:"
+								for="txtPicture" styleClass="control-label" />
+							<p:inputText value="#{speakerController.speaker.picture}"
+								id="txtPicture" required="true" maxlength="50" styleClass="form-control" />
+							<p:message id="msgPicture" for="txtPicture" errorClass="errorMessage" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.speaker.twitter']}:"
+								for="txtTwitter" styleClass="control-label" />
+							<p:inputText value="#{speakerController.speaker.twitter}"
+								id="txtTwitter" required="true" maxlength="50" styleClass="form-control" />
+							<p:message id="msgTwitter" for="txtTwitter" errorClass="errorMessage" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.speaker.phoneNumber']}:"
+								for="txtTelephone" styleClass="control-label" />
+							<p:inputText value="#{speakerController.speaker.phoneNumber}"
+								id="txtTelephone" required="true" maxlength="50" styleClass="form-control" />
+							<p:message id="msgTelephone" for="txtTelephone" errorClass="errorMessage" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.speaker.site']}:"
+								for="txtSite" styleClass="control-label" />
+							<p:inputText value="#{speakerController.speaker.site}"
+								id="txtSite" required="true" maxlength="50" styleClass="form-control" />
+							<p:message id="msgSite" for="txtSite" errorClass="errorMessage" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.speaker.presentation']}:"
+								for="txtPresentation" styleClass="control-label" />
+							<p:inputTextarea
+								value="#{speakerController.speaker.presentation}"
+								id="txtPresentation" required="true" maxlength="500" styleClass="form-control" />
+							<p:message id="msgPresentation" for="txtPresentation" errorClass="errorMessage" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.speaker.miniCurriculum']}:"
+								for="txtMiniCurriculum" styleClass="control-label" />
+							<p:inputTextarea
+								value="#{speakerController.speaker.miniCurriculum}"
+								id="txtMiniCurriculum" required="true" maxlength="500" styleClass="form-control" />
+							<p:message id="msgMiniCurriculum" for="txtMiniCurriculum" errorClass="errorMessage" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.speaker.moreInformations']}:"
+								for="txtMoreInformations" styleClass="control-label" />
+							<p:inputTextarea
+								value="#{speakerController.speaker.moreInformations}"
+								id="txtMoreInformations" required="true" maxlength="500" styleClass="form-control" />
+							<p:message id="msgMoreInformations" for="txtMoreInformations" errorClass="errorMessage" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<f:facet name="footer">
+								<p:commandButton action="#{speakerController.register}"
+									ajax="false" id="btnSave" value="#{msg['label.speaker.new']}"
+									icon="ui-icon-circle-check" />
+								<p:commandButton value="#{msg['label.cancel']}" immediate="true"
+									icon="ui-icon-cancel" action="#{speakerController.cancelar}"
+									ajax="false " />
+							</f:facet>
+						</div>
+					</div>
+				</div>
+			</p:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

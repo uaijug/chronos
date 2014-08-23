@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<ui:composition template="/layout/template.xhtml">
+
+	<ui:define name="body">
+		<p:growl id="messages" showDetail="true" autoUpdate="true"
+			showSummary="false" />
+		<h:form id="formFreePass">
+			<p:dataTable id="freePasssTable" var="freePass" value="#{freePassController.freePasss}">
+
+			  <f:facet name="header">  
+        	   Cash Flow Report per Month
+       		  </f:facet>
+
+				<p:columnGroup type="header">
+				 	<p:row>
+						<p:column headerText="Desciption" />
+						<p:column headerText="code" />
+						<p:column headerText="discont" />
+					</p:row>
+				</p:columnGroup>
+
+				<p:column>  
+	            	#{freePass.description} 
+		        </p:column>
+	
+				<p:column>  
+		          <h:outputLabel value="#{freePass.code}" />		           
+	        	</p:column>
+		
+				<p:column>  
+		             <h:outputLabel value="R$ #{freePass.percentageDiscount}" />
+		        </p:column>
+
+				<f:facet name="footer">  
+          			  Use a bicycle instead of a car  
+      				 </f:facet>
+
+			</p:dataTable>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

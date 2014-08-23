@@ -1,0 +1,6 @@
+<jboss-web>
+	<context-root>Chronos</context-root>
+	
+	<!-- Realm that will be used -->
+	<security-domain>java:/jaas/ChronosRealm</security-domain>
+</jboss-web>

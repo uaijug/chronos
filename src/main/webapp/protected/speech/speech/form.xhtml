@@ -1,0 +1,161 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<ui:composition template="/WEB-INF/layout/template.xhtml">
+	<ui:define name="body">
+		<f:metadata>
+			<f:viewParam name="id" value="#{speechController.idSpeech}" />
+			<f:event listener="#{speechController.load}" type="preRenderView" />
+		</f:metadata>
+		<h:form id="formSpeech">
+			<p:growl id="messages" showDetail="true" autoUpdate="true"
+			showSummary="false" />
+			<p:panel header="#{msg['label.speechs']}" styleClass="form-cadastro">
+				<p:focus for="txtTitle" />
+
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.speech.id']}:" for="txtId"
+								rendered="#{speechController.speech.id != null}" styleClass="control-label" />
+							<h:outputText value="#{speechController.speech.id}" id="txtId"
+								rendered="#{speechController.speech.id != null}" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.speech.title']}:"
+								for="txtTitle" styleClass="control-label" />
+							<p:inputText value="#{speechController.speech.title}"
+								id="txtTitle" required="true" maxlength="50" styleClass="form-control" />
+							<p:message id="msgTitle" for="txtTitle" errorClass="errorMessage" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.speech.speechTypes']}:"
+								for="txtSpeechTypes" styleClass="control-label" />
+							<p:selectOneMenu id="txtSpeechTypes"
+								value="#{speechController.speech.speechTypes}"
+								converter="GenericConverter" styleClass="form-control">
+								<f:selectItems value="#{speechController.speechTypes}" />
+							</p:selectOneMenu>
+							<p:message id="msgSpeechTypes" for="txtSpeechTypes" errorClass="errorMessage" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.speech.speaker']}:"
+								for="txtSpeaker" styleClass="control-label" />
+							<p:selectOneMenu id="txtSpeaker"
+								value="#{speechController.speech.speaker}"
+								converter="GenericConverter" styleClass="form-control">
+								<f:selectItems value="#{speechController.speakers}" />
+							</p:selectOneMenu>
+							<p:message id="msgSpeaker" for="txtSpeaker" errorClass="errorMessage" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.speech.event']}:"
+								for="txtEvent" styleClass="control-label" />
+							<p:selectOneMenu id="txtEvent"
+								value="#{speechController.speech.event}"
+								converter="GenericConverter" styleClass="form-control">
+								<f:selectItems value="#{speechController.events}" />
+							</p:selectOneMenu>
+							<p:message id="msgEvent" for="txtEvent" errorClass="errorMessage" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.speech.description']}:"
+								for="txtDescription" styleClass="control-label" />
+							<p:inputTextarea value="#{speechController.speech.description}"
+								id="txtDescription" required="true" maxlength="50" styleClass="form-control" />
+							<p:message id="msgDescription" for="txtDescription" errorClass="errorMessage" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.speech.approve']}:"
+								for="txtApprove" styleClass="control-label" />
+							<p:selectOneMenu id="txtApprove"
+								value="#{speechController.speech.approve}"
+								converter="GenericConverter" styleClass="form-control">
+								<f:selectItems value="#{speechController.approves}" />
+							</p:selectOneMenu>
+							<p:message id="msgApprove" for="txtApprove" errorClass="errorMessage" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.speech.nivel']}:"
+								for="txtNivel" styleClass="control-label" />
+							<p:inputText value="#{speechController.speech.nivel}"
+									id="txtNivel" required="true" maxlength="50" styleClass="form-control" />
+							<p:message id="msgNivel" for="txtNivel" errorClass="errorMessage" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.speech.preRequisite']}:"
+								for="txtPreRequisite" styleClass="control-label" />
+							<p:inputTextarea
+									value="#{speechController.speech.preRequisite}"
+									id="txtPreRequisite" required="true" maxlength="50" styleClass="form-control" />
+							<p:message id="msgPreRequisite" for="txtPreRequisite" errorClass="errorMessage" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.speech.shortDescription']}:"
+								for="txtshortDescription" styleClass="control-label" />
+							<p:inputTextarea
+									value="#{speechController.speech.shortDescription}"
+									id="txtshortDescription" required="true" maxlength="50" styleClass="form-control" />
+							<p:message id="msgshortDescription"
+									for="txtshortDescription" errorClass="errorMessage" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<f:facet name="footer">
+								<p:commandButton action="#{speechController.register}"
+									ajax="false" id="btnSave" value="#{msg['label.speech.new']}"
+									icon="ui-icon-circle-check" />
+								<p:commandButton value="#{msg['label.cancel']}" immediate="true"
+									icon="ui-icon-cancel" action="#{speechController.cancelar}"
+									ajax="false " />
+							</f:facet>
+						</div>
+					</div>
+				</div>
+			</p:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

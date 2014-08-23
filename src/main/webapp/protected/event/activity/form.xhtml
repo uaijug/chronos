@@ -1,0 +1,200 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<ui:composition template="/WEB-INF/layout/template.xhtml">
+	<ui:define name="body">
+		<f:metadata>
+			<f:viewParam name="id" value="#{activityController.idActivity}" />
+			<f:event listener="#{activityController.load}" type="preRenderView" />
+		</f:metadata>
+		<h:form id="formActivity">
+			<p:growl id="messages" showDetail="true" autoUpdate="true"
+			showSummary="false" />
+			<p:panel header="#{msg['label.activitys']}"
+				styleClass="form-cadastro">
+				<p:focus for="txtDescription" />
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.activity.id']}:" for="txtId"
+								rendered="#{activityController.activity.id != null}" styleClass="control-label" />
+							<h:outputText
+									value="#{activityController.activity.id}" id="txtId"
+									rendered="#{activityController.activity.id != null}" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.activity.project']}:"
+								for="txtProject" styleClass="control-label" />
+							<p:selectOneMenu id="txtProject"
+								value="#{activityController.activity.project}"
+								converter="GenericConverter" styleClass="form-control">
+								<f:selectItems value="#{activityController.projects}" />
+							</p:selectOneMenu>
+
+							<p:message id="msgProject" for="txtProject" errorClass="errorMessage" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.activity.activityCategory']}:"
+								for="txtActivityCategory" styleClass="control-label" />
+							<p:selectOneMenu id="txtActivityCategory"
+								value="#{activityController.activity.activityCategory}"
+								converter="GenericConverter" styleClass="form-control">
+								<f:selectItems value="#{activityController.activityCategorys}" />
+							</p:selectOneMenu>
+
+							<p:message id="msgActivityCategory" for="txtActivityCategory" errorClass="errorMessage" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.activity.description']}:"
+								for="txtDescription" styleClass="control-label" />
+							<p:inputText value="#{activityController.activity.description}"
+								id="txtDescription" required="true" maxlength="50" size="50" styleClass="form-control" />
+							<p:message id="msgDescription" for="txtDescription" errorClass="errorMessage" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.activity.start-date']}:"
+								for="txtStartDate" styleClass="control-label" />
+							<br />
+
+							<p:calendar id="txtStartDate"
+								value="#{activityController.activity.startDate}" locale="pt_BR"
+								navigator="true" pattern="dd/MM/yyyy" showButtonPanel="true" showOn="button">
+								<f:convertDateTime type="date" dateStyle="medium"
+									pattern="dd/MM/yyyy" timeZone="GMT-3" locale="pt_BR" />
+							</p:calendar>
+
+							<p:message id="msgStartDate" for="txtStartDate" errorClass="errorMessage" />
+
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.activity.end-date']}:"
+								for="txtEndDate" styleClass="control-label" />
+							<br />
+								
+							<p:calendar id="txtEndDate"
+								value="#{activityController.activity.endDate}" locale="pt_BR"
+								navigator="true" pattern="dd/MM/yyyy" showButtonPanel="true" showOn="button">
+								<f:convertDateTime type="date" dateStyle="medium"
+									pattern="dd/MM/yyyy" timeZone="GMT-3" locale="pt_BR" />
+							</p:calendar>
+
+							<p:message id="msgEndDate" for="txtEndDate" errorClass="errorMessage" />
+
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.activity.completed']}:"
+								for="txtCompleted" styleClass="control-label" />
+							<p:selectOneMenu id="txtCompleted"
+								value="#{activityController.activity.completed}"
+								converter="GenericConverter" styleClass="form-control">
+								<f:selectItems value="#{activityController.completeds}" />
+							</p:selectOneMenu>
+
+							<p:message id="msgCompleted" for="txtCompleted" errorClass="errorMessage" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.activity.etc']}:" for="txtEtc" styleClass="control-label" />
+							<p:inputText value="#{activityController.activity.etc}"
+								id="txtEtc" required="true" maxlength="5" styleClass="form-control"/>
+							<p:message id="msgEtc" for="txtEtc" errorClass="errorMessage" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.activity.approved']}:"
+								for="txtApproved" styleClass="control-label" />
+							<p:selectOneMenu id="txtApproved"
+								value="#{activityController.activity.approved}"
+								converter="GenericConverter" styleClass="form-control">
+								<f:selectItems value="#{activityController.approveds}" />
+							</p:selectOneMenu>
+
+							<p:message id="msgApproved" for="txtApproved" errorClass="errorMessage" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.activity.status']}:"
+								for="txtStatus" styleClass="control-label" />
+							<p:inputText value="#{activityController.activity.status}"
+								id="txtStatus" required="true" maxlength="5" styleClass="form-control" />
+							<p:message id="msgStatus" for="txtStatus" errorClass="errorMessage" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.activity.tags']}:"
+								for="txtTags" styleClass="control-label" />
+							<p:inputTextarea value="#{activityController.activity.tags}"
+								id="txtTags" required="true" rows="5" cols="15" styleClass="form-control" />
+							<p:message id="msgTags" for="txtTags" errorClass="errorMessage" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.activity.notes']}:"
+								for="txtNotes" styleClass="control-label" />
+							<p:inputTextarea value="#{activityController.activity.notes}"
+								id="txtNotes" required="true" rows="5" cols="15" styleClass="form-control" />
+							<p:message id="msgNotes" for="txtNotes" errorClass="errorMessage" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<f:facet name="footer">
+								<p:commandButton action="#{activityController.register}"
+									ajax="false" id="btnSave" value="#{msg['label.activity.new']}"
+									icon="ui-icon-circle-check" />
+								<p:commandButton value="#{msg['label.cancel']}" immediate="true"
+									icon="ui-icon-cancel" action="#{activityController.cancelar}"
+									ajax="false " />
+							</f:facet>
+						</div>
+					</div>
+				</div>
+			</p:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

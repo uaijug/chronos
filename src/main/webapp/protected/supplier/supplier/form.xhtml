@@ -1,0 +1,131 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<ui:composition template="/WEB-INF/layout/template.xhtml">
+	<ui:define name="body">
+		<f:metadata>
+			<f:viewParam name="id" value="#{supplierController.idSupplier}" />
+			<f:event listener="#{supplierController.load}" type="preRenderView" />
+		</f:metadata>
+		<h:form id="formSupplier">
+			<p:growl id="messages" showDetail="true" autoUpdate="true"
+			showSummary="false" />
+			<p:panel header="#{msg['label.suppliers']}"
+				styleClass="form-cadastro">
+				<p:focus for="txtName" />
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.supplier.id']}:" for="txtId"
+								rendered="#{supplierController.supplier.id != null}" styleClass="control-label" />
+							<h:outputText value="#{supplierController.supplier.id}"
+								id="txtId" rendered="#{supplierController.supplier.id != null}" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.supplier.name']}:"
+								for="txtName" styleClass="control-label" />
+							<p:inputText value="#{supplierController.supplier.name}"
+								id="txtName" required="true" maxlength="50" styleClass="form-control" />
+							<p:message id="msgName" for="txtName" errorClass="errorMessage" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.supplier.acronym']}:"
+								for="txtAcronym" styleClass="control-label" />
+							<p:inputText value="#{supplierController.supplier.acronym}"
+								id="txtAcronym" required="true" maxlength="50" styleClass="form-control" />
+							<p:message id="msgAcronym" for="txtAcronym" errorClass="errorMessage" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.supplier.logo']}:"
+								for="txtLogo" styleClass="control-label" />
+							<p:inputText value="#{supplierController.supplier.logo}"
+								id="txtLogo" required="true" maxlength="50" styleClass="form-control" />
+							<p:message id="msgLogo" for="txtLogo" errorClass="errorMessage" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.supplier.description']}:"
+								for="txtDescription" styleClass="control-label" /><br />
+							<p:editor value="#{supplierController.supplier.description}"
+								id="txtDescription" required="true" maxlength="50" />
+							<p:message id="msgDescription" for="txtDescription" errorClass="errorMessage" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.supplier.supplierType']}:"
+								for="txtSupplierType" styleClass="control-label" />
+							<p:selectOneMenu id="txtSupplierType"
+								value="#{supplierController.supplier.supplierType}"
+								converter="GenericConverter" styleClass="form-control">
+								<f:selectItems value="#{supplierController.supplierTypes}" />
+							</p:selectOneMenu>
+							<p:message id="msgSupplierType" for="txtSupplierType" errorClass="errorMessage" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.supplier.site']}:"
+								for="txtSite" styleClass="control-label" />
+							<p:inputText value="#{supplierController.supplier.site}"
+								id="txtSite" required="true" maxlength="50" styleClass="form-control" />
+							<p:message id="msgSite" for="txtSite" errorClass="errorMessage" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.supplier.address']}:"
+								for="txtAddress" styleClass="control-label" /><br />
+							<p:autoComplete id="txtAddress"
+								value="#{supplierController.supplier.address}"
+								completeMethod="#{supplierController.completeAddress}"
+								var="address" itemLabel="#{address.street}"
+								itemValue="#{address}" converter="GenericConverter"
+								forceSelection="true" size="100" />
+							<p:message id="msgAddress" for="txtAddress" errorClass="errorMessage" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<f:facet name="footer">
+								<p:commandButton action="#{supplierController.register}"
+									ajax="false" id="btnSave" value="#{msg['label.new']}"
+									icon="ui-icon-circle-check" />
+								<p:commandButton value="#{msg['label.cancel']}" immediate="true"
+									icon="ui-icon-cancel" action="#{supplierController.cancelar}"
+									ajax="false " />
+							</f:facet>
+						</div>
+					</div>
+				</div>
+			</p:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

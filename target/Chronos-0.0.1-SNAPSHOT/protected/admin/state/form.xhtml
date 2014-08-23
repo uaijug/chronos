@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+  xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui">
+<ui:composition template="/WEB-INF/layout/template.xhtml">
+  <ui:define name="body">
+    <f:metadata>
+      <f:viewParam name="id" value="#{stateController.idState}" />
+      <f:event listener="#{stateController.load}" type="preRenderView" />
+    </f:metadata>
+    <h:form id="formState">
+      <p:growl id="messages" showDetail="true" autoUpdate="true"
+			showSummary="false" />
+      <p:panel header="#{msg['label.states']}"
+        styleClass="form-cadastro">
+        <p:focus for="txtDescription" />
+        <table width="95%">
+          <tr>
+            <td class="form-cadastro-label"><h:outputLabel
+                value="#{msg['label.state.id']}:" for="txtId"
+                rendered="#{stateController.state.id != null}" /></td>
+            <td colspan="2">
+            <h:outputText value="#{stateController.state.id}" id="txtId" rendered="#{stateController.state.id != null}" /></td>
+          </tr>
+          <tr>
+            <td class="form-cadastro-label"><h:outputLabel
+                value="#{msg['label.state.name']}:" for="txtDescription" /></td>
+            <td><p:inputText value="#{stateController.state.description}" id="txtDescription" required="true" maxlength="50" /></td>
+            <td><p:message id="msgDescription" for="txtDescription" /></td>
+          </tr>
+            <tr>
+            <td class="form-cadastro-label"><h:outputLabel value="#{msg['label.state.country']}:" for="txtCountry" /></td>
+            <td><h:selectOneMenu id="txtCountry" value="#{stateController.state.country}" converter="GenericConverter">
+   				  <f:selectItems value="#{stateController.countrys}" />
+				</h:selectOneMenu>
+            </td>
+            <td><p:message id="msgCountry" for="txtCountry" /></td>
+          </tr>
+         </table>
+
+        <f:facet name="footer">
+          <p:commandButton action="#{stateController.register}" ajax="false" id="btnSave"
+            value="#{msg['label.state.new']}" icon="ui-icon-circle-check" />
+          <p:commandButton value="#{msg['label.cancel']}" immediate="true"
+            icon="ui-icon-cancel" action="#{stateController.cancelar}" ajax="false " />
+        </f:facet>
+      </p:panel>
+    </h:form>
+  </ui:define>
+</ui:composition>
+</html>

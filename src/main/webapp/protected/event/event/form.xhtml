@@ -1,0 +1,198 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<ui:composition template="/WEB-INF/layout/template.xhtml">
+	<ui:define name="body">
+		<f:metadata>
+			<f:viewParam name="id" value="#{eventMainController.idEventMain}" />
+			<f:event listener="#{eventMainController.load}" type="preRenderView" />
+		</f:metadata>
+		<h:form id="formEvent">
+			<p:growl id="messages" showDetail="true" autoUpdate="true"
+			showSummary="false" />
+			<p:panel header="#{msg['label.eventMains']}"
+				styleClass="form-cadastro">
+				<p:focus for="txtName" />
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.eventMain.id']}:" for="txtId"
+								rendered="#{eventMainController.eventMain.id != null}" styleClass="control-label"/>
+							<h:outputText value="#{eventMainController.eventMain.id}"
+								id="txtId"
+								rendered="#{eventMainController.eventMain.id != null}" />
+							
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.eventMain.institution']}:"
+								for="txtInstitution" styleClass="control-label"/>
+							
+							<p:selectOneMenu id="txtInstitution"
+									value="#{eventMainController.eventMain.institution}"
+									converter="GenericConverter" styleClass="form-control">
+									<f:selectItems value="#{eventMainController.institutions}" />
+								</p:selectOneMenu>
+							<p:message id="msgInstitution" for="txtInstitution" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.eventMain.eventType']}:"
+								for="txtEventType" styleClass="control-label"/>
+								<p:selectOneMenu id="txtEventType"
+										value="#{eventMainController.eventMain.eventType}"
+										converter="GenericConverter" styleClass="form-control">
+										<f:selectItems value="#{eventMainController.eventTypes}" />
+									</p:selectOneMenu>
+							<p:message id="msgEventType" for="txtEventType" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.eventMain.name']}:"
+								for="txtName" styleClass="control-label"/>
+
+							<p:inputText value="#{eventMainController.eventMain.name}"
+								id="txtName" required="true" maxlength="50" styleClass="form-control"/>
+							
+							<p:message id="msgName" for="txtName" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.eventMain.description']}:"
+								for="txtDescription" styleClass="control-label"/>
+							<p:editor value="#{eventMainController.eventMain.description}"
+									id="txtDescription" required="true" />
+							<p:message id="msgDescription" for="txtDescription" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.eventMain.value']}:"
+								for="txtValue" styleClass="control-label"/>
+							<p:inputText
+									value="#{eventMainController.eventMain.value}" id="txtValue"
+									required="true" maxlength="50" styleClass="form-control"/>
+							<p:message id="msgValue" for="txtValue" />
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.eventMain.capacity']}:"
+								for="txtCapacity" styleClass="control-label"/>
+							
+							<p:inputText
+									value="#{eventMainController.eventMain.catacity}" id="txtCapacity"
+									required="true" maxlength="50" styleClass="form-control"/>
+							<p:message id="msgCapacity" for="txtCapacity" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-4">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.eventMain.dateRealization']}:"
+								for="txtDateRealization" styleClass="control-label"/>
+							<br />
+							<p:calendar id="txtDateRealization"
+									value="#{eventMainController.eventMain.dateRealization}"
+									locale="pt_BR" navigator="true" pattern="dd/MM/yyyy"
+									showButtonPanel="true" showOn="button">
+									<f:convertDateTime type="date" dateStyle="medium"
+										pattern="dd/MM/yyyy" timeZone="GMT-3" locale="pt_BR" />
+								</p:calendar>
+							<p:message id="msgDateRealization"
+									for="txtDateRealization" />
+						</div>
+						</div>
+							<div class="col-md-4">
+							<div class="form-group">
+								<h:outputLabel value="#{msg['label.eventMain.startTime']}:"
+									for="" styleClass="control-label"/>
+								<br />
+								<p:calendar id="txtStartTime"
+										value="#{eventMainController.eventMain.startTime}"
+										locale="pt_BR" navigator="true" pattern="HH:mm:ss"
+										showButtonPanel="true" showOn="button" timeOnly="true">
+										<f:convertDateTime type="date" dateStyle="medium"
+											pattern="HH:mm:ss" timeZone="GMT-3" locale="pt_BR" />
+									</p:calendar>
+								<p:message id="msgStartTime" for="txtStartTime" />
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-group">
+								<h:outputLabel value="#{msg['label.eventMain.endTime']}:"
+									for="txtEndTime" styleClass="control-label"/>
+								<br />
+								<p:calendar id="txtEndTime"
+										value="#{eventMainController.eventMain.endTime}" locale="pt_BR"
+										navigator="true" pattern="HH:mm:ss" showButtonPanel="true" showOn="button" timeOnly="true">
+										<f:convertDateTime type="date" dateStyle="medium"
+											pattern="HH:mm:ss" timeZone="GMT-3" locale="pt_BR" />
+									</p:calendar>
+								<p:message id="msgEndTime" for="txtEndTime" />
+							</div>
+						</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.eventMain.location']}:"
+								for="txtLocation" styleClass="control-label"/>
+							
+							<p:inputText
+									value="#{eventMainController.eventMain.location}"
+									id="txtLocation" required="true" maxlength="50" styleClass="form-control"/>
+							<p:message id="msgLocation" for="txtLocation" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.eventMain.map']}:"
+								for="txtMap" styleClass="control-label"/>
+							
+							<p:inputText
+									value="#{eventMainController.eventMain.map}" id="txtMap"
+									required="true" maxlength="50" styleClass="form-control"/>
+							<p:message id="msgMap" for="txtMap" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<f:facet name="footer">
+								<p:commandButton action="#{eventMainController.register}"
+									ajax="false" id="btnSave" value="#{msg['label.eventMain.new']}"
+									icon="ui-icon-circle-check" />
+								<p:commandButton value="#{msg['label.cancel']}" immediate="true"
+									icon="ui-icon-cancel" action="#{eventMainController.cancelar}"
+									ajax="false " />
+							</f:facet>
+						</div>
+					</div>
+				</div>
+			</p:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

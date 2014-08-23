@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<ui:composition template="/WEB-INF/layout/template.xhtml">
+	<ui:define name="body">
+		<f:metadata>
+			<f:viewParam name="id" value="#{memberTypeController.idMemberType}" />
+			<f:event listener="#{memberTypeController.load}" type="preRenderView" />
+		</f:metadata>
+		<h:form id="formMemberType">
+			<p:messages />
+			<p:panel header="#{msg['label.memberTypes']}"
+				styleClass="form-cadastro">
+				<p:focus for="txtDescription" />
+
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.memberType.id']}:" for="txtId"
+								rendered="#{memberTypeController.memberType.id != null}" />
+							<h:outputText value="#{memberTypeController.memberType.id}"
+								id="txtId"
+								rendered="#{memberTypeController.memberType.id != null}" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.memberType.description']}:"
+								for="txtDescription" />
+							<p:inputText
+								value="#{memberTypeController.memberType.description}"
+								id="txtDescription" required="true" maxlength="50"
+								styleClass="form-control" />
+							<p:message id="msgDescription" for="txtDescription"
+								errorClass="errorMessage" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<f:facet name="footer">
+								<p:commandButton action="#{memberTypeController.register}"
+									ajax="false" id="btnSave"
+									value="#{msg['label.memberType.new']}"
+									icon="ui-icon-circle-check" />
+								<p:commandButton value="#{msg['label.cancel']}" immediate="true"
+									icon="ui-icon-cancel" action="#{memberTypeController.cancelar}"
+									ajax="false " />
+							</f:facet>
+						</div>
+					</div>
+				</div>
+			</p:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

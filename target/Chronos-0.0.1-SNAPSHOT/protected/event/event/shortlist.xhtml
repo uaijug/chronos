@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<ui:composition template="/layout/template.xhtml">
+
+	<ui:define name="body">
+		<p:growl id="messages" showDetail="true" autoUpdate="true"
+			showSummary="false" />
+		<h:form id="formListEvent">
+			<p:panel header="#{msg['label.events']}"
+				styleClass="panel-listagem" id="panelListagemEvent">
+			
+				<p:button value="#{msg['label.newEvent']}" outcome="form"
+					icon="ui-icon-circle-plus" id="btnAddTop" />
+					
+					<p:dataList value="#{eventController.events}" var="event">  
+		   			 <h3><h:link outcome="panel"><font size="24" color="#FF8C00">#{event.name}</font></h:link></h3>
+		   			 <b>#{event.location}</b><br />#{event.startTime}, #{event.endTime} <hr /><br />
+					</p:dataList>	
+							
+				<p:spacer style="width:100%; height: 10px;" />
+			</p:panel>
+
+			<p:confirmDialog id="deleteDialog"
+				message="#{msg['label.confirme-exclude']}"
+				widgetVar="confirmation">
+				<p:commandButton id="btnConfirm" value="#{msg['label.yes']}"
+					action="#{eventController.remove}" ajax="false" />
+				<p:commandButton id="btnClose" value="#{msg['label.no']}"
+					onclick="confirmation.hide()" />
+			</p:confirmDialog>
+
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

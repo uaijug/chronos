@@ -1,0 +1,542 @@
+<pretty-config xmlns="http://ocpsoft.org/schema/rewrite-config-prettyfaces"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://ocpsoft.org/schema/rewrite-config-prettyfaces
+                      http://ocpsoft.org/xml/ns/prettyfaces/rewrite-config-prettyfaces.xsd">
+
+	<url-mapping id="home">
+		<pattern value="/home" />
+		<view-id value="/index.jsf" />
+	</url-mapping>
+
+	<url-mapping id="admin">
+		<pattern value="/admin" />
+		<view-id value="/admin.jsf" />
+	</url-mapping>
+
+	<url-mapping id="page">
+		<pattern value="/page" />
+		<view-id value="/page.jsf" />
+	</url-mapping>
+	
+	<url-mapping id="calendar">
+		<pattern value="/calendar" />
+		<view-id value="/protected/calendar/calendar.jsf" />
+	</url-mapping>
+
+	<url-mapping id="eventGroup">
+		<pattern value="/eventGroup" />
+		<view-id value="/eventGroup.jsf" />
+	</url-mapping>
+
+	<url-mapping id="projectGroup">
+		<pattern value="/projectGroup" />
+		<view-id value="/projectGroup.jsf" />
+	</url-mapping>
+
+	<url-mapping id="institutions">
+		<pattern value="/institutions" />
+		<view-id value="/protected/institution/institution/list.jsf" />
+	</url-mapping>
+
+	<url-mapping id="abouts">
+		<pattern value="/abouts" />
+		<view-id value="/protected/institution/about/list.jsf" />
+	</url-mapping>
+
+	<url-mapping id="companys">
+		<pattern value="/companys" />
+		<view-id value="/protected/admin/company/list.jsf" />
+	</url-mapping>
+
+	<url-mapping id="suppliers">
+		<pattern value="/suppliers" />
+		<view-id value="/protected/supplier/supplier/list.jsf" />
+	</url-mapping>
+
+	<url-mapping id="sponsors">
+		<pattern value="/sponsors" />
+		<view-id value="/protected/sponsor/sponsor/list.jsf" />
+	</url-mapping>
+
+	<url-mapping id="sponsorFollowups">
+		<pattern value="/sponsorFollowup" />
+		<view-id value="/protected/sponsor/sponsorFollowup/list.jsf" />
+	</url-mapping>
+
+	<url-mapping id="sponsorships">
+		<pattern value="/sponsorships" />
+		<view-id value="/protected/sponsor/sponsorship/list.jsf" />
+	</url-mapping>
+
+	<url-mapping id="exhibitorss">
+		<pattern value="/exhibitorss" />
+		<view-id value="/protected/sponsor/exhibitors/list.jsf" />
+	</url-mapping>
+
+	<url-mapping id="cashFlowCategorys">
+		<pattern value="/cashFlowCategorys" />
+		<view-id value="/protected/institution/cashFlow/cashFlowCategory/list.jsf" />
+	</url-mapping>
+
+	<url-mapping id="cashFlows">
+		<pattern value="/cashFlows" />
+		<view-id value="/protected/institution/cashFlow/cashFlow/list.jsf" />
+	</url-mapping>
+
+	<url-mapping id="cashFlowReports">
+		<pattern value="/listCashFlowReport" />
+		<view-id value="/protected/institution/cashFlow/cashFlow/report.jsf" />
+	</url-mapping>
+
+	<url-mapping id="dashevents">
+		<pattern value="/dashevents" />
+		<view-id value="/protected/event/events.jsf" />
+	</url-mapping>
+
+	<url-mapping id="events">
+		<pattern value="/events" />
+		<view-id value="/protected/event/event/list.jsf" />
+	</url-mapping>
+
+	<url-mapping id="eventProposals">
+		<pattern value="/eventProposals" />
+		<view-id value="/protected/event/eventProposal/list.jsf" />
+	</url-mapping>
+
+	<url-mapping id="eventRooms">
+		<pattern value="/eventRooms" />
+		<view-id value="/protected/event/eventRoom/list.jsf" />
+	</url-mapping>
+
+	<url-mapping id="eventTracks">
+		<pattern value="/eventTracks" />
+		<view-id value="/protected/event/eventTrack/list.jsf" />
+	</url-mapping>
+
+	<url-mapping id="eventSessions">
+		<pattern value="/eventSessions" />
+		<view-id value="/protected/event/eventSession/list.jsf" />
+	</url-mapping>
+
+	<url-mapping id="studyGroups">
+		<pattern value="/studyGroups" />
+		<view-id value="/protected/studygroup/studyGroup/list.jsf" />
+	</url-mapping>
+
+	<url-mapping id="pojects">
+		<pattern value="/projects" />
+		<view-id value="/protected/project/project/list.jsf" />
+	</url-mapping>
+
+	<url-mapping id="dashprojects">
+		<pattern value="/dashprojects" />
+		<view-id value="/protected/project/projects.jsf" />
+	</url-mapping>
+
+	<url-mapping id="projectview">
+		<pattern value="/projectview" />
+		<view-id value="/protected/project/projectView.jsf" />
+	</url-mapping>
+
+	<url-mapping id="materials">
+		<pattern value="/materials" />
+		<view-id value="/protected/event/budget/material/list.jsf" />
+	</url-mapping>
+
+	<url-mapping id="budgets">
+		<pattern value="/budgets" />
+		<view-id value="/protected/event/budget/budget/list.jsf" />
+	</url-mapping>
+
+	<url-mapping id="purchaseCosts">
+		<pattern value="/purchaseCosts" />
+		<view-id value="/protected/event/budget/purchaseCost/list.jsf" />
+	</url-mapping>
+
+	<url-mapping id="speakers">
+		<pattern value="/speakers" />
+		<view-id value="/protected/speaker/speaker/list.jsf" />
+	</url-mapping>
+
+	<url-mapping id="speechs">
+		<pattern value="/speechs" />
+		<view-id value="/protected/speech/speech/list.jsf" />
+	</url-mapping>
+
+	<url-mapping id="speechTypes">
+		<pattern value="/speechTypes" />
+		<view-id value="/protected/speech/speechType/list.jsf" />
+	</url-mapping>
+
+	<url-mapping id="schedules">
+		<pattern value="/schedules" />
+		<view-id value="/protected/event/schedule/list.jsf" />
+	</url-mapping>
+
+	<!-- Blog - Posts -Begin- -->
+	<url-mapping id="pages">
+		<pattern value="/pages" />
+		<view-id value="/protected/blog/page/list.jsf" />
+	</url-mapping>
+
+	<url-mapping id="postCategorys">
+		<pattern value="/postCategorys" />
+		<view-id value="/protected/blog/postCategory/list.jsf" />
+	</url-mapping>
+
+	<url-mapping id="posts">
+		<pattern value="/posts" />
+		<view-id value="/protected/blog/post/list.jsf" />
+	</url-mapping>
+
+	<url-mapping id="postComments">
+		<pattern value="/postComments" />
+		<view-id value="/protected/blog/postComment/list.jsf" />
+	</url-mapping>
+	<!-- Blog - Posts -End- -->
+
+	<url-mapping id="activityCategorys">
+		<pattern value="/activityCategorys" />
+		<view-id value="/protected/event/activityCategory/list.jsf" />
+	</url-mapping>
+
+	<url-mapping id="activitys">
+		<pattern value="/activitys" />
+		<view-id value="/protected/event/activity/list.jsf" />
+	</url-mapping>
+
+	<url-mapping id="taskGroupCategorys">
+		<pattern value="/taskGroupCategorys" />
+		<view-id value="/protected/project/task/taskGroupCategory/list.jsf" />
+	</url-mapping>
+
+	<url-mapping id="taskGroups">
+		<pattern value="/taskGroups" />
+		<view-id value="/protected/project/task/taskGroup/list.jsf" />
+	</url-mapping>
+
+	<url-mapping id="taskCategorys">
+		<pattern value="/taskCategorys" />
+		<view-id value="/protected/project/task/taskCategory/list.jsf" />
+	</url-mapping>
+
+	<url-mapping id="tasks">
+		<pattern value="/tasks" />
+		<view-id value="/protected/project/task/task/list.jsf" />
+	</url-mapping>
+
+	<url-mapping id="memberTypes">
+		<pattern value="/memberTypes" />
+		<view-id value="/protected/institution/memberType/list.jsf" />
+	</url-mapping>
+
+	<url-mapping id="members">
+		<pattern value="/members" />
+		<view-id value="/protected/institution/member/list.jsf" />
+	</url-mapping>
+
+	<url-mapping id="freePasses">
+		<pattern value="/freePasses" />
+		<view-id value="/protected/event/registration/freePass/list.jsf" />
+	</url-mapping>
+
+	<url-mapping id="memberParticipations">
+		<pattern value="/memberParticipations" />
+		<view-id value="/protected/event/registration/memberParticipation/list.jsf" />
+	</url-mapping>
+
+	<url-mapping id="freePassReports">
+		<pattern value="/freePassReports" />
+		<view-id value="/protected/registration/freePass/report.jsf" />
+	</url-mapping>
+
+	<url-mapping id="contacts">
+		<pattern value="/contacts" />
+		<view-id value="/protected/institution/contact/list.jsf" />
+	</url-mapping>
+
+	<url-mapping id="addresses">
+		<pattern value="/addresses" />
+		<view-id value="/protected/admin/address/list.jsf" />
+	</url-mapping>
+
+	<url-mapping id="states">
+		<pattern value="/states" />
+		<view-id value="/protected/admin/state/list.jsf" />
+	</url-mapping>
+
+	<url-mapping id="citys">
+		<pattern value="/citys" />
+		<view-id value="/protected/admin/city/list.jsf" />
+	</url-mapping>
+
+	<url-mapping id="countrys">
+		<pattern value="/countrys" />
+		<view-id value="/protected/admin/country/list.jsf" />
+	</url-mapping>
+
+	<url-mapping id="authorizations">
+		<pattern value="/authorizations" />
+		<view-id value="/protected/admin/authorization/list.jsf" />
+	</url-mapping>
+
+	<url-mapping id="athorizationEvents">
+		<pattern value="/authorizationEvents" />
+		<view-id value="/protected/admin/authorizationEvent/list.jsf" />
+	</url-mapping>
+
+	<url-mapping id="profiles">
+		<pattern value="/profiles" />
+		<view-id value="/protected/admin/profile/list.jsf" />
+	</url-mapping>
+
+	<url-mapping id="userProfiles">
+		<pattern value="/userProfiles" />
+		<view-id value="/protected/admin/user/userprofile.jsf" />
+	</url-mapping>
+
+	<url-mapping id="settingss">
+		<pattern value="/settingss" />
+		<view-id value="/protected/admin/user/settings.jsf" />
+	</url-mapping>
+
+	<!-- Forms -->
+
+	<url-mapping id="institution">
+		<pattern value="/institution" />
+		<view-id value="/protected/institution/institution/form.jsf" />
+	</url-mapping>
+
+	<url-mapping id="about">
+		<pattern value="/about" />
+		<view-id value="/protected/institution/about/form.jsf" />
+	</url-mapping>
+
+	<url-mapping id="company">
+		<pattern value="/company" />
+		<view-id value="/protected/admin/company/form.jsf" />
+	</url-mapping>
+
+	<url-mapping id="supplier">
+		<pattern value="/supplier" />
+		<view-id value="/protected/supplier/supplier/form.jsf" />
+	</url-mapping>
+
+	<url-mapping id="sponsor">
+		<pattern value="/sponsor" />
+		<view-id value="/protected/sponsor/sponsor/form.jsf" />
+	</url-mapping>
+
+	<url-mapping id="sponsorFollowup">
+		<pattern value="/sponsorFollowup" />
+		<view-id value="/protected/sponsor/sponsorFollowup/form.jsf" />
+	</url-mapping>
+
+	<url-mapping id="sponsorship">
+		<pattern value="/sponsorship" />
+		<view-id value="/protected/sponsor/sponsorship/form.jsf" />
+	</url-mapping>
+
+	<url-mapping id="exhibitors">
+		<pattern value="/exhibitors" />
+		<view-id value="/protected/sponsor/exhibitors/form.jsf" />
+	</url-mapping>
+
+	<url-mapping id="cashFlowCategory">
+		<pattern value="/cashFlowCategory" />
+		<view-id value="/protected/institution/cashFlow/cashFlowCategory/form.jsf" />
+	</url-mapping>
+
+	<url-mapping id="cashFlow">
+		<pattern value="/cashFlow" />
+		<view-id value="/protected/institution/cashFlow/cashFlow/form.jsf" />
+	</url-mapping>
+
+	<url-mapping id="eventProposal">
+		<pattern value="/eventProposal" />
+		<view-id value="/protected/event/eventProposal/form.jsf" />
+	</url-mapping>
+
+	<url-mapping id="eventRoom">
+		<pattern value="/eventRoom" />
+		<view-id value="/protected/event/eventRoom/form.jsf" />
+	</url-mapping>
+
+	<url-mapping id="eventTrack">
+		<pattern value="/eventTrack" />
+		<view-id value="/protected/event/eventTrack/form.jsf" />
+	</url-mapping>
+
+	<url-mapping id="eventSession">
+		<pattern value="/eventSession" />
+		<view-id value="/protected/event/eventSession/form.jsf" />
+	</url-mapping>
+
+	<url-mapping id="studyGroup">
+		<pattern value="/studyGroup" />
+		<view-id value="/protected/studygroup/studyGroup/form.jsf" />
+	</url-mapping>
+
+	<url-mapping id="event">
+		<pattern value="/event" />
+		<view-id value="/protected/event/event/form.jsf" />
+	</url-mapping>
+	
+	<url-mapping id="project">
+		<pattern value="/project" />
+		<view-id value="/protected/project/project/form.jsf" />
+	</url-mapping>
+
+	<url-mapping id="material">
+		<pattern value="/material" />
+		<view-id value="/protected/event/budget/material/form.jsf" />
+	</url-mapping>
+
+	<url-mapping id="purchaseCost">
+		<pattern value="/purchaseCost" />
+		<view-id value="/protected/event/budget/purchaseCost/form.jsf" />
+	</url-mapping>
+
+	<url-mapping id="budget">
+		<pattern value="/budget" />
+		<view-id value="/protected/event/budget/budget/form.jsf" />
+	</url-mapping>
+
+	<url-mapping id="speaker">
+		<pattern value="/speaker" />
+		<view-id value="/protected/speaker/speaker/form.jsf" />
+	</url-mapping>
+
+	<url-mapping id="speech">
+		<pattern value="/speech" />
+		<view-id value="/protected/speech/speech/form.jsf" />
+	</url-mapping>
+
+	<url-mapping id="speechType">
+		<pattern value="/speechType" />
+		<view-id value="/protected/speech/speechType/form.jsf" />
+	</url-mapping>
+
+	<url-mapping id="schedule">
+		<pattern value="/schedule" />
+		<view-id value="/protected/event/schedule/form.jsf" />
+	</url-mapping>
+
+	<!-- Blog - Posts -Begin- -->
+	<url-mapping id="page">
+		<pattern value="/page" />
+		<view-id value="/protected/blog/page/form.jsf" />
+	</url-mapping>
+
+	<url-mapping id="postCategory">
+		<pattern value="/postCategory" />
+		<view-id value="/protected/blog/postCategory/form.jsf" />
+	</url-mapping>
+
+	<url-mapping id="post">
+		<pattern value="/post" />
+		<view-id value="/protected/blog/post/form.jsf" />
+	</url-mapping>
+
+	<url-mapping id="postComment">
+		<pattern value="/postComment" />
+		<view-id value="/protected/blog/postComment/form.jsf" />
+	</url-mapping>
+	<!-- Blog - Posts -End- -->
+
+	<url-mapping id="activityCategory">
+		<pattern value="/activityCategory" />
+		<view-id value="/protected/event/activityCategory/form.jsf" />
+	</url-mapping>
+
+	<url-mapping id="activity">
+		<pattern value="/activity" />
+		<view-id value="/protected/event/activity/form.jsf" />
+	</url-mapping>
+
+	<url-mapping id="taskGroupCategory">
+		<pattern value="/taskGroupCategory" />
+		<view-id value="/protected/project/task/taskGroupCategory/form.jsf" />
+	</url-mapping>
+
+	<url-mapping id="taskGroup">
+		<pattern value="/taskGroup" />
+		<view-id value="/protected/project/task/taskGroup/form.jsf" />
+	</url-mapping>
+
+	<url-mapping id="taskCategory">
+		<pattern value="/taskCategory" />
+		<view-id value="/protected/project/task/taskCategory/form.jsf" />
+	</url-mapping>
+
+	<url-mapping id="task">
+		<pattern value="/task" />
+		<view-id value="/protected/project/task/task/form.jsf" />
+	</url-mapping>
+
+	<url-mapping id="memberType">
+		<pattern value="/memberType" />
+		<view-id value="/protected/institution/memberType/form.jsf" />
+	</url-mapping>
+
+	<url-mapping id="member">
+		<pattern value="/member" />
+		<view-id value="/protected/institution/member/form.jsf" />
+	</url-mapping>
+
+	<url-mapping id="memberShort">
+		<pattern value="/memberShort" />
+		<view-id value="/protected/institution/member/shortform.jsf" />
+	</url-mapping>
+
+	<url-mapping id="freePass">
+		<pattern value="/freePass" />
+		<view-id value="/protected/event/registration/freePass/form.jsf" />
+	</url-mapping>
+
+	<url-mapping id="memberParticipation">
+		<pattern value="/memberParticipation" />
+		<view-id value="/protected/event/registration/memberParticipation/form.jsf" />
+	</url-mapping>
+
+	<url-mapping id="contact">
+		<pattern value="/contact" />
+		<view-id value="/protected/institution/contact/form.jsf" />
+	</url-mapping>
+
+	<url-mapping id="address">
+		<pattern value="/address" />
+		<view-id value="/protected/admin/address/form.jsf" />
+	</url-mapping>
+
+	<url-mapping id="state">
+		<pattern value="/state" />
+		<view-id value="/protected/admin/state/form.jsf" />
+	</url-mapping>
+
+	<url-mapping id="city">
+		<pattern value="/city" />
+		<view-id value="/protected/admin/city/form.jsf" />
+	</url-mapping>
+
+	<url-mapping id="country">
+		<pattern value="/country" />
+		<view-id value="/protected/admin/country/form.jsf" />
+	</url-mapping>
+
+	<url-mapping id="authorization">
+		<pattern value="/authorization" />
+		<view-id value="/protected/admin/authorization/form.jsf" />
+	</url-mapping>
+
+	<url-mapping id="authorizationEvent">
+		<pattern value="/authorizationEvent" />
+		<view-id value="/protected/admin/authorizationEvent/form.jsf" />
+	</url-mapping>
+
+	<url-mapping id="profile">
+		<pattern value="/profile" />
+		<view-id value="/protected/admin/profile/form.jsf" />
+	</url-mapping>
+
+</pretty-config>

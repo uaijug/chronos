@@ -1,0 +1,13 @@
+http://scotch.io/tutorials/javascript/single-page-apps-with-angularjs-routing-and-templating
+http://blog.brunoscopelliti.com/deal-with-users-authentication-in-an-angularjs-web-app
+http://beletsky.net/2013/11/simple-authentication-in-angular-dot-js-app.html
+http://beletsky.net/2013/11/simple-authentication-in-angular-dot-js-app.html
+
+----
+https://github.com/svileng/ng-simplePagination/blob/master/README.md
+F---
+FlyWay tutorial
+http://rizvnn.blogspot.com.br/2012/10/flyway-db-migrations-with-maven.html
+http://www.hascode.com/2013/04/easy-database-migrations-using-flyway-java-ee-6-and-glassfish/
+
+

@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<ui:composition template="/WEB-INF/layout/template.xhtml">
+
+	<ui:define name="body">
+		<p:growl id="messages" showDetail="true" autoUpdate="true"
+			showSummary="false" />
+		<h:form id="formListEventRoom">
+			<p:panel header="#{msg['label.eventRooms']}"
+				styleClass="panel-listagem" id="panelListagemEventRoom">
+			
+				<p:button value="#{msg['label.new']}" outcome="form"
+					icon="ui-icon-circle-plus" id="btnAddTop" />
+				<p:dataTable id="tabeEventRooms" value="#{eventRoomController.eventRooms}"
+					var="eventRoom"
+					emptyMessage="#{msg['label.list.nofindrecord']}"
+					paginator="true" rows="10" paginatorPosition="bottom"
+					styleClass="table-listagem" rowIndexVar="var"
+					firstPageLinkLabel="Primeira" previousPageLinkLabel="Anterior"
+					nextPageLinkLabel="Proxima" lastPageLinkLabel="ultima">
+					<p:column sortBy="#{eventRoom.id}" style="width:50px;">
+						<f:facet name="header">
+							<h:outputText value="#{msg['label.eventRoom.id']}" />
+						</f:facet>
+						<h:outputText value="#{eventRoom.id}" />
+					</p:column>
+					<p:column sortBy="#{eventRoom.description}" filterBy="#{eventRoom.description}"
+filterEvent="enter" style="width:285px;">
+						<f:facet name="header">
+							<h:outputText value="#{msg['label.eventRoom.description']}" />
+						</f:facet>
+						<h:outputText value="#{eventRoom.description}" />
+					</p:column>
+					<p:column sortBy="#{eventRoom.block}" filterBy="#{eventRoom.block}"
+filterEvent="enter" style="width:285px;">
+						<f:facet name="header">
+							<h:outputText value="#{msg['label.eventRoom.block']}" />
+						</f:facet>
+						<h:outputText value="#{eventRoom.block}" />
+					</p:column>
+					<p:column sortBy="#{eventRoom.number}" filterBy="#{eventRoom.number}"
+filterEvent="enter" style="width:285px;">
+						<f:facet name="header">
+							<h:outputText value="#{msg['label.eventRoom.number']}" />
+						</f:facet>
+						<h:outputText value="#{eventRoom.number}" />
+					</p:column>
+					<p:column style="text-align: center;width:50px;">
+						<f:facet name="header">
+							<h:outputText value="#{msg['label.update']}" />
+						</f:facet>
+						<p:button title="#{msg['label.update']}" outcome="form"
+							icon="ui-icon-pencil" id="btnUpdate">
+							<f:param name="id" value="#{eventRoom.id}" />
+						</p:button>
+					</p:column>
+					<p:column style="text-align: center;width:50px;">
+						<f:facet name="header">
+							<h:outputText value="#{msg['label.remove']}" />
+						</f:facet>
+						<p:commandButton tile="#{msg['label.remove']}"
+							onclick="confirmation.show();" icon="ui-icon-trash"
+							id="btnRemove">
+							<f:setPropertyActionListener target="#{eventRoomController.eventRoom}"
+								value="#{eventRoom}" />
+						</p:commandButton>
+					</p:column>
+				</p:dataTable>
+				<p:spacer style="width:100%; height: 10px;" />
+			</p:panel>
+
+			<p:confirmDialog id="deleteDialog"
+				message="#{msg['label.confirme-exclude']}"
+				widgetVar="confirmation">
+				<p:commandButton id="btnConfirm" value="#{msg['label.yes']}"
+					action="#{eventRoomController.remove}" ajax="false" />
+				<p:commandButton id="btnClose" value="#{msg['label.no']}"
+					onclick="confirmation.hide()" />
+			</p:confirmDialog>
+
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

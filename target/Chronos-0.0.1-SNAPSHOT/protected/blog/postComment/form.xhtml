@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<ui:composition template="/WEB-INF/layout/template.xhtml">
+	<ui:define name="body">
+		<f:metadata>
+			<f:viewParam name="id" value="#{postCommentController.idPostComment}" />
+			<f:event listener="#{postCommentController.load}"
+				type="preRenderView" />
+		</f:metadata>
+		<h:form id="formPostComment">
+			<p:growl id="messages" showDetail="true" autoUpdate="true"
+			showSummary="false" />
+			<p:panel header="#{msg['label.postComments']}"
+				styleClass="form-cadastro">
+				<p:focus for="txtTitle" />
+				<table width="95%">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="form-group">
+								<h:outputLabel value="#{msg['label.postComment.id']}:"
+									for="txtId"
+									rendered="#{postCommentController.postComment.id != null}" />
+								<h:outputText value="#{postCommentController.postComment.id}"
+									id="txtId"
+									rendered="#{postCommentController.postComment.id != null}" />
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="form-group">
+								<h:outputLabel value="#{msg['label.postComment.title']}:"
+									for="txtTitle" styleClass="control-label" />
+								<p:inputText value="#{postCommentController.postComment.title}"
+									id="txtTitle" required="true" maxlength="50" styleClass="form-control" />
+								<p:message id="msgTitle" for="txtTitle" errorClass="errorMessage" />
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="form-group">
+								<h:outputLabel value="#{msg['label.postComment.content']}:"
+									for="txtContent" styleClass="control-label" />
+								<p:inputText
+									value="#{postCommentController.postComment.content}"
+									id="txtContent" required="true" maxlength="50" styleClass="form-control" />
+								<p:message id="msgContent" for="txtContent" errorClass="errorMessage" />
+							</div>
+						</div>
+					</div>
+				</table>
+
+				<f:facet name="footer">
+					<p:commandButton action="#{postCommentController.register}"
+						ajax="false" id="btnSave" value="#{msg['label.postComment.new']}"
+						icon="ui-icon-circle-check" />
+					<p:commandButton value="#{msg['label.cancel']}" immediate="true"
+						icon="ui-icon-cancel" action="#{postCommentController.cancelar}"
+						ajax="false " />
+				</f:facet>
+			</p:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

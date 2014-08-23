@@ -1,0 +1,164 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<ui:composition template="/WEB-INF/layout/template.xhtml">
+	<ui:define name="body">
+		<f:metadata>
+			<f:viewParam name="id"
+				value="#{memberParticipationController.idMemberParticipation}" />
+			<f:event listener="#{memberParticipationController.load}"
+				type="preRenderView" />
+		</f:metadata>
+		<h:form id="formMemberParticipation">
+			<p:growl id="messages" showDetail="true" autoUpdate="true"
+				showSummary="false" />
+			<p:panel header="#{msg['label.memberParticipations']}"
+				styleClass="form-cadastro">
+				<p:focus for="txtCode" />
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.memberParticipation.code']}:"
+								for="txtCode" styleClass="control-label" />
+							<p:inputText
+								value="#{memberParticipationController.memberParticipation.code}"
+								id="txtCode" required="true" maxlength="50" sise="5"
+								styleClass="form-control" />
+							<p:message id="msgCode" for="txtCode" errorClass="errorMessage" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.eventMain.event']}:"
+								for="txtEvent" styleClass="control-label" />
+							<p:selectOneMenu id="txtEvent"
+								value="#{memberParticipationController.memberParticipation.event}"
+								converter="GenericConverter" styleClass="form-control">
+								<f:selectItems
+									value="#{memberParticipationController.eventMains}" />
+							</p:selectOneMenu>
+							<p:message id="msgEvent" for="txtEvent" />
+						</div>
+					</div>
+					<div class="row"></div>
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.eventMain.member']}:"
+								for="txtMember" styleClass="control-label" />
+							<p:selectOneMenu id="txtMember"
+								value="#{memberParticipationController.memberParticipation.member}"
+								converter="GenericConverter" styleClass="form-control">
+								<f:selectItems value="#{memberParticipationController.members}" />
+							</p:selectOneMenu>
+							<p:message id="msgMember" for="txtMember" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.memberParticipation.promotionalCode']}:"
+								for="txtPromotionalCode" styleClass="control-label" />
+							<p:inputText
+								value="#{memberParticipationController.memberParticipation.promotionalCode}"
+								id="txtPromotionalCode" required="true" maxlength="50" sise="5"
+								styleClass="form-control" />
+							<p:message id="msgPromotionalCode" for="txtPromotionalCode" errorClass="errorMessage" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-4">
+						<div class="form-group">
+							<h:outputLabel
+								value="#{msg['label.memberParticipation.amountPaid']}:"
+								for="txtAmountPaid" styleClass="control-label" />
+							<p:inputText
+								value="#{memberParticipationController.memberParticipation.amountPaid}"
+								id="txtAmountPaid" required="true" maxlength="50" sise="5"
+								styleClass="form-control" />
+							<p:message id="msgAmountPaid" for="txtAmountPaid"
+								errorClass="errorMessage" />
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="form-group">
+							<h:outputLabel
+								value="#{msg['label.memberParticipation.descont']}:"
+								for="txtDescont" styleClass="control-label" />
+							<p:inputText
+								value="#{memberParticipationController.memberParticipation.descont}"
+								id="txtDescont" required="true" maxlength="50" sise="5"
+								styleClass="form-control" />
+							<p:message id="msgDescont" for="txtDescont"
+								errorClass="errorMessage" />
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="form-group">
+							<h:outputLabel
+								value="#{msg['label.memberParticipation.change']}:"
+								for="txtChange" styleClass="control-label" />
+							<p:inputText
+								value="#{memberParticipationController.memberParticipation.moneyChange}"
+								id="txtChange" required="true" maxlength="50" sise="5"
+								styleClass="form-control" />
+							<p:message id="msgChange" for="txtChange"
+								errorClass="errorMessage" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.eventMain.paimentType']}:"
+								for="txtPaimentType" styleClass="control-label" />
+							<p:selectOneMenu id="txtPaimentType"
+								value="#{memberParticipationController.memberParticipation.paimentType}"
+								converter="GenericConverter" styleClass="form-control">
+								<f:selectItems
+									value="#{memberParticipationController.paimentTypes}" />
+							</p:selectOneMenu>
+							<p:message id="msgPaimentType" for="txtPaimentType" />
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.eventMain.paymentStatus']}:"
+								for="txtPaimentType" styleClass="control-label" />
+							<p:selectOneMenu id="txtPaimentStatus"
+								value="#{memberParticipationController.memberParticipation.paymentStatus}"
+								converter="GenericConverter" styleClass="form-control">
+								<f:selectItems
+									value="#{memberParticipationController.paimentStatusTypes}" />
+							</p:selectOneMenu>
+							<p:message id="msgPaimentStatus" for="txtPaimentStatus" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<f:facet name="footer">
+								<p:commandButton
+									action="#{memberParticipationController.register}" ajax="false"
+									id="btnSave" value="#{msg['label.memberParticipation.new']}"
+									icon="ui-icon-circle-check" />
+								<p:commandButton value="#{msg['label.cancel']}" immediate="true"
+									icon="ui-icon-cancel"
+									action="#{memberParticipationController.cancelar}"
+									ajax="false " />
+							</f:facet>
+						</div>
+					</div>
+				</div>
+			</p:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<ui:composition template="/WEB-INF/layout/template.xhtml">
+	<ui:define name="body">
+		<f:metadata>
+			<f:viewParam name="id" value="#{contactController.idContact}" />
+			<f:event listener="#{contactController.load}" type="preRenderView" />
+		</f:metadata>
+		<h:form id="formContact">
+			<p:growl id="messages" showDetail="true" autoUpdate="true"
+			showSummary="false" />
+			<p:panel header="#{msg['label.contacts']}" styleClass="form-cadastro">
+				<p:focus for="txtIssue" />
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.contact.id']}:" for="txtId"
+								rendered="#{contactController.contact.id != null}" styleClass="control-label" />
+							<h:outputText value="#{contactController.contact.id}" id="txtId"
+								rendered="#{contactController.contact.id != null}" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.contact.issue']}:"
+								for="txtIssue" styleClass="control-label" />
+							<p:inputText value="#{contactController.contact.subject}"
+								id="txtIssue" required="true" maxlength="50" styleClass="form-control" />
+							<p:message id="msgIssue" for="txtIssue" errorClass="errorMessage"  />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.contact.email']}:"
+								for="txtEmail" styleClass="control-label" />
+							<p:inputText value="#{contactController.contact.email}"
+								id="txtEmail" required="true" maxlength="50" styleClass="form-control" />
+							<p:message id="msgEmail" for="txtEmail" errorClass="errorMessage"  />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.contact.name']}:"
+								for="txtName" styleClass="control-label" />
+							<p:inputText value="#{contactController.contact.name}"
+								id="txtName" required="true" maxlength="50" styleClass="form-control" />
+							<p:message id="msgName" for="txtName" errorClass="errorMessage"  />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.contact.message']}:"
+								for="txtMessage" styleClass="control-label" />
+							<p:inputTextarea value="#{contactController.contact.message}"
+								id="txtMessage" required="true" maxlength="50" styleClass="form-control" />
+							<p:message id="msgMessage" for="txtMessage" errorClass="errorMessage"  />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<f:facet name="footer">
+								<p:commandButton action="#{contactController.register}"
+									ajax="false" id="btnSave" value="#{msg['label.contact.new']}"
+									icon="ui-icon-circle-check" />
+								<p:commandButton value="#{msg['label.cancel']}" immediate="true"
+									icon="ui-icon-cancel" action="#{contactController.cancelar}"
+									ajax="false " />
+							</f:facet>
+
+						</div>
+					</div>
+				</div>
+			</p:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

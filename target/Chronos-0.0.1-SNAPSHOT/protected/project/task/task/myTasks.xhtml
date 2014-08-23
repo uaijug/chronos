@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<ui:composition template="/layout/template.xhtml">
+
+	<ui:define name="body">
+		<p:growl id="messages" showDetail="true" autoUpdate="true"
+			showSummary="false" />
+
+		<h:form prependId="false">
+
+			<p:dataTable id="dataTable" var="task" value="#{taskController.tasks}"
+				paginator="true" rows="10"
+				paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+				rowsPerPageTemplate="5,10,15">
+				<f:facet name="header">  
+         			  My tasks
+        		</f:facet>
+ 	 	 	 	 	 	 	
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Priority" />
+					</f:facet>
+					<h:outputText value="#{task.priority}" />
+				</p:column>
+
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Project" />
+					</f:facet>
+					<h:outputText value="#{task.project.description}" />
+				</p:column>
+
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Task Name" />
+					</f:facet>
+					<h:outputText value="#{task.title}" />
+				</p:column>
+
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Execution" />
+					</f:facet>
+					<h:outputText value="#{task.status}" />
+				</p:column>
+				
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="DeadLine" />
+					</f:facet>
+					<h:outputText value="#{task.endDate}" />
+				</p:column>
+				
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="%" />
+					</f:facet>
+					<h:outputText value="#{task.status}" />
+				</p:column>
+				
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Status" />
+					</f:facet>
+					<h:outputText value="#{task.status}" />
+				</p:column>
+				
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Notes" />
+					</f:facet>
+					<h:outputText value="#{task.notify}" />
+				</p:column>
+			</p:dataTable>
+
+		</h:form>
+
+	</ui:define>
+</ui:composition>
+</html>

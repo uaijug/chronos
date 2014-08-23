@@ -1,0 +1,4 @@
+http://blog.inbetweenthoughts.com/2010/07/running-tests-in-maven-using-arquillian.html
+http://www.samaxes.com/2012/05/javaee-testing-introduction-arquillian-shrinkwrap/
+
+http://khozzy.blogspot.com.br/2013/10/how-to-send-mails-from-jboss-wildfly.html

@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<ui:composition template="/WEB-INF/layout/template.xhtml">
+	<ui:define name="body">
+
+		<p:panel header="#{msg['label.projects']}" styleClass="panel-listagem"
+			id="panelProjects">
+			<div class="row">
+				<a class="btn btn-success btn-lg"  href="${request.contextPath}/event">
+					<span class="text-white">Novo Evento <span class="glyphicon glyphicon-plus-sign"></span></span>
+				</a>
+			</div>
+			<br />
+			<div class="row">
+				<div class="list-group">
+					<ui:repeat value="#{eventMainController.eventMains}" var="event">
+						<a href="#" class="list-group-item">
+							${event.name} 
+							<small class="#{event.status eq 'alive' ? 'badge pull-right bg-green' : 'badge pull-right bg-red'}">${event.status eq 'alive' ? 'Em endamento' : 'Finalizado'}</small>
+							<br /> ${event.location}</a>
+					</ui:repeat>
+				</div>
+			</div>
+
+		</p:panel>
+	</ui:define>
+</ui:composition>
+</html>

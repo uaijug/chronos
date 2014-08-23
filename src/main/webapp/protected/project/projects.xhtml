@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<ui:composition template="/WEB-INF/layout/template.xhtml">
+	<ui:define name="body">
+	
+		<p:panel header="#{msg['label.projects']}"
+					styleClass="panel-listagem" id="panelProjects">
+		 
+			<div class="row">
+			 
+			 <ui:repeat value="#{projectController.projects}" var="project">
+			
+				<div class="col-lg-3 col-xs-6">
+					<!-- small box -->
+					<div class="small-box bg-aqua">
+						<div class="inner">
+							<h3><h:outputText value="#{project.title}" /></h3>
+							<p>Coodernador:<br /><h:outputText value="#{project.member.name}" /><br />Status:<h:outputText value="#{project.status}"/></p>
+						</div>
+							<a href="#{request.contextPath}/projectview?projectId=#{project.id}" class="small-box-footer"> Mais informações <i class="fa fa-arrow-circle-right"></i>
+						</a>
+					</div>
+				</div>
+			 </ui:repeat>
+			
+			</div>
+		
+		</p:panel>
+	</ui:define>
+</ui:composition>
+</html>

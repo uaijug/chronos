@@ -1,0 +1,138 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<ui:composition template="/WEB-INF/layout/template.xhtml">
+	<ui:define name="body">
+		<f:metadata>
+			<f:viewParam name="id" value="#{postController.idPost}" />
+			<f:event listener="#{postController.load}" type="preRenderView" />
+		</f:metadata>
+		<h:form id="formPost">
+			<p:growl id="messages" showDetail="true" autoUpdate="true"
+			showSummary="false" />
+			<p:panel header="#{msg['label.posts']}" styleClass="form-cadastro">
+				<p:focus for="txtTitle" />
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.post.id']}:" for="txtId"
+								rendered="#{postController.post.id != null}" styleClass="control-label" />
+								<h:outputText
+									value="#{postController.post.id}" id="txtId"
+									rendered="#{postController.post.id != null}" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.post.postCategory']}:"
+								for="txtPostCategory" /><br />
+								<h:selectOneMenu id="txtPostCategory"
+									value="#{postController.post.postCategory}"
+									converter="GenericConverter" styleClass="form-control" >
+									<f:selectItems value="#{postController.postCategorys}" />
+								</h:selectOneMenu>
+								<p:message id="msgPostCategory"
+									for="txtPostCategory" errorClass="errorMessage" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.post.title']}:" for="txtTitle" />
+							<p:inputText value="#{postController.post.title}"
+									id="txtTitle" required="true" maxlength="50" styleClass="form-control" />
+							<p:message id="msgTitle" for="txtTitle" errorClass="errorMessage" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.post.description']}:"
+								for="txtDescription" /><br />
+								<p:editor value="#{postController.post.content}"
+									id="txtDescription" required="true" cols="50" rows="5" />
+							<p:message id="msgDescription" for="txtDescription" errorClass="errorMessage" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.post.date']}:" for="txtDate" /><br />
+							<p:calendar id="txtDate" value="#{postController.post.date}"
+								locale="pt_BR" navigator="true" pattern="dd/MM/yyyy"
+								showOn="button">
+								<f:convertDateTime type="date" dateStyle="medium"
+									pattern="dd/MM/yyyy" timeZone="GMT-3" locale="pt_BR" />
+							</p:calendar>
+							<p:message id="msgDate" for="txtDate" errorClass="errorMessage" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.post.postType']}:"
+								for="txtPostType" /><br />
+								<h:selectOneMenu id="txtPostType"
+									value="#{postController.post.postType}"
+									converter="GenericConverter" styleClass="form-control">
+									<f:selectItems value="#{postController.postTypes}" />
+								</h:selectOneMenu>
+								<p:message id="msgPostType" for="txtPostType" errorClass="errorMessage" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.post.postScheduleType']}:"
+								for="txtPostScheduleType" /><br />
+								<h:selectOneMenu id="txtPostScheduleType"
+									value="#{postController.post.publish}"
+									converter="GenericConverter" styleClass="form-control" >
+									<f:selectItems value="#{postController.postScheduleTypes}" />
+								</h:selectOneMenu>
+								<p:message id="msgPostScheduleType"
+									for="txtPostScheduleType" errorClass="errorMessage" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.post.publishScheduleDate']}:"
+								for="txtPublishScheduleDate" /><br />
+								<p:calendar id="txtPublishScheduleDate"
+									value="#{postController.post.publishScheduleDate}"
+									locale="pt_BR" navigator="true" pattern="dd/MM/yyyy HH:mm"
+									showOn="button">
+									<f:convertDateTime type="both" dateStyle="medium"
+										pattern="dd/MM/yyyy HH:mm" timeZone="GMT-3" locale="pt_BR" />
+								</p:calendar>
+								<p:message id="msgPublishScheduleDate"
+									for="txtPublishScheduleDate" errorClass="errorMessage" />
+						</div>
+					</div>
+				</div>
+
+				<f:facet name="footer">
+					<p:commandButton action="#{postController.register}" ajax="false"
+						id="btnSave" value="#{msg['label.Post.new']}"
+						icon="ui-icon-circle-check" />
+					<p:commandButton value="#{msg['label.cancel']}" immediate="true"
+						icon="ui-icon-cancel" action="#{postController.cancelar}"
+						ajax="false " />
+				</f:facet>
+			</p:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

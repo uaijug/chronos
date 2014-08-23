@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+  xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui">
+<ui:composition template="/WEB-INF/layout/template.xhtml">
+  <ui:define name="body">
+    <f:metadata>
+      <f:viewParam name="id" value="#{profileController.idProfile}" />
+      <f:event listener="#{profileController.load}" type="preRenderView" />
+    </f:metadata>
+    <h:form id="formProfile">
+     <p:growl id="messages" showDetail="true" autoUpdate="true"
+			showSummary="false" />
+      <p:panel header="#{msg['label.profiles']}"
+        styleClass="form-cadastro">
+        <p:focus for="txtDescription" />
+        <table width="95%">
+          <tr>
+            <td class="form-cadastro-label"><h:outputLabel
+                value="#{msg['label.profile.id']}:" for="txtId"
+                rendered="#{profileController.profile.id != null}" /></td>
+            <td colspan="2">
+            <h:outputText value="#{profileController.profile.id}" id="txtId" rendered="#{profileController.profile.id != null}" /></td>
+          </tr>
+          <tr>
+            <td class="form-cadastro-label"><h:outputLabel
+                value="#{msg['label.profile.description']}:" for="txtDescription" /></td>
+            <td><p:inputText value="#{profileController.profile.description}" id="txtDescription" required="true" maxlength="50" /></td>
+            <td><p:message id="msgDescription" for="txtDescription" /></td>
+          </tr>
+          <tr>
+            <td class="form-cadastro-label"><h:outputLabel
+                value="#{msg['label.profile.acronym']}:" for="txtAcronym" />
+            </td>
+            <td><p:inputText value="#{profileController.profile.acronym}" id="txtAcronym" required="true" size="9" /></td>
+            <td><p:message id="msgAcronym" for="txtAcronym" />
+            </td>
+          </tr>
+        </table>
+
+        <f:facet name="footer">
+          <p:commandButton action="#{profileController.register}" ajax="false" id="btnSave"
+            value="#{msg['label.profile.new']}" icon="ui-icon-circle-check" />
+          <p:commandButton value="#{msg['label.cancel']}" immediate="true"
+            icon="ui-icon-cancel" action="#{profileController.cancelar}" ajax="false " />
+        </f:facet>
+      </p:panel>
+    </h:form>
+  </ui:define>
+</ui:composition>
+</html>

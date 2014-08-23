@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<ui:composition template="/WEB-INF/layout/template.xhtml">
+
+	<ui:define name="body">
+		<p:growl id="messages" showDetail="true" autoUpdate="true"
+			showSummary="false" />
+		<h:form id="formListPost">
+			<p:panel header="#{msg['label.posts']}"
+				styleClass="panel-listagem" id="panelListagemPost">
+	
+				<p:button value="#{msg['label.new']}" outcome="form"
+					icon="ui-icon-circle-plus" id="btnAddTop" />
+				<p:dataTable id="tabePosts" value="#{postController.posts}"
+					var="post"
+					emptyMessage="#{msg['label.list.nofindrecord']}"
+					paginator="true" rows="10" paginatorPosition="bottom"
+					styleClass="table-listagem" rowIndexVar="var"
+					firstPageLinkLabel="Primeira" previousPageLinkLabel="Anterior"
+					nextPageLinkLabel="Proxima" lastPageLinkLabel="ultima">
+					<p:column sortBy="#{post.id}" style="width:50px;">
+						<f:facet name="header">
+							<h:outputText value="#{msg['label.post.id']}" />
+						</f:facet>
+						<h:outputText value="#{post.id}" />
+					</p:column>
+					<p:column sortBy="#{post.title}" filterBy="#{post.title}"
+filterEvent="enter" style="width:285px;">
+						<f:facet name="header">
+							<h:outputText value="#{msg['label.post.title']}" />
+						</f:facet>
+						<h:outputText value="#{post.title}" />
+					</p:column>
+					<p:column sortBy="#{post.date}" style="width:215px;">
+						<f:facet name="header">
+							<h:outputText value="#{msg['label.post.date']}" />
+						</f:facet>
+						<h:outputText value="#{post.date}" />
+					</p:column>
+					<p:column style="text-align: center;width:50px;">
+						<f:facet name="header">
+							<h:outputText value="#{msg['label.update']}" />
+						</f:facet>
+						<p:button title="#{msg['label.update']}" outcome="form"
+							icon="ui-icon-pencil" id="btnUpdate">
+							<f:param name="id" value="#{post.id}" />
+						</p:button>
+					</p:column>
+					<p:column style="text-align: center;width:50px;">
+						<f:facet name="header">
+							<h:outputText value="#{msg['label.remove']}" />
+						</f:facet>
+						<p:commandButton tile="#{msg['label.remove']}"
+							onclick="confirmation.show();" icon="ui-icon-trash"
+							id="btnRemove">
+							<f:setPropertyActionListener target="#{postController.post}"
+								value="#{post}" />
+						</p:commandButton>
+					</p:column>
+				</p:dataTable>
+				<p:spacer style="width:100%; height: 10px;" />
+			</p:panel>
+
+			<p:confirmDialog id="deleteDialog"
+				message="#{msg['label.confirme-exclude']}"
+				widgetVar="confirmation">
+				<p:commandButton id="btnConfirm" value="#{msg['label.yes']}"
+					action="#{postController.remove}" ajax="false" />
+				<p:commandButton id="btnClose" value="#{msg['label.no']}"
+					onclick="confirmation.hide()" />
+			</p:confirmDialog>
+
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

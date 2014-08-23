@@ -1,0 +1,154 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<ui:composition template="/WEB-INF/layout/template.xhtml">
+	<ui:define name="body">
+		<p:panel header="#{msg['label.projects']}" styleClass="panel-listagem"
+			id="panelProjects">
+			<div class="row">
+				<div class="col-md-6">
+					<div class="form-group">
+						<strong>Nome do projeto:</strong><br />
+						<h:outputText value="#{projectViewController.project.title}" />
+						<br />
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="form-group">
+						<strong>Coordenador do projeto:</strong><br />
+						<h:outputText value="#{projectViewController.project.member.name}" />
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="form-group">
+						<strong>Descricao do projeto:</strong><br />
+						<h:outputText value="#{projectViewController.project.description}" />
+						<br />
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6">
+					<div class="form-group">
+						<strong>Data inicio do projeto:</strong><br />
+						<h:outputText value="#{projectViewController.project.startDate}" />
+						<br />
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="form-group">
+						<strong>Data Fim do projeto:</strong><br />
+						<h:outputText value="#{projectViewController.project.startDate}" />
+						<br />
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="form-group">
+						<strong>Custo Estimado:</strong><br />
+						<h:outputText value="#{projectViewController.project.estimatedValue}" />
+						<br />
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="form-group">
+						<h3>Membros:</h3>
+						<div class="ui-grid ui-grid-responsive">
+						    <div class="ui-grid-row">
+						
+						 		<p:dataTable var="member" value="#{memberController.members}">
+								    <p:column headerText="Id">
+								        <a href="#{request.contextPath}/projectView?id=#{project.id}"><h:outputText value="#{member.name}" /></a>
+								    </p:column>
+								 
+								    <p:column headerText="Year">
+								        <h:outputText value="#{member.email}" />
+								    </p:column>
+								 
+								    <p:column headerText="MobilePhone">
+								        <h:outputText value="#{member.comercialPhone}" />
+								    </p:column>
+								 
+								</p:dataTable>
+							     
+							</div>
+						<!-- End .shortcut-buttons-set -->
+					</div>
+				</div>
+			 </div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="form-group">
+						<strong>Tasks: do projeto:</strong><br /><br />
+						<p:dataTable var="task" value="#{taskController.tasks}">
+							<p:column headerText="Id">
+								<h:outputText value="#{task.id}" />
+							</p:column>
+
+							<p:column headerText="Description">
+								<h:outputText value="#{task.description}" />
+							</p:column>
+
+							<p:column headerText="Status">
+								<h:outputText value="#{task.status}" />
+							</p:column>
+
+							<p:column headerText="Fisished Date">
+								<h:outputText value="#{task.endDate}" />
+							</p:column>
+						</p:dataTable>
+
+					</div>
+				</div>
+			</div>
+		</p:panel>
+		<h:form id="formulario">
+﻿      <p:panelGrid id="janela" header="Quadro de Kanban" columns="3" columnClasses="columnQuadro, columnQuadro, columnQuadro" style="width: 100%">  
+﻿  ﻿       
+﻿  ﻿       <p:panel id="tarefasAbertas" header="Aberto">  
+  ﻿  ﻿    ﻿    <h:outputText value="Nenhuma Tarefa em Aberto!" style="font-size:16px;" rendered="${empty taskController.tasks}"/>  
+﻿  ﻿      </p:panel>  
+﻿  ﻿    
+﻿  ﻿      <p:panel id="tarefasPendente" header="Pendentes">  
+﻿  ﻿  ﻿  ﻿    ﻿  <h:outputText value="Nenhuma Tarefa em Andamento!" style="font-size:16px;" rendered="${empty taskController.tasks}" />  
+﻿  ﻿      </p:panel>  
+﻿  ﻿    
+﻿  ﻿      <p:panel id="tarefasConferencia" header="Conferencia">  
+﻿  ﻿  ﻿  ﻿    ﻿  <h:outputText value="Nenhuma Tarefa em Conferencia!" style="font-size:16px;" rendered="${empty taskController.tasks}" />  
+﻿  ﻿      </p:panel>  
+﻿  ﻿    
+﻿  ﻿  </p:panelGrid>﻿    
+﻿  ﻿  <p:outputPanel id="drop">
+﻿  ﻿      <p:droppable for="tarefasPendente" tolerance="pointer" activeStyleClass="ui-state-highlight" datasource="tarefasAberta" onDrop="handleDrop" scope="aberto" rendered="#{identity.usuarioLogado.cargo eq 'DESENVOLVE'}">  
+﻿  ﻿          <p:ajax listener="#{quadroMB.delegar}" update=":growl, janela, drop" />  
+﻿  ﻿      </p:droppable> ﻿  ﻿  
+﻿  ﻿      <p:droppable for="tarefasConferencia" tolerance="pointer" activeStyleClass="ui-state-highlight" datasource="tarefasPendentes" onDrop="handleDrop" scope="pendente" rendered="#{identity.usuarioLogado.cargo eq 'DESENVOLVE'}">  
+﻿  ﻿          <p:ajax listener="#{quadroMB.finalizar}" update=":growl, janela, drop" />  
+﻿  ﻿      </p:droppable> ﻿  ﻿  
+﻿  ﻿      <p:droppable for="tarefasPendente" tolerance="pointer" activeStyleClass="ui-state-highlight" datasource="tarefasConferencias" onDrop="handleDrop" scope="conferencia" rendered="#{identity.usuarioLogado.cargo eq 'TESTER'}">  
+﻿  ﻿          <p:ajax listener="#{quadroMB.reabrir}" update=":growl, janela, drop" />  
+﻿  ﻿      </p:droppable> ﻿  ﻿  
+﻿  ﻿  </p:outputPanel>  
+
+﻿  ﻿  <!--  
+﻿  ﻿   <p:poll interval="3" update="quadro" />  
+﻿  ﻿   -->
+﻿  ﻿  
+﻿  </h:form>
+﻿  ﻿  
+﻿  <script type="text/javascript">
+﻿  ﻿  function handleDrop(event, ui) {
+﻿  ﻿  ﻿  var droppedCar = ui.draggable;
+﻿  ﻿  ﻿  droppedCar.fadeOut('fast');
+﻿  ﻿  }
+﻿  </script> 
+	</ui:define>
+</ui:composition>
+</html>

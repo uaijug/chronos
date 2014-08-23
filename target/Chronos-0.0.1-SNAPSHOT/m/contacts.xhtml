@@ -1,0 +1,113 @@
+<f:view xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	contentType="text/html" renderKitId="PRIMEFACES_MOBILE">
+
+	<pm:page title="Members">
+
+		<!-- Main View -->
+		<pm:view id="main" swatch="d">
+			<h:form id="listMembersForm">
+				<pm:header title="Members" swatch="b">
+					<f:facet name="left">
+						<p:button value="Groups" iconPos="none" />
+					</f:facet>
+					<f:facet name="right">
+						<p:commandButton value="New" iconPos="notext" icon="plus"
+							action="#{membersView.prepareNewMember}"
+							update=":newMemberForm:content" />
+					</f:facet>
+				</pm:header>
+
+				<pm:content>
+					<p:dataList id="membersList" value="#{membersView.members}"
+						var="member">
+						<f:attribute name="filter" value="true" />
+						<f:attribute name="placeholder" value="Search" />
+						<f:attribute name="autoDividers" value="true" />
+						<f:attribute name="icon" value="grid" />
+						<f:attribute name="iconSplit" value="true" />
+						<p:column>
+							<p:commandLink value="#{member.firstname} #{member.surname}"
+								action="pm:new?transition=slide"
+								update=":newMemberForm:content">
+								<f:setPropertyActionListener value="#{member}"
+									target="#{membersView.member}" />
+								<p:graphicImage value="/images/pf-logo.png" />
+							</p:commandLink>
+							<a href="tel:#{member.phone}">Call</a>
+						</p:column>
+						<p:outputPanel>
+							<p:column>
+								<p:commandLink styleClass="selection">
+									<f:setPropertyActionListener value="#{member}"
+										target="#{membersView.member}" />
+								</p:commandLink>
+							</p:column>
+						</p:outputPanel>
+
+						<f:facet name="footer">
+							<strong>#{fn:length(membersView.members)} Members</strong>
+						</f:facet>
+					</p:dataList>
+				</pm:content>
+			</h:form>
+		</pm:view>
+
+		<!-- New Member -->
+		<pm:view id="new" swatch="d">
+			<h:form id="newMemberForm">
+				<pm:header title="New Member" swatch="b">
+					<f:facet name="left">
+						<p:button value="Cancel" iconPos="none"
+							onclick="PrimeFaces.back()" />
+					</f:facet>
+					<f:facet name="right">
+						<p:commandButton value="Done"
+							actionListener="#{membersView.saveMember}"
+							update=":listMembersForm:membersList" iconPos="none"
+							oncomplete="PrimeFaces.back()" />
+					</f:facet>
+				</pm:header>
+
+				<pm:content>
+					<p:outputPanel id="content">
+						<p:inputText id="name" value="#{membersView.member.firstname}"
+							label="Name:" />
+
+						<p:inputText id="surname" value="#{membersView.member.surname}"
+							label="Surname:" />
+
+						<p:inputText id="age" value="#{membersView.member.age}"
+							type="number" label="Age:" />
+
+						<p:inputText id="phone" value="#{membersView.member.phone}"
+							type="tel" label="Phone:" />
+
+						<p:inputText id="mail" value="#{membersView.member.mail}"
+							type="email" label="Email:" />
+
+						<p:inputTextarea id="address"
+							value="#{membersView.member.address}" label="Address:" />
+
+						<p:commandButton
+							rendered="#{not empty membersView.member.firstname}"
+							value="Delete Member"
+							actionListener="#{membersView.deleteMember}"
+							update=":listMembersForm:membersList" iconPos="none"
+							oncomplete="PrimeFaces.back()">
+							<f:attribute name="swatch" value="e" />
+						</p:commandButton>
+
+					</p:outputPanel>
+				</pm:content>
+			</h:form>
+		</pm:view>
+
+	</pm:page>
+
+</f:view>

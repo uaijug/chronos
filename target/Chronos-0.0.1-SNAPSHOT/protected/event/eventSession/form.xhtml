@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<ui:composition template="/WEB-INF/layout/template.xhtml">
+	<ui:define name="body">
+		<f:metadata>
+			<f:viewParam name="id"
+				value="#{eventSessionController.idEventSession}" />
+			<f:event listener="#{eventSessionController.load}"
+				type="preRenderView" />
+		</f:metadata>
+		<h:form id="formEventSession">
+			<p:growl id="messages" showDetail="true" autoUpdate="true"
+			showSummary="false" />
+			<p:panel header="#{msg['label.eventSessions']}"
+				styleClass="form-cadastro">
+				<p:focus for="txtDescription" />
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.eventSession.id']}:"
+								for="txtId"
+								rendered="#{eventSessionController.eventSession.id != null}" styleClass="control-label" />
+							<h:outputText value="#{eventSessionController.eventSession.id}"
+								id="txtId"
+								rendered="#{eventSessionController.eventSession.id != null}" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.eventSession.event']}:"
+								for="txtEvent" styleClass="control-label" />
+							<p:selectOneMenu id="txtEvent"
+								value="#{eventSessionController.eventSession.event}"
+								converter="GenericConverter" styleClass="form-control">
+								<f:selectItems value="#{eventSessionController.events}" />
+							</p:selectOneMenu>
+							<p:message id="msgEvent" for="txtEvent" errorClass="errorMessage" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.eventSession.description']}:"
+								for="txtDescription" styleClass="control-label" />
+							<p:inputText
+								value="#{eventSessionController.eventSession.description}"
+								id="txtDescription" required="true" maxlength="50" styleClass="form-control"/>
+							<p:message id="msgDescription" for="txtDescription" errorClass="errorMessage" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.eventSession.block']}:"
+								for="txtBlock" styleClass="control-label" />
+							<p:inputText value="#{eventSessionController.eventSession.block}"
+								id="txtBlock" required="true" maxlength="50" styleClass="form-control" />
+							<p:message id="msgBlock" for="txtBlock" errorClass="errorMessage" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.eventSession.macroThemes']}:"
+								for="txtNumber" styleClass="control-label" />
+							<p:inputText
+								value="#{eventSessionController.eventSession.number}"
+								id="txtNumber" required="true" maxlength="50" styleClass="form-control" />
+							<p:message id="msgNumber" for="txtNumber" errorClass="errorMessage" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<f:facet name="footer">
+								<p:commandButton action="#{eventSessionController.register}"
+									ajax="false" id="btnSave"
+									value="#{msg['label.eventSession.new']}"
+									icon="ui-icon-circle-check" />
+								<p:commandButton value="#{msg['label.cancel']}" immediate="true"
+									icon="ui-icon-cancel"
+									action="#{eventSessionController.cancelar}" ajax="false " />
+							</f:facet>
+						</div>
+					</div>
+				</div>
+			</p:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

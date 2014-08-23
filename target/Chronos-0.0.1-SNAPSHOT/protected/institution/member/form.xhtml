@@ -1,0 +1,287 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<ui:composition template="/WEB-INF/layout/template.xhtml">
+	<ui:define name="body">
+		<f:metadata>
+			<f:viewParam name="id" value="#{memberController.idMember}" />
+			<f:event listener="#{memberController.load}" type="preRenderView" />
+		</f:metadata>
+		<h:form id="formMember">
+			<p:messages />
+			<p:panel header="#{msg['label.members']}" styleClass="form-cadastro">
+				<p:focus for="txtName" />
+
+
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.member.id']}:" for="txtId"
+								rendered="#{memberController.member.id != null}"
+								styleClass="control-label" />
+							<h:outputText value="#{memberController.member.id}" id="txtId"
+								rendered="#{memberController.member.id != null}" />
+							<h:outputLabel value="#{msg['label.member.memberType']}:"
+								for="txtMember" styleClass="control-label" />
+							<h:selectOneMenu id="txtMember"
+								value="#{memberController.member.memberType}"
+								converter="GenericConverter" styleClass="form-control">
+								<f:selectItems value="#{memberController.memberTypes}" />
+							</h:selectOneMenu>
+							<p:message id="msgMember" for="txtMember"
+								errorClass="errorMessage" />
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-6">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.member.name']}:" for="txtName"
+								styleClass="control-label" />
+							<p:inputText value="#{memberController.member.name}" id="txtName"
+								required="true" maxlength="150" size="100"
+								styleClass="form-control" />
+							<p:message id="msgName" for="txtName" errorClass="errorMessage" />
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.member.lastName']}:"
+								for="txtLastName" styleClass="control-label" />
+							<p:inputText value="#{memberController.member.lastName}"
+								id="txtLastName" required="true" maxlength="150" size="100"
+								styleClass="form-control" />
+							<p:message id="msgLastName" for="txtLastName"
+								errorClass="errorMessage" />
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-6">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.member.cpf']}:" for="txtCpf"
+								styleClass="control-label" />
+							<p:inputMask value="#{memberController.member.cpf}" id="txtCpf"
+								required="true" maxlength="50" size="20"
+								styleClass="form-control" mask="999.999.999-99" />
+							<p:message id="msgCpf" for="txtCpf" errorClass="errorMessage" />
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.member.rg']}:" for="txtRg"
+								styleClass="control-label" />
+							<p:inputMask value="#{memberController.member.rg}" id="txtRg"
+								required="true" maxlength="50" size="20"
+								styleClass="form-control" mask="999.999.999-99" />
+							<p:message id="msgRg" for="txtRg" errorClass="errorMessage" />
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-6">
+						<div class="form-group">
+							<h:outputLabel for="gender"
+								value="#{msg['label.member.gender']}: *"
+								styleClass="control-label" />
+							<h:selectOneRadio id="gender"
+								label="#{msg['label.member.gender']}" required="true"
+								value="#{memberController.member.gender}" layout="pageDirection">
+								<f:selectItem itemLabel="&nbsp;#{msg['label.member.male']}"
+									itemValue="MALE" />
+								<f:selectItem itemLabel="&nbsp;#{msg['label.member.female']}"
+									itemValue="FEMALE" />
+							</h:selectOneRadio>
+							<h:message for="gender" errorClass="errorMessage" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-4">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.member.born-date']}:"
+								for="txtBornDate" styleClass="control-label" />
+							<br />
+							<p:calendar id="txtBornDate"
+								value="#{memberController.member.bornDate}" locale="pt_BR"
+								navigator="true" pattern="dd/MM/yyyy" showButtonPanel="true"
+								showOn="button">
+								<f:convertDateTime type="date" dateStyle="medium"
+									pattern="dd/MM/yyyy" timeZone="GMT-3" locale="pt_BR" />
+							</p:calendar>
+							<p:message id="msgBornDate" for="txtBornDate"
+								errorClass="errorMessage" />
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.member.age']}:" for="txtAge"
+								styleClass="control-label" />
+							<h:inputText id="txtAge" label="#{memberController.member.age}"
+								size="15" maxlength="30" value="#{memberController.member.age}"
+								styleClass="form-control" />
+							<h:message for="txtAge" errorClass="errorMessage" />
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.member.nationality']}:"
+								for="txtNationality" styleClass="control-label" />
+							<h:inputText id="twitter"
+								label="#{msg['label.member.nationality']}" size="15"
+								maxlength="30" value="#{memberController.member.nationality}"
+								styleClass="form-control" />
+							<h:message for="txtNationality" errorClass="errorMessage" />
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-4">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.member.email']}:"
+								for="txtEmail" styleClass="control-label" />
+							<p:inputText value="#{memberController.member.email}"
+								id="txtEmail" required="true" maxlength="50"
+								styleClass="form-control" />
+							<p:message id="msgEmail" for="txtEmail" errorClass="errorMessage" />
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.member.twitter']}:"
+								for="txtTwitter" styleClass="control-label" />
+							<p:inputText value="#{memberController.member.twitter}"
+								id="txtTwitter" required="true" maxlength="50" size="20"
+								styleClass="form-control" placeholder="@" />
+							<p:message id="msgTwitter" for="txtTwitter"
+								errorClass="errorMessage" />
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.member.facebook']}:"
+								for="txtFacebook" styleClass="control-label" />
+							<p:inputText value="#{memberController.member.facebook}"
+								id="txtFacebook" required="true" maxlength="50"
+								styleClass="form-control" />
+							<p:message id="msgFacebook" for="txtFacebook"
+								errorClass="errorMessage" />
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.member.phoneNumber']}:"
+								for="txtPhoneNumber" styleClass="control-label" />
+							<p:inputMask value="#{memberController.member.phoneNumber}"
+								id="txtPhoneNumber" required="true" maxlength="50"
+								styleClass="form-control" mask="(999) 999-9999" />
+							<p:message id="msgPhoneNumber" for="txtPhoneNumber"
+								errorClass="errorMessage" />
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-4">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.member.empresa']}:"
+								for="txtEmpresa" styleClass="control-label" />
+							<p:inputText value="#{memberController.member.company}"
+								id="txtEmpresa" required="true" maxlength="150"
+								styleClass="form-control" />
+							<p:message id="msgEmpresa" for="txtEmpresa"
+								errorClass="errorMessage" />
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.member.site']}:" for="txtSite"
+								styleClass="control-label" />
+							<p:inputText value="#{memberController.member.site}" id="txtSite"
+								required="true" maxlength="50" styleClass="form-control"
+								placeholder="http://" />
+							<p:message id="msgSite" for="txtSite" errorClass="errorMessage" />
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.member.comercialPhone']}:"
+								for="txtComercialPhone" styleClass="control-label" />
+							<p:inputText value="#{memberController.member.comercialPhone}"
+								id="txtComercialPhone" required="true" maxlength="50"
+								styleClass="form-control" />
+							<p:message id="msgComercialPhone" for="txtComercialPhone"
+								errorClass="errorMessage" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-10">
+						<div class="form-group">
+							<p:outputLabel value="#{msg['label.member.address']}"
+								for="txtAddress" styleClass="control-label" />
+							<br />
+							<p:autoComplete id="txtAddress"
+								value="#{memberController.member.address}"
+								completeMethod="#{memberController.completeAddress}"
+								var="address" itemLabel="#{address.street}"
+								itemValue="#{address}" converter="GenericConverter"
+								forceSelection="true" size="100" />
+							<p:message id="msgAddress" for="txtAddress"
+								errorClass="errorMessage" />
+						</div>
+					</div>
+					<div class="col-md-2">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.member.addressNumber']}:"
+								for="txtAddressNumber" styleClass="control-label" />
+							<p:inputText value="#{memberController.member.addressNumber}"
+								id="txtAddressNumber" required="true" maxlength="50"
+								styleClass="form-control" />
+							<p:message id="msgAddressNumber" for="txtAddressNumber"
+								errorClass="errorMessage" />
+
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.member.experiencia']}:"
+								for="txtExperiencia" styleClass="control-label" />
+							<p:inputTextarea value="#{memberController.member.expertise}"
+								id="txtExperiencia" required="true" styleClass="form-control" />
+							<p:message id="msgExperiencia" for="txtExperiencia"
+								errorClass="errorMessage" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<f:facet name="footer">
+								<p:commandButton action="#{memberController.register}"
+									ajax="false" id="btnSave" value="#{msg['label.member.new']}"
+									icon="ui-icon-circle-check" />
+								<p:commandButton value="#{msg['label.cancel']}" immediate="true"
+									icon="ui-icon-cancel" action="#{memberController.cancelar}"
+									ajax="false " />
+							</f:facet>
+						</div>
+					</div>
+				</div>
+			</p:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

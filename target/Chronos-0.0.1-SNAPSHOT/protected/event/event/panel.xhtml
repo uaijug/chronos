@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<ui:composition template="/layout/template.xhtml">
+
+	<ui:define name="body">
+	 <center>		
+	    <p:commandButton value="#{msg['label.newRecentSales']}" icon="ui-icon-circle-plus" id="btnAddRecentSales" onclick="dlg2.show();" type="button"/><!-- Vendas recentes -->
+		<p:button value="#{msg['label.newCancelEvent']}" outcome="form"
+						icon="ui-icon-circle-plus" id="btnAddCancelEvent" /><!-- Cancelar evento -->
+		<p:commandButton value="#{msg['label.newBudgetOptions']}" icon="ui-icon-circle-plus" id="btnAddBudgetOptions" onclick="dlg2.show();" type="button"/><!-- Visualizar Orcamento -->
+		<p:button value="#{msg['label.newExportSpreadsheet']}" outcome="form"
+						icon="ui-icon-circle-plus" id="btnAddExportSpreadsheet" /><!-- Exportar planilha -->
+		<p:button value="#{msg['label.newPublicizeEvent']}" outcome="networkspanel"
+						icon="ui-icon-circle-plus" id="btnAddPublicizeEvent" /><!-- Divulgar evento -->
+	 </center>
+	
+		<div class="content-box column-left">
+		  <!-- Start Content Box -->
+				
+				<div class="content-box-header">
+					
+					<h3>Estatiticas Gerais</h3>
+					
+				</div> <!-- End .content-box-header -->
+				
+				<div class="content-box-content">
+					
+					<div class="tab-content default-tab">
+						<h3><font size="24" color="#FF8C00">Evento</font></h3>
+						<br />
+						<table>
+						 <tr><td>Tempo restante:</td><td>0</td></tr>
+						 <tr><td>Visualizações:</td><td>0</td></tr>
+						 <tr><td>Mensagens:</td><td>0</td></tr>
+						</table>
+					   <br /><br />
+						<h3><font size="24" color="#FF8C00">Ingressos</font></h3>
+						<br />
+						<table>
+						 <tr><td>Vendidos:</td><td>1</td></tr>
+						 <tr><td>Em analise:</td><td>0</td></tr>
+						 <tr><td>Total disponível:</td><td>300</td></tr>
+						 <tr><td>Total Restantes:</td><td>299</td></tr>
+						</table>
+					</div> <!-- End #tab3 -->        
+					
+				</div> <!-- End .content-box-content -->
+				
+			</div> <!-- End .content-box -->
+			
+			<div class="content-box column-right">
+		 		 <!-- Start Content Box -->
+				
+				<div class="content-box-header">
+					
+					<h3>Estatiticas de Vendas</h3>
+					
+				</div> <!-- End .content-box-header -->
+				
+				  <div class="content-box-content">
+					
+					<div class="tab-content default-tab">
+					
+					<table>
+					 <tr><td>Total vendido:</td><td>R$ 27,50</td></tr>
+					 <tr><td>Taxas:</td><td>- R$ 2,50</td></tr>
+					 <tr><td>Receita:</td><td>R$ 25,00</td></tr>
+					 <tr><td colspan="2"><hr /></td></tr>
+					 <tr><td>Liberado em:</td><td>28/11/2013</td></tr>
+					 <tr><td colspan="2"><hr /></td></tr>
+					 <tr><td>Adicionados manualmente (Dinheiro):</td><td>R$ 0,00</td></tr>
+					 <tr><td>Receita total:</td><td>R$ 25,00</td></tr>
+					</table>
+				   
+				   </div> <!-- End #tab3 -->        
+					
+				</div> <!-- End .content-box-content -->
+				
+			</div> <!-- End .content-box -->
+			
+			<p:dialog id="modalDialog" header="Modal Dialog" widgetVar="dlg2" modal="true" height="100">  
+			    <h:outputText value="This is a Modal Dialog." />  
+			</p:dialog> 
+	</ui:define>
+</ui:composition>
+</html>

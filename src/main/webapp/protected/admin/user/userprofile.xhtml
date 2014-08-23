@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<ui:composition template="/WEB-INF/layout/template.xhtml">
+	<ui:define name="body">
+		<f:metadata>
+			<f:viewParam name="id" value="#{userController.idUser}" />
+			<f:event listener="#{userController.load}" type="preRenderView" />
+		</f:metadata>
+		<!-- CONTENT -->
+		<div class="main-content">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="row panel panel-profile">
+						<div class="panel-heading col-md-3 col-lg-2">
+							<center>
+								<img
+									src="${request.contextPath}/resources/images/logo_perfil.jpg"
+									alt="" class="img-circle" />
+								<h3 class="profile-title"><h:outputText value="#{userController.user.name}" id="txtId" rendered="#{userController.user.id != null}" /></h3>
+								<p class="profile-info">Chief Marketing Officer</p>
+							</center>
+						</div>
+						<div class="panel-body col-md-9 col-lg-10">
+							<h4 class="first">About Me</h4>
+							<p>Donec iaculis a nibh in egestas. Praesent interdum ipsum
+								id tellus ullamcorper tristique. Nam auctor diam massa. Ut diam
+								dui, pretium ac purus vitae, egestas sollicitudin velit. Quisque
+								faucibus metus mattis nunc placerat, in malesuada erat
+								pellentesque. Phasellus molestie elit id egestas aliquam. Donec
+								tincidunt nunc ac congue mattis. Donec non odio nec justo varius
+								ullamcorper.</p>
+							<div class="row">
+								<div class="col-md-6">
+									<h4>Contact Information</h4>
+									<dl class="dl-horizontal">
+										<dt>Email Address:</dt>
+										<dd>mark.smith@example.com</dd>
+										<dt>Phone Number:</dt>
+										<dd>+01 (345) 825 552</dd>
+										<dt>Skype ID:</dt>
+										<dd>mark.smith</dd>
+										<dt>Address:</dt>
+										<dd>21st Street, Pennsylvania Avenue, NY, USA</dd>
+										<dt>External Links:</dt>
+										<dd>
+											<a href="http://www.facebook.com/Mark.Smith1122">Facebook</a>
+											/ <a href="http://www.example.com">Website</a> / <a
+												href="http://blog.example.com">Blog</a>
+										</dd>
+									</dl>
+								</div>
+								<div class="col-md-6">
+									<h4>Account Information</h4>
+									<dl class="dl-horizontal">
+										<dt>Username:</dt>
+										<dd>mark.smith</dd>
+										<dt>Member Since:</dt>
+										<dd>25 Dec. 2013</dd>
+										<dt>Employee ID:</dt>
+										<dd>84921</dd>
+										<dt>Department:</dt>
+										<dd>Marketing</dd>
+										<dt>Supervisor:</dt>
+										<dd>
+											<a href="#">Andrew Jenkins</a>
+										</dd>
+									</dl>
+								</div>
+							</div>
+
+							<h4>Current Projects</h4>
+							<ul class="gallery">
+								<li class="item"><img alt="150x150"
+									src="img/gallery/1H.jpg" />
+									<div class="details">
+										<a href="#" class="action"><i class="fa fa-eye"></i></a> <a
+											href="#" class="action"><i class="fa fa-pencil"></i></a>
+									</div></li>
+								<li class="item"><img alt="150x150"
+									src="img/gallery/7H.jpg" />
+									<div class="details">
+										<a href="#" class="action"><i class="fa fa-eye"></i></a> <a
+											href="#" class="action"><i class="fa fa-pencil"></i></a>
+									</div></li>
+								<li class="item"><img alt="150x150"
+									src="img/gallery/17H.jpg" />
+									<div class="details">
+										<a href="#" class="action"><i class="fa fa-eye"></i></a> <a
+											href="#" class="action"><i class="fa fa-pencil"></i></a>
+									</div></li>
+								<li class="item"><img alt="150x150"
+									src="img/gallery/18H.jpg" />
+									<div class="details">
+										<a href="#" class="action"><i class="fa fa-eye"></i></a> <a
+											href="#" class="action"><i class="fa fa-pencil"></i></a>
+									</div></li>
+							</ul>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- END: CONTENT -->
+	</ui:define>
+</ui:composition>
+</html>

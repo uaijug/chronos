@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<ui:composition template="/WEB-INF/layout/template.xhtml">
+
+	<ui:define name="body">
+		<p:growl id="messages" showDetail="true" autoUpdate="true"
+			showSummary="false" />
+		<h:form id="formPurchaseCost">
+			<p:dataTable id="purchaseCostsTable" var="purchaseCost" value="#{purchaseCostController.purchaseCosts}">
+
+			  <f:facet name="header">  
+        	   Cash Flow Report per Month
+       		  </f:facet>
+
+				<p:columnGroup type="header">
+		  		   <p:row>
+						<p:column headerText="Evento" />
+						<p:column headerText="Material" />
+						<p:column headerText="Pago por" />
+						<p:column headerText="Quantidade" />
+						<p:column headerText="Data Pagamento" />
+						<p:column headerText="Valor unitário" />
+						<p:column headerText="Valor total" />
+					</p:row>
+				</p:columnGroup>
+
+				<p:column>  
+	            	#{purchaseCost.event.description} 
+		        </p:column>
+		        
+		        <p:column>  
+	            	#{purchaseCost.material.description} 
+		        </p:column>
+		        
+		        <p:column>  
+	            	#{purchaseCost.company.description} 
+		        </p:column>
+		
+				<p:column>  
+	            	#{purchaseCost.quantity} 
+		        </p:column>
+		        
+		        <p:column>  
+	            	#{purchaseCost.paymentDate} 
+		        </p:column>
+
+				<p:column>  
+		          <h:outputLabel value="R$ #{purchaseCost.unitValue}" /> 
+		       </p:column>
+	
+				<p:column>  
+		          <h:outputLabel value="R$ #{purchaseCost.totalValue}" /> 
+		       </p:column>
+
+				<p:columnGroup type="footer">
+					<p:row>
+						<p:column colspan="6" footerText="Totals:"
+							style="text-align:right" />
+
+						<p:column footerText="R$ #{purchaseCostController.lastValueTotal}" />
+
+					</p:row>
+				</p:columnGroup>
+
+				<f:facet name="footer">  
+          			  Use a bicycle instead of a car  
+      				 </f:facet>
+
+			</p:dataTable>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

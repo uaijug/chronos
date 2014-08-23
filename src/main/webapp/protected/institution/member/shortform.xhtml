@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<ui:composition template="/WEB-INF/layout/template.xhtml">
+	<ui:define name="body">
+		<f:metadata>
+			<f:viewParam name="id" value="#{memberController.idMember}" />
+			<f:event listener="#{memberController.load}" type="preRenderView" />
+		</f:metadata>
+		<h:form id="formMember">
+			<p:messages autoUpdate="true" globalOnly="true" showSummary="false"
+				showDetail="true" />
+			<p:panel header="#{msg['label.members']}" styleClass="form-cadastro">
+				<p:focus for="txtName" />
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.member.id']}:" for="txtId"
+								rendered="#{memberController.member.id != null}" styleClass="control-label" />
+							<h:outputText value="#{memberController.member.id}" id="txtId"
+								rendered="#{memberController.member.id != null}" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.member.memberType']}:"
+								for="txtMember" styleClass="control-label"  />
+							<p:selectOneMenu id="txtMember"
+								value="#{memberController.member.memberType}"
+								converter="GenericConverter" styleClass="form-control">
+								<f:selectItems value="#{memberController.memberTypes}" />
+							</p:selectOneMenu>
+							<p:message id="msgMember" for="txtMember" errorClass="errorMessage" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.member.name']}:" for="txtName" styleClass="control-label" />
+							<p:inputText value="#{memberController.member.name}" id="txtName"
+								required="true" maxlength="150" size="100" styleClass="form-control" />
+							<p:message id="msgName" for="txtName" errorClass="errorMessage" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.member.email']}:"
+								for="txtEmail" styleClass="control-label" />
+							<p:inputText value="#{memberController.member.email}"
+								id="txtEmail" required="true" maxlength="50" size="30" styleClass="form-control" />
+							<p:message id="msgEmail" for="txtEmail" errorClass="errorMessage" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.member.cpf']}:" for="txtCpf" styleClass="control-label" />
+							<p:inputText value="#{memberController.member.cpf}" id="txtCpf"
+								required="true" maxlength="50" size="20" styleClass="form-control" />
+							<p:message id="msgCpf" for="txtCpf" errorClass="errorMessage" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<f:facet name="footer">
+								<p:commandButton action="#{memberController.register}"
+									ajax="false" id="btnSave" value="#{msg['label.member.new']}"
+									icon="ui-icon-circle-check" />
+								<p:commandButton value="#{msg['label.cancel']}" immediate="true"
+									icon="ui-icon-cancel" action="#{memberController.cancelar}"
+									ajax="false " />
+							</f:facet>
+						</div>
+					</div>
+				</div>
+			</p:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

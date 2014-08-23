@@ -1,0 +1,206 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<ui:composition template="/WEB-INF/layout/template.xhtml">
+	<ui:define name="body">
+		<f:metadata>
+			<f:viewParam name="id" value="#{budgetController.idBudget}" />
+			<f:event listener="#{budgetController.load}" type="preRenderView" />
+		</f:metadata>
+		<h:form id="formPurchaseCost">
+			<p:growl id="messages" showDetail="true" autoUpdate="true"
+			showSummary="false" />
+			<p:panel header="#{msg['label.budgets']}" styleClass="form-cadastro">
+				<p:focus for="txtEvent" />
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.budget.id']}:" for="txtId"
+								rendered="#{budgetController.budget.id != null}" />
+							
+							<h:outputText
+									value="#{budgetController.budget.id}" id="txtId"
+									rendered="#{budgetController.budget.id != null}" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.budget.event']}:"
+								for="txtEvent" />
+							
+							<p:selectOneMenu id="txtEvent"
+									value="#{budgetController.budget.event}"
+									converter="GenericConverter" styleClass="form-control">
+									<f:selectItems value="#{budgetController.events}" />
+								</p:selectOneMenu>
+							<p:message id="msgEvent" for="txtEvent" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.budget.material']}:"
+								for="txtMaterial" />
+							
+							<p:selectOneMenu id="txtMaterial"
+									value="#{budgetController.budget.material}"
+									converter="GenericConverter" styleClass="form-control">
+									<f:selectItems value="#{budgetController.materials}" />
+								</p:selectOneMenu>
+							<p:message id="msgMaterial" for="txtMaterial" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.budget.supplier']}:"
+								for="txtSupplier" />
+							
+							<p:selectOneMenu id="txtSupplier"
+									value="#{budgetController.budget.supplier}"
+									converter="GenericConverter" styleClass="form-control">
+									<f:selectItems value="#{budgetController.suppliers}" />
+								</p:selectOneMenu>
+							<p:message id="msgSupplier" for="txtSupplier" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.budget.quantity']}:"
+								for="txtQuantity" />
+							
+							<p:inputText value="#{budgetController.budget.quantity}"
+									id="txtQuantity" required="true" maxlength="5" size="1" styleClass="form-control"/>
+							<p:message id="msgQuantity" for="txtQuantity" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.budget.dateDelivery']}:"
+								for="txtdateDelivery" />
+							<br />
+							<p:calendar id="txtDateDelivery"
+									value="#{budgetController.budget.dateDelivery}" locale="pt_BR"
+									navigator="true" pattern="dd/MM/yyyy" showOn="button">
+									<f:convertDateTime type="date" dateStyle="medium"
+										pattern="dd/MM/yyyy" timeZone="GMT-3" locale="pt_BR" />
+								</p:calendar>
+							<p:message id="msgDateDelivery" for="txtDateDelivery" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.budget.invoice']}:"
+								for="txtInvoice" />
+							<br />
+							<p:selectOneMenu id="txtInvoice"
+									value="#{budgetController.budget.invoice}"
+									converter="GenericConverter" styleClass="form-control">
+									<f:selectItems value="#{budgetController.yesNo}" />
+								</p:selectOneMenu>
+							<p:message id="msgInvoice" for="txtInvoice" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.budget.unitValue']}:"
+								for="txtUnitValue" />
+							
+							<p:inputText
+									value="#{budgetController.budget.unitValue}" id="txtUnitValue"
+									required="true" maxlength="50" styleClass="form-control" />
+							<p:message id="msgUnitValue" for="txtUnitValue" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.budget.percentageDiscount']}:"
+								for="txtPercentageDiscount" />
+							
+							<p:inputText
+									value="#{budgetController.budget.percentageDiscount}"
+									id="txtPercentageDiscount" required="true" maxlength="50"
+									size="5" styleClass="form-control" />
+							<p:message id="msgPercentageDiscount"
+									for="txtPercentageDiscount" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.budget.totalValue']}:"
+								for="txtTotalValue" />
+							
+							<p:inputText
+									value="#{budgetController.budget.totalValue}"
+									id="txtTotalValue" required="true" maxlength="50" size="5" styleClass="form-control" />
+							<p:message id="msgTotalValue" for="txtTotalValue" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.budget.captureFeature']}:"
+								for="txtCaptureFeature" />
+							
+							<p:inputText
+									value="#{budgetController.budget.captureFeature}"
+									id="txtCaptureFeature" required="true" maxlength="50"
+									data-role="tagsinput" styleClass="form-control" />
+							<p:message id="msgCaptureFeature"
+									for="txtCaptureFeature" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.budget.observation']}:"
+								for="txtObservation" />
+							
+							<p:inputTextarea
+									value="#{budgetController.budget.observation}"
+									id="txtObservation" required="true" maxlength="500" cols="35"
+									rows="5" styleClass="form-control" />
+							<p:message id="msgObservation" for="txtObservation" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<f:facet name="footer">
+								<p:commandButton action="#{budgetController.register}"
+									ajax="false" id="btnSave" value="#{msg['label.budget.new']}"
+									icon="ui-icon-circle-check" />
+								<p:commandButton value="#{msg['label.cancel']}" immediate="true"
+									icon="ui-icon-cancel" action="#{budgetController.cancelar}"
+									ajax="false " />
+							</f:facet>
+						</div>
+					</div>
+				</div>
+			</p:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

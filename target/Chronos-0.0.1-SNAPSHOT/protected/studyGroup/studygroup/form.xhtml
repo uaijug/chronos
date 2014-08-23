@@ -1,0 +1,169 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<ui:composition template="/WEB-INF/layout/template.xhtml">
+	<ui:define name="body">
+		<f:metadata>
+			<f:viewParam name="id" value="#{studyGroupController.idStudyGroup}" />
+			<f:event listener="#{studyGroupController.load}" type="preRenderView" />
+		</f:metadata>
+		<h:form id="formStudyGroup">
+			<p:growl id="messages" showDetail="true" autoUpdate="true"
+			showSummary="false" />
+			<p:panel header="#{msg['label.studyGroups']}"
+				styleClass="form-cadastro">
+				<p:focus for="txtName" />
+
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.studyGroup.id']}:" for="txtId"
+								rendered="#{studyGroupController.studyGroup.id != null}" styleClass="control-label" />
+							<h:outputText value="#{studyGroupController.studyGroup.id}"
+								id="txtId"
+								rendered="#{studyGroupController.studyGroup.id != null}" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.studyGroup.name']}:"
+								for="txtName" styleClass="control-label" />
+							<p:inputText value="#{studyGroupController.studyGroup.name}"
+								id="txtName" required="true" maxlength="50" styleClass="form-control" />
+							<p:message id="msgName" for="txtName" errorClass="errorMessage" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.studyGroup.value']}:"
+								for="txtValue" styleClass="control-label" />
+							<p:inputText value="#{studyGroupController.studyGroup.value}"
+								id="txtValue" required="true" maxlength="50" styleClass="form-control" />
+							<p:message id="msgValue" for="txtValue" errorClass="errorMessage" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.studyGroup.institution']}:"
+								for="txtInstitution" styleClass="control-label" />
+							<p:selectOneMenu id="txtInstitution"
+								value="#{studyGroupController.studyGroup.institution}"
+								converter="GenericConverter" styleClass="form-control">
+								<f:selectItems value="#{studyGroupController.institutions}" />
+							</p:selectOneMenu>
+							<p:message id="msgInstitution" for="txtInstitution" errorClass="errorMessage" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel
+								value="#{msg['label.studyGroup.dateRealization']}:"
+								for="txtDateRealization" styleClass="control-label" /><br />
+							<p:calendar id="txtDateRealization"
+								value="#{studyGroupController.studyGroup.dateRealization}"
+								locale="pt_BR" navigator="true" pattern="dd/MM/yyyy"
+								showButtonPanel="true" showOn="button">
+								<f:convertDateTime type="date" dateStyle="medium"
+									pattern="dd/MM/yyyy" timeZone="GMT-3" locale="pt_BR" />
+							</p:calendar>
+							<p:message id="msgDateRealization" for="txtDateRealization" errorClass="errorMessage" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.studyGroup.description']}:"
+								for="txtEmail" styleClass="control-label" />
+							<p:inputText
+								value="#{studyGroupController.studyGroup.description}"
+								id="txtDescription" required="true" maxlength="50" styleClass="form-control" />
+							<p:message id="msgDescription" for="txtDescription" errorClass="errorMessage" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.studyGroup.location']}:"
+								for="txtLocation" styleClass="control-label" />
+							<p:inputText value="#{studyGroupController.studyGroup.location}"
+								id="txtLocation" required="true" maxlength="50" styleClass="form-control" />
+							<p:message id="msgLocation" for="txtLocation" errorClass="errorMessage" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.studyGroup.map']}:"
+								for="txtMap" styleClass="control-label" />
+							<p:inputText value="#{studyGroupController.studyGroup.map}"
+								id="txtMap" required="true" maxlength="50" styleClass="form-control" />
+							<p:message id="msgMap" for="txtMap" errorClass="errorMessage" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.studyGroup.startTime']}:"
+								for="" styleClass="control-label" /><br />
+							<p:calendar id="txtStartTime"
+								value="#{studyGroupController.studyGroup.startTime}"
+								locale="pt_BR" navigator="true" pattern="dd/MM/yyyy"
+								showButtonPanel="true" showOn="button">
+								<f:convertDateTime type="date" dateStyle="medium"
+									pattern="dd/MM/yyyy" timeZone="GMT-3" locale="pt_BR" />
+							</p:calendar>
+							<p:message id="msgStartTime" for="txtStartTime" errorClass="errorMessage" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.studyGroup.endTime']}:"
+								for="txtEndTime" styleClass="control-label" /><br />
+							<p:calendar id="txtEndTime"
+								value="#{studyGroupController.studyGroup.endTime}"
+								locale="pt_BR" navigator="true" pattern="dd/MM/yyyy"
+								showButtonPanel="true" showOn="button">
+								<f:convertDateTime type="date" dateStyle="medium"
+									pattern="dd/MM/yyyy" timeZone="GMT-3" locale="pt_BR" />
+							</p:calendar>
+							<p:message id="msgEndTime" for="txtEndTime" errorClass="errorMessage" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<f:facet name="footer">
+								<p:commandButton action="#{studyGroupController.register}"
+									ajax="false" id="btnSave"
+									value="#{msg['label.studyGroup.new']}"
+									icon="ui-icon-circle-check" />
+								<p:commandButton value="#{msg['label.cancel']}" immediate="true"
+									icon="ui-icon-cancel" action="#{studyGroupController.cancelar}"
+									ajax="false " />
+							</f:facet>
+						</div>
+					</div>
+				</div>
+			</p:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

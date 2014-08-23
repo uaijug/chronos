@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<ui:composition template="/WEB-INF/layout/template.xhtml">
+
+	<ui:define name="body">
+		<p:growl id="messages" showDetail="true" autoUpdate="true"
+			showSummary="false" />
+		<h:form id="formListMember">
+			<p:panel header="#{msg['label.members']}"
+				styleClass="panel-listagem" id="panelListagemMember">
+		
+				<p:button value="#{msg['label.new']}" outcome="form"
+					icon="ui-icon-circle-plus" id="btnAddTop" />
+					 
+				<p:commandButton value="#{msg['label.notify']}" id="btnNotify" type="button" onclick="PF('dlg2').show();" />
+				
+				<p:dialog header="Enviar notificação" widgetVar="dlg2" modal="true" height="400" width="600">
+					<h6>Email Será enviado a todos os members</h6>
+    				<h:form id="formNotify">
+    				<div class="row">
+						<div class="col-md-12">
+							<div class="form-group">
+								<h:outputLabel value="#{msg['label.contact.subject']}:" for="txtSubject" />
+								<p:inputText value="#{memberController.subject}" id="txtSubject" required="true" maxlength="50" styleClass="form-control" />
+								<p:message id="msgSubject" for="txtSubject" />
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="form-group">
+								<h:outputLabel value="#{msg['label.contact.message']}:" for="txtMessage" />
+								<p:inputTextarea value="#{memberController.message}" id="txtMessage" required="true" maxlength="50" styleClass="form-control" />
+								<p:message id="msgMessage" for="txtMessage" />
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="form-group">
+								<p:commandButton action="#{memberController.sendMail}" ajax="false" id="btnSave" value="#{msg['label.sendMail']}" icon="ui-icon-circle-check" />
+							</div>
+						</div>
+					</div>
+    				</h:form>
+				</p:dialog> 
+					
+				<p:button value="#{msg['label.new']}" outcome="form"
+					icon="ui-icon-circle-plus" id="btnAddTopsd" />	
+					
+				<p:commandButton action="#{memberController.saveFromSite}" ajax="false" id="btnSaveFromSite"
+            		value="#{msg['label.registration.saveFromSite']}" icon="ui-icon-circle-check" />
+            		
+				<p:dataTable id="tabeMembers" value="#{memberController.members}"
+					var="member"
+					emptyMessage="#{msg['label.list.nofindrecord']}"
+					paginator="true" rows="10" paginatorPosition="bottom"
+					styleClass="table-listagem" rowIndexVar="var"
+					firstPageLinkLabel="Primeira" previousPageLinkLabel="Anterior"
+					nextPageLinkLabel="Proxima" lastPageLinkLabel="ultima">
+					<p:column sortBy="#{member.id}" style="width:50px;">
+						<f:facet name="header">
+							<h:outputText value="#{msg['label.member.id']}" />
+						</f:facet>
+						<h:outputText value="#{member.id}" />
+					</p:column>
+					<p:column sortBy="#{member.name}" filterBy="#{member.name}"
+filterEvent="enter" style="width:285px;">
+						<f:facet name="header">
+							<h:outputText value="#{msg['label.member.name']}" />
+						</f:facet>
+						<h:outputText value="#{member.name}" />
+					</p:column>
+					<p:column sortBy="#{member.email}" style="width:215px;">
+						<f:facet name="header">
+							<h:outputText value="#{msg['label.member.email']}" />
+						</f:facet>
+						<h:outputText value="#{member.email}" />
+					</p:column>
+					<p:column style="text-align: center;width:50px;">
+						<f:facet name="header">
+							<h:outputText value="#{msg['label.update']}" />
+						</f:facet>
+						<p:button title="#{msg['label.update']}" outcome="form"
+							icon="ui-icon-pencil" id="btnUpdate">
+							<f:param name="id" value="#{member.id}" />
+						</p:button>
+					</p:column>
+					<p:column style="text-align: center;width:50px;">
+						<f:facet name="header">
+							<h:outputText value="#{msg['label.remove']}" />
+						</f:facet>
+						<p:commandButton tile="#{msg['label.remove']}"
+							onclick="confirmation.show();" icon="ui-icon-trash"
+							id="btnRemove">
+							<f:setPropertyActionListener target="#{memberController.member}"
+								value="#{member}" />
+						</p:commandButton>
+					</p:column>
+				</p:dataTable>
+				<p:spacer style="width:100%; height: 10px;" />
+			</p:panel>
+
+			<p:confirmDialog id="deleteDialog"
+				message="#{msg['label.confirme-exclude']}"
+				widgetVar="confirmation">
+				<p:commandButton id="btnConfirm" value="#{msg['label.yes']}"
+					action="#{memberController.remove}" ajax="false" />
+				<p:commandButton id="btnClose" value="#{msg['label.no']}"
+					onclick="confirmation.hide()" />
+			</p:confirmDialog>
+
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>
