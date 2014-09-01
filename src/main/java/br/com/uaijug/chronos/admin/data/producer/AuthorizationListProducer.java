@@ -29,26 +29,48 @@ import javax.inject.Named;
 import br.com.uaijug.chronos.admin.data.repository.AuthorizationRepository;
 import br.com.uaijug.chronos.admin.model.Authorization;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class AuthorizationListProducer.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @RequestScoped
 public class AuthorizationListProducer {
 
+	/** The authorization repository. */
 	@Inject
 	private AuthorizationRepository authorizationRepository;
 
+    /** The authorizations. */
     private List<Authorization> authorizations;
 
     // @Named provides access the return value via the EL variable name "authorizations" in the UI (e.g.
     // Facelets or JSP view)
+    /**
+     * Gets the authorizations.
+     *
+     * @return the authorizations
+     */
     @Produces
     @Named
     public List<Authorization> getAuthorizations() {
         return authorizations;
     }
 
+    /**
+     * On authorization list changed.
+     *
+     * @param authorization the authorization
+     */
     public void onAuthorizationListChanged(@Observes(notifyObserver = Reception.IF_EXISTS) final Authorization authorization) {
         retrieveAllAuthorizationsOrderedByName();
     }
 
+    /**
+     * Retrieve all authorizations ordered by name.
+     */
     @PostConstruct
     public void retrieveAllAuthorizationsOrderedByName() {
         authorizations = authorizationRepository.findAllOrderedByName();

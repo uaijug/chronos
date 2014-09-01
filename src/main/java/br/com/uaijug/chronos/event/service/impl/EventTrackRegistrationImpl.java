@@ -27,16 +27,28 @@ import br.com.uaijug.chronos.event.model.EventTrack;
 import br.com.uaijug.chronos.event.service.EventTrackRegistration;
 import br.com.uaijug.chronos.persistence.base.PersistenceBase;
 
+// TODO: Auto-generated Javadoc
 // The @Stateless annotation eliminates the need for manual transaction demarcation
+/**
+ * The Class EventTrackRegistrationImpl.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogerifontes dot inf dot br
+ * 
+ */
 @Stateless
 public class EventTrackRegistrationImpl extends PersistenceBase<EventTrack, Long> implements EventTrackRegistration {
 
+    /** The log. */
     @Inject
     private Logger log;
     
+    /** The event event track src. */
     @Inject
     private Event<EventTrack> eventEventTrackSrc;
 
+    /* (non-Javadoc)
+     * @see br.com.uaijug.chronos.service.GenericRegistration#register(java.lang.Object)
+     */
     @Override
 	public Boolean register(EventTrack eventTrack) {
 		Boolean saved = false;

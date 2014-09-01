@@ -29,28 +29,50 @@ import javax.inject.Named;
 import br.com.uaijug.chronos.event.data.repository.EventRoomRepository;
 import br.com.uaijug.chronos.event.model.EventRoom;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class EventRoomListProducer.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @RequestScoped
 public class EventRoomListProducer {
 
+	/** The event room repository. */
 	@Inject
 	private EventRoomRepository eventRoomRepository;
 
+	/** The event rooms. */
 	private List<EventRoom> eventRooms;
 
 	// @Named provides access the return value via the EL variable name
 	// "eventRooms" in the UI (e.g.
 	// Facelets or JSP view)
+	/**
+	 * Gets the event rooms.
+	 *
+	 * @return the event rooms
+	 */
 	@Produces
 	@Named
 	public List<EventRoom> getEventRooms() {
 		return eventRooms;
 	}
 
+	/**
+	 * On event room list changed.
+	 *
+	 * @param eventRoom the event room
+	 */
 	public void onEventRoomListChanged(
 			@Observes(notifyObserver = Reception.IF_EXISTS) final EventRoom eventRoom) {
 		retrieveAllEventRoomsOrderedByName();
 	}
 
+	/**
+	 * Retrieve all event rooms ordered by name.
+	 */
 	@PostConstruct
 	public void retrieveAllEventRoomsOrderedByName() {
 		eventRooms = eventRoomRepository.findAllOrderedByName();

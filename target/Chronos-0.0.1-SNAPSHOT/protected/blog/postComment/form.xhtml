@@ -31,6 +31,21 @@
 						</div>
 					</div>
 					<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<h:outputLabel value="#{msg['label.post.post']}:"
+								for="txtPost" /><br />
+								<h:selectOneMenu id="txtPost"
+									value="#{postCommentController.postComment.post}"
+									converter="GenericConverter" styleClass="form-control" >
+									<f:selectItems value="#{postCommentController.posts}" />
+								</h:selectOneMenu>
+								<p:message id="msgPost"
+									for="txtPost" errorClass="errorMessage" />
+						</div>
+					</div>
+				</div>
+					<div class="row">
 						<div class="col-md-12">
 							<div class="form-group">
 								<h:outputLabel value="#{msg['label.postComment.title']}:"

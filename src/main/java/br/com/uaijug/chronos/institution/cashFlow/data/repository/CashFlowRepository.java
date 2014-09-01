@@ -21,6 +21,19 @@ import java.util.List;
 import br.com.uaijug.chronos.institution.cashFlow.model.CashFlow;
 import br.com.uaijug.chronos.persistence.Persistence;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Interface CashFlowRepository.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 public interface CashFlowRepository extends Persistence<CashFlow, Long> {
+	
+	/**
+	 * Find all ordered by name.
+	 *
+	 * @return the list
+	 */
 	List<CashFlow> findAllOrderedByName();
 }

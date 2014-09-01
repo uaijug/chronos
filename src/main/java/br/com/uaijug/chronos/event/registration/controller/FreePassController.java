@@ -31,25 +31,40 @@ import br.com.uaijug.chronos.event.registration.model.FreePass;
 import br.com.uaijug.chronos.event.registration.service.FreePassRegistration;
 import br.com.uaijug.chronos.model.types.PercentageValue;
 
+// TODO: Auto-generated Javadoc
 // The @Model stereotype is a convenience mechanism to make this a request-scoped bean that has an
 // EL name
 // Read more about the @Model stereotype in this FAQ:
 // http://sfwk.org/Documentation/WhatIsThePurposeOfTheModelAnnotation
+/**
+ * The Class FreePassController.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @Model
 public class FreePassController extends AbstractManageBeans {
 
+	/** The free pass registration. */
 	@Inject
 	private FreePassRegistration freePassRegistration;
 
+	/** The free pass repository. */
 	@Inject
 	private FreePassRepository freePassRepository;
 
+	/** The id free pass. */
 	private Long idFreePass;
 
+	/** The free pass. */
 	private FreePass freePass;
 
+	/** The free passs. */
 	List<FreePass> freePasss;
 
+	/**
+	 * Inits the new free pass.
+	 */
 	@PostConstruct
 	public void initNewFreePass() {
 		freePass = new FreePass();
@@ -60,6 +75,11 @@ public class FreePassController extends AbstractManageBeans {
 		idFreePass = null;
 	}
 
+	/**
+	 * Gets the free passs.
+	 *
+	 * @return the free passs
+	 */
 	public List<FreePass> getFreePasss() {
 		return freePassRepository.findAll();
 	}
@@ -80,6 +100,12 @@ public class FreePassController extends AbstractManageBeans {
 		}
 	}
 
+	/**
+	 * Register.
+	 *
+	 * @return the string
+	 * @throws Exception the exception
+	 */
 	public String register() throws Exception {
 		try {
 
@@ -94,16 +120,29 @@ public class FreePassController extends AbstractManageBeans {
 		return null;
 	}
 
+	/**
+	 * Cancelar.
+	 *
+	 * @return the string
+	 */
 	public String cancelar() {
 		limpar();
 		return "list?faces-redirect=true";
 	}
 
+	/**
+	 * Limpar.
+	 */
 	private void limpar() {
 		idFreePass = null;
 		freePass = new FreePass();
 	}
 
+	/**
+	 * Gets the percentage values.
+	 *
+	 * @return the percentage values
+	 */
 	public List<SelectItem> getPercentageValues() {
 		List<SelectItem> items = new ArrayList<SelectItem>();
 		for (PercentageValue type : PercentageValue.values()) {
@@ -112,18 +151,38 @@ public class FreePassController extends AbstractManageBeans {
 		return items;
 	}
 	
+	/**
+	 * Gets the id free pass.
+	 *
+	 * @return the id free pass
+	 */
 	public Long getIdFreePass() {
 		return idFreePass;
 	}
 
+	/**
+	 * Sets the id free pass.
+	 *
+	 * @param idFreePass the new id free pass
+	 */
 	public void setIdFreePass(Long idFreePass) {
 		this.idFreePass = idFreePass;
 	}
 
+	/**
+	 * Gets the free pass.
+	 *
+	 * @return the free pass
+	 */
 	public FreePass getFreePass() {
 		return freePass;
 	}
 
+	/**
+	 * Sets the free pass.
+	 *
+	 * @param freePass the new free pass
+	 */
 	public void setFreePass(FreePass freePass) {
 		this.freePass = freePass;
 	}

@@ -43,34 +43,53 @@ import br.com.uaijug.chronos.admin.data.repository.CountryRepository;
 import br.com.uaijug.chronos.admin.model.Country;
 import br.com.uaijug.chronos.admin.service.CountryRegistration;
 
+// TODO: Auto-generated Javadoc
 /**
  * JAX-RS Example
  * <p/>
  * This class produces a RESTful service to read/write the contents of the
  * countrys table.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
  */
 @Path("/countrys")
 @RequestScoped
 public class CountryResource {
 
+	/** The log. */
 	@Inject
 	private Logger log;
 
+	/** The validator. */
 	@Inject
 	private Validator validator;
 
+	/** The repository. */
 	@Inject
 	private CountryRepository repository;
 
+	/** The registration. */
 	@Inject
 	CountryRegistration registration;
 
+	/**
+	 * List all countrys.
+	 *
+	 * @return the list
+	 */
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Country> listAllCountrys() {
 		return repository.findAllOrderedByName();
 	}
 
+	/**
+	 * Lookup country by id.
+	 *
+	 * @param id the id
+	 * @return the country
+	 */
 	@GET
 	@Path("/{id:[0-9][0-9]*}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -86,6 +105,9 @@ public class CountryResource {
 	 * Creates a new country from the values provided. Performs validation, and
 	 * will return a JAX-RS response with either 200 ok, or with a map of
 	 * fields, and related errors.
+	 *
+	 * @param country the country
+	 * @return the response
 	 */
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)

@@ -29,26 +29,48 @@ import javax.inject.Named;
 import br.com.uaijug.chronos.schedule.data.repository.ActivityCategoryRepository;
 import br.com.uaijug.chronos.schedule.model.ActivityCategory;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ActivityCategoryListProducer.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogerifontes dot inf dot br
+ * 
+ */
 @RequestScoped
 public class ActivityCategoryListProducer {
 
+	/** The activity category repository. */
 	@Inject
 	private ActivityCategoryRepository activityCategoryRepository;
 
+    /** The activity categorys. */
     private List<ActivityCategory> activityCategorys;
 
     // @Named provides access the return value via the EL variable name "activityCategorys" in the UI (e.g.
     // Facelets or JSP view)
+    /**
+     * Gets the activity categorys.
+     *
+     * @return the activity categorys
+     */
     @Produces
     @Named
     public List<ActivityCategory> getActivityCategorys() {
         return activityCategorys;
     }
 
+    /**
+     * On activity category list changed.
+     *
+     * @param activityCategory the activity category
+     */
     public void onActivityCategoryListChanged(@Observes(notifyObserver = Reception.IF_EXISTS) final ActivityCategory activityCategory) {
         retrieveAllActivityCategorysOrderedByName();
     }
 
+    /**
+     * Retrieve all activity categorys ordered by name.
+     */
     @PostConstruct
     public void retrieveAllActivityCategorysOrderedByName() {
         activityCategorys = activityCategoryRepository.findAllOrderedByName();

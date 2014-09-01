@@ -43,34 +43,53 @@ import br.com.uaijug.chronos.event.data.repository.EventScheduleRepository;
 import br.com.uaijug.chronos.event.model.EventSchedule;
 import br.com.uaijug.chronos.event.service.EventScheduleRegistration;
 
+// TODO: Auto-generated Javadoc
 /**
  * JAX-RS Example
  * <p/>
  * This class produces a RESTful service to read/write the contents of the
  * eventSchedules table.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogerifontes dot inf dot br
+ * 
  */
 @Path("/eventSchedules")
 @RequestScoped
 public class EventScheduleResource {
 
+	/** The log. */
 	@Inject
 	private Logger log;
 
+	/** The validator. */
 	@Inject
 	private Validator validator;
 
+	/** The repository. */
 	@Inject
 	private EventScheduleRepository repository;
 
+	/** The registration. */
 	@Inject
 	EventScheduleRegistration registration;
 
+	/**
+	 * List all event schedules.
+	 *
+	 * @return the list
+	 */
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<EventSchedule> listAllEventSchedules() {
 		return repository.findAllOrderedByName();
 	}
 
+	/**
+	 * Lookup event schedule by id.
+	 *
+	 * @param id the id
+	 * @return the event schedule
+	 */
 	@GET
 	@Path("/{id:[0-9][0-9]*}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -94,10 +113,13 @@ public class EventScheduleResource {
 	}*/
 	
 	/**
-	 * Creates a new eventSchedule from the values provided. Performs validation, and
-	 * will return a JAX-RS response with either 200 ok, or with a map of
-	 * fields, and related errors.
-	 */
+ * Creates a new eventSchedule from the values provided. Performs validation, and
+ * will return a JAX-RS response with either 200 ok, or with a map of
+ * fields, and related errors.
+ *
+ * @param eventSchedule the event schedule
+ * @return the response
+ */
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)

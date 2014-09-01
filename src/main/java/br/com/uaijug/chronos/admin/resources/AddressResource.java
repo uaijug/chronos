@@ -43,34 +43,53 @@ import br.com.uaijug.chronos.admin.data.repository.AddressRepository;
 import br.com.uaijug.chronos.admin.model.Address;
 import br.com.uaijug.chronos.admin.service.AddressRegistration;
 
+// TODO: Auto-generated Javadoc
 /**
  * JAX-RS Example
  * <p/>
  * This class produces a RESTful service to read/write the contents of the
  * addresss table.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
  */
 @Path("/addresss")
 @RequestScoped
 public class AddressResource {
 
+	/** The log. */
 	@Inject
 	private Logger log;
 
+	/** The validator. */
 	@Inject
 	private Validator validator;
 
+	/** The repository. */
 	@Inject
 	private AddressRepository repository;
 
+	/** The registration. */
 	@Inject
 	AddressRegistration registration;
 
+	/**
+	 * List all addresss.
+	 *
+	 * @return the list
+	 */
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Address> listAllAddresss() {
 		return repository.findAllOrderedByName();
 	}
 
+	/**
+	 * Lookup address by id.
+	 *
+	 * @param id the id
+	 * @return the address
+	 */
 	@GET
 	@Path("/{id:[0-9][0-9]*}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -86,6 +105,9 @@ public class AddressResource {
 	 * Creates a new address from the values provided. Performs validation, and
 	 * will return a JAX-RS response with either 200 ok, or with a map of
 	 * fields, and related errors.
+	 *
+	 * @param address the address
+	 * @return the response
 	 */
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)

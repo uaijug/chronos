@@ -29,26 +29,48 @@ import javax.inject.Named;
 import br.com.uaijug.chronos.event.sponsor.data.repository.SponsorFollowupRepository;
 import br.com.uaijug.chronos.event.sponsor.model.SponsorFollowup;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class SponsorFollowupListProducer.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogerifontes dot inf dot br
+ * 
+ */
 @RequestScoped
 public class SponsorFollowupListProducer {
 
+	/** The sponsor followup repository. */
 	@Inject
 	private SponsorFollowupRepository sponsorFollowupRepository;
 
+    /** The sponsor followups. */
     private List<SponsorFollowup> sponsorFollowups;
 
     // @Named provides access the return value via the EL variable name "sponsorFollowups" in the UI (e.g.
     // Facelets or JSP view)
+    /**
+     * Gets the sponsor followups.
+     *
+     * @return the sponsor followups
+     */
     @Produces
     @Named
     public List<SponsorFollowup> getSponsorFollowups() {
         return sponsorFollowups;
     }
 
+    /**
+     * On sponsor followup list changed.
+     *
+     * @param sponsorFollowup the sponsor followup
+     */
     public void onSponsorFollowupListChanged(@Observes(notifyObserver = Reception.IF_EXISTS) final SponsorFollowup sponsorFollowup) {
         retrieveAllSponsorFollowupsOrderedByName();
     }
 
+    /**
+     * Retrieve all sponsor followups ordered by name.
+     */
     @PostConstruct
     public void retrieveAllSponsorFollowupsOrderedByName() {
         sponsorFollowups = sponsorFollowupRepository.findAllOrderedByName();

@@ -29,26 +29,48 @@ import javax.inject.Named;
 import br.com.uaijug.chronos.project.task.data.repository.TaskCategoryRepository;
 import br.com.uaijug.chronos.project.task.model.TaskCategory;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class TaskCategoryListProducer.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @RequestScoped
 public class TaskCategoryListProducer {
 
+	/** The task category repository. */
 	@Inject
 	private TaskCategoryRepository taskCategoryRepository;
 
+    /** The task categorys. */
     private List<TaskCategory> taskCategorys;
 
     // @Named provides access the return value via the EL variable name "taskCategorys" in the UI (e.g.
     // Facelets or JSP view)
+    /**
+     * Gets the task categorys.
+     *
+     * @return the task categorys
+     */
     @Produces
     @Named
     public List<TaskCategory> getTaskCategorys() {
         return taskCategorys;
     }
 
+    /**
+     * On task category list changed.
+     *
+     * @param taskCategory the task category
+     */
     public void onTaskCategoryListChanged(@Observes(notifyObserver = Reception.IF_EXISTS) final TaskCategory taskCategory) {
         retrieveAllTaskCategorysOrderedByName();
     }
 
+    /**
+     * Retrieve all task categorys ordered by name.
+     */
     @PostConstruct
     public void retrieveAllTaskCategorysOrderedByName() {
         taskCategorys = taskCategoryRepository.findAllOrderedByName();

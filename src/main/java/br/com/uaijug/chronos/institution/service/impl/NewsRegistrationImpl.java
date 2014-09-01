@@ -27,16 +27,28 @@ import br.com.uaijug.chronos.institution.model.News;
 import br.com.uaijug.chronos.institution.service.NewsRegistration;
 import br.com.uaijug.chronos.persistence.base.PersistenceBase;
 
+// TODO: Auto-generated Javadoc
 // The @Stateless annotation eliminates the need for manual transaction demarcation
+/**
+ * The Class NewsRegistrationImpl.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @Stateless
 public class NewsRegistrationImpl extends PersistenceBase<News, Long> implements NewsRegistration {
 
+    /** The log. */
     @Inject
     private Logger log;
     
+    /** The news event src. */
     @Inject
     private Event<News> newsEventSrc;
 
+    /* (non-Javadoc)
+     * @see br.com.uaijug.chronos.service.GenericRegistration#register(java.lang.Object)
+     */
     @Override
    	public Boolean register(News news) {
    		Boolean saved = false;

@@ -27,9 +27,19 @@ import br.com.uaijug.chronos.event.data.repository.EventProposalRepository;
 import br.com.uaijug.chronos.event.model.EventProposal;
 import br.com.uaijug.chronos.persistence.base.PersistenceBase;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class EventProposalDefaultRepository.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @ApplicationScoped
 public class EventProposalDefaultRepository extends PersistenceBase<EventProposal, Long> implements EventProposalRepository {
 
+    /* (non-Javadoc)
+     * @see br.com.uaijug.chronos.event.data.repository.EventProposalRepository#findAllOrderedByName()
+     */
     public List<EventProposal> findAllOrderedByName() {
         CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
         CriteriaQuery<EventProposal> criteria = cb.createQuery(EventProposal.class);

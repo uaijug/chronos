@@ -29,26 +29,48 @@ import javax.inject.Named;
 import br.com.uaijug.chronos.institution.cashFlow.data.repository.CashFlowCategoryRepository;
 import br.com.uaijug.chronos.institution.cashFlow.model.CashFlowCategory;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class CashFlowCategoryListProducer.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @RequestScoped
 public class CashFlowCategoryListProducer {
 
+	/** The cash flow category repository. */
 	@Inject
 	private CashFlowCategoryRepository cashFlowCategoryRepository;
 
+    /** The cash flow categorys. */
     private List<CashFlowCategory> cashFlowCategorys;
 
     // @Named provides access the return value via the EL variable name "cashFlowCategorys" in the UI (e.g.
     // Facelets or JSP view)
+    /**
+     * Gets the cash flow categorys.
+     *
+     * @return the cash flow categorys
+     */
     @Produces
     @Named
     public List<CashFlowCategory> getCashFlowCategorys() {
         return cashFlowCategorys;
     }
 
+    /**
+     * On cash flow category list changed.
+     *
+     * @param cashFlowCategory the cash flow category
+     */
     public void onCashFlowCategoryListChanged(@Observes(notifyObserver = Reception.IF_EXISTS) final CashFlowCategory cashFlowCategory) {
         retrieveAllCashFlowCategorysOrderedByName();
     }
 
+    /**
+     * Retrieve all cash flow categorys ordered by name.
+     */
     @PostConstruct
     public void retrieveAllCashFlowCategorysOrderedByName() {
         cashFlowCategorys = cashFlowCategoryRepository.findAllOrderedByName();

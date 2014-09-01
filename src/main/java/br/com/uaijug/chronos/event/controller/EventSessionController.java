@@ -32,33 +32,50 @@ import br.com.uaijug.chronos.event.model.EventMain;
 import br.com.uaijug.chronos.event.model.EventSession;
 import br.com.uaijug.chronos.event.service.EventSessionRegistration;
 
+// TODO: Auto-generated Javadoc
 // The @Model stereotype is a convenience mechanism to make this a request-scoped bean that has an
 // EL name
 // Read more about the @Model stereotype in this FAQ:
 // http://sfwk.org/Documentation/WhatIsThePurposeOfTheModelAnnotation
+/**
+ * The Class EventSessionController.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @Model
 public class EventSessionController extends AbstractManageBeans {
 
+	/** The event session registration. */
 	@Inject
 	private EventSessionRegistration eventSessionRegistration;
 
+	/** The event session repository. */
 	@Inject
 	private EventSessionRepository eventSessionRepository;
 
+	/** The event main repository. */
 	@Inject
 	private EventMainRepository eventMainRepository;
 
+	/** The id event session. */
 	private Long idEventSession;
 
+	/** The event session. */
 	private EventSession eventSession;
 
+	/** The event sessions. */
 	List<EventSession> eventSessions;
 
+	/** The list event main. */
 	private List<EventMain> listEventMain = null;
 
 	/** The itens state. */
 	List<SelectItem> itensEventMain = null;
 
+	/**
+	 * Inits the new event session.
+	 */
 	@PostConstruct
 	public void initNewEventSession() {
 		eventSession = new EventSession();
@@ -72,6 +89,11 @@ public class EventSessionController extends AbstractManageBeans {
 		listEventMain = new ArrayList<EventMain>();
 	}
 
+	/**
+	 * Gets the event sessions.
+	 *
+	 * @return the event sessions
+	 */
 	public List<EventSession> getEventSessions() {
 		return eventSessionRepository.findAll();
 	}
@@ -92,6 +114,12 @@ public class EventSessionController extends AbstractManageBeans {
 		}
 	}
 
+	/**
+	 * Register.
+	 *
+	 * @return the string
+	 * @throws Exception the exception
+	 */
 	public String register() throws Exception {
 		try {
 
@@ -106,16 +134,29 @@ public class EventSessionController extends AbstractManageBeans {
 		return null;
 	}
 
+	/**
+	 * Cancelar.
+	 *
+	 * @return the string
+	 */
 	public String cancelar() {
 		limpar();
 		return "list?faces-redirect=true";
 	}
 
+	/**
+	 * Limpar.
+	 */
 	private void limpar() {
 		idEventSession = null;
 		eventSession = new EventSession();
 	}
 
+	/**
+	 * Gets the events.
+	 *
+	 * @return the events
+	 */
 	public List<SelectItem> getEvents() {
 
 		setListEventMain(eventMainRepository.findAll());
@@ -125,34 +166,74 @@ public class EventSessionController extends AbstractManageBeans {
 		return itensEventMain;
 	}
 
+	/**
+	 * Gets the id event session.
+	 *
+	 * @return the id event session
+	 */
 	public Long getIdEventSession() {
 		return idEventSession;
 	}
 
+	/**
+	 * Sets the id event session.
+	 *
+	 * @param idEventSession the new id event session
+	 */
 	public void setIdEventSession(Long idEventSession) {
 		this.idEventSession = idEventSession;
 	}
 
+	/**
+	 * Gets the event session.
+	 *
+	 * @return the event session
+	 */
 	public EventSession getEventSession() {
 		return eventSession;
 	}
 
+	/**
+	 * Sets the event session.
+	 *
+	 * @param eventSession the new event session
+	 */
 	public void setEventSession(EventSession eventSession) {
 		this.eventSession = eventSession;
 	}
 
+	/**
+	 * Gets the list event main.
+	 *
+	 * @return the list event main
+	 */
 	public List<EventMain> getListEventMain() {
 		return listEventMain;
 	}
 
+	/**
+	 * Sets the list event main.
+	 *
+	 * @param listEventMain the new list event main
+	 */
 	public void setListEventMain(List<EventMain> listEventMain) {
 		this.listEventMain = listEventMain;
 	}
 
+	/**
+	 * Gets the itens event main.
+	 *
+	 * @return the itens event main
+	 */
 	public List<SelectItem> getItensEventMain() {
 		return itensEventMain;
 	}
 
+	/**
+	 * Sets the itens event main.
+	 *
+	 * @param itensEventMain the new itens event main
+	 */
 	public void setItensEventMain(List<SelectItem> itensEventMain) {
 		this.itensEventMain = itensEventMain;
 	}

@@ -32,33 +32,50 @@ import br.com.uaijug.chronos.admin.model.City;
 import br.com.uaijug.chronos.admin.service.AddressRegistration;
 import br.com.uaijug.chronos.controller.AbstractManageBeans;
 
+// TODO: Auto-generated Javadoc
 // The @Model stereotype is a convenience mechanism to make this a request-scoped bean that has an
 // EL name
 // Read more about the @Model stereotype in this FAQ:
 // http://sfwk.org/Documentation/WhatIsThePurposeOfTheModelAnnotation
+/**
+ * The Class AddressController.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @Model
 public class AddressController extends AbstractManageBeans {
 
+	/** The address registration. */
 	@Inject
 	private AddressRegistration addressRegistration;
 
+	/** The address repository. */
 	@Inject
 	private AddressRepository addressRepository;
 
+	/** The city repository. */
 	@Inject
 	private CityRepository cityRepository;
 
+	/** The id address. */
 	private Long idAddress;
 
+	/** The address. */
 	private Address address;
 
+	/** The addresss. */
 	List<Address> addresss;
 
+	/** The list city. */
 	private List<City> listCity = null;
 
 	/** The itens city. */
 	List<SelectItem> itensCity = null;
 
+	/**
+	 * Inits the new address.
+	 */
 	@PostConstruct
 	public void initNewAddress() {
 		address = new Address();
@@ -72,6 +89,11 @@ public class AddressController extends AbstractManageBeans {
 		listCity = new ArrayList<City>();
 	}
 
+	/**
+	 * Gets the addresss.
+	 *
+	 * @return the addresss
+	 */
 	public List<Address> getAddresss() {
 		return addressRepository.findAll();
 	}
@@ -92,6 +114,12 @@ public class AddressController extends AbstractManageBeans {
 		}
 	}
 
+	/**
+	 * Register.
+	 *
+	 * @return the string
+	 * @throws Exception the exception
+	 */
 	public String register() throws Exception {
 		try {
 
@@ -106,16 +134,29 @@ public class AddressController extends AbstractManageBeans {
 		return null;
 	}
 
+	/**
+	 * Cancelar.
+	 *
+	 * @return the string
+	 */
 	public String cancelar() {
 		limpar();
 		return "list?faces-redirect=true";
 	}
 
+	/**
+	 * Limpar.
+	 */
 	private void limpar() {
 		idAddress = null;
 		address = new Address();
 	}
 
+	/**
+	 * Gets the citys.
+	 *
+	 * @return the citys
+	 */
 	public List<SelectItem> getCitys() {
 
 		setListCity(cityRepository.findAll());
@@ -125,34 +166,74 @@ public class AddressController extends AbstractManageBeans {
 		return itensCity;
 	}
 
+	/**
+	 * Gets the id address.
+	 *
+	 * @return the id address
+	 */
 	public Long getIdAddress() {
 		return idAddress;
 	}
 
+	/**
+	 * Sets the id address.
+	 *
+	 * @param idAddress the new id address
+	 */
 	public void setIdAddress(Long idAddress) {
 		this.idAddress = idAddress;
 	}
 
+	/**
+	 * Gets the address.
+	 *
+	 * @return the address
+	 */
 	public Address getAddress() {
 		return address;
 	}
 
+	/**
+	 * Sets the address.
+	 *
+	 * @param address the new address
+	 */
 	public void setAddress(Address address) {
 		this.address = address;
 	}
 
+	/**
+	 * Gets the list city.
+	 *
+	 * @return the list city
+	 */
 	public List<City> getListCity() {
 		return listCity;
 	}
 
+	/**
+	 * Sets the list city.
+	 *
+	 * @param listCity the new list city
+	 */
 	public void setListCity(List<City> listCity) {
 		this.listCity = listCity;
 	}
 
+	/**
+	 * Gets the itens city.
+	 *
+	 * @return the itens city
+	 */
 	public List<SelectItem> getItensCity() {
 		return itensCity;
 	}
 
+	/**
+	 * Sets the itens city.
+	 *
+	 * @param itensCity the new itens city
+	 */
 	public void setItensCity(List<SelectItem> itensCity) {
 		this.itensCity = itensCity;
 	}

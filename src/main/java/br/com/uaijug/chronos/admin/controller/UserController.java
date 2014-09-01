@@ -34,33 +34,50 @@ import br.com.uaijug.chronos.admin.model.User;
 import br.com.uaijug.chronos.admin.service.UserRegistration;
 import br.com.uaijug.chronos.controller.AbstractManageBeans;
 
+// TODO: Auto-generated Javadoc
 // The @Model stereotype is a convenience mechanism to make this a request-scoped bean that has an
 // EL name
 // Read more about the @Model stereotype in this FAQ:
 // http://sfwk.org/Documentation/WhatIsThePurposeOfTheModelAnnotation
+/**
+ * The Class UserController.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @Model
 public class UserController extends AbstractManageBeans {
 
+	/** The user registration. */
 	@Inject
 	private UserRegistration userRegistration;
 
+	/** The user repository. */
 	@Inject
 	private UserRepository userRepository;
 
+	/** The profile repository. */
 	@Inject
 	private ProfileRepository profileRepository;
 
+	/** The id user. */
 	private Long idUser;
 
+	/** The user. */
 	private User user;
 
+	/** The users. */
 	List<User> users;
 
 	/** The itens state. */
 	List<SelectItem> itensProfile = null;
 
+	/** The list profile. */
 	private List<Profile> listProfile = null;
 
+	/**
+	 * Inits the new user.
+	 */
 	@PostConstruct
 	public void initNewUser() {
 		user = new User();
@@ -71,6 +88,11 @@ public class UserController extends AbstractManageBeans {
 		idUser = null;
 	}
 
+	/**
+	 * Gets the users.
+	 *
+	 * @return the users
+	 */
 	public List<User> getUsers() {
 		return userRepository.findAll();
 	}
@@ -91,6 +113,12 @@ public class UserController extends AbstractManageBeans {
 		}
 	}
 
+	/**
+	 * Register.
+	 *
+	 * @return the string
+	 * @throws Exception the exception
+	 */
 	public String register() throws Exception {
 		try {
 
@@ -105,6 +133,11 @@ public class UserController extends AbstractManageBeans {
 		return null;
 	}
 
+	/**
+	 * Gets the profiles.
+	 *
+	 * @return the profiles
+	 */
 	public List<SelectItem> getProfiles() {
 
 		setListProfile(profileRepository.findAll());
@@ -114,32 +147,65 @@ public class UserController extends AbstractManageBeans {
 		return itensProfile;
 	}
 
+	/**
+	 * Cancelar.
+	 *
+	 * @return the string
+	 */
 	public String cancelar() {
 		limpar();
 		return "list?faces-redirect=true";
 	}
 
+	/**
+	 * Limpar.
+	 */
 	private void limpar() {
 		idUser = null;
 		user = new User();
 	}
 
+	/**
+	 * Gets the id user.
+	 *
+	 * @return the id user
+	 */
 	public Long getIdUser() {
 		return idUser;
 	}
 
+	/**
+	 * Sets the id user.
+	 *
+	 * @param idUser the new id user
+	 */
 	public void setIdUser(Long idUser) {
 		this.idUser = idUser;
 	}
 
+	/**
+	 * Gets the user.
+	 *
+	 * @return the user
+	 */
 	public User getUser() {
 		return user;
 	}
 
+	/**
+	 * Sets the user.
+	 *
+	 * @param user the new user
+	 */
 	public void setUser(User user) {
 		this.user = user;
 	}
 
+	/**
+	 * Gets the logged users.
+	 *
+	 * @return the logged users
+	 */
 	public User getLoggedUsers() {
 		if (user == null) {
 			ExternalContext context = FacesContext.getCurrentInstance()
@@ -152,6 +218,11 @@ public class UserController extends AbstractManageBeans {
 		return user;
 	}
 
+	/**
+	 * Gets the logged user.
+	 *
+	 * @return the logged user
+	 */
 	public User getLoggedUser() {
 		ExternalContext context = FacesContext.getCurrentInstance()
 				.getExternalContext();
@@ -162,32 +233,67 @@ public class UserController extends AbstractManageBeans {
 		return null;
 	}
 
+	/**
+	 * Checks if is user admin.
+	 *
+	 * @return true, if is user admin
+	 */
 	public boolean isUserAdmin() {
 		return getRequest().isUserInRole("ADMIN");
 	}
 
+	/**
+	 * Checks if is user root.
+	 *
+	 * @return true, if is user root
+	 */
 	public boolean isUserRoot() {
 		return getRequest().isUserInRole("ROOT");
 	}
 
+	/**
+	 * Gets the request.
+	 *
+	 * @return the request
+	 */
 	private HttpServletRequest getRequest() {
 		return (HttpServletRequest) FacesContext.getCurrentInstance()
 				.getExternalContext().getRequest();
 
 	}
 
+	/**
+	 * Gets the itens profile.
+	 *
+	 * @return the itens profile
+	 */
 	public List<SelectItem> getItensProfile() {
 		return itensProfile;
 	}
 
+	/**
+	 * Sets the itens profile.
+	 *
+	 * @param itensProfile the new itens profile
+	 */
 	public void setItensProfile(List<SelectItem> itensProfile) {
 		this.itensProfile = itensProfile;
 	}
 
+	/**
+	 * Gets the list profile.
+	 *
+	 * @return the list profile
+	 */
 	public List<Profile> getListProfile() {
 		return listProfile;
 	}
 
+	/**
+	 * Sets the list profile.
+	 *
+	 * @param listProfile the new list profile
+	 */
 	public void setListProfile(List<Profile> listProfile) {
 		this.listProfile = listProfile;
 	}

@@ -32,33 +32,50 @@ import br.com.uaijug.chronos.admin.model.State;
 import br.com.uaijug.chronos.admin.service.StateRegistration;
 import br.com.uaijug.chronos.controller.AbstractManageBeans;
 
+// TODO: Auto-generated Javadoc
 // The @Model stereotype is a convenience mechanism to make this a request-scoped bean that has an
 // EL name
 // Read more about the @Model stereotype in this FAQ:
 // http://sfwk.org/Documentation/WhatIsThePurposeOfTheModelAnnotation
+/**
+ * The Class StateController.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @Model
 public class StateController extends AbstractManageBeans {
 
+	/** The state registration. */
 	@Inject
 	private StateRegistration stateRegistration;
 
+	/** The state repository. */
 	@Inject
 	private StateRepository stateRepository;
 
+	/** The country repository. */
 	@Inject
 	private CountryRepository countryRepository;
 
+	/** The id state. */
 	private Long idState;
 
+	/** The state. */
 	private State state;
 
+	/** The states. */
 	List<State> states;
 
+	/** The list country. */
 	private List<Country> listCountry = null;
 
 	/** The itens state. */
 	List<SelectItem> itensCountry = null;
 
+	/**
+	 * Inits the new state.
+	 */
 	@PostConstruct
 	public void initNewState() {
 		state = new State();
@@ -72,6 +89,11 @@ public class StateController extends AbstractManageBeans {
 		listCountry = new ArrayList<Country>();
 	}
 
+	/**
+	 * Gets the states.
+	 *
+	 * @return the states
+	 */
 	public List<State> getStates() {
 		return stateRepository.findAll();
 	}
@@ -92,6 +114,12 @@ public class StateController extends AbstractManageBeans {
 		}
 	}
 
+	/**
+	 * Register.
+	 *
+	 * @return the string
+	 * @throws Exception the exception
+	 */
 	public String register() throws Exception {
 		try {
 
@@ -106,11 +134,21 @@ public class StateController extends AbstractManageBeans {
 		return null;
 	}
 
+	/**
+	 * Cancelar.
+	 *
+	 * @return the string
+	 */
 	public String cancelar() {
 		limpar();
 		return "list?faces-redirect=true";
 	}
 
+	/**
+	 * Gets the countrys.
+	 *
+	 * @return the countrys
+	 */
 	public List<SelectItem> getCountrys() {
 
 		setListCountry(countryRepository.findAll());
@@ -120,39 +158,82 @@ public class StateController extends AbstractManageBeans {
 		return itensCountry;
 	}
 
+	/**
+	 * Limpar.
+	 */
 	private void limpar() {
 		idState = null;
 		state = new State();
 	}
 
+	/**
+	 * Gets the id state.
+	 *
+	 * @return the id state
+	 */
 	public Long getIdState() {
 		return idState;
 	}
 
+	/**
+	 * Sets the id state.
+	 *
+	 * @param idState the new id state
+	 */
 	public void setIdState(Long idState) {
 		this.idState = idState;
 	}
 
+	/**
+	 * Gets the state.
+	 *
+	 * @return the state
+	 */
 	public State getState() {
 		return state;
 	}
 
+	/**
+	 * Sets the state.
+	 *
+	 * @param state the new state
+	 */
 	public void setState(State state) {
 		this.state = state;
 	}
 
+	/**
+	 * Gets the list country.
+	 *
+	 * @return the list country
+	 */
 	public List<Country> getListCountry() {
 		return listCountry;
 	}
 
+	/**
+	 * Sets the list country.
+	 *
+	 * @param listCountry the new list country
+	 */
 	public void setListCountry(List<Country> listCountry) {
 		this.listCountry = listCountry;
 	}
 
+	/**
+	 * Gets the itens country.
+	 *
+	 * @return the itens country
+	 */
 	public List<SelectItem> getItensCountry() {
 		return itensCountry;
 	}
 
+	/**
+	 * Sets the itens country.
+	 *
+	 * @param itensCountry the new itens country
+	 */
 	public void setItensCountry(List<SelectItem> itensCountry) {
 		this.itensCountry = itensCountry;
 	}

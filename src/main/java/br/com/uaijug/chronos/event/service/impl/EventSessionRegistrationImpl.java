@@ -27,16 +27,28 @@ import br.com.uaijug.chronos.event.model.EventSession;
 import br.com.uaijug.chronos.event.service.EventSessionRegistration;
 import br.com.uaijug.chronos.persistence.base.PersistenceBase;
 
+// TODO: Auto-generated Javadoc
 // The @Stateless annotation eliminates the need for manual transaction demarcation
+/**
+ * The Class EventSessionRegistrationImpl.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogerifontes dot inf dot br
+ * 
+ */
 @Stateless
 public class EventSessionRegistrationImpl extends PersistenceBase<EventSession, Long> implements EventSessionRegistration {
 
+    /** The log. */
     @Inject
     private Logger log;
     
+    /** The event event session src. */
     @Inject
     private Event<EventSession> eventEventSessionSrc;
 
+    /* (non-Javadoc)
+     * @see br.com.uaijug.chronos.service.GenericRegistration#register(java.lang.Object)
+     */
     @Override
 	public Boolean register(EventSession eventSession) {
 		Boolean saved = false;

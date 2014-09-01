@@ -43,34 +43,53 @@ import br.com.uaijug.chronos.project.data.repository.DailyActivityRepository;
 import br.com.uaijug.chronos.project.model.DailyActivity;
 import br.com.uaijug.chronos.project.service.DailyActivityRegistration;
 
+// TODO: Auto-generated Javadoc
 /**
  * JAX-RS Example
  * <p/>
  * This class produces a RESTful service to read/write the contents of the
  * dailyActivitys table.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
  */
 @Path("/dailyActivitys")
 @RequestScoped
 public class DailyActivityResource {
 
+	/** The log. */
 	@Inject
 	private Logger log;
 
+	/** The validator. */
 	@Inject
 	private Validator validator;
 
+	/** The repository. */
 	@Inject
 	private DailyActivityRepository repository;
 
+	/** The registration. */
 	@Inject
 	DailyActivityRegistration registration;
 
+	/**
+	 * List all daily activitys.
+	 *
+	 * @return the list
+	 */
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<DailyActivity> listAllDailyActivitys() {
 		return repository.findAllOrderedByName();
 	}
 
+	/**
+	 * Lookup daily activity by id.
+	 *
+	 * @param id the id
+	 * @return the daily activity
+	 */
 	@GET
 	@Path("/{id:[0-9][0-9]*}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -86,6 +105,9 @@ public class DailyActivityResource {
 	 * Creates a new dailyActivity from the values provided. Performs validation, and
 	 * will return a JAX-RS response with either 200 ok, or with a map of
 	 * fields, and related errors.
+	 *
+	 * @param dailyActivity the daily activity
+	 * @return the response
 	 */
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)

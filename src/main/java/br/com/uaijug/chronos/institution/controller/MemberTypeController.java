@@ -28,25 +28,40 @@ import br.com.uaijug.chronos.institution.data.repository.MemberTypeRepository;
 import br.com.uaijug.chronos.institution.model.MemberType;
 import br.com.uaijug.chronos.institution.service.MemberTypeRegistration;
 
+// TODO: Auto-generated Javadoc
 // The @Model stereotype is a convenience mechanism to make this a request-scoped bean that has an
 // EL name
 // Read more memberType the @Model stereotype in this FAQ:
 // http://sfwk.org/Documentation/WhatIsThePurposeOfTheModelAnnotation
+/**
+ * The Class MemberTypeController.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @Model
 public class MemberTypeController extends AbstractManageBeans {
 
+	/** The member type registration. */
 	@Inject
 	private MemberTypeRegistration memberTypeRegistration;
 
+	/** The member type repository. */
 	@Inject
 	private MemberTypeRepository memberTypeRepository;
 
+	/** The id member type. */
 	private Long idMemberType;
 
+	/** The member type. */
 	private MemberType memberType;
 
+	/** The member types. */
 	List<MemberType> memberTypes;
 
+	/**
+	 * Inits the new member type.
+	 */
 	@PostConstruct
 	public void initNewMemberType() {
 		memberType = new MemberType();
@@ -57,6 +72,11 @@ public class MemberTypeController extends AbstractManageBeans {
 		idMemberType = null;
 	}
 
+	/**
+	 * Gets the member types.
+	 *
+	 * @return the member types
+	 */
 	public List<MemberType> getMemberTypes() {
 		return memberTypeRepository.findAllOrderedByName();
 	}
@@ -77,6 +97,12 @@ public class MemberTypeController extends AbstractManageBeans {
 		}
 	}
 
+	/**
+	 * Register.
+	 *
+	 * @return the string
+	 * @throws Exception the exception
+	 */
 	public String register() throws Exception {
 		try {
 
@@ -91,28 +117,56 @@ public class MemberTypeController extends AbstractManageBeans {
 		return null;
 	}
 
+	/**
+	 * Cancelar.
+	 *
+	 * @return the string
+	 */
 	public String cancelar() {
 		limpar();
 		return "list?faces-redirect=true";
 	}
 
+	/**
+	 * Limpar.
+	 */
 	private void limpar() {
 		idMemberType = null;
 		memberType = new MemberType();
 	}
 
+	/**
+	 * Gets the id member type.
+	 *
+	 * @return the id member type
+	 */
 	public Long getIdMemberType() {
 		return idMemberType;
 	}
 
+	/**
+	 * Sets the id member type.
+	 *
+	 * @param idMemberType the new id member type
+	 */
 	public void setIdMemberType(Long idMemberType) {
 		this.idMemberType = idMemberType;
 	}
 
+	/**
+	 * Gets the member type.
+	 *
+	 * @return the member type
+	 */
 	public MemberType getMemberType() {
 		return memberType;
 	}
 
+	/**
+	 * Sets the member type.
+	 *
+	 * @param memberType the new member type
+	 */
 	public void setMemberType(MemberType memberType) {
 		this.memberType = memberType;
 	}

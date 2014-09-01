@@ -27,9 +27,19 @@ import br.com.uaijug.chronos.institution.data.repository.NewsRepository;
 import br.com.uaijug.chronos.institution.model.News;
 import br.com.uaijug.chronos.persistence.base.PersistenceBase;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class NewsDefaultRepository.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @ApplicationScoped
 public class NewsDefaultRepository extends PersistenceBase<News, Long> implements NewsRepository {
 
+    /* (non-Javadoc)
+     * @see br.com.uaijug.chronos.institution.data.repository.NewsRepository#findAllOrderedByName()
+     */
     public List<News> findAllOrderedByName() {
         CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
         CriteriaQuery<News> criteria = cb.createQuery(News.class);

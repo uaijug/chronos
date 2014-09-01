@@ -27,9 +27,19 @@ import br.com.uaijug.chronos.event.data.repository.EventTrackRepository;
 import br.com.uaijug.chronos.event.model.EventTrack;
 import br.com.uaijug.chronos.persistence.base.PersistenceBase;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class EventTrackDefaultRepository.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @ApplicationScoped
 public class EventTrackDefaultRepository extends PersistenceBase<EventTrack, Long> implements EventTrackRepository {
 
+    /* (non-Javadoc)
+     * @see br.com.uaijug.chronos.event.data.repository.EventTrackRepository#findAllOrderedByName()
+     */
     public List<EventTrack> findAllOrderedByName() {
         CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
         CriteriaQuery<EventTrack> criteria = cb.createQuery(EventTrack.class);

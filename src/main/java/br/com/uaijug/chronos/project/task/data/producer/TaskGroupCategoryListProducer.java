@@ -29,26 +29,48 @@ import javax.inject.Named;
 import br.com.uaijug.chronos.project.task.data.repository.TaskGroupCategoryRepository;
 import br.com.uaijug.chronos.project.task.model.TaskGroupCategory;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class TaskGroupCategoryListProducer.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @RequestScoped
 public class TaskGroupCategoryListProducer {
 
+	/** The task group category repository. */
 	@Inject
 	private TaskGroupCategoryRepository taskGroupCategoryRepository;
 
+    /** The task group categorys. */
     private List<TaskGroupCategory> taskGroupCategorys;
 
     // @Named provides access the return value via the EL variable name "taskGroupCategorys" in the UI (e.g.
     // Facelets or JSP view)
+    /**
+     * Gets the task group categorys.
+     *
+     * @return the task group categorys
+     */
     @Produces
     @Named
     public List<TaskGroupCategory> getTaskGroupCategorys() {
         return taskGroupCategorys;
     }
 
+    /**
+     * On task group category list changed.
+     *
+     * @param taskGroupCategory the task group category
+     */
     public void onTaskGroupCategoryListChanged(@Observes(notifyObserver = Reception.IF_EXISTS) final TaskGroupCategory taskGroupCategory) {
         retrieveAllTaskGroupCategorysOrderedByName();
     }
 
+    /**
+     * Retrieve all task group categorys ordered by name.
+     */
     @PostConstruct
     public void retrieveAllTaskGroupCategorysOrderedByName() {
         taskGroupCategorys = taskGroupCategoryRepository.findAllOrderedByName();

@@ -35,41 +35,60 @@ import br.com.uaijug.chronos.event.sponsor.model.SponsorFollowup;
 import br.com.uaijug.chronos.event.sponsor.service.SponsorFollowupRegistration;
 import br.com.uaijug.chronos.model.types.ContactType;
 
+// TODO: Auto-generated Javadoc
 // The @Model stereotype is a convenience mechanism to make this a request-scoped bean that has an
 // EL name
 // Read more sponsorFollowup the @Model stereotype in this FAQ:
 // http://sfwk.org/Documentation/WhatIsThePurposeOfTheModelAnnotation
+/**
+ * The Class SponsorFollowupController.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogerifontes dot inf dot br
+ * 
+ */
 @Model
 public class SponsorFollowupController extends AbstractManageBeans {
 
+	/** The sponsor followup registration. */
 	@Inject
 	private SponsorFollowupRegistration sponsorFollowupRegistration;
 
+	/** The sponsor followup repository. */
 	@Inject
 	private SponsorFollowupRepository sponsorFollowupRepository;
 
+	/** The sponsor repository. */
 	@Inject
 	private SponsorRepository sponsorRepository;
 
+	/** The event proposal repository. */
 	@Inject
 	private EventProposalRepository eventProposalRepository;
 
+	/** The id sponsor followup. */
 	private Long idSponsorFollowup;
 
+	/** The sponsor followup. */
 	private SponsorFollowup sponsorFollowup;
 
+	/** The sponsor followups. */
 	List<SponsorFollowup> sponsorFollowups;
 
+	/** The list sponsor. */
 	private List<Sponsor> listSponsor = null;
 
 	/** The itens state. */
 	List<SelectItem> itensSponsor = null;
 
+	/** The list event proposal. */
 	private List<EventProposal> listEventProposal = null;
 
 	/** The itens state. */
 	List<SelectItem> itensEventProposal = null;
 
+	/**
+	 * Inits the new sponsor followup.
+	 */
 	@PostConstruct
 	public void initNewSponsorFollowup() {
 		sponsorFollowup = new SponsorFollowup();
@@ -86,6 +105,11 @@ public class SponsorFollowupController extends AbstractManageBeans {
 		listEventProposal = new ArrayList<EventProposal>();
 	}
 
+	/**
+	 * Gets the sponsor followups.
+	 *
+	 * @return the sponsor followups
+	 */
 	public List<SponsorFollowup> getSponsorFollowups() {
 		return sponsorFollowupRepository.findAll();
 	}
@@ -107,6 +131,12 @@ public class SponsorFollowupController extends AbstractManageBeans {
 		}
 	}
 
+	/**
+	 * Register.
+	 *
+	 * @return the string
+	 * @throws Exception the exception
+	 */
 	public String register() throws Exception {
 		try {
 
@@ -121,6 +151,11 @@ public class SponsorFollowupController extends AbstractManageBeans {
 		return null;
 	}
 
+	/**
+	 * Gets the sponsors.
+	 *
+	 * @return the sponsors
+	 */
 	public List<SelectItem> getSponsors() {
 
 		setListSponsor(sponsorRepository.findAll());
@@ -131,6 +166,11 @@ public class SponsorFollowupController extends AbstractManageBeans {
 	}
 	
 	
+	/**
+	 * Gets the event proposals.
+	 *
+	 * @return the event proposals
+	 */
 	public List<SelectItem> getEventProposals() {
 
 		setListEventProposal(eventProposalRepository.findAll());
@@ -140,6 +180,11 @@ public class SponsorFollowupController extends AbstractManageBeans {
 		return itensEventProposal;
 	}
 	
+	/**
+	 * Gets the contact types.
+	 *
+	 * @return the contact types
+	 */
 	public List<SelectItem> getContactTypes() {
 		List<SelectItem> items = new ArrayList<SelectItem>();
 		for (ContactType type : ContactType.values()) {
@@ -148,60 +193,128 @@ public class SponsorFollowupController extends AbstractManageBeans {
 		return items;
 	}
 
+	/**
+	 * Cancelar.
+	 *
+	 * @return the string
+	 */
 	public String cancelar() {
 		limpar();
 		return "list?faces-redirect=true";
 	}
 
+	/**
+	 * Limpar.
+	 */
 	private void limpar() {
 		idSponsorFollowup = null;
 		sponsorFollowup = new SponsorFollowup();
 	}
 
+	/**
+	 * Gets the id sponsor followup.
+	 *
+	 * @return the id sponsor followup
+	 */
 	public Long getIdSponsorFollowup() {
 		return idSponsorFollowup;
 	}
 
+	/**
+	 * Sets the id sponsor followup.
+	 *
+	 * @param idSponsorFollowup the new id sponsor followup
+	 */
 	public void setIdSponsorFollowup(Long idSponsorFollowup) {
 		this.idSponsorFollowup = idSponsorFollowup;
 	}
 
+	/**
+	 * Gets the sponsor followup.
+	 *
+	 * @return the sponsor followup
+	 */
 	public SponsorFollowup getSponsorFollowup() {
 		return sponsorFollowup;
 	}
 
+	/**
+	 * Sets the sponsor followup.
+	 *
+	 * @param sponsorFollowup the new sponsor followup
+	 */
 	public void setSponsorFollowup(SponsorFollowup sponsorFollowup) {
 		this.sponsorFollowup = sponsorFollowup;
 	}
 
+	/**
+	 * Gets the list sponsor.
+	 *
+	 * @return the list sponsor
+	 */
 	public List<Sponsor> getListSponsor() {
 		return listSponsor;
 	}
 
+	/**
+	 * Sets the list sponsor.
+	 *
+	 * @param listSponsor the new list sponsor
+	 */
 	public void setListSponsor(List<Sponsor> listSponsor) {
 		this.listSponsor = listSponsor;
 	}
 
+	/**
+	 * Gets the itens sponsor.
+	 *
+	 * @return the itens sponsor
+	 */
 	public List<SelectItem> getItensSponsor() {
 		return itensSponsor;
 	}
 
+	/**
+	 * Sets the itens sponsor.
+	 *
+	 * @param itensSponsor the new itens sponsor
+	 */
 	public void setItensSponsor(List<SelectItem> itensSponsor) {
 		this.itensSponsor = itensSponsor;
 	}
 
+	/**
+	 * Gets the list event proposal.
+	 *
+	 * @return the list event proposal
+	 */
 	public List<EventProposal> getListEventProposal() {
 		return listEventProposal;
 	}
 
+	/**
+	 * Sets the list event proposal.
+	 *
+	 * @param listEventProposal the new list event proposal
+	 */
 	public void setListEventProposal(List<EventProposal> listEventProposal) {
 		this.listEventProposal = listEventProposal;
 	}
 
+	/**
+	 * Gets the itens event proposal.
+	 *
+	 * @return the itens event proposal
+	 */
 	public List<SelectItem> getItensEventProposal() {
 		return itensEventProposal;
 	}
 
+	/**
+	 * Sets the itens event proposal.
+	 *
+	 * @param itensEventProposal the new itens event proposal
+	 */
 	public void setItensEventProposal(List<SelectItem> itensEventProposal) {
 		this.itensEventProposal = itensEventProposal;
 	}

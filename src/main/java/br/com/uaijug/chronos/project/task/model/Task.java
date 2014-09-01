@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package br.com.uaijug.chronos.project.task.model;
 
 import java.io.Serializable;
@@ -24,157 +27,303 @@ import br.com.uaijug.chronos.institution.model.Member;
 import br.com.uaijug.chronos.model.AbstractEntity;
 import br.com.uaijug.chronos.project.model.Project;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Task.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @Entity
 @Table(name = "uj_task", uniqueConstraints = @UniqueConstraint(columnNames = "title"))
 @JsonIgnoreProperties(value = { "handler", "hibernateLazyInitializer" })
-@Cacheable(true)
+
 public class Task extends AbstractEntity<Long> implements Serializable {
 
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 5834094055676588566L;
 
+	/** The title. */
 	private String title;
 
+	/** The description. */
 	@NotNull
 	private String description;
 
+	/** The procedure. */
 	@Column(name = "internal_process")
 	private String procedure;
 
+	/** The expected result. */
 	@Column(name = "expected_result")
 	private String expectedResult;
 
+	/** The notify. */
 	private String notify;
 
+	/** The status. */
 	private String status;
 
+	/** The priority. */
 	private String priority;
 
+	/** The end date. */
 	@Fetch(FetchMode.JOIN)
 	@Temporal(TemporalType.DATE)
 	@Column(name = "end_date")
 	@Future
 	private Date endDate;
 
+	/** The start date. */
 	@Fetch(FetchMode.JOIN)
 	@Temporal(TemporalType.DATE)
 	@Column(name = "start_date")
 	private Date startDate;
 
 	// bi-directional many-to-one association to projeto
+	/** The project. */
 	@Fetch(FetchMode.JOIN)
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "project_id")
 	private Project project;
 
+	/** The task category. */
 	@Fetch(FetchMode.JOIN)
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "task_category_id")
 	private TaskCategory taskCategory;
 
+	/** The member. */
 	@Fetch(FetchMode.JOIN)
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "member_id")
 	private Member member;
 
+	/**
+	 * Instantiates a new task.
+	 */
 	public Task() {
 	}
 
+	/**
+	 * Gets the title.
+	 *
+	 * @return the title
+	 */
 	public String getTitle() {
 		return title;
 	}
 
+	/**
+	 * Sets the title.
+	 *
+	 * @param title the new title
+	 */
 	public void setTitle(String title) {
 		this.title = title;
 	}
 
+	/**
+	 * Gets the description.
+	 *
+	 * @return the description
+	 */
 	public String getDescription() {
 		return description;
 	}
 
+	/**
+	 * Sets the description.
+	 *
+	 * @param description the new description
+	 */
 	public void setDescription(String description) {
 		this.description = description;
 	}
 
+	/**
+	 * Gets the procedure.
+	 *
+	 * @return the procedure
+	 */
 	public String getProcedure() {
 		return procedure;
 	}
 
+	/**
+	 * Sets the procedure.
+	 *
+	 * @param procedure the new procedure
+	 */
 	public void setProcedure(String procedure) {
 		this.procedure = procedure;
 	}
 
+	/**
+	 * Gets the expected result.
+	 *
+	 * @return the expected result
+	 */
 	public String getExpectedResult() {
 		return expectedResult;
 	}
 
+	/**
+	 * Sets the expected result.
+	 *
+	 * @param expectedResult the new expected result
+	 */
 	public void setExpectedResult(String expectedResult) {
 		this.expectedResult = expectedResult;
 	}
 
+	/**
+	 * Gets the notify.
+	 *
+	 * @return the notify
+	 */
 	public String getNotify() {
 		return notify;
 	}
 
+	/**
+	 * Sets the notify.
+	 *
+	 * @param notify the new notify
+	 */
 	public void setNotify(String notify) {
 		this.notify = notify;
 	}
 
+	/**
+	 * Gets the status.
+	 *
+	 * @return the status
+	 */
 	public String getStatus() {
 		return status;
 	}
 
+	/**
+	 * Sets the status.
+	 *
+	 * @param status the new status
+	 */
 	public void setStatus(String status) {
 		this.status = status;
 	}
 
+	/**
+	 * Gets the priority.
+	 *
+	 * @return the priority
+	 */
 	public String getPriority() {
 		return priority;
 	}
 
+	/**
+	 * Sets the priority.
+	 *
+	 * @param priority the new priority
+	 */
 	public void setPriority(String priority) {
 		this.priority = priority;
 	}
 
+	/**
+	 * Gets the end date.
+	 *
+	 * @return the end date
+	 */
 	public Date getEndDate() {
 		return endDate;
 	}
 
+	/**
+	 * Sets the end date.
+	 *
+	 * @param endDate the new end date
+	 */
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
 
+	/**
+	 * Gets the start date.
+	 *
+	 * @return the start date
+	 */
 	public Date getStartDate() {
 		return startDate;
 	}
 
+	/**
+	 * Sets the start date.
+	 *
+	 * @param startDate the new start date
+	 */
 	public void setStartDate(Date startDate) {
 		this.startDate = startDate;
 	}
 
+	/**
+	 * Gets the project.
+	 *
+	 * @return the project
+	 */
 	public Project getProject() {
 		return project;
 	}
 
+	/**
+	 * Sets the project.
+	 *
+	 * @param project the new project
+	 */
 	public void setProject(Project project) {
 		this.project = project;
 	}
 
+	/**
+	 * Gets the task category.
+	 *
+	 * @return the task category
+	 */
 	public TaskCategory getTaskCategory() {
 		return taskCategory;
 	}
 
+	/**
+	 * Sets the task category.
+	 *
+	 * @param taskCategory the new task category
+	 */
 	public void setTaskCategory(TaskCategory taskCategory) {
 		this.taskCategory = taskCategory;
 	}
 
+	/**
+	 * Gets the member.
+	 *
+	 * @return the member
+	 */
 	public Member getMember() {
 		return member;
 	}
 
+	/**
+	 * Sets the member.
+	 *
+	 * @param member the new member
+	 */
 	public void setMember(Member member) {
 		this.member = member;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -199,6 +348,9 @@ public class Task extends AbstractEntity<Long> implements Serializable {
 		return result;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -266,6 +418,9 @@ public class Task extends AbstractEntity<Long> implements Serializable {
 		return true;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString() {
 		return "TaskTestCase [title=" + title + ", description=" + description

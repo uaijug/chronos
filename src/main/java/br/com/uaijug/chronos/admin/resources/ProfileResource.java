@@ -43,34 +43,53 @@ import br.com.uaijug.chronos.admin.data.repository.ProfileRepository;
 import br.com.uaijug.chronos.admin.model.Profile;
 import br.com.uaijug.chronos.admin.service.ProfileRegistration;
 
+// TODO: Auto-generated Javadoc
 /**
  * JAX-RS Example
  * <p/>
  * This class produces a RESTful service to read/write the contents of the
  * profiles table.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
  */
 @Path("/profiles")
 @RequestScoped
 public class ProfileResource {
 
+	/** The log. */
 	@Inject
 	private Logger log;
 
+	/** The validator. */
 	@Inject
 	private Validator validator;
 
+	/** The repository. */
 	@Inject
 	private ProfileRepository repository;
 
+	/** The registration. */
 	@Inject
 	ProfileRegistration registration;
 
+	/**
+	 * List all profiles.
+	 *
+	 * @return the list
+	 */
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Profile> listAllProfiles() {
 		return repository.findAllOrderedByName();
 	}
 
+	/**
+	 * Lookup profile by id.
+	 *
+	 * @param id the id
+	 * @return the profile
+	 */
 	@GET
 	@Path("/{id:[0-9][0-9]*}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -86,6 +105,9 @@ public class ProfileResource {
 	 * Creates a new profile from the values provided. Performs validation, and
 	 * will return a JAX-RS response with either 200 ok, or with a map of
 	 * fields, and related errors.
+	 *
+	 * @param profile the profile
+	 * @return the response
 	 */
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)

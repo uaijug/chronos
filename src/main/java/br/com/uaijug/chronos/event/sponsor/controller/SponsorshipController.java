@@ -36,42 +36,61 @@ import br.com.uaijug.chronos.event.sponsor.service.SponsorshipRegistration;
 import br.com.uaijug.chronos.model.types.PaimentType;
 import br.com.uaijug.chronos.model.types.SponsorshipLevel;
 
+// TODO: Auto-generated Javadoc
 // The @Model stereotype is a convenience mechanism to make this a request-scoped bean that has an
 // EL name
 // Read more sponsorship the @Model stereotype in this FAQ:
 // http://sfwk.org/Documentation/WhatIsThePurposeOfTheModelAnnotation
+/**
+ * The Class SponsorshipController.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogerifontes dot inf dot br
+ * 
+ */
 @Model
 public class SponsorshipController extends AbstractManageBeans {
 
+	/** The sponsorship registration. */
 	@Inject
 	private SponsorshipRegistration sponsorshipRegistration;
 
+	/** The sponsorship repository. */
 	@Inject
 	private SponsorshipRepository sponsorshipRepository;
 	
+	/** The sponsor repository. */
 	@Inject
 	private SponsorRepository sponsorRepository;
 
+	/** The event repository. */
 	@Inject
 	private EventMainRepository eventRepository;
 
+	/** The id sponsorship. */
 	private Long idSponsorship;
 
+	/** The sponsorship. */
 	private Sponsorship sponsorship;
 
+	/** The sponsorships. */
 	List<Sponsorship> sponsorships;
 	
+	/** The list sponsor. */
 	private List<Sponsor> listSponsor = null;
 
 	/** The itens state. */
 	List<SelectItem> itensSponsor = null;
 
+	/** The list event. */
 	private List<EventMain> listEvent = null;
 
 	/** The itens state. */
 	List<SelectItem> itensEvent = null;
 
 
+	/**
+	 * Inits the new sponsorship.
+	 */
 	@PostConstruct
 	public void initNewSponsorship() {
 		sponsorship = new Sponsorship();
@@ -89,6 +108,11 @@ public class SponsorshipController extends AbstractManageBeans {
 		listEvent = new ArrayList<EventMain>();
 	}
 
+	/**
+	 * Gets the sponsorships.
+	 *
+	 * @return the sponsorships
+	 */
 	public List<Sponsorship> getSponsorships() {
 		return sponsorshipRepository.findAll();
 	}
@@ -109,6 +133,12 @@ public class SponsorshipController extends AbstractManageBeans {
 		}
 	}
 
+	/**
+	 * Register.
+	 *
+	 * @return the string
+	 * @throws Exception the exception
+	 */
 	public String register() throws Exception {
 		try {
 
@@ -123,16 +153,29 @@ public class SponsorshipController extends AbstractManageBeans {
 		return null;
 	}
 
+	/**
+	 * Cancelar.
+	 *
+	 * @return the string
+	 */
 	public String cancelar() {
 		limpar();
 		return "list?faces-redirect=true";
 	}
 
+	/**
+	 * Limpar.
+	 */
 	private void limpar() {
 		idSponsorship = null;
 		sponsorship = new Sponsorship();
 	}
 	
+	/**
+	 * Gets the sponsorship levels.
+	 *
+	 * @return the sponsorship levels
+	 */
 	public List<SelectItem> getSponsorshipLevels() {
 		List<SelectItem> items = new ArrayList<SelectItem>();
 		for (SponsorshipLevel type : SponsorshipLevel.values()) {
@@ -141,6 +184,11 @@ public class SponsorshipController extends AbstractManageBeans {
 		return items;
 	}
 	
+	/**
+	 * Gets the paiment types.
+	 *
+	 * @return the paiment types
+	 */
 	public List<SelectItem> getPaimentTypes() {
 		List<SelectItem> items = new ArrayList<SelectItem>();
 		for (PaimentType type : PaimentType.values()) {
@@ -150,6 +198,11 @@ public class SponsorshipController extends AbstractManageBeans {
 	}
 	
 	
+	/**
+	 * Gets the sponsors.
+	 *
+	 * @return the sponsors
+	 */
 	public List<SelectItem> getSponsors() {
 
 		setListSponsor(sponsorRepository.findAll());
@@ -159,6 +212,11 @@ public class SponsorshipController extends AbstractManageBeans {
 		return itensSponsor;
 	}
 
+	/**
+	 * Gets the events.
+	 *
+	 * @return the events
+	 */
 	public List<SelectItem> getEvents() {
 
 		setListEvent(eventRepository.findAll());
@@ -168,50 +226,110 @@ public class SponsorshipController extends AbstractManageBeans {
 		return itensEvent;
 	}
 	
+	/**
+	 * Gets the id sponsorship.
+	 *
+	 * @return the id sponsorship
+	 */
 	public Long getIdSponsorship() {
 		return idSponsorship;
 	}
 
+	/**
+	 * Sets the id sponsorship.
+	 *
+	 * @param idSponsorship the new id sponsorship
+	 */
 	public void setIdSponsorship(Long idSponsorship) {
 		this.idSponsorship = idSponsorship;
 	}
 
+	/**
+	 * Gets the sponsorship.
+	 *
+	 * @return the sponsorship
+	 */
 	public Sponsorship getSponsorship() {
 		return sponsorship;
 	}
 
+	/**
+	 * Sets the sponsorship.
+	 *
+	 * @param sponsorship the new sponsorship
+	 */
 	public void setSponsorship(Sponsorship sponsorship) {
 		this.sponsorship = sponsorship;
 	}
 
+	/**
+	 * Gets the list sponsor.
+	 *
+	 * @return the list sponsor
+	 */
 	public List<Sponsor> getListSponsor() {
 		return listSponsor;
 	}
 
+	/**
+	 * Sets the list sponsor.
+	 *
+	 * @param listSponsor the new list sponsor
+	 */
 	public void setListSponsor(List<Sponsor> listSponsor) {
 		this.listSponsor = listSponsor;
 	}
 
+	/**
+	 * Gets the itens sponsor.
+	 *
+	 * @return the itens sponsor
+	 */
 	public List<SelectItem> getItensSponsor() {
 		return itensSponsor;
 	}
 
+	/**
+	 * Sets the itens sponsor.
+	 *
+	 * @param itensSponsor the new itens sponsor
+	 */
 	public void setItensSponsor(List<SelectItem> itensSponsor) {
 		this.itensSponsor = itensSponsor;
 	}
 
+	/**
+	 * Gets the list event.
+	 *
+	 * @return the list event
+	 */
 	public List<EventMain> getListEvent() {
 		return listEvent;
 	}
 
+	/**
+	 * Sets the list event.
+	 *
+	 * @param listEvent the new list event
+	 */
 	public void setListEvent(List<EventMain> listEvent) {
 		this.listEvent = listEvent;
 	}
 
+	/**
+	 * Gets the itens event.
+	 *
+	 * @return the itens event
+	 */
 	public List<SelectItem> getItensEvent() {
 		return itensEvent;
 	}
 
+	/**
+	 * Sets the itens event.
+	 *
+	 * @param itensEvent the new itens event
+	 */
 	public void setItensEvent(List<SelectItem> itensEvent) {
 		this.itensEvent = itensEvent;
 	}

@@ -43,34 +43,53 @@ import br.com.uaijug.chronos.event.data.repository.EventTrackRepository;
 import br.com.uaijug.chronos.event.model.EventTrack;
 import br.com.uaijug.chronos.event.service.EventTrackRegistration;
 
+// TODO: Auto-generated Javadoc
 /**
  * JAX-RS Example
  * <p/>
  * This class produces a RESTful service to read/write the contents of the
  * eventTracks table.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogerifontes dot inf dot br
+ * 
  */
 @Path("/eventTracks")
 @RequestScoped
 public class EventTrackResource {
 
+	/** The log. */
 	@Inject
 	private Logger log;
 
+	/** The validator. */
 	@Inject
 	private Validator validator;
 
+	/** The repository. */
 	@Inject
 	private EventTrackRepository repository;
 
+	/** The registration. */
 	@Inject
 	EventTrackRegistration registration;
 
+	/**
+	 * List all event tracks.
+	 *
+	 * @return the list
+	 */
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<EventTrack> listAllEventTracks() {
 		return repository.findAllOrderedByName();
 	}
 
+	/**
+	 * Lookup event track by id.
+	 *
+	 * @param id the id
+	 * @return the event track
+	 */
 	@GET
 	@Path("/{id:[0-9][0-9]*}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -94,10 +113,13 @@ public class EventTrackResource {
 	}*/
 	
 	/**
-	 * Creates a new eventTrack from the values provided. Performs validation, and
-	 * will return a JAX-RS response with either 200 ok, or with a map of
-	 * fields, and related errors.
-	 */
+ * Creates a new eventTrack from the values provided. Performs validation, and
+ * will return a JAX-RS response with either 200 ok, or with a map of
+ * fields, and related errors.
+ *
+ * @param eventTrack the event track
+ * @return the response
+ */
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)

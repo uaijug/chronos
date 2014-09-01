@@ -27,9 +27,19 @@ import br.com.uaijug.chronos.event.data.repository.EventMainRepository;
 import br.com.uaijug.chronos.event.model.EventMain;
 import br.com.uaijug.chronos.persistence.base.PersistenceBase;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class EventMainDefaultRepository.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @ApplicationScoped
 public class EventMainDefaultRepository extends PersistenceBase<EventMain, Long> implements EventMainRepository {
 
+    /* (non-Javadoc)
+     * @see br.com.uaijug.chronos.event.data.repository.EventMainRepository#findAllOrderedByName()
+     */
     public List<EventMain> findAllOrderedByName() {
         CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
         CriteriaQuery<EventMain> criteria = cb.createQuery(EventMain.class);

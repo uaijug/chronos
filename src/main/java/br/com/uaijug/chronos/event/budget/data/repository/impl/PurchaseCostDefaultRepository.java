@@ -27,9 +27,19 @@ import br.com.uaijug.chronos.event.budget.data.repository.PurchaseCostRepository
 import br.com.uaijug.chronos.event.budget.model.PurchaseCost;
 import br.com.uaijug.chronos.persistence.base.PersistenceBase;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class PurchaseCostDefaultRepository.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @ApplicationScoped
 public class PurchaseCostDefaultRepository extends PersistenceBase<PurchaseCost, Long> implements PurchaseCostRepository {
 
+    /* (non-Javadoc)
+     * @see br.com.uaijug.chronos.event.budget.data.repository.PurchaseCostRepository#findAllOrderedByName()
+     */
     public List<PurchaseCost> findAllOrderedByName() {
         CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
         CriteriaQuery<PurchaseCost> criteria = cb.createQuery(PurchaseCost.class);

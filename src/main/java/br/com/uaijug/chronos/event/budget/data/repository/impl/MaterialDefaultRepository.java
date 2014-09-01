@@ -27,9 +27,19 @@ import br.com.uaijug.chronos.event.budget.data.repository.MaterialRepository;
 import br.com.uaijug.chronos.event.budget.model.Material;
 import br.com.uaijug.chronos.persistence.base.PersistenceBase;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class MaterialDefaultRepository.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @ApplicationScoped
 public class MaterialDefaultRepository extends PersistenceBase<Material, Long> implements MaterialRepository {
 
+    /* (non-Javadoc)
+     * @see br.com.uaijug.chronos.event.budget.data.repository.MaterialRepository#findAllOrderedByName()
+     */
     public List<Material> findAllOrderedByName() {
         CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
         CriteriaQuery<Material> criteria = cb.createQuery(Material.class);

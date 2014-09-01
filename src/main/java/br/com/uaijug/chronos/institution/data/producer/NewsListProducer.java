@@ -29,26 +29,48 @@ import javax.inject.Named;
 import br.com.uaijug.chronos.institution.data.repository.NewsRepository;
 import br.com.uaijug.chronos.institution.model.News;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class NewsListProducer.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @RequestScoped
 public class NewsListProducer {
 
+	/** The news repository. */
 	@Inject
 	private NewsRepository newsRepository;
 
+    /** The newss. */
     private List<News> newss;
 
     // @Named provides access the return value via the EL variable name "newss" in the UI (e.g.
     // Facelets or JSP view)
+    /**
+     * Gets the newss.
+     *
+     * @return the newss
+     */
     @Produces
     @Named
     public List<News> getNewss() {
         return newss;
     }
 
+    /**
+     * On news list changed.
+     *
+     * @param news the news
+     */
     public void onNewsListChanged(@Observes(notifyObserver = Reception.IF_EXISTS) final News news) {
         retrieveAllNewssOrderedByName();
     }
 
+    /**
+     * Retrieve all newss ordered by name.
+     */
     @PostConstruct
     public void retrieveAllNewssOrderedByName() {
         newss = newsRepository.findAllOrderedByName();

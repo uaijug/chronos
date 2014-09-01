@@ -43,34 +43,53 @@ import br.com.uaijug.chronos.admin.data.repository.AuthorizationRepository;
 import br.com.uaijug.chronos.admin.model.Authorization;
 import br.com.uaijug.chronos.admin.service.AuthorizationRegistration;
 
+// TODO: Auto-generated Javadoc
 /**
  * JAX-RS Example
  * <p/>
  * This class produces a RESTful service to read/write the contents of the
  * authorizations table.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
  */
 @Path("/authorizations")
 @RequestScoped
 public class AuthorizationResource {
 
+	/** The log. */
 	@Inject
 	private Logger log;
 
+	/** The validator. */
 	@Inject
 	private Validator validator;
 
+	/** The repository. */
 	@Inject
 	private AuthorizationRepository repository;
 
+	/** The registration. */
 	@Inject
 	AuthorizationRegistration registration;
 
+	/**
+	 * List all authorizations.
+	 *
+	 * @return the list
+	 */
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Authorization> listAllAuthorizations() {
 		return repository.findAllOrderedByName();
 	}
 
+	/**
+	 * Lookup authorization by id.
+	 *
+	 * @param id the id
+	 * @return the authorization
+	 */
 	@GET
 	@Path("/{id:[0-9][0-9]*}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -86,6 +105,9 @@ public class AuthorizationResource {
 	 * Creates a new authorization from the values provided. Performs validation, and
 	 * will return a JAX-RS response with either 200 ok, or with a map of
 	 * fields, and related errors.
+	 *
+	 * @param authorization the authorization
+	 * @return the response
 	 */
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)

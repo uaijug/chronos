@@ -27,9 +27,19 @@ import br.com.uaijug.chronos.blog.data.repository.PostCommentRepository;
 import br.com.uaijug.chronos.blog.model.PostComment;
 import br.com.uaijug.chronos.persistence.base.PersistenceBase;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class PostCommentDefaultRepository.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @ApplicationScoped
 public class PostCommentDefaultRepository extends PersistenceBase<PostComment, Long> implements PostCommentRepository {
 
+    /* (non-Javadoc)
+     * @see br.com.uaijug.chronos.blog.data.repository.PostCommentRepository#findAllOrderedByName()
+     */
     public List<PostComment> findAllOrderedByName() {
         CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
         CriteriaQuery<PostComment> criteria = cb.createQuery(PostComment.class);

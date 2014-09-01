@@ -34,41 +34,60 @@ import br.com.uaijug.chronos.controller.AbstractManageBeans;
 import br.com.uaijug.chronos.institution.data.repository.MemberRepository;
 import br.com.uaijug.chronos.institution.model.Member;
 
+// TODO: Auto-generated Javadoc
 // The @Model stereotype is a convenience mechanism to make this a request-scoped bean that has an
 // EL name
 // Read more about the @Model stereotype in this FAQ:
 // http://sfwk.org/Documentation/WhatIsThePurposeOfTheModelAnnotation
+/**
+ * The Class AuthorizationController.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @Model
 public class AuthorizationController extends AbstractManageBeans {
 
+	/** The authorization registration. */
 	@Inject
 	private AuthorizationRegistration authorizationRegistration;
 
+	/** The authorization repository. */
 	@Inject
 	private AuthorizationRepository authorizationRepository;
 
+	/** The profile repository. */
 	@Inject
 	private ProfileRepository profileRepository;
 
+	/** The member repository. */
 	@Inject
 	private MemberRepository memberRepository;
 
+	/** The id authorization. */
 	private Long idAuthorization;
 
+	/** The authorization. */
 	private Authorization authorization;
 
+	/** The authorizations. */
 	List<Authorization> authorizations;
 
+	/** The list profile. */
 	private List<Profile> listProfile = null;
 
 	/** The itens state. */
 	List<SelectItem> itensProfile = null;
 
+	/** The list member. */
 	private List<Member> listMember = null;
 
 	/** The itens state. */
 	List<SelectItem> itensMember = null;
 
+	/**
+	 * Inits the new authorization.
+	 */
 	@PostConstruct
 	public void initNewAuthorization() {
 		authorization = new Authorization();
@@ -85,6 +104,11 @@ public class AuthorizationController extends AbstractManageBeans {
 		listMember = new ArrayList<Member>();
 	}
 
+	/**
+	 * Gets the authorizations.
+	 *
+	 * @return the authorizations
+	 */
 	public List<Authorization> getAuthorizations() {
 		return authorizationRepository.findAll();
 	}
@@ -106,6 +130,12 @@ public class AuthorizationController extends AbstractManageBeans {
 		}
 	}
 
+	/**
+	 * Register.
+	 *
+	 * @return the string
+	 * @throws Exception the exception
+	 */
 	public String register() throws Exception {
 		try {
 
@@ -120,16 +150,29 @@ public class AuthorizationController extends AbstractManageBeans {
 		return null;
 	}
 
+	/**
+	 * Cancelar.
+	 *
+	 * @return the string
+	 */
 	public String cancelar() {
 		limpar();
 		return "list?faces-redirect=true";
 	}
 
+	/**
+	 * Limpar.
+	 */
 	private void limpar() {
 		idAuthorization = null;
 		authorization = new Authorization();
 	}
 
+	/**
+	 * Gets the profiles.
+	 *
+	 * @return the profiles
+	 */
 	public List<SelectItem> getProfiles() {
 
 		setListProfile(profileRepository.findAll());
@@ -139,6 +182,11 @@ public class AuthorizationController extends AbstractManageBeans {
 		return itensProfile;
 	}
 
+	/**
+	 * Gets the members.
+	 *
+	 * @return the members
+	 */
 	public List<SelectItem> getMembers() {
 
 		setListMember(memberRepository.findAll());
@@ -148,50 +196,110 @@ public class AuthorizationController extends AbstractManageBeans {
 		return itensMember;
 	}
 
+	/**
+	 * Gets the id authorization.
+	 *
+	 * @return the id authorization
+	 */
 	public Long getIdAuthorization() {
 		return idAuthorization;
 	}
 
+	/**
+	 * Sets the id authorization.
+	 *
+	 * @param idAuthorization the new id authorization
+	 */
 	public void setIdAuthorization(Long idAuthorization) {
 		this.idAuthorization = idAuthorization;
 	}
 
+	/**
+	 * Gets the authorization.
+	 *
+	 * @return the authorization
+	 */
 	public Authorization getAuthorization() {
 		return authorization;
 	}
 
+	/**
+	 * Sets the authorization.
+	 *
+	 * @param authorization the new authorization
+	 */
 	public void setAuthorization(Authorization authorization) {
 		this.authorization = authorization;
 	}
 
+	/**
+	 * Gets the list profile.
+	 *
+	 * @return the list profile
+	 */
 	public List<Profile> getListProfile() {
 		return listProfile;
 	}
 
+	/**
+	 * Sets the list profile.
+	 *
+	 * @param listProfile the new list profile
+	 */
 	public void setListProfile(List<Profile> listProfile) {
 		this.listProfile = listProfile;
 	}
 
+	/**
+	 * Gets the itens profile.
+	 *
+	 * @return the itens profile
+	 */
 	public List<SelectItem> getItensProfile() {
 		return itensProfile;
 	}
 
+	/**
+	 * Sets the itens profile.
+	 *
+	 * @param itensProfile the new itens profile
+	 */
 	public void setItensProfile(List<SelectItem> itensProfile) {
 		this.itensProfile = itensProfile;
 	}
 
+	/**
+	 * Gets the list member.
+	 *
+	 * @return the list member
+	 */
 	public List<Member> getListMember() {
 		return listMember;
 	}
 
+	/**
+	 * Sets the list member.
+	 *
+	 * @param listMember the new list member
+	 */
 	public void setListMember(List<Member> listMember) {
 		this.listMember = listMember;
 	}
 
+	/**
+	 * Gets the itens member.
+	 *
+	 * @return the itens member
+	 */
 	public List<SelectItem> getItensMember() {
 		return itensMember;
 	}
 
+	/**
+	 * Sets the itens member.
+	 *
+	 * @param itensMember the new itens member
+	 */
 	public void setItensMember(List<SelectItem> itensMember) {
 		this.itensMember = itensMember;
 	}

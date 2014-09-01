@@ -43,34 +43,53 @@ import br.com.uaijug.chronos.blog.data.repository.PostRepository;
 import br.com.uaijug.chronos.blog.model.Post;
 import br.com.uaijug.chronos.blog.service.PostRegistration;
 
+// TODO: Auto-generated Javadoc
 /**
  * JAX-RS Example
  * <p/>
  * This class produces a RESTful service to read/write the contents of the
  * posts table.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
  */
 @Path("/posts")
 @RequestScoped
 public class PostResource {
 
+	/** The log. */
 	@Inject
 	private Logger log;
 
+	/** The validator. */
 	@Inject
 	private Validator validator;
 
+	/** The repository. */
 	@Inject
 	private PostRepository repository;
 
+	/** The registration. */
 	@Inject
 	PostRegistration registration;
 
+	/**
+	 * List all posts.
+	 *
+	 * @return the list
+	 */
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Post> listAllPosts() {
 		return repository.findAllOrderedByName();
 	}
 
+	/**
+	 * Lookup post by id.
+	 *
+	 * @param id the id
+	 * @return the post
+	 */
 	@GET
 	@Path("/{id:[0-9][0-9]*}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -86,6 +105,9 @@ public class PostResource {
 	 * Creates a new post from the values provided. Performs validation, and
 	 * will return a JAX-RS response with either 200 ok, or with a map of
 	 * fields, and related errors.
+	 *
+	 * @param post the post
+	 * @return the response
 	 */
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)

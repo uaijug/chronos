@@ -32,33 +32,50 @@ import br.com.uaijug.chronos.event.model.EventMain;
 import br.com.uaijug.chronos.event.model.EventProposal;
 import br.com.uaijug.chronos.event.service.EventProposalRegistration;
 
+// TODO: Auto-generated Javadoc
 // The @Model stereotype is a convenience mechanism to make this a request-scoped bean that has an
 // EL name
 // Read more about the @Model stereotype in this FAQ:
 // http://sfwk.org/Documentation/WhatIsThePurposeOfTheModelAnnotation
+/**
+ * The Class EventProposalController.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @Model
 public class EventProposalController extends AbstractManageBeans {
 
+	/** The event proposal registration. */
 	@Inject
 	private EventProposalRegistration eventProposalRegistration;
 
+	/** The event proposal repository. */
 	@Inject
 	private EventProposalRepository eventProposalRepository;
 
+	/** The event repository. */
 	@Inject
 	private EventMainRepository eventRepository;
 
+	/** The id event proposal. */
 	private Long idEventProposal;
 
+	/** The event proposal. */
 	private EventProposal eventProposal;
 
+	/** The event proposals. */
 	List<EventProposal> eventProposals;
 
+	/** The list event. */
 	private List<EventMain> listEvent = null;
 
 	/** The itens state. */
 	List<SelectItem> itensEvent = null;
 
+	/**
+	 * Inits the new event proposal.
+	 */
 	@PostConstruct
 	public void initNewEventProposal() {
 		eventProposal = new EventProposal();
@@ -72,6 +89,11 @@ public class EventProposalController extends AbstractManageBeans {
 		listEvent = new ArrayList<EventMain>();
 	}
 
+	/**
+	 * Gets the event proposals.
+	 *
+	 * @return the event proposals
+	 */
 	public List<EventProposal> getEventProposals() {
 		return eventProposalRepository.findAll();
 	}
@@ -93,6 +115,12 @@ public class EventProposalController extends AbstractManageBeans {
 		}
 	}
 
+	/**
+	 * Register.
+	 *
+	 * @return the string
+	 * @throws Exception the exception
+	 */
 	public String register() throws Exception {
 		try {
 
@@ -107,11 +135,21 @@ public class EventProposalController extends AbstractManageBeans {
 		return null;
 	}
 
+	/**
+	 * Cancelar.
+	 *
+	 * @return the string
+	 */
 	public String cancelar() {
 		limpar();
 		return "list?faces-redirect=true";
 	}
 	
+	/**
+	 * Gets the events.
+	 *
+	 * @return the events
+	 */
 	public List<SelectItem> getEvents() {
 
 		setListEvent(eventRepository.findAll());
@@ -121,39 +159,82 @@ public class EventProposalController extends AbstractManageBeans {
 		return itensEvent;
 	}
 
+	/**
+	 * Limpar.
+	 */
 	private void limpar() {
 		idEventProposal = null;
 		eventProposal = new EventProposal();
 	}
 
+	/**
+	 * Gets the id event proposal.
+	 *
+	 * @return the id event proposal
+	 */
 	public Long getIdEventProposal() {
 		return idEventProposal;
 	}
 
+	/**
+	 * Sets the id event proposal.
+	 *
+	 * @param idEventProposal the new id event proposal
+	 */
 	public void setIdEventProposal(Long idEventProposal) {
 		this.idEventProposal = idEventProposal;
 	}
 
+	/**
+	 * Gets the event proposal.
+	 *
+	 * @return the event proposal
+	 */
 	public EventProposal getEventProposal() {
 		return eventProposal;
 	}
 
+	/**
+	 * Sets the event proposal.
+	 *
+	 * @param eventProposal the new event proposal
+	 */
 	public void setEventProposal(EventProposal eventProposal) {
 		this.eventProposal = eventProposal;
 	}
 
+	/**
+	 * Gets the list event.
+	 *
+	 * @return the list event
+	 */
 	public List<EventMain> getListEvent() {
 		return listEvent;
 	}
 
+	/**
+	 * Sets the list event.
+	 *
+	 * @param listEvent the new list event
+	 */
 	public void setListEvent(List<EventMain> listEvent) {
 		this.listEvent = listEvent;
 	}
 
+	/**
+	 * Gets the itens event.
+	 *
+	 * @return the itens event
+	 */
 	public List<SelectItem> getItensEvent() {
 		return itensEvent;
 	}
 
+	/**
+	 * Sets the itens event.
+	 *
+	 * @param itensEvent the new itens event
+	 */
 	public void setItensEvent(List<SelectItem> itensEvent) {
 		this.itensEvent = itensEvent;
 	}

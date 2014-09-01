@@ -43,34 +43,53 @@ import br.com.uaijug.chronos.studygroup.data.repository.StudyGroupRepository;
 import br.com.uaijug.chronos.studygroup.model.StudyGroup;
 import br.com.uaijug.chronos.studygroup.service.StudyGroupRegistration;
 
+// TODO: Auto-generated Javadoc
 /**
  * JAX-RS Example
  * <p/>
  * This class produces a RESTful service to read/write the contents of the
  * studyGroups table.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
  */
 @Path("/studyGroups")
 @RequestScoped
 public class StudyGroupResource {
 
+	/** The log. */
 	@Inject
 	private Logger log;
 
+	/** The validator. */
 	@Inject
 	private Validator validator;
 
+	/** The repository. */
 	@Inject
 	private StudyGroupRepository repository;
 
+	/** The registration. */
 	@Inject
 	StudyGroupRegistration registration;
 
+	/**
+	 * List all study groups.
+	 *
+	 * @return the list
+	 */
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<StudyGroup> listAllStudyGroups() {
 		return repository.findAllOrderedByName();
 	}
 
+	/**
+	 * Lookup study group by id.
+	 *
+	 * @param id the id
+	 * @return the study group
+	 */
 	@GET
 	@Path("/{id:[0-9][0-9]*}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -86,6 +105,9 @@ public class StudyGroupResource {
 	 * Creates a new studyGroup from the values provided. Performs validation, and
 	 * will return a JAX-RS response with either 200 ok, or with a map of
 	 * fields, and related errors.
+	 *
+	 * @param studyGroup the study group
+	 * @return the response
 	 */
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)

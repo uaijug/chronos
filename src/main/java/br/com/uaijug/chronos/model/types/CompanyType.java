@@ -1,5 +1,15 @@
+/*
+ * 
+ */
 package br.com.uaijug.chronos.model.types;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Enum CompanyType.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 public enum CompanyType {
 
 	/** The YES. */
@@ -7,6 +17,7 @@ public enum CompanyType {
 	/** The NO. */
 	EMPRESAPARCEIRA("Empresa Parceira"),
 
+	/** The empresapatrocinadora. */
 	EMPRESAPATROCINADORA("Empresa Patrocinadora");
 
 	/** The status. */
@@ -14,18 +25,27 @@ public enum CompanyType {
 
 	/**
 	 * Instantiates a new status.
-	 * 
-	 * @param status
-	 *            the status
+	 *
+	 * @param companyType the company type
 	 */
 	private CompanyType(String companyType) {
 		this.companyType = companyType;
 	}
 
+	/**
+	 * Gets the company type.
+	 *
+	 * @return the company type
+	 */
 	public String getCompanyType() {
 		return companyType;
 	}
 
+	/**
+	 * Sets the company type.
+	 *
+	 * @param companyType the new company type
+	 */
 	public void setCompanyType(String companyType) {
 		this.companyType = companyType;
 	}

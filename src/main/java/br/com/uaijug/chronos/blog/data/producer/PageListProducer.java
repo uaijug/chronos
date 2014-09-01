@@ -29,26 +29,48 @@ import javax.inject.Named;
 import br.com.uaijug.chronos.blog.data.repository.PageRepository;
 import br.com.uaijug.chronos.blog.model.Page;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class PageListProducer.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @RequestScoped
 public class PageListProducer {
 
+    /** The page repository. */
     @Inject
     private PageRepository pageRepository;
 
+    /** The pages. */
     private List<Page> pages;
 
     // @Named provides access the return value via the EL variable name "posts" in the UI (e.g.
     // Facelets or JSP view)
+    /**
+     * Gets the pages.
+     *
+     * @return the pages
+     */
     @Produces
     @Named
     public List<Page> getPages() {
         return pages;
     }
 
+    /**
+     * On post list changed.
+     *
+     * @param page the page
+     */
     public void onPostListChanged(@Observes(notifyObserver = Reception.IF_EXISTS) final Page page) {
         retrieveAllPostsOrderedByTitle();
     }
 
+    /**
+     * Retrieve all posts ordered by title.
+     */
     @PostConstruct
     public void retrieveAllPostsOrderedByTitle() {
         pages = pageRepository.findAllOrderedByName();

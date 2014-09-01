@@ -29,26 +29,48 @@ import javax.inject.Named;
 import br.com.uaijug.chronos.event.speech.data.repository.SpeechRepository;
 import br.com.uaijug.chronos.event.speech.model.Speech;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class SpeechListProducer.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogerifontes dot inf dot br
+ * 
+ */
 @RequestScoped
 public class SpeechListProducer {
 
+    /** The speech repository. */
     @Inject
     private SpeechRepository speechRepository;
 
+    /** The speechs. */
     private List<Speech> speechs;
 
     // @Named provides access the return value via the EL variable name "speechs" in the UI (e.g.
     // Facelets or JSP view)
+    /**
+     * Gets the speechs.
+     *
+     * @return the speechs
+     */
     @Produces
     @Named
     public List<Speech> getSpeechs() {
         return speechs;
     }
 
+    /**
+     * On speech list changed.
+     *
+     * @param speech the speech
+     */
     public void onSpeechListChanged(@Observes(notifyObserver = Reception.IF_EXISTS) final Speech speech) {
         retrieveAllSpeechsOrderedByName();
     }
 
+    /**
+     * Retrieve all speechs ordered by name.
+     */
     @PostConstruct
     public void retrieveAllSpeechsOrderedByName() {
         speechs = speechRepository.findAllOrderedByName();

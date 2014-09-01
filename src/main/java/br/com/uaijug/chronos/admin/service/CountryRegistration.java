@@ -22,6 +22,12 @@ import br.com.uaijug.chronos.admin.model.Country;
 import br.com.uaijug.chronos.service.GenericRegistration;
 
 // The @Stateless annotation eliminates the need for manual transaction demarcation
+/**
+ * The Interface CountryRegistration.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @Local
 public interface CountryRegistration extends GenericRegistration<Country, Long> {
 

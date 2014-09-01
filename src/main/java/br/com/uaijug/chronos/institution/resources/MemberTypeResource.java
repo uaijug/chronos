@@ -43,34 +43,53 @@ import br.com.uaijug.chronos.institution.data.repository.AboutRepository;
 import br.com.uaijug.chronos.institution.model.About;
 import br.com.uaijug.chronos.institution.service.AboutRegistration;
 
+// TODO: Auto-generated Javadoc
 /**
  * JAX-RS Example
  * <p/>
  * This class produces a RESTful service to read/write the contents of the
  * abouts table.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
  */
 @Path("/abouts")
 @RequestScoped
 public class MemberTypeResource {
 
+	/** The log. */
 	@Inject
 	private Logger log;
 
+	/** The validator. */
 	@Inject
 	private Validator validator;
 
+	/** The repository. */
 	@Inject
 	private AboutRepository repository;
 
+	/** The registration. */
 	@Inject
 	AboutRegistration registration;
 
+	/**
+	 * List all abouts.
+	 *
+	 * @return the list
+	 */
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<About> listAllAbouts() {
 		return repository.findAllOrderedByName();
 	}
 
+	/**
+	 * Lookup about by id.
+	 *
+	 * @param id the id
+	 * @return the about
+	 */
 	@GET
 	@Path("/{id:[0-9][0-9]*}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -86,6 +105,9 @@ public class MemberTypeResource {
 	 * Creates a new about from the values provided. Performs validation, and
 	 * will return a JAX-RS response with either 200 ok, or with a map of
 	 * fields, and related errors.
+	 *
+	 * @param about the about
+	 * @return the response
 	 */
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)

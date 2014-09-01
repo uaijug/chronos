@@ -22,6 +22,12 @@ import br.com.uaijug.chronos.event.budget.model.Material;
 import br.com.uaijug.chronos.service.GenericRegistration;
 
 // The @Stateless annotation eliminates the need for manual transaction demarcation
+/**
+ * The Interface MaterialRegistration.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @Local
 public interface MaterialRegistration extends GenericRegistration<Material, Long> {
 

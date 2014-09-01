@@ -43,34 +43,53 @@ import br.com.uaijug.chronos.event.data.repository.EventMainRepository;
 import br.com.uaijug.chronos.event.model.EventMain;
 import br.com.uaijug.chronos.event.service.EventMainRegistration;
 
+// TODO: Auto-generated Javadoc
 /**
  * JAX-RS Example
  * <p/>
  * This class produces a RESTful service to read/write the contents of the
  * eventMains table.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
  */
 @Path("/eventMains")
 @RequestScoped
 public class EventMainResource {
 
+	/** The log. */
 	@Inject
 	private Logger log;
 
+	/** The validator. */
 	@Inject
 	private Validator validator;
 
+	/** The repository. */
 	@Inject
 	private EventMainRepository repository;
 
+	/** The registration. */
 	@Inject
 	EventMainRegistration registration;
 
+	/**
+	 * List all event mains.
+	 *
+	 * @return the list
+	 */
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<EventMain> listAllEventMains() {
 		return repository.findAllOrderedByName();
 	}
 
+	/**
+	 * Lookup event main by id.
+	 *
+	 * @param id the id
+	 * @return the event main
+	 */
 	@GET
 	@Path("/{id:[0-9][0-9]*}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -94,10 +113,13 @@ public class EventMainResource {
 	}*/
 	
 	/**
-	 * Creates a new eventMain from the values provided. Performs validation, and
-	 * will return a JAX-RS response with either 200 ok, or with a map of
-	 * fields, and related errors.
-	 */
+ * Creates a new eventMain from the values provided. Performs validation, and
+ * will return a JAX-RS response with either 200 ok, or with a map of
+ * fields, and related errors.
+ *
+ * @param eventMain the event main
+ * @return the response
+ */
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)

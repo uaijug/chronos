@@ -29,26 +29,48 @@ import javax.inject.Named;
 import br.com.uaijug.chronos.event.budget.data.repository.MaterialRepository;
 import br.com.uaijug.chronos.event.budget.model.Material;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class MaterialListProducer.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @RequestScoped
 public class MaterialListProducer {
 
+    /** The material repository. */
     @Inject
     private MaterialRepository materialRepository;
 
+    /** The materials. */
     private List<Material> materials;
 
     // @Named provides access the return value via the EL variable name "events" in the UI (e.g.
     // Facelets or JSP view)
+    /**
+     * Gets the materials.
+     *
+     * @return the materials
+     */
     @Produces
     @Named
     public List<Material> getMaterials() {
         return materials;
     }
 
+    /**
+     * On event list changed.
+     *
+     * @param material the material
+     */
     public void onEventListChanged(@Observes(notifyObserver = Reception.IF_EXISTS) final Material material) {
         retrieveAllEventsOrderedByName();
     }
 
+    /**
+     * Retrieve all events ordered by name.
+     */
     @PostConstruct
     public void retrieveAllEventsOrderedByName() {
     	materials = materialRepository.findAllOrderedByName();

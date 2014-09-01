@@ -29,26 +29,48 @@ import javax.inject.Named;
 import br.com.uaijug.chronos.event.speech.data.repository.SpeechTypeRepository;
 import br.com.uaijug.chronos.event.speech.model.SpeechType;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class SpeechTypeListProducer.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogerifontes dot inf dot br
+ * 
+ */
 @RequestScoped
 public class SpeechTypeListProducer {
 
+    /** The speech type repository. */
     @Inject
     private SpeechTypeRepository speechTypeRepository;
 
+    /** The speech types. */
     private List<SpeechType> speechTypes;
 
     // @Named provides access the return value via the EL variable name "speechTypes" in the UI (e.g.
     // Facelets or JSP view)
+    /**
+     * Gets the speech types.
+     *
+     * @return the speech types
+     */
     @Produces
     @Named
     public List<SpeechType> getSpeechTypes() {
         return speechTypes;
     }
 
+    /**
+     * On speech type list changed.
+     *
+     * @param speechType the speech type
+     */
     public void onSpeechTypeListChanged(@Observes(notifyObserver = Reception.IF_EXISTS) final SpeechType speechType) {
         retrieveAllSpeechTypesOrderedByName();
     }
 
+    /**
+     * Retrieve all speech types ordered by name.
+     */
     @PostConstruct
     public void retrieveAllSpeechTypesOrderedByName() {
         speechTypes = speechTypeRepository.findAllOrderedByName();

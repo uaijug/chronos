@@ -29,26 +29,48 @@ import javax.inject.Named;
 import br.com.uaijug.chronos.schedule.data.repository.ScheduleRepository;
 import br.com.uaijug.chronos.schedule.model.Schedule;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ScheduleListProducer.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @RequestScoped
 public class ScheduleListProducer {
 
+	/** The schedule repository. */
 	@Inject
 	private ScheduleRepository scheduleRepository;
 
+    /** The schedules. */
     private List<Schedule> schedules;
 
     // @Named provides access the return value via the EL variable name "schedules" in the UI (e.g.
     // Facelets or JSP view)
+    /**
+     * Gets the schedules.
+     *
+     * @return the schedules
+     */
     @Produces
     @Named
     public List<Schedule> getSchedules() {
         return schedules;
     }
 
+    /**
+     * On schedule list changed.
+     *
+     * @param schedule the schedule
+     */
     public void onScheduleListChanged(@Observes(notifyObserver = Reception.IF_EXISTS) final Schedule schedule) {
         retrieveAllSchedulesOrderedByName();
     }
 
+    /**
+     * Retrieve all schedules ordered by name.
+     */
     @PostConstruct
     public void retrieveAllSchedulesOrderedByName() {
         schedules = scheduleRepository.findAllOrderedByName();

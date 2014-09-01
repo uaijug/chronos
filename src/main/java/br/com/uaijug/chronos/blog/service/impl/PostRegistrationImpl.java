@@ -27,16 +27,28 @@ import br.com.uaijug.chronos.blog.model.Post;
 import br.com.uaijug.chronos.blog.service.PostRegistration;
 import br.com.uaijug.chronos.persistence.base.PersistenceBase;
 
+// TODO: Auto-generated Javadoc
 // The @Stateless annotation eliminates the need for manual transaction demarcation
+/**
+ * The Class PostRegistrationImpl.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @Stateless
 public class PostRegistrationImpl extends PersistenceBase<Post, Long> implements PostRegistration {
 
+    /** The log. */
     @Inject
     private Logger log;
     
+    /** The post event src. */
     @Inject
     private Event<Post> postEventSrc;
 
+    /* (non-Javadoc)
+     * @see br.com.uaijug.chronos.service.GenericRegistration#register(java.lang.Object)
+     */
     @Override
 	public Boolean register(Post post) {
 		Boolean saved = false;

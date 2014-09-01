@@ -27,9 +27,19 @@ import br.com.uaijug.chronos.institution.data.repository.MemberTypeRepository;
 import br.com.uaijug.chronos.institution.model.MemberType;
 import br.com.uaijug.chronos.persistence.base.PersistenceBase;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class MemberTypeDefaultRepository.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @ApplicationScoped
 public class MemberTypeDefaultRepository extends PersistenceBase<MemberType, Long> implements MemberTypeRepository {
 
+    /* (non-Javadoc)
+     * @see br.com.uaijug.chronos.institution.data.repository.MemberTypeRepository#findAllOrderedByName()
+     */
     public List<MemberType> findAllOrderedByName() {
         CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
         CriteriaQuery<MemberType> criteria = cb.createQuery(MemberType.class);

@@ -29,26 +29,48 @@ import javax.inject.Named;
 import br.com.uaijug.chronos.admin.data.repository.CountryRepository;
 import br.com.uaijug.chronos.admin.model.Country;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class CountryListProducer.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @RequestScoped
 public class CountryListProducer {
 
+	/** The country repository. */
 	@Inject
 	private CountryRepository countryRepository;
 
+    /** The countrys. */
     private List<Country> countrys;
 
     // @Named provides access the return value via the EL variable name "countrys" in the UI (e.g.
     // Facelets or JSP view)
+    /**
+     * Gets the countrys.
+     *
+     * @return the countrys
+     */
     @Produces
     @Named
     public List<Country> getCountrys() {
         return countrys;
     }
 
+    /**
+     * On country list changed.
+     *
+     * @param country the country
+     */
     public void onCountryListChanged(@Observes(notifyObserver = Reception.IF_EXISTS) final Country country) {
         retrieveAllCountrysOrderedByName();
     }
 
+    /**
+     * Retrieve all countrys ordered by name.
+     */
     @PostConstruct
     public void retrieveAllCountrysOrderedByName() {
         countrys = countryRepository.findAllOrderedByName();

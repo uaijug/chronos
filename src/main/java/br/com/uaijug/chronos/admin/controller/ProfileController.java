@@ -28,25 +28,40 @@ import br.com.uaijug.chronos.admin.model.Profile;
 import br.com.uaijug.chronos.admin.service.ProfileRegistration;
 import br.com.uaijug.chronos.controller.AbstractManageBeans;
 
+// TODO: Auto-generated Javadoc
 // The @Model stereotype is a convenience mechanism to make this a request-scoped bean that has an
 // EL name
 // Read more about the @Model stereotype in this FAQ:
 // http://sfwk.org/Documentation/WhatIsThePurposeOfTheModelAnnotation
+/**
+ * The Class ProfileController.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @Model
 public class ProfileController extends AbstractManageBeans {
 
+	/** The profile registration. */
 	@Inject
 	private ProfileRegistration profileRegistration;
 
+	/** The profile repository. */
 	@Inject
 	private ProfileRepository profileRepository;
 
+	/** The id profile. */
 	private Long idProfile;
 
+	/** The profile. */
 	private Profile profile;
 
+	/** The profiles. */
 	List<Profile> profiles;
 
+	/**
+	 * Inits the new profile.
+	 */
 	@PostConstruct
 	public void initNewProfile() {
 		profile = new Profile();
@@ -57,6 +72,11 @@ public class ProfileController extends AbstractManageBeans {
 		idProfile = null;
 	}
 
+	/**
+	 * Gets the profiles.
+	 *
+	 * @return the profiles
+	 */
 	public List<Profile> getProfiles() {
 		return profileRepository.findAll();
 	}
@@ -77,6 +97,12 @@ public class ProfileController extends AbstractManageBeans {
 		}
 	}
 
+	/**
+	 * Register.
+	 *
+	 * @return the string
+	 * @throws Exception the exception
+	 */
 	public String register() throws Exception {
 		try {
 
@@ -91,28 +117,56 @@ public class ProfileController extends AbstractManageBeans {
 		return null;
 	}
 
+	/**
+	 * Cancelar.
+	 *
+	 * @return the string
+	 */
 	public String cancelar() {
 		limpar();
 		return "list?faces-redirect=true";
 	}
 
+	/**
+	 * Limpar.
+	 */
 	private void limpar() {
 		idProfile = null;
 		profile = new Profile();
 	}
 
+	/**
+	 * Gets the id profile.
+	 *
+	 * @return the id profile
+	 */
 	public Long getIdProfile() {
 		return idProfile;
 	}
 
+	/**
+	 * Sets the id profile.
+	 *
+	 * @param idProfile the new id profile
+	 */
 	public void setIdProfile(Long idProfile) {
 		this.idProfile = idProfile;
 	}
 
+	/**
+	 * Gets the profile.
+	 *
+	 * @return the profile
+	 */
 	public Profile getProfile() {
 		return profile;
 	}
 
+	/**
+	 * Sets the profile.
+	 *
+	 * @param profile the new profile
+	 */
 	public void setProfile(Profile profile) {
 		this.profile = profile;
 	}

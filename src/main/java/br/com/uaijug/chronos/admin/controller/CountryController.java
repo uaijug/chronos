@@ -28,25 +28,40 @@ import br.com.uaijug.chronos.admin.model.Country;
 import br.com.uaijug.chronos.admin.service.CountryRegistration;
 import br.com.uaijug.chronos.controller.AbstractManageBeans;
 
+// TODO: Auto-generated Javadoc
 // The @Model stereotype is a convenience mechanism to make this a request-scoped bean that has an
 // EL name
 // Read more about the @Model stereotype in this FAQ:
 // http://sfwk.org/Documentation/WhatIsThePurposeOfTheModelAnnotation
+/**
+ * The Class CountryController.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @Model
 public class CountryController extends AbstractManageBeans {
 
+	/** The country registration. */
 	@Inject
 	private CountryRegistration countryRegistration;
 
+	/** The country repository. */
 	@Inject
 	private CountryRepository countryRepository;
 
+	/** The id country. */
 	private Long idCountry;
 
+	/** The country. */
 	private Country country;
 
+	/** The countrys. */
 	List<Country> countrys;
 
+	/**
+	 * Inits the new country.
+	 */
 	@PostConstruct
 	public void initNewCountry() {
 		country = new Country();
@@ -57,6 +72,11 @@ public class CountryController extends AbstractManageBeans {
 		idCountry = null;
 	}
 
+	/**
+	 * Gets the countrys.
+	 *
+	 * @return the countrys
+	 */
 	public List<Country> getCountrys() {
 		return countryRepository.findAll();
 	}
@@ -77,6 +97,12 @@ public class CountryController extends AbstractManageBeans {
 		}
 	}
 
+	/**
+	 * Register.
+	 *
+	 * @return the string
+	 * @throws Exception the exception
+	 */
 	public String register() throws Exception {
 		try {
 
@@ -91,28 +117,56 @@ public class CountryController extends AbstractManageBeans {
 		return null;
 	}
 
+	/**
+	 * Cancelar.
+	 *
+	 * @return the string
+	 */
 	public String cancelar() {
 		limpar();
 		return "list?faces-redirect=true";
 	}
 
+	/**
+	 * Limpar.
+	 */
 	private void limpar() {
 		idCountry = null;
 		country = new Country();
 	}
 
+	/**
+	 * Gets the id country.
+	 *
+	 * @return the id country
+	 */
 	public Long getIdCountry() {
 		return idCountry;
 	}
 
+	/**
+	 * Sets the id country.
+	 *
+	 * @param idCountry the new id country
+	 */
 	public void setIdCountry(Long idCountry) {
 		this.idCountry = idCountry;
 	}
 
+	/**
+	 * Gets the country.
+	 *
+	 * @return the country
+	 */
 	public Country getCountry() {
 		return country;
 	}
 
+	/**
+	 * Sets the country.
+	 *
+	 * @param country the new country
+	 */
 	public void setCountry(Country country) {
 		this.country = country;
 	}

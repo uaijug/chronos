@@ -43,34 +43,53 @@ import br.com.uaijug.chronos.schedule.data.repository.ActivityRepository;
 import br.com.uaijug.chronos.schedule.model.Activity;
 import br.com.uaijug.chronos.schedule.service.ActivityRegistration;
 
+// TODO: Auto-generated Javadoc
 /**
  * JAX-RS Example
  * <p/>
  * This class produces a RESTful service to read/write the contents of the
  * activitys table.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogerifontes dot inf dot br
+ * 
  */
 @Path("/activitys")
 @RequestScoped
 public class ActivityResource {
 
+	/** The log. */
 	@Inject
 	private Logger log;
 
+	/** The validator. */
 	@Inject
 	private Validator validator;
 
+	/** The repository. */
 	@Inject
 	private ActivityRepository repository;
 
+	/** The registration. */
 	@Inject
 	ActivityRegistration registration;
 
+	/**
+	 * List all activitys.
+	 *
+	 * @return the list
+	 */
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Activity> listAllActivitys() {
 		return repository.findAllOrderedByName();
 	}
 
+	/**
+	 * Lookup activity by id.
+	 *
+	 * @param id the id
+	 * @return the activity
+	 */
 	@GET
 	@Path("/{id:[0-9][0-9]*}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -86,6 +105,9 @@ public class ActivityResource {
 	 * Creates a new activity from the values provided. Performs validation, and
 	 * will return a JAX-RS response with either 200 ok, or with a map of
 	 * fields, and related errors.
+	 *
+	 * @param activity the activity
+	 * @return the response
 	 */
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)

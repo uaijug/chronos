@@ -21,6 +21,19 @@ import java.util.List;
 import br.com.uaijug.chronos.event.speaker.model.Speaker;
 import br.com.uaijug.chronos.persistence.Persistence;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Interface SpeakerRepository.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogerifontes dot inf dot br
+ * 
+ */
 public interface SpeakerRepository extends Persistence<Speaker, Long> {
+	
+	/**
+	 * Find all ordered by name.
+	 *
+	 * @return the list
+	 */
 	List<Speaker> findAllOrderedByName();
 }

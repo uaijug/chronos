@@ -29,26 +29,48 @@ import javax.inject.Named;
 import br.com.uaijug.chronos.admin.data.repository.UserRepository;
 import br.com.uaijug.chronos.admin.model.User;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class UserListProducer.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @RequestScoped
 public class UserListProducer {
 
+	/** The user repository. */
 	@Inject
 	private UserRepository userRepository;
 
+    /** The users. */
     private List<User> users;
 
     // @Named provides access the return value via the EL variable name "users" in the UI (e.g.
     // Facelets or JSP view)
+    /**
+     * Gets the users.
+     *
+     * @return the users
+     */
     @Produces
     @Named
     public List<User> getUsers() {
         return users;
     }
 
+    /**
+     * On user list changed.
+     *
+     * @param user the user
+     */
     public void onUserListChanged(@Observes(notifyObserver = Reception.IF_EXISTS) final User user) {
         retrieveAllUsersOrderedByName();
     }
 
+    /**
+     * Retrieve all users ordered by name.
+     */
     @PostConstruct
     public void retrieveAllUsersOrderedByName() {
         users = userRepository.findAllOrderedByName();

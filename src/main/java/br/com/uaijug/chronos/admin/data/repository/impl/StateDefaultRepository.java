@@ -27,9 +27,19 @@ import br.com.uaijug.chronos.admin.data.repository.StateRepository;
 import br.com.uaijug.chronos.admin.model.State;
 import br.com.uaijug.chronos.persistence.base.PersistenceBase;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class StateDefaultRepository.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @ApplicationScoped
 public class StateDefaultRepository extends PersistenceBase<State, Long> implements StateRepository {
 
+    /* (non-Javadoc)
+     * @see br.com.uaijug.chronos.admin.data.repository.StateRepository#findAllOrderedByName()
+     */
     public List<State> findAllOrderedByName() {
         CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
         CriteriaQuery<State> criteria = cb.createQuery(State.class);

@@ -27,16 +27,28 @@ import br.com.uaijug.chronos.event.budget.model.PurchaseCost;
 import br.com.uaijug.chronos.event.budget.service.PurchaseCostRegistration;
 import br.com.uaijug.chronos.persistence.base.PersistenceBase;
 
+// TODO: Auto-generated Javadoc
 // The @Stateless annotation eliminates the need for manual transaction demarcation
+/**
+ * The Class PurchaseCostRegistrationImpl.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @Stateless
 public class PurchaseCostRegistrationImpl extends PersistenceBase<PurchaseCost, Long> implements PurchaseCostRegistration {
 
+    /** The log. */
     @Inject
     private Logger log;
     
+    /** The event purchase cost src. */
     @Inject
     private Event<PurchaseCost> eventPurchaseCostSrc;
 
+    /* (non-Javadoc)
+     * @see br.com.uaijug.chronos.service.GenericRegistration#register(java.lang.Object)
+     */
     @Override
    	public Boolean register(PurchaseCost purchaseCost) {
    		Boolean saved = false;

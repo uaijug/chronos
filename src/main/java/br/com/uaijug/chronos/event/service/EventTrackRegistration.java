@@ -22,6 +22,12 @@ import br.com.uaijug.chronos.event.model.EventTrack;
 import br.com.uaijug.chronos.service.GenericRegistration;
 
 // The @Stateless annotation eliminates the need for manual transaction demarcation
+/**
+ * The Interface EventTrackRegistration.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogerifontes dot inf dot br
+ * 
+ */
 @Local
 public interface EventTrackRegistration extends GenericRegistration<EventTrack, Long> {
 

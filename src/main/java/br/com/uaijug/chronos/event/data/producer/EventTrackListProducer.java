@@ -29,26 +29,48 @@ import javax.inject.Named;
 import br.com.uaijug.chronos.event.data.repository.EventTrackRepository;
 import br.com.uaijug.chronos.event.model.EventTrack;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class EventTrackListProducer.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @RequestScoped
 public class EventTrackListProducer {
 
+	/** The event track repository. */
 	@Inject
     private EventTrackRepository eventTrackRepository;
 
+    /** The event tracks. */
     private List<EventTrack> eventTracks;
 
     // @Named provides access the return value via the EL variable name "eventTracks" in the UI (e.g.
     // Facelets or JSP view)
+    /**
+     * Gets the event tracks.
+     *
+     * @return the event tracks
+     */
     @Produces
     @Named
     public List<EventTrack> getEventTracks() {
         return eventTracks;
     }
 
+    /**
+     * On event track list changed.
+     *
+     * @param eventTrack the event track
+     */
     public void onEventTrackListChanged(@Observes(notifyObserver = Reception.IF_EXISTS) final EventTrack eventTrack) {
         retrieveAllEventTracksOrderedByName();
     }
 
+    /**
+     * Retrieve all event tracks ordered by name.
+     */
     @PostConstruct
     public void retrieveAllEventTracksOrderedByName() {
         eventTracks = eventTrackRepository.findAllOrderedByName();

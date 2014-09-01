@@ -43,34 +43,53 @@ import br.com.uaijug.chronos.event.sponsor.data.repository.SponsorFollowupReposi
 import br.com.uaijug.chronos.event.sponsor.model.SponsorFollowup;
 import br.com.uaijug.chronos.event.sponsor.service.SponsorFollowupRegistration;
 
+// TODO: Auto-generated Javadoc
 /**
  * JAX-RS Example
  * <p/>
  * This class produces a RESTful service to read/write the contents of the
  * sponsorFollowups table.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
  */
 @Path("/sponsorFollowups")
 @RequestScoped
 public class SponsorFollowupResource {
 
+	/** The log. */
 	@Inject
 	private Logger log;
 
+	/** The validator. */
 	@Inject
 	private Validator validator;
 
+	/** The repository. */
 	@Inject
 	private SponsorFollowupRepository repository;
 
+	/** The registration. */
 	@Inject
 	SponsorFollowupRegistration registration;
 
+	/**
+	 * List all sponsor followups.
+	 *
+	 * @return the list
+	 */
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<SponsorFollowup> listAllSponsorFollowups() {
 		return repository.findAllOrderedByName();
 	}
 
+	/**
+	 * Lookup sponsor followup by id.
+	 *
+	 * @param id the id
+	 * @return the sponsor followup
+	 */
 	@GET
 	@Path("/{id:[0-9][0-9]*}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -86,6 +105,9 @@ public class SponsorFollowupResource {
 	 * Creates a new sponsorFollowup from the values provided. Performs validation, and
 	 * will return a JAX-RS response with either 200 ok, or with a map of
 	 * fields, and related errors.
+	 *
+	 * @param sponsorFollowup the sponsor followup
+	 * @return the response
 	 */
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)

@@ -43,34 +43,53 @@ import br.com.uaijug.chronos.admin.data.repository.CityRepository;
 import br.com.uaijug.chronos.admin.model.City;
 import br.com.uaijug.chronos.admin.service.CityRegistration;
 
+// TODO: Auto-generated Javadoc
 /**
  * JAX-RS Example
  * <p/>
  * This class produces a RESTful service to read/write the contents of the
  * citys table.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
  */
 @Path("/citys")
 @RequestScoped
 public class CityResource {
 
+	/** The log. */
 	@Inject
 	private Logger log;
 
+	/** The validator. */
 	@Inject
 	private Validator validator;
 
+	/** The repository. */
 	@Inject
 	private CityRepository repository;
 
+	/** The registration. */
 	@Inject
 	CityRegistration registration;
 
+	/**
+	 * List all citys.
+	 *
+	 * @return the list
+	 */
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<City> listAllCitys() {
 		return repository.findAllOrderedByName();
 	}
 
+	/**
+	 * Lookup city by id.
+	 *
+	 * @param id the id
+	 * @return the city
+	 */
 	@GET
 	@Path("/{id:[0-9][0-9]*}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -86,6 +105,9 @@ public class CityResource {
 	 * Creates a new city from the values provided. Performs validation, and
 	 * will return a JAX-RS response with either 200 ok, or with a map of
 	 * fields, and related errors.
+	 *
+	 * @param city the city
+	 * @return the response
 	 */
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)

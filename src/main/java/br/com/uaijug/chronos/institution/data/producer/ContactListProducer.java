@@ -29,26 +29,48 @@ import javax.inject.Named;
 import br.com.uaijug.chronos.institution.data.repository.ContactRepository;
 import br.com.uaijug.chronos.institution.model.Contact;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ContactListProducer.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @RequestScoped
 public class ContactListProducer {
 
+	/** The contact repository. */
 	@Inject
 	private ContactRepository contactRepository;
 
+    /** The contacts. */
     private List<Contact> contacts;
 
     // @Named provides access the return value via the EL variable name "institutions" in the UI (e.g.
     // Facelets or JSP view)
+    /**
+     * Gets the contacts.
+     *
+     * @return the contacts
+     */
     @Produces
     @Named
     public List<Contact> getContacts() {
         return contacts;
     }
 
+    /**
+     * On institution list changed.
+     *
+     * @param contact the contact
+     */
     public void onInstitutionListChanged(@Observes(notifyObserver = Reception.IF_EXISTS) final Contact contact) {
     	retrieveAllContactsOrderedByName();
     }
 
+    /**
+     * Retrieve all contacts ordered by name.
+     */
     @PostConstruct
     public void retrieveAllContactsOrderedByName() {
     	contacts = contactRepository.findAllOrderedByName();

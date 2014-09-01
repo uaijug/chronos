@@ -27,9 +27,19 @@ import br.com.uaijug.chronos.admin.data.repository.CompanyRepository;
 import br.com.uaijug.chronos.admin.model.Company;
 import br.com.uaijug.chronos.persistence.base.PersistenceBase;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class CompanyDefaultRepository.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @ApplicationScoped
 public class CompanyDefaultRepository extends PersistenceBase<Company, Long> implements CompanyRepository {
 
+    /* (non-Javadoc)
+     * @see br.com.uaijug.chronos.admin.data.repository.CompanyRepository#findAllOrderedByName()
+     */
     public List<Company> findAllOrderedByName() {
         CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
         CriteriaQuery<Company> criteria = cb.createQuery(Company.class);

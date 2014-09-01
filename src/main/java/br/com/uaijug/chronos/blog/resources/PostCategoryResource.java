@@ -43,34 +43,53 @@ import br.com.uaijug.chronos.blog.data.repository.PostCategoryRepository;
 import br.com.uaijug.chronos.blog.model.PostCategory;
 import br.com.uaijug.chronos.blog.service.PostCategoryRegistration;
 
+// TODO: Auto-generated Javadoc
 /**
  * JAX-RS Example
  * <p/>
  * This class produces a RESTful service to read/write the contents of the
  * posts table.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
  */
 @Path("/postCategorys")
 @RequestScoped
 public class PostCategoryResource {
 
+	/** The log. */
 	@Inject
 	private Logger log;
 
+	/** The validator. */
 	@Inject
 	private Validator validator;
 
+	/** The repository. */
 	@Inject
 	private PostCategoryRepository repository;
 
+	/** The registration. */
 	@Inject
 	PostCategoryRegistration registration;
 
+	/**
+	 * List all post categorys.
+	 *
+	 * @return the list
+	 */
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<PostCategory> listAllPostCategorys() {
 		return repository.findAllOrderedByName();
 	}
 
+	/**
+	 * Lookup post by id.
+	 *
+	 * @param id the id
+	 * @return the post category
+	 */
 	@GET
 	@Path("/{id:[0-9][0-9]*}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -86,6 +105,9 @@ public class PostCategoryResource {
 	 * Creates a new post from the values provided. Performs validation, and
 	 * will return a JAX-RS response with either 200 ok, or with a map of
 	 * fields, and related errors.
+	 *
+	 * @param postCategory the post category
+	 * @return the response
 	 */
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -128,13 +150,10 @@ public class PostCategoryResource {
 	 * registered it throws a regular validation exception so that it can be
 	 * interpreted separately.
 	 * </p>
-	 * 
-	 * @param post
-	 *            Post to be validated
-	 * @throws ConstraintViolationException
-	 *             If Bean Validation errors exist
-	 * @throws ValidationException
-	 *             If post with the same email already exists
+	 *
+	 * @param postCategory the post category
+	 * @throws ConstraintViolationException             If Bean Validation errors exist
+	 * @throws ValidationException             If post with the same email already exists
 	 */
 	private void validatePostCategory(PostCategory postCategory)
 			throws ConstraintViolationException, ValidationException {

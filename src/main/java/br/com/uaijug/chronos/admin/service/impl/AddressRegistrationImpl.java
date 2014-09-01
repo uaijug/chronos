@@ -27,16 +27,28 @@ import br.com.uaijug.chronos.admin.model.Address;
 import br.com.uaijug.chronos.admin.service.AddressRegistration;
 import br.com.uaijug.chronos.persistence.base.PersistenceBase;
 
+// TODO: Auto-generated Javadoc
 // The @Stateless annotation eliminates the need for manual transaction demarcation
+/**
+ * The Class AddressRegistrationImpl.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @Stateless
 public class AddressRegistrationImpl extends PersistenceBase<Address, Long> implements AddressRegistration {
 
+    /** The log. */
     @Inject
     private Logger log;
     
+    /** The address event src. */
     @Inject
     private Event<Address> addressEventSrc;
 
+    /* (non-Javadoc)
+     * @see br.com.uaijug.chronos.service.GenericRegistration#register(java.lang.Object)
+     */
     @Override
   	public Boolean register(Address address) {
   		Boolean saved = false;

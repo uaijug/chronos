@@ -29,26 +29,48 @@ import javax.inject.Named;
 import br.com.uaijug.chronos.studygroup.data.repository.StudyGroupRepository;
 import br.com.uaijug.chronos.studygroup.model.StudyGroup;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class StudyGroupListProducer.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @RequestScoped
 public class StudyGroupListProducer {
 
+	/** The study group repository. */
 	@Inject
 	private StudyGroupRepository studyGroupRepository;
 
+    /** The study groups. */
     private List<StudyGroup> studyGroups;
 
     // @Named provides access the return value via the EL variable name "studyGroups" in the UI (e.g.
     // Facelets or JSP view)
+    /**
+     * Gets the study groups.
+     *
+     * @return the study groups
+     */
     @Produces
     @Named
     public List<StudyGroup> getStudyGroups() {
         return studyGroups;
     }
 
+    /**
+     * On study group list changed.
+     *
+     * @param studyGroup the study group
+     */
     public void onStudyGroupListChanged(@Observes(notifyObserver = Reception.IF_EXISTS) final StudyGroup studyGroup) {
         retrieveAllStudyGroupsOrderedByName();
     }
 
+    /**
+     * Retrieve all study groups ordered by name.
+     */
     @PostConstruct
     public void retrieveAllStudyGroupsOrderedByName() {
         studyGroups = studyGroupRepository.findAllOrderedByName();

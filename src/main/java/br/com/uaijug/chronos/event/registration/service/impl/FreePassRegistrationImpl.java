@@ -27,16 +27,28 @@ import br.com.uaijug.chronos.event.registration.model.FreePass;
 import br.com.uaijug.chronos.event.registration.service.FreePassRegistration;
 import br.com.uaijug.chronos.persistence.base.PersistenceBase;
 
+// TODO: Auto-generated Javadoc
 // The @Stateless annotation eliminates the need for manual transaction demarcation
+/**
+ * The Class FreePassRegistrationImpl.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @Stateless
 public class FreePassRegistrationImpl extends PersistenceBase<FreePass, Long> implements FreePassRegistration {
 
+    /** The log. */
     @Inject
     private Logger log;
     
+    /** The event free pass src. */
     @Inject
     private Event<FreePass> eventFreePassSrc;
     
+    /* (non-Javadoc)
+     * @see br.com.uaijug.chronos.service.GenericRegistration#register(java.lang.Object)
+     */
     @Override
    	public Boolean register(FreePass freePass) {
    		Boolean saved = false;

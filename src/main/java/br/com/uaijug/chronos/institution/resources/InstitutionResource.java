@@ -43,34 +43,53 @@ import br.com.uaijug.chronos.institution.data.repository.InstitutionRepository;
 import br.com.uaijug.chronos.institution.model.Institution;
 import br.com.uaijug.chronos.institution.service.InstitutionRegistration;
 
+// TODO: Auto-generated Javadoc
 /**
  * JAX-RS Example
  * <p/>
  * This class produces a RESTful service to read/write the contents of the
  * institutions table.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
  */
 @Path("/institutions")
 @RequestScoped
 public class InstitutionResource {
 
+	/** The log. */
 	@Inject
 	private Logger log;
 
+	/** The validator. */
 	@Inject
 	private Validator validator;
 
+	/** The repository. */
 	@Inject
 	private InstitutionRepository repository;
 
+	/** The registration. */
 	@Inject
 	InstitutionRegistration registration;
 
+	/**
+	 * List all institutions.
+	 *
+	 * @return the list
+	 */
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Institution> listAllInstitutions() {
 		return repository.findAllOrderedByName();
 	}
 
+	/**
+	 * Lookup institution by id.
+	 *
+	 * @param id the id
+	 * @return the institution
+	 */
 	@GET
 	@Path("/{id:[0-9][0-9]*}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -86,6 +105,9 @@ public class InstitutionResource {
 	 * Creates a new institution from the values provided. Performs validation, and
 	 * will return a JAX-RS response with either 200 ok, or with a map of
 	 * fields, and related errors.
+	 *
+	 * @param institution the institution
+	 * @return the response
 	 */
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)

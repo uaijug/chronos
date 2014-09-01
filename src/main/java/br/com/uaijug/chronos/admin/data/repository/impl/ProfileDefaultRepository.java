@@ -27,9 +27,19 @@ import br.com.uaijug.chronos.admin.data.repository.ProfileRepository;
 import br.com.uaijug.chronos.admin.model.Profile;
 import br.com.uaijug.chronos.persistence.base.PersistenceBase;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ProfileDefaultRepository.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @ApplicationScoped
 public class ProfileDefaultRepository extends PersistenceBase<Profile, Long> implements ProfileRepository {
 
+    /* (non-Javadoc)
+     * @see br.com.uaijug.chronos.admin.data.repository.ProfileRepository#findAllOrderedByName()
+     */
     public List<Profile> findAllOrderedByName() {
         CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
         CriteriaQuery<Profile> criteria = cb.createQuery(Profile.class);

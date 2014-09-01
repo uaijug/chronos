@@ -27,16 +27,28 @@ import br.com.uaijug.chronos.institution.model.Contact;
 import br.com.uaijug.chronos.institution.service.ContactRegistration;
 import br.com.uaijug.chronos.persistence.base.PersistenceBase;
 
+// TODO: Auto-generated Javadoc
 // The @Stateless annotation eliminates the need for manual transaction demarcation
+/**
+ * The Class ContactRegistrationImpl.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @Stateless
 public class ContactRegistrationImpl extends PersistenceBase<Contact, Long> implements ContactRegistration {
 
+    /** The log. */
     @Inject
     private Logger log;
     
+    /** The contact event src. */
     @Inject
     private Event<Contact> contactEventSrc;
 
+    /* (non-Javadoc)
+     * @see br.com.uaijug.chronos.service.GenericRegistration#register(java.lang.Object)
+     */
     @Override
    	public Boolean register(Contact contact) {
    		Boolean saved = false;

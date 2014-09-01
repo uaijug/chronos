@@ -21,6 +21,19 @@ import java.util.List;
 import br.com.uaijug.chronos.admin.model.User;
 import br.com.uaijug.chronos.persistence.Persistence;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Interface UserRepository.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 public interface UserRepository extends Persistence<User, Long> {
+	
+	/**
+	 * Find all ordered by name.
+	 *
+	 * @return the list
+	 */
 	List<User> findAllOrderedByName();
 }

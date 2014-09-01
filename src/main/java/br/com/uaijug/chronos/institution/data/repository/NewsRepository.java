@@ -21,6 +21,19 @@ import java.util.List;
 import br.com.uaijug.chronos.institution.model.News;
 import br.com.uaijug.chronos.persistence.Persistence;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Interface NewsRepository.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 public interface NewsRepository extends Persistence<News, Long> {
+	
+	/**
+	 * Find all ordered by name.
+	 *
+	 * @return the list
+	 */
 	List<News> findAllOrderedByName();
 }

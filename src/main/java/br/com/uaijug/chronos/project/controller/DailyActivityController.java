@@ -28,25 +28,40 @@ import br.com.uaijug.chronos.project.data.repository.DailyActivityRepository;
 import br.com.uaijug.chronos.project.model.DailyActivity;
 import br.com.uaijug.chronos.project.service.DailyActivityRegistration;
 
+// TODO: Auto-generated Javadoc
 // The @Model stereotype is a convenience mechanism to make this a request-scoped bean that has an
 // EL name
 // Read more about the @Model stereotype in this FAQ:
 // http://sfwk.org/Documentation/WhatIsThePurposeOfTheModelAnnotation
+/**
+ * The Class DailyActivityController.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @Model
 public class DailyActivityController extends AbstractManageBeans {
 
+	/** The daily activity registration. */
 	@Inject
 	private DailyActivityRegistration dailyActivityRegistration;
 
+	/** The daily activity repository. */
 	@Inject
 	private DailyActivityRepository dailyActivityRepository;
 
+	/** The id daily activity. */
 	private Long idDailyActivity;
 
+	/** The daily activity. */
 	private DailyActivity dailyActivity;
 
+	/** The daily activitys. */
 	List<DailyActivity> dailyActivitys;
 
+	/**
+	 * Inits the new daily activity.
+	 */
 	@PostConstruct
 	public void initNewDailyActivity() {
 		dailyActivity = new DailyActivity();
@@ -57,6 +72,11 @@ public class DailyActivityController extends AbstractManageBeans {
 		idDailyActivity = null;
 	}
 
+	/**
+	 * Gets the daily activitys.
+	 *
+	 * @return the daily activitys
+	 */
 	public List<DailyActivity> getDailyActivitys() {
 		return dailyActivityRepository.findAll();
 	}
@@ -77,6 +97,12 @@ public class DailyActivityController extends AbstractManageBeans {
 		}
 	}
 
+	/**
+	 * Register.
+	 *
+	 * @return the string
+	 * @throws Exception the exception
+	 */
 	public String register() throws Exception {
 		try {
 
@@ -91,28 +117,56 @@ public class DailyActivityController extends AbstractManageBeans {
 		return null;
 	}
 
+	/**
+	 * Cancelar.
+	 *
+	 * @return the string
+	 */
 	public String cancelar() {
 		limpar();
 		return "list?faces-redirect=true";
 	}
 
+	/**
+	 * Limpar.
+	 */
 	private void limpar() {
 		idDailyActivity = null;
 		dailyActivity = new DailyActivity();
 	}
 
+	/**
+	 * Gets the id daily activity.
+	 *
+	 * @return the id daily activity
+	 */
 	public Long getIdDailyActivity() {
 		return idDailyActivity;
 	}
 
+	/**
+	 * Sets the id daily activity.
+	 *
+	 * @param idDailyActivity the new id daily activity
+	 */
 	public void setIdDailyActivity(Long idDailyActivity) {
 		this.idDailyActivity = idDailyActivity;
 	}
 
+	/**
+	 * Gets the daily activity.
+	 *
+	 * @return the daily activity
+	 */
 	public DailyActivity getDailyActivity() {
 		return dailyActivity;
 	}
 
+	/**
+	 * Sets the daily activity.
+	 *
+	 * @param dailyActivity the new daily activity
+	 */
 	public void setDailyActivity(DailyActivity dailyActivity) {
 		this.dailyActivity = dailyActivity;
 	}

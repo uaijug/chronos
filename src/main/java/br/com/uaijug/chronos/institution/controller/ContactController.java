@@ -28,25 +28,40 @@ import br.com.uaijug.chronos.institution.data.repository.ContactRepository;
 import br.com.uaijug.chronos.institution.model.Contact;
 import br.com.uaijug.chronos.institution.service.ContactRegistration;
 
+// TODO: Auto-generated Javadoc
 // The @Model stereotype is a convenience mechanism to make this a request-scoped bean that has an
 // EL name
 // Read more contact the @Model stereotype in this FAQ:
 // http://sfwk.org/Documentation/WhatIsThePurposeOfTheModelAnnotation
+/**
+ * The Class ContactController.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @Model
 public class ContactController extends AbstractManageBeans {
 
+	/** The contact registration. */
 	@Inject
 	private ContactRegistration contactRegistration;
 
+	/** The contact repository. */
 	@Inject
 	private ContactRepository contactRepository;
 
+	/** The id contact. */
 	private Long idContact;
 	
+	/** The contact. */
 	private Contact contact;
 
+	/** The contacts. */
 	List<Contact> contacts;
 
+	/**
+	 * Inits the new contact.
+	 */
 	@PostConstruct
 	public void initNewContact() {
 		contact = new Contact();
@@ -57,6 +72,11 @@ public class ContactController extends AbstractManageBeans {
 		idContact = null;
 	}
 
+	/**
+	 * Gets the contacts.
+	 *
+	 * @return the contacts
+	 */
 	public List<Contact> getContacts() {
 		return contactRepository.findAll();
 	}
@@ -77,6 +97,12 @@ public class ContactController extends AbstractManageBeans {
 		}
 	}
 
+	/**
+	 * Register.
+	 *
+	 * @return the string
+	 * @throws Exception the exception
+	 */
 	public String register() throws Exception {
 		try {
 
@@ -91,28 +117,56 @@ public class ContactController extends AbstractManageBeans {
 		return null;
 	}
 
+	/**
+	 * Cancelar.
+	 *
+	 * @return the string
+	 */
 	public String cancelar() {
 		limpar();
 		return "list?faces-redirect=true";
 	}
 
+	/**
+	 * Limpar.
+	 */
 	private void limpar() {
 		idContact = null;
 		contact = new Contact();
 	}
 
+	/**
+	 * Gets the id contact.
+	 *
+	 * @return the id contact
+	 */
 	public Long getIdContact() {
 		return idContact;
 	}
 
+	/**
+	 * Sets the id contact.
+	 *
+	 * @param idContact the new id contact
+	 */
 	public void setIdContact(Long idContact) {
 		this.idContact = idContact;
 	}
 
+	/**
+	 * Gets the contact.
+	 *
+	 * @return the contact
+	 */
 	public Contact getContact() {
 		return contact;
 	}
 
+	/**
+	 * Sets the contact.
+	 *
+	 * @param contact the new contact
+	 */
 	public void setContact(Contact contact) {
 		this.contact = contact;
 	}

@@ -27,16 +27,28 @@ import br.com.uaijug.chronos.event.model.EventSchedule;
 import br.com.uaijug.chronos.event.service.EventScheduleRegistration;
 import br.com.uaijug.chronos.persistence.base.PersistenceBase;
 
+// TODO: Auto-generated Javadoc
 // The @Stateless annotation eliminates the need for manual transaction demarcation
+/**
+ * The Class EventScheduleRegistrationImpl.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogerifontes dot inf dot br
+ * 
+ */
 @Stateless
 public class EventScheduleRegistrationImpl extends PersistenceBase<EventSchedule, Long> implements EventScheduleRegistration {
 
+    /** The log. */
     @Inject
     private Logger log;
     
+    /** The event event schedule src. */
     @Inject
     private Event<EventSchedule> eventEventScheduleSrc;
 
+    /* (non-Javadoc)
+     * @see br.com.uaijug.chronos.service.GenericRegistration#register(java.lang.Object)
+     */
     @Override
 	public Boolean register(EventSchedule eventSchedule) {
 		Boolean saved = false;

@@ -21,6 +21,19 @@ import java.util.List;
 import br.com.uaijug.chronos.persistence.Persistence;
 import br.com.uaijug.chronos.project.task.model.TaskGroup;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Interface TaskGroupRepository.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 public interface TaskGroupRepository extends Persistence<TaskGroup, Long> {
+	
+	/**
+	 * Find all ordered by name.
+	 *
+	 * @return the list
+	 */
 	List<TaskGroup> findAllOrderedByName();
 }

@@ -34,33 +34,50 @@ import br.com.uaijug.chronos.controller.AbstractManageBeans;
 import br.com.uaijug.chronos.model.types.PostScheduleType;
 import br.com.uaijug.chronos.model.types.PostType;
 
+// TODO: Auto-generated Javadoc
 // The @Model stereotype is a convenience mechanism to make this a request-scoped bean that has an
 // EL name
 // Read more about the @Model stereotype in this FAQ:
 // http://sfwk.org/Documentation/WhatIsThePurposeOfTheModelAnnotation
+/**
+ * The Class PostController.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @Model
 public class PostController extends AbstractManageBeans {
 
+	/** The post registration. */
 	@Inject
 	private PostRegistration postRegistration;
 
+	/** The post repository. */
 	@Inject
 	private PostRepository postRepository;
 
+	/** The post category repository. */
 	@Inject
 	private PostCategoryRepository postCategoryRepository;
 
+	/** The id post. */
 	private Long idPost;
 
+	/** The post. */
 	private Post post;
 
+	/** The posts. */
 	List<Post> posts;
 
+	/** The list post category. */
 	private List<PostCategory> listPostCategory = null;
 
 	/** The itens state. */
 	List<SelectItem> itensPostCategory = null;
 
+	/**
+	 * Inits the new post.
+	 */
 	@PostConstruct
 	public void initNewPost() {
 		post = new Post();
@@ -74,6 +91,11 @@ public class PostController extends AbstractManageBeans {
 		listPostCategory = new ArrayList<PostCategory>();
 	}
 
+	/**
+	 * Gets the posts.
+	 *
+	 * @return the posts
+	 */
 	public List<Post> getPosts() {
 		return postRepository.findAllOrderedByName();
 	}
@@ -94,6 +116,12 @@ public class PostController extends AbstractManageBeans {
 		}
 	}
 
+	/**
+	 * Register.
+	 *
+	 * @return the string
+	 * @throws Exception the exception
+	 */
 	public String register() throws Exception {
 		try {
 
@@ -108,6 +136,11 @@ public class PostController extends AbstractManageBeans {
 		return null;
 	}
 
+	/**
+	 * Gets the post types.
+	 *
+	 * @return the post types
+	 */
 	public List<SelectItem> getPostTypes() {
 		List<SelectItem> items = new ArrayList<SelectItem>();
 		for (PostType type : PostType.values()) {
@@ -116,6 +149,11 @@ public class PostController extends AbstractManageBeans {
 		return items;
 	}
 
+	/**
+	 * Gets the post schedule types.
+	 *
+	 * @return the post schedule types
+	 */
 	public List<SelectItem> getPostScheduleTypes() {
 		List<SelectItem> items = new ArrayList<SelectItem>();
 		for (PostScheduleType type : PostScheduleType.values()) {
@@ -124,53 +162,106 @@ public class PostController extends AbstractManageBeans {
 		return items;
 	}
 
+	/**
+	 * Gets the post categorys.
+	 *
+	 * @return the post categorys
+	 */
 	public List<SelectItem> getPostCategorys() {
 
 		setListPostCategory(postCategoryRepository.findAllOrderedByName());
 		for (PostCategory p : listPostCategory) {
-			itensPostCategory.add(new SelectItem(p, p.getDescription()));
+			itensPostCategory.add(new SelectItem(p, p.getName()));
 		}
 		return itensPostCategory;
 	}
 
+	/**
+	 * Cancelar.
+	 *
+	 * @return the string
+	 */
 	public String cancelar() {
 		limpar();
 		return "list?faces-redirect=true";
 	}
 
+	/**
+	 * Limpar.
+	 */
 	private void limpar() {
 		idPost = null;
 		post = new Post();
 	}
 
+	/**
+	 * Gets the id post.
+	 *
+	 * @return the id post
+	 */
 	public Long getIdPost() {
 		return idPost;
 	}
 
+	/**
+	 * Sets the id post.
+	 *
+	 * @param idPost the new id post
+	 */
 	public void setIdPost(Long idPost) {
 		this.idPost = idPost;
 	}
 
+	/**
+	 * Gets the post.
+	 *
+	 * @return the post
+	 */
 	public Post getPost() {
 		return post;
 	}
 
+	/**
+	 * Sets the post.
+	 *
+	 * @param post the new post
+	 */
 	public void setPost(Post post) {
 		this.post = post;
 	}
 
+	/**
+	 * Gets the list post category.
+	 *
+	 * @return the list post category
+	 */
 	public List<PostCategory> getListPostCategory() {
 		return listPostCategory;
 	}
 
+	/**
+	 * Sets the list post category.
+	 *
+	 * @param listPostCategory the new list post category
+	 */
 	public void setListPostCategory(List<PostCategory> listPostCategory) {
 		this.listPostCategory = listPostCategory;
 	}
 
+	/**
+	 * Gets the itens post category.
+	 *
+	 * @return the itens post category
+	 */
 	public List<SelectItem> getItensPostCategory() {
 		return itensPostCategory;
 	}
 
+	/**
+	 * Sets the itens post category.
+	 *
+	 * @param itensPostCategory the new itens post category
+	 */
 	public void setItensPostCategory(List<SelectItem> itensPostCategory) {
 		this.itensPostCategory = itensPostCategory;
 	}

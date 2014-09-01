@@ -34,33 +34,50 @@ import br.com.uaijug.chronos.event.sponsor.service.SponsorRegistration;
 import br.com.uaijug.chronos.model.types.SponsorLevel;
 import br.com.uaijug.chronos.model.types.SponsorOpportunityLevel;
 
+// TODO: Auto-generated Javadoc
 // The @Model stereotype is a convenience mechanism to make this a request-scoped bean that has an
 // EL name
 // Read more sponsor the @Model stereotype in this FAQ:
 // http://sfwk.org/Documentation/WhatIsThePurposeOfTheModelAnnotation
+/**
+ * The Class SponsorController.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogerifontes dot inf dot br
+ * 
+ */
 @Model
 public class SponsorController extends AbstractManageBeans {
 
+	/** The sponsor registration. */
 	@Inject
 	private SponsorRegistration sponsorRegistration;
 
+	/** The sponsor repository. */
 	@Inject
 	private SponsorRepository sponsorRepository;
 
+	/** The address repository. */
 	@Inject
 	private AddressRepository addressRepository;
 
+	/** The id sponsor. */
 	private Long idSponsor;
 
+	/** The sponsor. */
 	private Sponsor sponsor;
 
+	/** The sponsors. */
 	List<Sponsor> sponsors;
 
+	/** The list address. */
 	private List<Address> listAddress = null;
 
 	/** The itens state. */
 	List<SelectItem> itensAddress = null;
 
+	/**
+	 * Inits the new sponsor.
+	 */
 	@PostConstruct
 	public void initNewSponsor() {
 		sponsor = new Sponsor();
@@ -74,6 +91,11 @@ public class SponsorController extends AbstractManageBeans {
 		listAddress = new ArrayList<Address>();
 	}
 
+	/**
+	 * Gets the sponsors.
+	 *
+	 * @return the sponsors
+	 */
 	public List<Sponsor> getSponsors() {
 		return sponsorRepository.findAll();
 	}
@@ -94,6 +116,12 @@ public class SponsorController extends AbstractManageBeans {
 		}
 	}
 
+	/**
+	 * Register.
+	 *
+	 * @return the string
+	 * @throws Exception the exception
+	 */
 	public String register() throws Exception {
 		try {
 
@@ -108,6 +136,11 @@ public class SponsorController extends AbstractManageBeans {
 		return null;
 	}
 
+	/**
+	 * Gets the sponsor levels.
+	 *
+	 * @return the sponsor levels
+	 */
 	public List<SelectItem> getSponsorLevels() {
 		List<SelectItem> items = new ArrayList<SelectItem>();
 		for (SponsorLevel type : SponsorLevel.values()) {
@@ -116,6 +149,11 @@ public class SponsorController extends AbstractManageBeans {
 		return items;
 	}
 
+	/**
+	 * Gets the sponsor opportunity levels.
+	 *
+	 * @return the sponsor opportunity levels
+	 */
 	public List<SelectItem> getSponsorOpportunityLevels() {
 		List<SelectItem> items = new ArrayList<SelectItem>();
 		for (SponsorOpportunityLevel type : SponsorOpportunityLevel.values()) {
@@ -124,6 +162,11 @@ public class SponsorController extends AbstractManageBeans {
 		return items;
 	}
 
+	/**
+	 * Gets the addresses.
+	 *
+	 * @return the addresses
+	 */
 	public List<SelectItem> getAddresses() {
 
 		setListAddress(addressRepository.findAll());
@@ -133,44 +176,92 @@ public class SponsorController extends AbstractManageBeans {
 		return itensAddress;
 	}
 
+	/**
+	 * Cancelar.
+	 *
+	 * @return the string
+	 */
 	public String cancelar() {
 		limpar();
 		return "list?faces-redirect=true";
 	}
 
+	/**
+	 * Limpar.
+	 */
 	private void limpar() {
 		idSponsor = null;
 		sponsor = new Sponsor();
 	}
 
+	/**
+	 * Gets the id sponsor.
+	 *
+	 * @return the id sponsor
+	 */
 	public Long getIdSponsor() {
 		return idSponsor;
 	}
 
+	/**
+	 * Sets the id sponsor.
+	 *
+	 * @param idSponsor the new id sponsor
+	 */
 	public void setIdSponsor(Long idSponsor) {
 		this.idSponsor = idSponsor;
 	}
 
+	/**
+	 * Gets the sponsor.
+	 *
+	 * @return the sponsor
+	 */
 	public Sponsor getSponsor() {
 		return sponsor;
 	}
 
+	/**
+	 * Sets the sponsor.
+	 *
+	 * @param sponsor the new sponsor
+	 */
 	public void setSponsor(Sponsor sponsor) {
 		this.sponsor = sponsor;
 	}
 
+	/**
+	 * Gets the list address.
+	 *
+	 * @return the list address
+	 */
 	public List<Address> getListAddress() {
 		return listAddress;
 	}
 
+	/**
+	 * Sets the list address.
+	 *
+	 * @param listAddress the new list address
+	 */
 	public void setListAddress(List<Address> listAddress) {
 		this.listAddress = listAddress;
 	}
 
+	/**
+	 * Gets the itens address.
+	 *
+	 * @return the itens address
+	 */
 	public List<SelectItem> getItensAddress() {
 		return itensAddress;
 	}
 
+	/**
+	 * Sets the itens address.
+	 *
+	 * @param itensAddress the new itens address
+	 */
 	public void setItensAddress(List<SelectItem> itensAddress) {
 		this.itensAddress = itensAddress;
 	}

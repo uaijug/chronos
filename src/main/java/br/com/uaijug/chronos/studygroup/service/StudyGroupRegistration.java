@@ -22,6 +22,12 @@ import br.com.uaijug.chronos.service.GenericRegistration;
 import br.com.uaijug.chronos.studygroup.model.StudyGroup;
 
 // The @Stateless annotation eliminates the need for manual transaction demarcation
+/**
+ * The Interface StudyGroupRegistration.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @Local
 public interface StudyGroupRegistration extends GenericRegistration<StudyGroup, Long> {
 

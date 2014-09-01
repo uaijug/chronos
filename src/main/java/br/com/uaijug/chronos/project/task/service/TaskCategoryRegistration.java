@@ -22,6 +22,12 @@ import br.com.uaijug.chronos.project.task.model.TaskCategory;
 import br.com.uaijug.chronos.service.GenericRegistration;
 
 // The @Stateless annotation eliminates the need for manual transaction demarcation
+/**
+ * The Interface TaskCategoryRegistration.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @Local
 public interface TaskCategoryRegistration extends GenericRegistration<TaskCategory, Long> {
 

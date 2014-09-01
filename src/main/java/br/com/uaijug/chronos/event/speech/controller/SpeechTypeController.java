@@ -28,25 +28,40 @@ import br.com.uaijug.chronos.event.speech.data.repository.SpeechTypeRepository;
 import br.com.uaijug.chronos.event.speech.model.SpeechType;
 import br.com.uaijug.chronos.event.speech.service.SpeechTypeRegistration;
 
+// TODO: Auto-generated Javadoc
 // The @Model stereotype is a convenience mechanism to make this a request-scoped bean that has an
 // EL name
 // Read more about the @Model stereotype in this FAQ:
 // http://sfwk.org/Documentation/WhatIsThePurposeOfTheModelAnnotation
+/**
+ * The Class SpeechTypeController.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogerifontes dot inf dot br
+ * 
+ */
 @Model
 public class SpeechTypeController extends AbstractManageBeans {
 
+	/** The speech type registration. */
 	@Inject
 	private SpeechTypeRegistration speechTypeRegistration;
 
+	/** The speech type repository. */
 	@Inject
 	private SpeechTypeRepository speechTypeRepository;
 
+	/** The id speech type. */
 	private Long idSpeechType;
 
+	/** The speech type. */
 	private SpeechType speechType;
 
+	/** The speech types. */
 	List<SpeechType> speechTypes;
 
+	/**
+	 * Inits the new speech type.
+	 */
 	@PostConstruct
 	public void initNewSpeechType() {
 		speechType = new SpeechType();
@@ -57,6 +72,11 @@ public class SpeechTypeController extends AbstractManageBeans {
 		idSpeechType = null;
 	}
 
+	/**
+	 * Gets the speech types.
+	 *
+	 * @return the speech types
+	 */
 	public List<SpeechType> getSpeechTypes() {
 		return speechTypeRepository.findAll();
 	}
@@ -77,6 +97,12 @@ public class SpeechTypeController extends AbstractManageBeans {
 		}
 	}
 
+	/**
+	 * Register.
+	 *
+	 * @return the string
+	 * @throws Exception the exception
+	 */
 	public String register() throws Exception {
 		try {
 
@@ -91,28 +117,56 @@ public class SpeechTypeController extends AbstractManageBeans {
 		return null;
 	}
 
+	/**
+	 * Cancelar.
+	 *
+	 * @return the string
+	 */
 	public String cancelar() {
 		limpar();
 		return "list?faces-redirect=true";
 	}
 
+	/**
+	 * Limpar.
+	 */
 	private void limpar() {
 		idSpeechType = null;
 		speechType = new SpeechType();
 	}
 
+	/**
+	 * Gets the id speech type.
+	 *
+	 * @return the id speech type
+	 */
 	public Long getIdSpeechType() {
 		return idSpeechType;
 	}
 
+	/**
+	 * Sets the id speech type.
+	 *
+	 * @param idSpeechType the new id speech type
+	 */
 	public void setIdSpeechType(Long idSpeechType) {
 		this.idSpeechType = idSpeechType;
 	}
 
+	/**
+	 * Gets the speech type.
+	 *
+	 * @return the speech type
+	 */
 	public SpeechType getSpeechType() {
 		return speechType;
 	}
 
+	/**
+	 * Sets the speech type.
+	 *
+	 * @param speechType the new speech type
+	 */
 	public void setSpeechType(SpeechType speechType) {
 		this.speechType = speechType;
 	}

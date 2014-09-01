@@ -27,16 +27,28 @@ import br.com.uaijug.chronos.persistence.base.PersistenceBase;
 import br.com.uaijug.chronos.project.model.DailyActivityCategory;
 import br.com.uaijug.chronos.project.service.DailyActivityCategoryRegistration;
 
+// TODO: Auto-generated Javadoc
 // The @Stateless annotation eliminates the need for manual transaction demarcation
+/**
+ * The Class DailyActivityCategoryRegistrationImpl.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @Stateless
 public class DailyActivityCategoryRegistrationImpl extends PersistenceBase<DailyActivityCategory, Long> implements DailyActivityCategoryRegistration {
 
+    /** The log. */
     @Inject
     private Logger log;
     
+    /** The daily activity category event src. */
     @Inject
     private Event<DailyActivityCategory> dailyActivityCategoryEventSrc;
     
+    /* (non-Javadoc)
+     * @see br.com.uaijug.chronos.service.GenericRegistration#register(java.lang.Object)
+     */
     @Override
    	public Boolean register(DailyActivityCategory dailyActivityCategory) {
    		Boolean saved = false;

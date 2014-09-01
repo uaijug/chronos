@@ -43,34 +43,53 @@ import br.com.uaijug.chronos.event.data.repository.EventSessionRepository;
 import br.com.uaijug.chronos.event.model.EventSession;
 import br.com.uaijug.chronos.event.service.EventSessionRegistration;
 
+// TODO: Auto-generated Javadoc
 /**
  * JAX-RS Example
  * <p/>
  * This class produces a RESTful service to read/write the contents of the
  * eventSessions table.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogerifontes dot inf dot br
+ * 
  */
 @Path("/eventSessions")
 @RequestScoped
 public class EventSessionResource {
 
+	/** The log. */
 	@Inject
 	private Logger log;
 
+	/** The validator. */
 	@Inject
 	private Validator validator;
 
+	/** The repository. */
 	@Inject
 	private EventSessionRepository repository;
 
+	/** The registration. */
 	@Inject
 	EventSessionRegistration registration;
 
+	/**
+	 * List all event sessions.
+	 *
+	 * @return the list
+	 */
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<EventSession> listAllEventSessions() {
 		return repository.findAllOrderedByName();
 	}
 
+	/**
+	 * Lookup event session by id.
+	 *
+	 * @param id the id
+	 * @return the event session
+	 */
 	@GET
 	@Path("/{id:[0-9][0-9]*}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -94,10 +113,13 @@ public class EventSessionResource {
 	}*/
 	
 	/**
-	 * Creates a new eventSession from the values provided. Performs validation, and
-	 * will return a JAX-RS response with either 200 ok, or with a map of
-	 * fields, and related errors.
-	 */
+ * Creates a new eventSession from the values provided. Performs validation, and
+ * will return a JAX-RS response with either 200 ok, or with a map of
+ * fields, and related errors.
+ *
+ * @param eventSession the event session
+ * @return the response
+ */
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)

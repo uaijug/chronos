@@ -27,9 +27,19 @@ import br.com.uaijug.chronos.institution.data.repository.InstitutionRepository;
 import br.com.uaijug.chronos.institution.model.Institution;
 import br.com.uaijug.chronos.persistence.base.PersistenceBase;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class InstitutionDefaultRepository.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @ApplicationScoped
 public class InstitutionDefaultRepository extends PersistenceBase<Institution, Long> implements InstitutionRepository {
 
+    /* (non-Javadoc)
+     * @see br.com.uaijug.chronos.institution.data.repository.InstitutionRepository#findAllOrderedByName()
+     */
     public List<Institution> findAllOrderedByName() {
         CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
         CriteriaQuery<Institution> criteria = cb.createQuery(Institution.class);

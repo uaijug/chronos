@@ -29,26 +29,48 @@ import javax.inject.Named;
 import br.com.uaijug.chronos.admin.data.repository.CompanyRepository;
 import br.com.uaijug.chronos.admin.model.Company;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class CompanyListProducer.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @RequestScoped
 public class CompanyListProducer {
 
+	/** The company repository. */
 	@Inject
 	private CompanyRepository companyRepository;
 
+    /** The companys. */
     private List<Company> companys;
 
     // @Named provides access the return value via the EL variable name "companys" in the UI (e.g.
     // Facelets or JSP view)
+    /**
+     * Gets the companys.
+     *
+     * @return the companys
+     */
     @Produces
     @Named
     public List<Company> getCompanys() {
         return companys;
     }
 
+    /**
+     * On company list changed.
+     *
+     * @param company the company
+     */
     public void onCompanyListChanged(@Observes(notifyObserver = Reception.IF_EXISTS) final Company company) {
         retrieveAllCompanysOrderedByName();
     }
 
+    /**
+     * Retrieve all companys ordered by name.
+     */
     @PostConstruct
     public void retrieveAllCompanysOrderedByName() {
         companys = companyRepository.findAllOrderedByName();

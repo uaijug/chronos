@@ -43,34 +43,53 @@ import br.com.uaijug.chronos.blog.data.repository.PostCommentRepository;
 import br.com.uaijug.chronos.blog.model.PostComment;
 import br.com.uaijug.chronos.blog.service.PostCommentRegistration;
 
+// TODO: Auto-generated Javadoc
 /**
  * JAX-RS Example
  * <p/>
  * This class produces a RESTful service to read/write the contents of the
  * posts table.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
  */
 @Path("/postComments")
 @RequestScoped
 public class PostCommentResource {
 
+	/** The log. */
 	@Inject
 	private Logger log;
 
+	/** The validator. */
 	@Inject
 	private Validator validator;
 
+	/** The repository. */
 	@Inject
 	private PostCommentRepository repository;
 
+	/** The registration. */
 	@Inject
 	PostCommentRegistration registration;
 
+	/**
+	 * List all post comments.
+	 *
+	 * @return the list
+	 */
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<PostComment> listAllPostComments() {
 		return repository.findAllOrderedByName();
 	}
 
+	/**
+	 * Lookup post by id.
+	 *
+	 * @param id the id
+	 * @return the post comment
+	 */
 	@GET
 	@Path("/{id:[0-9][0-9]*}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -86,6 +105,9 @@ public class PostCommentResource {
 	 * Creates a new post from the values provided. Performs validation, and
 	 * will return a JAX-RS response with either 200 ok, or with a map of
 	 * fields, and related errors.
+	 *
+	 * @param postComment the post comment
+	 * @return the response
 	 */
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -128,13 +150,10 @@ public class PostCommentResource {
 	 * registered it throws a regular validation exception so that it can be
 	 * interpreted separately.
 	 * </p>
-	 * 
-	 * @param post
-	 *            Post to be validated
-	 * @throws ConstraintViolationException
-	 *             If Bean Validation errors exist
-	 * @throws ValidationException
-	 *             If post with the same email already exists
+	 *
+	 * @param postComment the post comment
+	 * @throws ConstraintViolationException             If Bean Validation errors exist
+	 * @throws ValidationException             If post with the same email already exists
 	 */
 	private void validatePostComment(PostComment postComment)
 			throws ConstraintViolationException, ValidationException {

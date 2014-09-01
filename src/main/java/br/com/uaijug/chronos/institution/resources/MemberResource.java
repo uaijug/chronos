@@ -43,34 +43,53 @@ import br.com.uaijug.chronos.institution.data.repository.MemberRepository;
 import br.com.uaijug.chronos.institution.model.Member;
 import br.com.uaijug.chronos.institution.service.MemberRegistration;
 
+// TODO: Auto-generated Javadoc
 /**
  * JAX-RS Example
  * <p/>
  * This class produces a RESTful service to read/write the contents of the
  * members table.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
  */
 @Path("/members")
 @RequestScoped
 public class MemberResource {
 
+	/** The log. */
 	@Inject
 	private Logger log;
 
+	/** The validator. */
 	@Inject
 	private Validator validator;
 
+	/** The repository. */
 	@Inject
 	private MemberRepository repository;
 
+	/** The registration. */
 	@Inject
 	MemberRegistration registration;
 
+	/**
+	 * List all members.
+	 *
+	 * @return the list
+	 */
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Member> listAllMembers() {
 		return repository.findAllOrderedByName();
 	}
 
+	/**
+	 * Lookup member by id.
+	 *
+	 * @param id the id
+	 * @return the member
+	 */
 	@GET
 	@Path("/{id:[0-9][0-9]*}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -86,6 +105,9 @@ public class MemberResource {
 	 * Creates a new member from the values provided. Performs validation, and
 	 * will return a JAX-RS response with either 200 ok, or with a map of
 	 * fields, and related errors.
+	 *
+	 * @param member the member
+	 * @return the response
 	 */
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)

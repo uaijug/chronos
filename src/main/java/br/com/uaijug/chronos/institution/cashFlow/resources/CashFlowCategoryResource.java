@@ -43,34 +43,53 @@ import br.com.uaijug.chronos.institution.cashFlow.data.repository.CashFlowCatego
 import br.com.uaijug.chronos.institution.cashFlow.model.CashFlowCategory;
 import br.com.uaijug.chronos.institution.cashFlow.service.CashFlowCategoryRegistration;
 
+// TODO: Auto-generated Javadoc
 /**
  * JAX-RS Example
  * <p/>
  * This class produces a RESTful service to read/write the contents of the
  * cashFlowCategorys table.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
  */
 @Path("/cashFlowCategorys")
 @RequestScoped
 public class CashFlowCategoryResource {
 
+	/** The log. */
 	@Inject
 	private Logger log;
 
+	/** The validator. */
 	@Inject
 	private Validator validator;
 
+	/** The repository. */
 	@Inject
 	private CashFlowCategoryRepository repository;
 
+	/** The registration. */
 	@Inject
 	CashFlowCategoryRegistration registration;
 
+	/**
+	 * List all cash flow categorys.
+	 *
+	 * @return the list
+	 */
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<CashFlowCategory> listAllCashFlowCategorys() {
 		return repository.findAllOrderedByName();
 	}
 
+	/**
+	 * Lookup cash flow category by id.
+	 *
+	 * @param id the id
+	 * @return the cash flow category
+	 */
 	@GET
 	@Path("/{id:[0-9][0-9]*}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -86,6 +105,9 @@ public class CashFlowCategoryResource {
 	 * Creates a new cashFlowCategory from the values provided. Performs validation, and
 	 * will return a JAX-RS response with either 200 ok, or with a map of
 	 * fields, and related errors.
+	 *
+	 * @param cashFlowCategory the cash flow category
+	 * @return the response
 	 */
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)

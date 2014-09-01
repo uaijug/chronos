@@ -43,34 +43,53 @@ import br.com.uaijug.chronos.event.budget.data.repository.BudgetRepository;
 import br.com.uaijug.chronos.event.budget.model.Budget;
 import br.com.uaijug.chronos.event.budget.service.BudgetRegistration;
 
+// TODO: Auto-generated Javadoc
 /**
  * JAX-RS Example
  * <p/>
  * This class produces a RESTful service to read/write the contents of the
  * budgets table.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
  */
 @Path("/budgets")
 @RequestScoped
 public class BudgetResource {
 
+	/** The log. */
 	@Inject
 	private Logger log;
 
+	/** The validator. */
 	@Inject
 	private Validator validator;
 
+	/** The repository. */
 	@Inject
 	private BudgetRepository repository;
 
+	/** The registration. */
 	@Inject
 	BudgetRegistration registration;
 
+	/**
+	 * List all budgets.
+	 *
+	 * @return the list
+	 */
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Budget> listAllBudgets() {
 		return repository.findAllOrderedByName();
 	}
 
+	/**
+	 * Lookup budget by id.
+	 *
+	 * @param id the id
+	 * @return the budget
+	 */
 	@GET
 	@Path("/{id:[0-9][0-9]*}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -94,10 +113,13 @@ public class BudgetResource {
 	}*/
 	
 	/**
-	 * Creates a new budget from the values provided. Performs validation, and
-	 * will return a JAX-RS response with either 200 ok, or with a map of
-	 * fields, and related errors.
-	 */
+ * Creates a new budget from the values provided. Performs validation, and
+ * will return a JAX-RS response with either 200 ok, or with a map of
+ * fields, and related errors.
+ *
+ * @param budget the budget
+ * @return the response
+ */
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)

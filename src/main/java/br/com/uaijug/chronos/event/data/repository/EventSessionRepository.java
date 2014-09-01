@@ -21,6 +21,19 @@ import java.util.List;
 import br.com.uaijug.chronos.event.model.EventSession;
 import br.com.uaijug.chronos.persistence.Persistence;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Interface EventSessionRepository.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 public interface EventSessionRepository extends Persistence<EventSession, Long> {
+	
+	/**
+	 * Find all ordered by name.
+	 *
+	 * @return the list
+	 */
 	List<EventSession> findAllOrderedByName();
 }

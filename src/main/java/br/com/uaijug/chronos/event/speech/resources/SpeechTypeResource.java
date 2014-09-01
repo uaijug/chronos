@@ -43,34 +43,54 @@ import br.com.uaijug.chronos.event.speech.data.repository.SpeechTypeRepository;
 import br.com.uaijug.chronos.event.speech.model.SpeechType;
 import br.com.uaijug.chronos.event.speech.service.SpeechTypeRegistration;
 
+// TODO: Auto-generated Javadoc
 /**
  * JAX-RS Example
  * <p/>
  * This class produces a RESTful service to read/write the contents of the
  * speechs table.
+ * 
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogerifontes dot inf dot br
+ * 
  */
 @Path("/speechs")
 @RequestScoped
 public class SpeechTypeResource {
 
+	/** The log. */
 	@Inject
 	private Logger log;
 
+	/** The validator. */
 	@Inject
 	private Validator validator;
 
+	/** The repository. */
 	@Inject
 	private SpeechTypeRepository repository;
 
+	/** The registration. */
 	@Inject
 	SpeechTypeRegistration registration;
 
+	/**
+	 * List all speech types.
+	 *
+	 * @return the list
+	 */
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<SpeechType> listAllSpeechTypes() {
 		return repository.findAllOrderedByName();
 	}
 
+	/**
+	 * Lookup speech by id.
+	 *
+	 * @param id the id
+	 * @return the speech type
+	 */
 	@GET
 	@Path("/{id:[0-9][0-9]*}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -86,6 +106,9 @@ public class SpeechTypeResource {
 	 * Creates a new speech from the values provided. Performs validation, and
 	 * will return a JAX-RS response with either 200 ok, or with a map of
 	 * fields, and related errors.
+	 *
+	 * @param speechType the speech type
+	 * @return the response
 	 */
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -134,13 +157,10 @@ public class SpeechTypeResource {
 	 * registered it throws a regular validation exception so that it can be
 	 * interpreted separately.
 	 * </p>
-	 * 
-	 * @param speech
-	 *            Speech to be validated
-	 * @throws ConstraintViolationException
-	 *             If Bean Validation errors exist
-	 * @throws ValidationException
-	 *             If speech with the same email already exists
+	 *
+	 * @param speechType the speech type
+	 * @throws ConstraintViolationException             If Bean Validation errors exist
+	 * @throws ValidationException             If speech with the same email already exists
 	 */
 	private void validateSpeechType(SpeechType speechType)
 			throws ConstraintViolationException, ValidationException {

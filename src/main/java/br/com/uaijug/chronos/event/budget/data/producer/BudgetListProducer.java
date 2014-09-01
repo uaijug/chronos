@@ -29,26 +29,48 @@ import javax.inject.Named;
 import br.com.uaijug.chronos.event.budget.data.repository.BudgetRepository;
 import br.com.uaijug.chronos.event.budget.model.Budget;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class BudgetListProducer.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @RequestScoped
 public class BudgetListProducer {
 
+    /** The budget repository. */
     @Inject
     private BudgetRepository budgetRepository;
 
+    /** The budgets. */
     private List<Budget> budgets;
 
     // @Named provides access the return value via the EL variable name "events" in the UI (e.g.
     // Facelets or JSP view)
+    /**
+     * Gets the budgets.
+     *
+     * @return the budgets
+     */
     @Produces
     @Named
     public List<Budget> getBudgets() {
         return budgets;
     }
 
+    /**
+     * On event list changed.
+     *
+     * @param budget the budget
+     */
     public void onEventListChanged(@Observes(notifyObserver = Reception.IF_EXISTS) final Budget budget) {
         retrieveAllEventsOrderedByName();
     }
 
+    /**
+     * Retrieve all events ordered by name.
+     */
     @PostConstruct
     public void retrieveAllEventsOrderedByName() {
     	budgets = budgetRepository.findAllOrderedByName();

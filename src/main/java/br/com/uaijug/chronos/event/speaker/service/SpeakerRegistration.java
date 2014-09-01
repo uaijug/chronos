@@ -22,6 +22,12 @@ import br.com.uaijug.chronos.event.speaker.model.Speaker;
 import br.com.uaijug.chronos.service.GenericRegistration;
 
 // The @Stateless annotation eliminates the need for manual transaction demarcation
+/**
+ * The Interface SpeakerRegistration.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogerifontes dot inf dot br
+ * 
+ */
 @Local
 public interface SpeakerRegistration extends GenericRegistration<Speaker, Long> {
 

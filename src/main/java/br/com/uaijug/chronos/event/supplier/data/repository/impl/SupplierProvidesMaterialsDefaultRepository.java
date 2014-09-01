@@ -27,9 +27,19 @@ import br.com.uaijug.chronos.event.supplier.data.repository.SupplierProvidesMate
 import br.com.uaijug.chronos.event.supplier.model.SupplierProvidesMaterials;
 import br.com.uaijug.chronos.persistence.base.PersistenceBase;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class SupplierProvidesMaterialsDefaultRepository.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @ApplicationScoped
 public class SupplierProvidesMaterialsDefaultRepository extends PersistenceBase<SupplierProvidesMaterials, Long> implements SupplierProvidesMaterialsRepository {
 
+    /* (non-Javadoc)
+     * @see br.com.uaijug.chronos.event.supplier.data.repository.SupplierProvidesMaterialsRepository#findAllOrderedByName()
+     */
     public List<SupplierProvidesMaterials> findAllOrderedByName() {
         CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
         CriteriaQuery<SupplierProvidesMaterials> criteria = cb.createQuery(SupplierProvidesMaterials.class);

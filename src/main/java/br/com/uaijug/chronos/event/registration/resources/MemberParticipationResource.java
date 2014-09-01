@@ -43,34 +43,53 @@ import br.com.uaijug.chronos.event.registration.data.repository.MemberParticipat
 import br.com.uaijug.chronos.event.registration.model.MemberParticipation;
 import br.com.uaijug.chronos.event.registration.service.MemberParticipationRegistration;
 
+// TODO: Auto-generated Javadoc
 /**
  * JAX-RS Example
  * <p/>
  * This class produces a RESTful service to read/write the contents of the
  * memberParticipations table.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
  */
 @Path("/memberParticipations")
 @RequestScoped
 public class MemberParticipationResource {
 
+	/** The log. */
 	@Inject
 	private Logger log;
 
+	/** The validator. */
 	@Inject
 	private Validator validator;
 
+	/** The repository. */
 	@Inject
 	private MemberParticipationRepository repository;
 
+	/** The registration. */
 	@Inject
 	MemberParticipationRegistration registration;
 
+	/**
+	 * List all member participations.
+	 *
+	 * @return the list
+	 */
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<MemberParticipation> listAllMemberParticipations() {
 		return repository.findAllOrderedByName();
 	}
 
+	/**
+	 * Lookup member participation by id.
+	 *
+	 * @param id the id
+	 * @return the member participation
+	 */
 	@GET
 	@Path("/{id:[0-9][0-9]*}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -94,10 +113,13 @@ public class MemberParticipationResource {
 	}*/
 	
 	/**
-	 * Creates a new memberParticipation from the values provided. Performs validation, and
-	 * will return a JAX-RS response with either 200 ok, or with a map of
-	 * fields, and related errors.
-	 */
+ * Creates a new memberParticipation from the values provided. Performs validation, and
+ * will return a JAX-RS response with either 200 ok, or with a map of
+ * fields, and related errors.
+ *
+ * @param memberParticipation the member participation
+ * @return the response
+ */
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)

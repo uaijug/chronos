@@ -29,26 +29,48 @@ import javax.inject.Named;
 import br.com.uaijug.chronos.event.data.repository.EventProposalRepository;
 import br.com.uaijug.chronos.event.model.EventProposal;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class EventProposalListProducer.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @RequestScoped
 public class EventProposalListProducer {
 
+    /** The event proposal repository. */
     @Inject
     private EventProposalRepository eventProposalRepository;
 
+    /** The event proposals. */
     private List<EventProposal> eventProposals;
 
     // @Named provides access the return value via the EL variable name "eventProposals" in the UI (e.g.
     // Facelets or JSP view)
+    /**
+     * Gets the event proposals.
+     *
+     * @return the event proposals
+     */
     @Produces
     @Named
     public List<EventProposal> getEventProposals() {
         return eventProposals;
     }
 
+    /**
+     * On event proposal list changed.
+     *
+     * @param eventProposal the event proposal
+     */
     public void onEventProposalListChanged(@Observes(notifyObserver = Reception.IF_EXISTS) final EventProposal eventProposal) {
         retrieveAllEventProposalsOrderedByName();
     }
 
+    /**
+     * Retrieve all event proposals ordered by name.
+     */
     @PostConstruct
     public void retrieveAllEventProposalsOrderedByName() {
         eventProposals = eventProposalRepository.findAllOrderedByName();

@@ -21,6 +21,19 @@ import java.util.List;
 import br.com.uaijug.chronos.event.registration.model.MemberParticipation;
 import br.com.uaijug.chronos.persistence.Persistence;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Interface MemberParticipationRepository.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 public interface MemberParticipationRepository extends Persistence<MemberParticipation, Long> {
+	
+	/**
+	 * Find all ordered by name.
+	 *
+	 * @return the list
+	 */
 	List<MemberParticipation> findAllOrderedByName();
 }

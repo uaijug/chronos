@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package br.com.uaijug.chronos.blog.model;
 
 import java.io.Serializable;
@@ -15,6 +18,13 @@ import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 import br.com.uaijug.chronos.model.AbstractEntity;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Page.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @Entity
 @XmlRootElement
 @NamedQuery(
@@ -23,46 +33,83 @@ import br.com.uaijug.chronos.model.AbstractEntity;
 	)
 @Table(name = "uj_blog_page", uniqueConstraints = @UniqueConstraint(columnNames = "title"))
 @JsonIgnoreProperties(value = { "handler", "hibernateLazyInitializer" })
-@Cacheable(true)
+@Cacheable
 public class Page extends AbstractEntity<Long> implements Serializable {
 
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = -7229787949561863708L;
 
+	/** The title. */
 	@NotNull
 	@Size(min = 1, max = 60)
 	private String title;
 
+	/** The content. */
 	@NotNull
 	@Size(max = 1000)
 	private String content;
 
+	/** The slug. */
 	@Size(min = 1, max = 40)
 	private String slug; // user friendly url
 
+	/**
+	 * Gets the title.
+	 *
+	 * @return the title
+	 */
 	public String getTitle() {
 		return title;
 	}
 
+	/**
+	 * Sets the title.
+	 *
+	 * @param title the new title
+	 */
 	public void setTitle(String title) {
 		this.title = title;
 	}
 
+	/**
+	 * Gets the content.
+	 *
+	 * @return the content
+	 */
 	public String getContent() {
 		return content;
 	}
 
+	/**
+	 * Sets the content.
+	 *
+	 * @param content the new content
+	 */
 	public void setContent(String content) {
 		this.content = content;
 	}
 
+	/**
+	 * Gets the slug.
+	 *
+	 * @return the slug
+	 */
 	public String getSlug() {
 		return slug;
 	}
 
+	/**
+	 * Sets the slug.
+	 *
+	 * @param slug the new slug
+	 */
 	public void setSlug(String slug) {
 		this.slug = slug;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -73,6 +120,9 @@ public class Page extends AbstractEntity<Long> implements Serializable {
 		return result;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -100,6 +150,9 @@ public class Page extends AbstractEntity<Long> implements Serializable {
 		return true;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString() {
 		return "Page [title=" + title + ", content=" + content + ", slug="

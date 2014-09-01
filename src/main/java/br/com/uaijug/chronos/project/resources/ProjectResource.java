@@ -43,34 +43,53 @@ import br.com.uaijug.chronos.project.data.repository.ProjectRepository;
 import br.com.uaijug.chronos.project.model.Project;
 import br.com.uaijug.chronos.project.service.ProjectRegistration;
 
+// TODO: Auto-generated Javadoc
 /**
  * JAX-RS Example
  * <p/>
  * This class produces a RESTful service to read/write the contents of the
  * projects table.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
  */
 @Path("/projects")
 @RequestScoped
 public class ProjectResource {
 
+	/** The log. */
 	@Inject
 	private Logger log;
 
+	/** The validator. */
 	@Inject
 	private Validator validator;
 
+	/** The repository. */
 	@Inject
 	private ProjectRepository repository;
 
+	/** The registration. */
 	@Inject
 	ProjectRegistration registration;
 
+	/**
+	 * List all projects.
+	 *
+	 * @return the list
+	 */
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Project> listAllProjects() {
 		return repository.findAllOrderedByName();
 	}
 
+	/**
+	 * Lookup project by id.
+	 *
+	 * @param id the id
+	 * @return the project
+	 */
 	@GET
 	@Path("/{id:[0-9][0-9]*}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -86,6 +105,9 @@ public class ProjectResource {
 	 * Creates a new project from the values provided. Performs validation, and
 	 * will return a JAX-RS response with either 200 ok, or with a map of
 	 * fields, and related errors.
+	 *
+	 * @param project the project
+	 * @return the response
 	 */
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)

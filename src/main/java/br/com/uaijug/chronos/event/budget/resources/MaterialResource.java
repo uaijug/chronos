@@ -43,34 +43,53 @@ import br.com.uaijug.chronos.event.budget.data.repository.MaterialRepository;
 import br.com.uaijug.chronos.event.budget.model.Material;
 import br.com.uaijug.chronos.event.budget.service.MaterialRegistration;
 
+// TODO: Auto-generated Javadoc
 /**
  * JAX-RS Example
  * <p/>
  * This class produces a RESTful service to read/write the contents of the
  * materials table.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
  */
 @Path("/materials")
 @RequestScoped
 public class MaterialResource {
 
+	/** The log. */
 	@Inject
 	private Logger log;
 
+	/** The validator. */
 	@Inject
 	private Validator validator;
 
+	/** The repository. */
 	@Inject
 	private MaterialRepository repository;
 
+	/** The registration. */
 	@Inject
 	MaterialRegistration registration;
 
+	/**
+	 * List all materials.
+	 *
+	 * @return the list
+	 */
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Material> listAllMaterials() {
 		return repository.findAllOrderedByName();
 	}
 
+	/**
+	 * Lookup material by id.
+	 *
+	 * @param id the id
+	 * @return the material
+	 */
 	@GET
 	@Path("/{id:[0-9][0-9]*}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -94,10 +113,13 @@ public class MaterialResource {
 	}*/
 	
 	/**
-	 * Creates a new material from the values provided. Performs validation, and
-	 * will return a JAX-RS response with either 200 ok, or with a map of
-	 * fields, and related errors.
-	 */
+ * Creates a new material from the values provided. Performs validation, and
+ * will return a JAX-RS response with either 200 ok, or with a map of
+ * fields, and related errors.
+ *
+ * @param material the material
+ * @return the response
+ */
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)

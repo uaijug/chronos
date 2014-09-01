@@ -29,26 +29,48 @@ import javax.inject.Named;
 import br.com.uaijug.chronos.event.budget.data.repository.PurchaseCostRepository;
 import br.com.uaijug.chronos.event.budget.model.PurchaseCost;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class PurchaseCostListProducer.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @RequestScoped
 public class PurchaseCostListProducer {
 
+    /** The purchase cost repository. */
     @Inject
     private PurchaseCostRepository purchaseCostRepository;
 
+    /** The purchase costs. */
     private List<PurchaseCost> purchaseCosts;
 
     // @Named provides access the return value via the EL variable name "events" in the UI (e.g.
     // Facelets or JSP view)
+    /**
+     * Gets the purchase costs.
+     *
+     * @return the purchase costs
+     */
     @Produces
     @Named
     public List<PurchaseCost> getPurchaseCosts() {
         return purchaseCosts;
     }
 
+    /**
+     * On event list changed.
+     *
+     * @param purchaseCost the purchase cost
+     */
     public void onEventListChanged(@Observes(notifyObserver = Reception.IF_EXISTS) final PurchaseCost purchaseCost) {
         retrieveAllEventsOrderedByName();
     }
 
+    /**
+     * Retrieve all events ordered by name.
+     */
     @PostConstruct
     public void retrieveAllEventsOrderedByName() {
     	purchaseCosts = purchaseCostRepository.findAllOrderedByName();

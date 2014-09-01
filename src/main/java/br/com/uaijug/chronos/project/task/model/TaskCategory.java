@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package br.com.uaijug.chronos.project.task.model;
 
 import java.io.Serializable;
@@ -12,32 +15,64 @@ import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 import br.com.uaijug.chronos.model.AbstractEntity;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class TaskCategory.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @Entity
 @Table(name = "uj_task_category", uniqueConstraints = @UniqueConstraint(columnNames = "description"))
 @JsonIgnoreProperties(value = { "handler", "hibernateLazyInitializer" })
-@Cacheable(true)
+
 public class TaskCategory extends AbstractEntity<Long> implements Serializable {
 
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 5920261252898158313L;
 
+	/** The description. */
 	private String description;
 
+	/**
+	 * Instantiates a new task category.
+	 */
 	public TaskCategory() {
 
 	}
 
+	/**
+	 * Instantiates a new task category.
+	 *
+	 * @param id the id
+	 * @param description the description
+	 * @param tasks the tasks
+	 */
 	public TaskCategory(Long id, String description, Set<Task> tasks) {
 		this.description = description;
 	}
 
+	/**
+	 * Gets the description.
+	 *
+	 * @return the description
+	 */
 	public String getDescription() {
 		return description;
 	}
 
+	/**
+	 * Sets the description.
+	 *
+	 * @param description the new description
+	 */
 	public void setDescription(String description) {
 		this.description = description;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -47,6 +82,9 @@ public class TaskCategory extends AbstractEntity<Long> implements Serializable {
 		return result;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -64,6 +102,9 @@ public class TaskCategory extends AbstractEntity<Long> implements Serializable {
 		return true;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString() {
 		return "TaskTestCaseCategory [description=" + description + "]";

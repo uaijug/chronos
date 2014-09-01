@@ -27,9 +27,19 @@ import br.com.uaijug.chronos.institution.data.repository.ContactRepository;
 import br.com.uaijug.chronos.institution.model.Contact;
 import br.com.uaijug.chronos.persistence.base.PersistenceBase;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ContactDefaultRepository.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @ApplicationScoped
 public class ContactDefaultRepository extends PersistenceBase<Contact, Long> implements ContactRepository {
 
+    /* (non-Javadoc)
+     * @see br.com.uaijug.chronos.institution.data.repository.ContactRepository#findAllOrderedByName()
+     */
     public List<Contact> findAllOrderedByName() {
         CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
         CriteriaQuery<Contact> criteria = cb.createQuery(Contact.class);

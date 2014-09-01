@@ -21,8 +21,23 @@ import javax.ejb.Local;
 import br.com.uaijug.chronos.institution.model.Notify;
 import br.com.uaijug.chronos.service.GenericRegistration;
 
+// TODO: Auto-generated Javadoc
 // The @Stateless annotation eliminates the need for manual transaction demarcation
+/**
+ * The Interface NotifyRegistration.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @Local
 public interface NotifyRegistration extends GenericRegistration<Notify, Long> {
+	
+	/**
+	 * Send email.
+	 *
+	 * @param subject the subject
+	 * @param message the message
+	 * @throws Exception the exception
+	 */
 	void sendEmail(String subject, String message) throws Exception;
 }

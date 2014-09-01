@@ -27,9 +27,19 @@ import br.com.uaijug.chronos.event.budget.data.repository.BudgetItemRepository;
 import br.com.uaijug.chronos.event.budget.model.BudgetItem;
 import br.com.uaijug.chronos.persistence.base.PersistenceBase;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class BudgetItemDefaultRepository.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @ApplicationScoped
 public class BudgetItemDefaultRepository extends PersistenceBase<BudgetItem, Long> implements BudgetItemRepository {
 
+    /* (non-Javadoc)
+     * @see br.com.uaijug.chronos.event.budget.data.repository.BudgetItemRepository#findAllOrderedByName()
+     */
     public List<BudgetItem> findAllOrderedByName() {
         CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
         CriteriaQuery<BudgetItem> criteria = cb.createQuery(BudgetItem.class);

@@ -43,34 +43,53 @@ import br.com.uaijug.chronos.event.supplier.data.repository.SupplierProvidesMate
 import br.com.uaijug.chronos.event.supplier.model.SupplierProvidesMaterials;
 import br.com.uaijug.chronos.event.supplier.service.SupplierProvidesMaterialsRegistration;
 
+// TODO: Auto-generated Javadoc
 /**
  * JAX-RS Example
  * <p/>
  * This class produces a RESTful service to read/write the contents of the
  * supplierProvidesMaterialss table.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
  */
 @Path("/supplierProvidesMaterialss")
 @RequestScoped
 public class SupplierProvidesMaterialsResource {
 
+	/** The log. */
 	@Inject
 	private Logger log;
 
+	/** The validator. */
 	@Inject
 	private Validator validator;
 
+	/** The repository. */
 	@Inject
 	private SupplierProvidesMaterialsRepository repository;
 
+	/** The registration. */
 	@Inject
 	SupplierProvidesMaterialsRegistration registration;
 
+	/**
+	 * List all supplier provides materialss.
+	 *
+	 * @return the list
+	 */
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<SupplierProvidesMaterials> listAllSupplierProvidesMaterialss() {
 		return repository.findAllOrderedByName();
 	}
 
+	/**
+	 * Lookup supplier provides materials by id.
+	 *
+	 * @param id the id
+	 * @return the supplier provides materials
+	 */
 	@GET
 	@Path("/{id:[0-9][0-9]*}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -86,6 +105,9 @@ public class SupplierProvidesMaterialsResource {
 	 * Creates a new supplierProvidesMaterials from the values provided. Performs validation, and
 	 * will return a JAX-RS response with either 200 ok, or with a map of
 	 * fields, and related errors.
+	 *
+	 * @param supplierProvidesMaterials the supplier provides materials
+	 * @return the response
 	 */
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)

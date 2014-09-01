@@ -29,26 +29,48 @@ import javax.inject.Named;
 import br.com.uaijug.chronos.institution.cashFlow.data.repository.CashFlowRepository;
 import br.com.uaijug.chronos.institution.cashFlow.model.CashFlow;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class CashFlowListProducer.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @RequestScoped
 public class CashFlowListProducer {
 
+	/** The cash flow repository. */
 	@Inject
 	private CashFlowRepository cashFlowRepository;
 
+    /** The cash flows. */
     private List<CashFlow> cashFlows;
 
     // @Named provides access the return value via the EL variable name "cashFlows" in the UI (e.g.
     // Facelets or JSP view)
+    /**
+     * Gets the cash flows.
+     *
+     * @return the cash flows
+     */
     @Produces
     @Named
     public List<CashFlow> getCashFlows() {
         return cashFlows;
     }
 
+    /**
+     * On cash flow list changed.
+     *
+     * @param cashFlow the cash flow
+     */
     public void onCashFlowListChanged(@Observes(notifyObserver = Reception.IF_EXISTS) final CashFlow cashFlow) {
         retrieveAllCashFlowsOrderedByName();
     }
 
+    /**
+     * Retrieve all cash flows ordered by name.
+     */
     @PostConstruct
     public void retrieveAllCashFlowsOrderedByName() {
         cashFlows = cashFlowRepository.findAllOrderedByName();

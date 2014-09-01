@@ -27,16 +27,28 @@ import br.com.uaijug.chronos.institution.model.Member;
 import br.com.uaijug.chronos.institution.service.MemberRegistration;
 import br.com.uaijug.chronos.persistence.base.PersistenceBase;
 
+// TODO: Auto-generated Javadoc
 // The @Stateless annotation eliminates the need for manual transaction demarcation
+/**
+ * The Class MemberRegistrationImpl.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @Stateless
 public class MemberRegistrationImpl extends PersistenceBase<Member, Long> implements MemberRegistration {
 
+    /** The log. */
     @Inject
     private Logger log;
     
+    /** The member event src. */
     @Inject
     private Event<Member> memberEventSrc;
     
+    /* (non-Javadoc)
+     * @see br.com.uaijug.chronos.service.GenericRegistration#register(java.lang.Object)
+     */
     @Override
    	public Boolean register(Member member) {
    		Boolean saved = false;

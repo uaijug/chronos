@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite failures="0" time="1.502" errors="0" skipped="0" tests="0" name="TestSuite">
+<testsuite failures="0" time="1.23" errors="0" skipped="0" tests="0" name="TestSuite">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk1.7.0_45.jdk/Contents/Home/jre/lib"/>
@@ -26,7 +26,7 @@
 "/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="os.name" value="Mac OS X"/>
-    <property name="classworlds.conf" value="/Users/rogeriofontes/Documents/workspace-java/.metadata/.plugins/org.eclipse.m2e.launching/launches/m2conf5176881860542566962.tmp"/>
+    <property name="classworlds.conf" value="/Users/rogeriofontes/Documents/workspace-java/.metadata/.plugins/org.eclipse.m2e.launching/launches/m2conf6850283389044605157.tmp"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
     <property name="java.library.path" value="/Users/rogeriofontes/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:."/>
     <property name="java.specification.name" value="Java Platform API Specification"/>

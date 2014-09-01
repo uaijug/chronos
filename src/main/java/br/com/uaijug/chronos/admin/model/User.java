@@ -1,8 +1,10 @@
+/*
+ * 
+ */
 package br.com.uaijug.chronos.admin.model;
 
 import java.io.Serializable;
 
-import javax.persistence.Cacheable;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
@@ -24,101 +26,193 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import br.com.uaijug.chronos.model.AbstractEntity;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class User.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @Entity
 @NamedQuery(name = "SelectUsers", query = "SELECT u FROM User u")
 @XmlRootElement
 @Table(name = "uj_admin_user", uniqueConstraints = @UniqueConstraint(columnNames = "name"))
 @JsonIgnoreProperties(value = { "handler", "hibernateLazyInitializer" })
 public class User extends AbstractEntity<Long> implements Serializable {
+	
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
+	/** The name. */
 	@NotNull
 	@Size(min = 1, max = 25)
 	@Pattern(regexp = "[A-Za-z ]*", message = "must contain only letters and spaces")
 	private String name;
 
+	/** The email. */
 	@NotNull
 	@NotEmpty
 	@Email
 	private String email;
 
+	/** The username. */
 	@NotNull
 	@NotEmpty
 	private String username;
 
+	/** The password. */
 	@NotNull
 	@NotEmpty
 	private String password;
 
+	/** The profile. */
 	@Fetch(FetchMode.JOIN)
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "profile_id", nullable = false)
 	@JsonIgnore
 	private Profile profile;
 
+	/** The website. */
 	private String website;
 
+	/** The location. */
 	private String location;
 
+	/**
+	 * Instantiates a new user.
+	 */
 	public User() {
 	}
 
+	/**
+	 * Gets the name.
+	 *
+	 * @return the name
+	 */
 	public String getName() {
 		return name;
 	}
 
+	/**
+	 * Sets the name.
+	 *
+	 * @param name the new name
+	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 
+	/**
+	 * Gets the email.
+	 *
+	 * @return the email
+	 */
 	public String getEmail() {
 		return email;
 	}
 
+	/**
+	 * Sets the email.
+	 *
+	 * @param email the new email
+	 */
 	public void setEmail(String email) {
 		this.email = email;
 	}
 
+	/**
+	 * Gets the username.
+	 *
+	 * @return the username
+	 */
 	public String getUsername() {
 		return username;
 	}
 
+	/**
+	 * Sets the username.
+	 *
+	 * @param username the new username
+	 */
 	public void setUsername(String username) {
 		this.username = username;
 	}
 
+	/**
+	 * Gets the password.
+	 *
+	 * @return the password
+	 */
 	public String getPassword() {
 		return password;
 	}
 
+	/**
+	 * Sets the password.
+	 *
+	 * @param password the new password
+	 */
 	public void setPassword(String password) {
 		this.password = password;
 	}
 
+	/**
+	 * Gets the profile.
+	 *
+	 * @return the profile
+	 */
 	public Profile getProfile() {
 		return profile;
 	}
 
+	/**
+	 * Sets the profile.
+	 *
+	 * @param profile the new profile
+	 */
 	public void setProfile(Profile profile) {
 		this.profile = profile;
 	}
 
+	/**
+	 * Gets the website.
+	 *
+	 * @return the website
+	 */
 	public String getWebsite() {
 		return website;
 	}
 
+	/**
+	 * Sets the website.
+	 *
+	 * @param website the new website
+	 */
 	public void setWebsite(String website) {
 		this.website = website;
 	}
 
+	/**
+	 * Gets the location.
+	 *
+	 * @return the location
+	 */
 	public String getLocation() {
 		return location;
 	}
 
+	/**
+	 * Sets the location.
+	 *
+	 * @param location the new location
+	 */
 	public void setLocation(String location) {
 		this.location = location;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -133,6 +227,9 @@ public class User extends AbstractEntity<Long> implements Serializable {
 		return result;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -170,6 +267,9 @@ public class User extends AbstractEntity<Long> implements Serializable {
 		return true;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString() {
 		return "User [name=" + name + ", email=" + email + ", username="

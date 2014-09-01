@@ -27,9 +27,19 @@ import br.com.uaijug.chronos.event.registration.data.repository.MemberParticipat
 import br.com.uaijug.chronos.event.registration.model.MemberParticipation;
 import br.com.uaijug.chronos.persistence.base.PersistenceBase;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class MemberParticipationDefaultRepository.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @ApplicationScoped
 public class MemberParticipationDefaultRepository extends PersistenceBase<MemberParticipation, Long> implements MemberParticipationRepository {
 
+    /* (non-Javadoc)
+     * @see br.com.uaijug.chronos.event.registration.data.repository.MemberParticipationRepository#findAllOrderedByName()
+     */
     public List<MemberParticipation> findAllOrderedByName() {
         CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
         CriteriaQuery<MemberParticipation> criteria = cb.createQuery(MemberParticipation.class);

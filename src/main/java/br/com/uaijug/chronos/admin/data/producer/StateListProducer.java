@@ -29,26 +29,48 @@ import javax.inject.Named;
 import br.com.uaijug.chronos.admin.data.repository.StateRepository;
 import br.com.uaijug.chronos.admin.model.State;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class StateListProducer.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @RequestScoped
 public class StateListProducer {
 
+	/** The state repository. */
 	@Inject
 	private StateRepository stateRepository;
 
+    /** The states. */
     private List<State> states;
 
     // @Named provides access the return value via the EL variable name "states" in the UI (e.g.
     // Facelets or JSP view)
+    /**
+     * Gets the states.
+     *
+     * @return the states
+     */
     @Produces
     @Named
     public List<State> getStates() {
         return states;
     }
 
+    /**
+     * On state list changed.
+     *
+     * @param state the state
+     */
     public void onStateListChanged(@Observes(notifyObserver = Reception.IF_EXISTS) final State state) {
         retrieveAllStatesOrderedByName();
     }
 
+    /**
+     * Retrieve all states ordered by name.
+     */
     @PostConstruct
     public void retrieveAllStatesOrderedByName() {
         states = stateRepository.findAllOrderedByName();

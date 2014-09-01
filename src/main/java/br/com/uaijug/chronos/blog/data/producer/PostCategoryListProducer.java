@@ -29,26 +29,48 @@ import javax.inject.Named;
 import br.com.uaijug.chronos.blog.data.repository.PostCategoryRepository;
 import br.com.uaijug.chronos.blog.model.PostCategory;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class PostCategoryListProducer.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @RequestScoped
 public class PostCategoryListProducer {
 
+    /** The post category repository. */
     @Inject
     private PostCategoryRepository postCategoryRepository;
 
+    /** The post categorys. */
     private List<PostCategory> postCategorys;
 
     // @Named provides access the return value via the EL variable name "posts" in the UI (e.g.
     // Facelets or JSP view)
+    /**
+     * Gets the post categorys.
+     *
+     * @return the post categorys
+     */
     @Produces
     @Named
     public List<PostCategory> getPostCategorys() {
         return postCategorys;
     }
 
+    /**
+     * On post list changed.
+     *
+     * @param postCategory the post category
+     */
     public void onPostListChanged(@Observes(notifyObserver = Reception.IF_EXISTS) final PostCategory postCategory) {
         retrieveAllPostsOrderedByDescription();
     }
 
+    /**
+     * Retrieve all posts ordered by description.
+     */
     @PostConstruct
     public void retrieveAllPostsOrderedByDescription() {
         postCategorys = postCategoryRepository.findAllOrderedByName();

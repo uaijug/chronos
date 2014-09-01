@@ -22,6 +22,12 @@ import br.com.uaijug.chronos.event.sponsor.model.Exhibitors;
 import br.com.uaijug.chronos.service.GenericRegistration;
 
 // The @Stateless annotation eliminates the need for manual transaction demarcation
+/**
+ * The Interface ExhibitorsRegistration.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @Local
 public interface ExhibitorsRegistration extends GenericRegistration<Exhibitors, Long> {
 

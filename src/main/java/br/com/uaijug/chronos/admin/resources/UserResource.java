@@ -43,34 +43,53 @@ import br.com.uaijug.chronos.admin.data.repository.UserRepository;
 import br.com.uaijug.chronos.admin.model.User;
 import br.com.uaijug.chronos.admin.service.UserRegistration;
 
+// TODO: Auto-generated Javadoc
 /**
  * JAX-RS Example
  * <p/>
  * This class produces a RESTful service to read/write the contents of the
  * users table.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
  */
 @Path("/users")
 @RequestScoped
 public class UserResource {
 
+	/** The log. */
 	@Inject
 	private Logger log;
 
+	/** The validator. */
 	@Inject
 	private Validator validator;
 
+	/** The repository. */
 	@Inject
 	private UserRepository repository;
 
+	/** The registration. */
 	@Inject
 	UserRegistration registration;
 
+	/**
+	 * List all users.
+	 *
+	 * @return the list
+	 */
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<User> listAllUsers() {
 		return repository.findAll();
 	}
 
+	/**
+	 * Lookup user by id.
+	 *
+	 * @param id the id
+	 * @return the user
+	 */
 	@GET
 	@Path("/{id:[0-9][0-9]*}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -86,6 +105,9 @@ public class UserResource {
 	 * Creates a new user from the values provided. Performs validation, and
 	 * will return a JAX-RS response with either 200 ok, or with a map of
 	 * fields, and related errors.
+	 *
+	 * @param user the user
+	 * @return the response
 	 */
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)

@@ -32,33 +32,50 @@ import br.com.uaijug.chronos.studygroup.data.repository.StudyGroupRepository;
 import br.com.uaijug.chronos.studygroup.model.StudyGroup;
 import br.com.uaijug.chronos.studygroup.service.StudyGroupRegistration;
 
+// TODO: Auto-generated Javadoc
 // The @Model stereotype is a convenience mechanism to make this a request-scoped bean that has an
 // EL name
 // Read more about the @Model stereotype in this FAQ:
 // http://sfwk.org/Documentation/WhatIsThePurposeOfTheModelAnnotation
+/**
+ * The Class StudyGroupController.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @Model
 public class StudyGroupController extends AbstractManageBeans {
 
+	/** The study group registration. */
 	@Inject
 	private StudyGroupRegistration studyGroupRegistration;
 
+	/** The study group repository. */
 	@Inject
 	private StudyGroupRepository studyGroupRepository;
 
+	/** The institution repository. */
 	@Inject
 	private InstitutionRepository institutionRepository;
 
+	/** The id study group. */
 	private Long idStudyGroup;
 
+	/** The study group. */
 	private StudyGroup studyGroup;
 
+	/** The study groups. */
 	List<StudyGroup> studyGroups;
 
+	/** The list institution. */
 	private List<Institution> listInstitution = null;
 
 	/** The itens state. */
 	List<SelectItem> itensInstitution = null;
 
+	/**
+	 * Inits the new study group.
+	 */
 	@PostConstruct
 	public void initNewStudyGroup() {
 		studyGroup = new StudyGroup();
@@ -72,6 +89,11 @@ public class StudyGroupController extends AbstractManageBeans {
 		listInstitution = new ArrayList<Institution>();
 	}
 
+	/**
+	 * Gets the study groups.
+	 *
+	 * @return the study groups
+	 */
 	public List<StudyGroup> getStudyGroups() {
 		return studyGroupRepository.findAll();
 	}
@@ -92,6 +114,12 @@ public class StudyGroupController extends AbstractManageBeans {
 		}
 	}
 
+	/**
+	 * Register.
+	 *
+	 * @return the string
+	 * @throws Exception the exception
+	 */
 	public String register() throws Exception {
 		try {
 
@@ -106,16 +134,29 @@ public class StudyGroupController extends AbstractManageBeans {
 		return null;
 	}
 
+	/**
+	 * Cancelar.
+	 *
+	 * @return the string
+	 */
 	public String cancelar() {
 		limpar();
 		return "list?faces-redirect=true";
 	}
 
+	/**
+	 * Limpar.
+	 */
 	private void limpar() {
 		idStudyGroup = null;
 		studyGroup = new StudyGroup();
 	}
 
+	/**
+	 * Gets the institutions.
+	 *
+	 * @return the institutions
+	 */
 	public List<SelectItem> getInstitutions() {
 
 		setListInstitution(institutionRepository.findAll());
@@ -125,26 +166,56 @@ public class StudyGroupController extends AbstractManageBeans {
 		return itensInstitution;
 	}
 
+	/**
+	 * Gets the id study group.
+	 *
+	 * @return the id study group
+	 */
 	public Long getIdStudyGroup() {
 		return idStudyGroup;
 	}
 
+	/**
+	 * Sets the id study group.
+	 *
+	 * @param idStudyGroup the new id study group
+	 */
 	public void setIdStudyGroup(Long idStudyGroup) {
 		this.idStudyGroup = idStudyGroup;
 	}
 
+	/**
+	 * Gets the study group.
+	 *
+	 * @return the study group
+	 */
 	public StudyGroup getStudyGroup() {
 		return studyGroup;
 	}
 
+	/**
+	 * Sets the study group.
+	 *
+	 * @param studyGroup the new study group
+	 */
 	public void setStudyGroup(StudyGroup studyGroup) {
 		this.studyGroup = studyGroup;
 	}
 
+	/**
+	 * Gets the list institution.
+	 *
+	 * @return the list institution
+	 */
 	public List<Institution> getListInstitution() {
 		return listInstitution;
 	}
 
+	/**
+	 * Sets the list institution.
+	 *
+	 * @param listInstitution the new list institution
+	 */
 	public void setListInstitution(List<Institution> listInstitution) {
 		this.listInstitution = listInstitution;
 	}

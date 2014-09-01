@@ -29,26 +29,48 @@ import javax.inject.Named;
 import br.com.uaijug.chronos.event.registration.data.repository.MemberParticipationRepository;
 import br.com.uaijug.chronos.event.registration.model.MemberParticipation;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class MemberParticipationListProducer.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @RequestScoped
 public class MemberParticipationListProducer {
 
+    /** The member participation repository. */
     @Inject
     private MemberParticipationRepository memberParticipationRepository;
 
+    /** The member participations. */
     private List<MemberParticipation> memberParticipations;
 
     // @Named provides access the return value via the EL variable name "events" in the UI (e.g.
     // Facelets or JSP view)
+    /**
+     * Gets the member participations.
+     *
+     * @return the member participations
+     */
     @Produces
     @Named
     public List<MemberParticipation> getMemberParticipations() {
         return memberParticipations;
     }
 
+    /**
+     * On event list changed.
+     *
+     * @param memberParticipation the member participation
+     */
     public void onEventListChanged(@Observes(notifyObserver = Reception.IF_EXISTS) final MemberParticipation memberParticipation) {
         retrieveAllEventsOrderedByName();
     }
 
+    /**
+     * Retrieve all events ordered by name.
+     */
     @PostConstruct
     public void retrieveAllEventsOrderedByName() {
     	memberParticipations = memberParticipationRepository.findAllOrderedByName();

@@ -27,9 +27,19 @@ import br.com.uaijug.chronos.persistence.base.PersistenceBase;
 import br.com.uaijug.chronos.project.task.data.repository.TaskGroupCategoryRepository;
 import br.com.uaijug.chronos.project.task.model.TaskGroupCategory;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class TaskGroupCategoryDefaultRepository.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @ApplicationScoped
 public class TaskGroupCategoryDefaultRepository extends PersistenceBase<TaskGroupCategory, Long> implements TaskGroupCategoryRepository {
 
+    /* (non-Javadoc)
+     * @see br.com.uaijug.chronos.project.task.data.repository.TaskGroupCategoryRepository#findAllOrderedByName()
+     */
     public List<TaskGroupCategory> findAllOrderedByName() {
         CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
         CriteriaQuery<TaskGroupCategory> criteria = cb.createQuery(TaskGroupCategory.class);

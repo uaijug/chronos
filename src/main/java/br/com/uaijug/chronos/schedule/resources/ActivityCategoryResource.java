@@ -43,34 +43,53 @@ import br.com.uaijug.chronos.schedule.data.repository.ActivityCategoryRepository
 import br.com.uaijug.chronos.schedule.model.ActivityCategory;
 import br.com.uaijug.chronos.schedule.service.ActivityCategoryRegistration;
 
+// TODO: Auto-generated Javadoc
 /**
  * JAX-RS Example
  * <p/>
  * This class produces a RESTful service to read/write the contents of the
  * activityCategorys table.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogerifontes dot inf dot br
+ * 
  */
 @Path("/activityCategorys")
 @RequestScoped
 public class ActivityCategoryResource {
 
+	/** The log. */
 	@Inject
 	private Logger log;
 
+	/** The validator. */
 	@Inject
 	private Validator validator;
 
+	/** The repository. */
 	@Inject
 	private ActivityCategoryRepository repository;
 
+	/** The registration. */
 	@Inject
 	ActivityCategoryRegistration registration;
 
+	/**
+	 * List all activity categorys.
+	 *
+	 * @return the list
+	 */
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<ActivityCategory> listAllActivityCategorys() {
 		return repository.findAllOrderedByName();
 	}
 
+	/**
+	 * Lookup activity category by id.
+	 *
+	 * @param id the id
+	 * @return the activity category
+	 */
 	@GET
 	@Path("/{id:[0-9][0-9]*}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -86,6 +105,9 @@ public class ActivityCategoryResource {
 	 * Creates a new activityCategory from the values provided. Performs validation, and
 	 * will return a JAX-RS response with either 200 ok, or with a map of
 	 * fields, and related errors.
+	 *
+	 * @param activityCategory the activity category
+	 * @return the response
 	 */
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)

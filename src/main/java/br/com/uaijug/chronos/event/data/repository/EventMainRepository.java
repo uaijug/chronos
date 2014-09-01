@@ -21,6 +21,19 @@ import java.util.List;
 import br.com.uaijug.chronos.event.model.EventMain;
 import br.com.uaijug.chronos.persistence.Persistence;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Interface EventMainRepository.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 public interface EventMainRepository extends Persistence<EventMain, Long> {
+	
+	/**
+	 * Find all ordered by name.
+	 *
+	 * @return the list
+	 */
 	List<EventMain> findAllOrderedByName();
 }

@@ -21,6 +21,19 @@ import java.util.List;
 import br.com.uaijug.chronos.institution.model.Contact;
 import br.com.uaijug.chronos.persistence.Persistence;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Interface ContactRepository.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 public interface ContactRepository extends Persistence<Contact, Long> {
+	
+	/**
+	 * Find all ordered by name.
+	 *
+	 * @return the list
+	 */
 	List<Contact> findAllOrderedByName();
 }

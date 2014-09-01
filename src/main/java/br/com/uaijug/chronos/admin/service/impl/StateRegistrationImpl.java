@@ -27,16 +27,28 @@ import br.com.uaijug.chronos.admin.model.State;
 import br.com.uaijug.chronos.admin.service.StateRegistration;
 import br.com.uaijug.chronos.persistence.base.PersistenceBase;
 
+// TODO: Auto-generated Javadoc
 // The @Stateless annotation eliminates the need for manual transaction demarcation
+/**
+ * The Class StateRegistrationImpl.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @Stateless
 public class StateRegistrationImpl extends PersistenceBase<State, Long> implements StateRegistration {
 
+    /** The log. */
     @Inject
     private Logger log;
     
+    /** The state event src. */
     @Inject
     private Event<State> stateEventSrc;
 
+    /* (non-Javadoc)
+     * @see br.com.uaijug.chronos.service.GenericRegistration#register(java.lang.Object)
+     */
     @Override
   	public Boolean register(State state) {
   		Boolean saved = false;

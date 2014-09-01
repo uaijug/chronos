@@ -27,9 +27,19 @@ import br.com.uaijug.chronos.persistence.base.PersistenceBase;
 import br.com.uaijug.chronos.schedule.data.repository.ScheduleRepository;
 import br.com.uaijug.chronos.schedule.model.Schedule;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ScheduleDefaultRepository.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogerifontes dot inf dot br
+ * 
+ */
 @ApplicationScoped
 public class ScheduleDefaultRepository extends PersistenceBase<Schedule, Long> implements ScheduleRepository {
 
+    /* (non-Javadoc)
+     * @see br.com.uaijug.chronos.schedule.data.repository.ScheduleRepository#findAllOrderedByName()
+     */
     public List<Schedule> findAllOrderedByName() {
         CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
         CriteriaQuery<Schedule> criteria = cb.createQuery(Schedule.class);

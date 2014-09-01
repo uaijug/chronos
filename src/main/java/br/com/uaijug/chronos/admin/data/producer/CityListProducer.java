@@ -29,26 +29,48 @@ import javax.inject.Named;
 import br.com.uaijug.chronos.admin.data.repository.CityRepository;
 import br.com.uaijug.chronos.admin.model.City;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class CityListProducer.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @RequestScoped
 public class CityListProducer {
 
+	/** The city repository. */
 	@Inject
 	private CityRepository cityRepository;
 
+    /** The citys. */
     private List<City> citys;
 
     // @Named provides access the return value via the EL variable name "citys" in the UI (e.g.
     // Facelets or JSP view)
+    /**
+     * Gets the citys.
+     *
+     * @return the citys
+     */
     @Produces
     @Named
     public List<City> getCitys() {
         return citys;
     }
 
+    /**
+     * On city list changed.
+     *
+     * @param city the city
+     */
     public void onCityListChanged(@Observes(notifyObserver = Reception.IF_EXISTS) final City city) {
         retrieveAllCitysOrderedByName();
     }
 
+    /**
+     * Retrieve all citys ordered by name.
+     */
     @PostConstruct
     public void retrieveAllCitysOrderedByName() {
         citys = cityRepository.findAllOrderedByName();

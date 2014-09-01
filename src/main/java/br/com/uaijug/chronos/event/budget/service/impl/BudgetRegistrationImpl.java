@@ -27,16 +27,28 @@ import br.com.uaijug.chronos.event.budget.model.Budget;
 import br.com.uaijug.chronos.event.budget.service.BudgetRegistration;
 import br.com.uaijug.chronos.persistence.base.PersistenceBase;
 
+// TODO: Auto-generated Javadoc
 // The @Stateless annotation eliminates the need for manual transaction demarcation
+/**
+ * The Class BudgetRegistrationImpl.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @Stateless
 public class BudgetRegistrationImpl extends PersistenceBase<Budget, Long> implements BudgetRegistration {
 
+    /** The log. */
     @Inject
     private Logger log;
     
+    /** The event budget src. */
     @Inject
     private Event<Budget> eventBudgetSrc;
 
+    /* (non-Javadoc)
+     * @see br.com.uaijug.chronos.service.GenericRegistration#register(java.lang.Object)
+     */
     @Override
    	public Boolean register(Budget budget) {
    		Boolean saved = false;

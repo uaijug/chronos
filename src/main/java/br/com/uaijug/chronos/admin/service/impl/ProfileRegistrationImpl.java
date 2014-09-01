@@ -27,16 +27,28 @@ import br.com.uaijug.chronos.admin.model.Profile;
 import br.com.uaijug.chronos.admin.service.ProfileRegistration;
 import br.com.uaijug.chronos.persistence.base.PersistenceBase;
 
+// TODO: Auto-generated Javadoc
 // The @Stateless annotation eliminates the need for manual transaction demarcation
+/**
+ * The Class ProfileRegistrationImpl.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @Stateless
 public class ProfileRegistrationImpl extends PersistenceBase<Profile, Long> implements ProfileRegistration {
 
+    /** The log. */
     @Inject
     private Logger log;
     
+    /** The profile event src. */
     @Inject
     private Event<Profile> profileEventSrc;
 
+    /* (non-Javadoc)
+     * @see br.com.uaijug.chronos.service.GenericRegistration#register(java.lang.Object)
+     */
     @Override
 	public Boolean register(Profile profile) {
 		Boolean saved = false;

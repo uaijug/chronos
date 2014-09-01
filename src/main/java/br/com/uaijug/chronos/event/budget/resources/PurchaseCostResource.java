@@ -43,34 +43,53 @@ import br.com.uaijug.chronos.event.budget.data.repository.PurchaseCostRepository
 import br.com.uaijug.chronos.event.budget.model.PurchaseCost;
 import br.com.uaijug.chronos.event.budget.service.PurchaseCostRegistration;
 
+// TODO: Auto-generated Javadoc
 /**
  * JAX-RS Example
  * <p/>
  * This class produces a RESTful service to read/write the contents of the
  * purchaseCosts table.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
  */
 @Path("/purchaseCosts")
 @RequestScoped
 public class PurchaseCostResource {
 
+	/** The log. */
 	@Inject
 	private Logger log;
 
+	/** The validator. */
 	@Inject
 	private Validator validator;
 
+	/** The repository. */
 	@Inject
 	private PurchaseCostRepository repository;
 
+	/** The registration. */
 	@Inject
 	PurchaseCostRegistration registration;
 
+	/**
+	 * List all purchase costs.
+	 *
+	 * @return the list
+	 */
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<PurchaseCost> listAllPurchaseCosts() {
 		return repository.findAllOrderedByName();
 	}
 
+	/**
+	 * Lookup purchase cost by id.
+	 *
+	 * @param id the id
+	 * @return the purchase cost
+	 */
 	@GET
 	@Path("/{id:[0-9][0-9]*}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -94,10 +113,13 @@ public class PurchaseCostResource {
 	}*/
 	
 	/**
-	 * Creates a new purchaseCost from the values provided. Performs validation, and
-	 * will return a JAX-RS response with either 200 ok, or with a map of
-	 * fields, and related errors.
-	 */
+ * Creates a new purchaseCost from the values provided. Performs validation, and
+ * will return a JAX-RS response with either 200 ok, or with a map of
+ * fields, and related errors.
+ *
+ * @param purchaseCost the purchase cost
+ * @return the response
+ */
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)

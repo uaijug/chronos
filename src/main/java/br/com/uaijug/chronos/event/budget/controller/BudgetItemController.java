@@ -28,25 +28,40 @@ import br.com.uaijug.chronos.event.budget.data.repository.BudgetItemRepository;
 import br.com.uaijug.chronos.event.budget.model.BudgetItem;
 import br.com.uaijug.chronos.event.budget.service.BudgetItemRegistration;
 
+// TODO: Auto-generated Javadoc
 // The @Model stereotype is a convenience mechanism to make this a request-scoped bean that has an
 // EL name
 // Read more about the @Model stereotype in this FAQ:
 // http://sfwk.org/Documentation/WhatIsThePurposeOfTheModelAnnotation
+/**
+ * The Class BudgetItemController.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @Model
 public class BudgetItemController extends AbstractManageBeans {
 
+	/** The budget item registration. */
 	@Inject
 	private BudgetItemRegistration budgetItemRegistration;
 
+	/** The budget item repository. */
 	@Inject
 	private BudgetItemRepository budgetItemRepository;
 
+	/** The id budget item. */
 	private Long idBudgetItem;
 
+	/** The budget item. */
 	private BudgetItem budgetItem;
 
+	/** The budget items. */
 	List<BudgetItem> budgetItems;
 
+	/**
+	 * Inits the new budget item.
+	 */
 	@PostConstruct
 	public void initNewBudgetItem() {
 		budgetItem = new BudgetItem();
@@ -57,6 +72,11 @@ public class BudgetItemController extends AbstractManageBeans {
 		idBudgetItem = null;
 	}
 
+	/**
+	 * Gets the budget items.
+	 *
+	 * @return the budget items
+	 */
 	public List<BudgetItem> getBudgetItems() {
 		return budgetItemRepository.findAll();
 	}
@@ -77,6 +97,12 @@ public class BudgetItemController extends AbstractManageBeans {
 		}
 	}
 
+	/**
+	 * Register.
+	 *
+	 * @return the string
+	 * @throws Exception the exception
+	 */
 	public String register() throws Exception {
 		try {
 
@@ -91,28 +117,56 @@ public class BudgetItemController extends AbstractManageBeans {
 		return null;
 	}
 
+	/**
+	 * Cancelar.
+	 *
+	 * @return the string
+	 */
 	public String cancelar() {
 		limpar();
 		return "list?faces-redirect=true";
 	}
 
+	/**
+	 * Limpar.
+	 */
 	private void limpar() {
 		idBudgetItem = null;
 		budgetItem = new BudgetItem();
 	}
 
+	/**
+	 * Gets the id budget item.
+	 *
+	 * @return the id budget item
+	 */
 	public Long getIdBudgetItem() {
 		return idBudgetItem;
 	}
 
+	/**
+	 * Sets the id budget item.
+	 *
+	 * @param idBudgetItem the new id budget item
+	 */
 	public void setIdBudgetItem(Long idBudgetItem) {
 		this.idBudgetItem = idBudgetItem;
 	}
 
+	/**
+	 * Gets the budget item.
+	 *
+	 * @return the budget item
+	 */
 	public BudgetItem getBudgetItem() {
 		return budgetItem;
 	}
 
+	/**
+	 * Sets the budget item.
+	 *
+	 * @param budgetItem the new budget item
+	 */
 	public void setBudgetItem(BudgetItem budgetItem) {
 		this.budgetItem = budgetItem;
 	}

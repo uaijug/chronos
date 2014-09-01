@@ -43,34 +43,53 @@ import br.com.uaijug.chronos.schedule.data.repository.ScheduleRepository;
 import br.com.uaijug.chronos.schedule.model.Schedule;
 import br.com.uaijug.chronos.schedule.service.ScheduleRegistration;
 
+// TODO: Auto-generated Javadoc
 /**
  * JAX-RS Example
  * <p/>
  * This class produces a RESTful service to read/write the contents of the
  * schedules table.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogerifontes dot inf dot br
+ * 
  */
 @Path("/schedules")
 @RequestScoped
 public class ScheduleResource {
 
+	/** The log. */
 	@Inject
 	private Logger log;
 
+	/** The validator. */
 	@Inject
 	private Validator validator;
 
+	/** The repository. */
 	@Inject
 	private ScheduleRepository repository;
 
+	/** The registration. */
 	@Inject
 	ScheduleRegistration registration;
 
+	/**
+	 * List all schedules.
+	 *
+	 * @return the list
+	 */
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Schedule> listAllSchedules() {
 		return repository.findAllOrderedByName();
 	}
 
+	/**
+	 * Lookup schedule by id.
+	 *
+	 * @param id the id
+	 * @return the schedule
+	 */
 	@GET
 	@Path("/{id:[0-9][0-9]*}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -86,6 +105,9 @@ public class ScheduleResource {
 	 * Creates a new schedule from the values provided. Performs validation, and
 	 * will return a JAX-RS response with either 200 ok, or with a map of
 	 * fields, and related errors.
+	 *
+	 * @param schedule the schedule
+	 * @return the response
 	 */
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)

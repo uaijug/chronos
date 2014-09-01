@@ -34,41 +34,60 @@ import br.com.uaijug.chronos.controller.AbstractManageBeans;
 import br.com.uaijug.chronos.institution.data.repository.MemberRepository;
 import br.com.uaijug.chronos.institution.model.Member;
 
+// TODO: Auto-generated Javadoc
 // The @Model stereotype is a convenience mechanism to make this a request-scoped bean that has an
 // EL name
 // Read more about the @Model stereotype in this FAQ:
 // http://sfwk.org/Documentation/WhatIsThePurposeOfTheModelAnnotation
+/**
+ * The Class AuthorizationEventController.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @Model
 public class AuthorizationEventController extends AbstractManageBeans {
 
+	/** The authorization event registration. */
 	@Inject
 	private AuthorizationEventRegistration authorizationEventRegistration;
 
+	/** The authorization event repository. */
 	@Inject
 	private AuthorizationEventRepository authorizationEventRepository;
 
+	/** The profile repository. */
 	@Inject
 	private ProfileRepository profileRepository;
 
+	/** The member repository. */
 	@Inject
 	private MemberRepository memberRepository;
 
+	/** The id authorization event. */
 	private Long idAuthorizationEvent;
 
+	/** The authorization event. */
 	private AuthorizationEvent authorizationEvent;
 
+	/** The authorization events. */
 	List<AuthorizationEvent> authorizationEvents;
 
+	/** The list profile. */
 	private List<Profile> listProfile = null;
 
 	/** The itens state. */
 	List<SelectItem> itensProfile = null;
 
+	/** The list member. */
 	private List<Member> listMember = null;
 
 	/** The itens state. */
 	List<SelectItem> itensMember = null;
 
+	/**
+	 * Inits the new authorization event.
+	 */
 	@PostConstruct
 	public void initNewAuthorizationEvent() {
 		authorizationEvent = new AuthorizationEvent();
@@ -85,6 +104,11 @@ public class AuthorizationEventController extends AbstractManageBeans {
 		listMember = new ArrayList<Member>();
 	}
 
+	/**
+	 * Gets the authorization events.
+	 *
+	 * @return the authorization events
+	 */
 	public List<AuthorizationEvent> getAuthorizationEvents() {
 		return authorizationEventRepository.findAll();
 	}
@@ -106,6 +130,12 @@ public class AuthorizationEventController extends AbstractManageBeans {
 		}
 	}
 
+	/**
+	 * Register.
+	 *
+	 * @return the string
+	 * @throws Exception the exception
+	 */
 	public String register() throws Exception {
 		try {
 
@@ -120,16 +150,29 @@ public class AuthorizationEventController extends AbstractManageBeans {
 		return null;
 	}
 
+	/**
+	 * Cancelar.
+	 *
+	 * @return the string
+	 */
 	public String cancelar() {
 		limpar();
 		return "list?faces-redirect=true";
 	}
 
+	/**
+	 * Limpar.
+	 */
 	private void limpar() {
 		idAuthorizationEvent = null;
 		authorizationEvent = new AuthorizationEvent();
 	}
 
+	/**
+	 * Gets the profiles.
+	 *
+	 * @return the profiles
+	 */
 	public List<SelectItem> getProfiles() {
 
 		setListProfile(profileRepository.findAll());
@@ -139,6 +182,11 @@ public class AuthorizationEventController extends AbstractManageBeans {
 		return itensProfile;
 	}
 
+	/**
+	 * Gets the members.
+	 *
+	 * @return the members
+	 */
 	public List<SelectItem> getMembers() {
 
 		setListMember(memberRepository.findAll());
@@ -148,50 +196,110 @@ public class AuthorizationEventController extends AbstractManageBeans {
 		return itensMember;
 	}
 
+	/**
+	 * Gets the id authorization event.
+	 *
+	 * @return the id authorization event
+	 */
 	public Long getIdAuthorizationEvent() {
 		return idAuthorizationEvent;
 	}
 
+	/**
+	 * Sets the id authorization event.
+	 *
+	 * @param idAuthorizationEvent the new id authorization event
+	 */
 	public void setIdAuthorizationEvent(Long idAuthorizationEvent) {
 		this.idAuthorizationEvent = idAuthorizationEvent;
 	}
 
+	/**
+	 * Gets the authorization event.
+	 *
+	 * @return the authorization event
+	 */
 	public AuthorizationEvent getAuthorizationEvent() {
 		return authorizationEvent;
 	}
 
+	/**
+	 * Sets the authorization event.
+	 *
+	 * @param authorizationEvent the new authorization event
+	 */
 	public void setAuthorizationEvent(AuthorizationEvent authorizationEvent) {
 		this.authorizationEvent = authorizationEvent;
 	}
 
+	/**
+	 * Gets the list profile.
+	 *
+	 * @return the list profile
+	 */
 	public List<Profile> getListProfile() {
 		return listProfile;
 	}
 
+	/**
+	 * Sets the list profile.
+	 *
+	 * @param listProfile the new list profile
+	 */
 	public void setListProfile(List<Profile> listProfile) {
 		this.listProfile = listProfile;
 	}
 
+	/**
+	 * Gets the itens profile.
+	 *
+	 * @return the itens profile
+	 */
 	public List<SelectItem> getItensProfile() {
 		return itensProfile;
 	}
 
+	/**
+	 * Sets the itens profile.
+	 *
+	 * @param itensProfile the new itens profile
+	 */
 	public void setItensProfile(List<SelectItem> itensProfile) {
 		this.itensProfile = itensProfile;
 	}
 
+	/**
+	 * Gets the list member.
+	 *
+	 * @return the list member
+	 */
 	public List<Member> getListMember() {
 		return listMember;
 	}
 
+	/**
+	 * Sets the list member.
+	 *
+	 * @param listMember the new list member
+	 */
 	public void setListMember(List<Member> listMember) {
 		this.listMember = listMember;
 	}
 
+	/**
+	 * Gets the itens member.
+	 *
+	 * @return the itens member
+	 */
 	public List<SelectItem> getItensMember() {
 		return itensMember;
 	}
 
+	/**
+	 * Sets the itens member.
+	 *
+	 * @param itensMember the new itens member
+	 */
 	public void setItensMember(List<SelectItem> itensMember) {
 		this.itensMember = itensMember;
 	}

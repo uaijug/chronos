@@ -28,25 +28,40 @@ import br.com.uaijug.chronos.project.task.data.repository.TaskCategoryRepository
 import br.com.uaijug.chronos.project.task.model.TaskCategory;
 import br.com.uaijug.chronos.project.task.service.TaskCategoryRegistration;
 
+// TODO: Auto-generated Javadoc
 // The @Model stereotype is a convenience mechanism to make this a request-scoped bean that has an
 // EL name
 // Read more about the @Model stereotype in this FAQ:
 // http://sfwk.org/Documentation/WhatIsThePurposeOfTheModelAnnotation
+/**
+ * The Class TaskCategoryController.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @Model
 public class TaskCategoryController extends AbstractManageBeans {
 
+	/** The task category registration. */
 	@Inject
 	private TaskCategoryRegistration taskCategoryRegistration;
 
+	/** The task category repository. */
 	@Inject
 	private TaskCategoryRepository taskCategoryRepository;
 
+	/** The id task category. */
 	private Long idTaskCategory;
 
+	/** The task category. */
 	private TaskCategory taskCategory;
 
+	/** The task categorys. */
 	List<TaskCategory> taskCategorys;
 
+	/**
+	 * Inits the new task category.
+	 */
 	@PostConstruct
 	public void initNewTaskCategory() {
 		taskCategory = new TaskCategory();
@@ -57,6 +72,11 @@ public class TaskCategoryController extends AbstractManageBeans {
 		idTaskCategory = null;
 	}
 
+	/**
+	 * Gets the task categorys.
+	 *
+	 * @return the task categorys
+	 */
 	public List<TaskCategory> getTaskCategorys() {
 		return taskCategoryRepository.findAll();
 	}
@@ -77,6 +97,12 @@ public class TaskCategoryController extends AbstractManageBeans {
 		}
 	}
 
+	/**
+	 * Register.
+	 *
+	 * @return the string
+	 * @throws Exception the exception
+	 */
 	public String register() throws Exception {
 		try {
 
@@ -91,28 +117,56 @@ public class TaskCategoryController extends AbstractManageBeans {
 		return null;
 	}
 
+	/**
+	 * Cancelar.
+	 *
+	 * @return the string
+	 */
 	public String cancelar() {
 		limpar();
 		return "list?faces-redirect=true";
 	}
 
+	/**
+	 * Limpar.
+	 */
 	private void limpar() {
 		idTaskCategory = null;
 		taskCategory = new TaskCategory();
 	}
 
+	/**
+	 * Gets the id task category.
+	 *
+	 * @return the id task category
+	 */
 	public Long getIdTaskCategory() {
 		return idTaskCategory;
 	}
 
+	/**
+	 * Sets the id task category.
+	 *
+	 * @param idTaskCategory the new id task category
+	 */
 	public void setIdTaskCategory(Long idTaskCategory) {
 		this.idTaskCategory = idTaskCategory;
 	}
 
+	/**
+	 * Gets the task category.
+	 *
+	 * @return the task category
+	 */
 	public TaskCategory getTaskCategory() {
 		return taskCategory;
 	}
 
+	/**
+	 * Sets the task category.
+	 *
+	 * @param taskCategory the new task category
+	 */
 	public void setTaskCategory(TaskCategory taskCategory) {
 		this.taskCategory = taskCategory;
 	}

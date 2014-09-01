@@ -22,6 +22,12 @@ import br.com.uaijug.chronos.schedule.model.Activity;
 import br.com.uaijug.chronos.service.GenericRegistration;
 
 // The @Stateless annotation eliminates the need for manual transaction demarcation
+/**
+ * The Interface ActivityRegistration.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogerifontes dot inf dot br
+ * 
+ */
 @Local
 public interface ActivityRegistration extends GenericRegistration<Activity, Long> {
 

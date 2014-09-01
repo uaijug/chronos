@@ -27,9 +27,19 @@ import br.com.uaijug.chronos.persistence.base.PersistenceBase;
 import br.com.uaijug.chronos.schedule.data.repository.ActivityRepository;
 import br.com.uaijug.chronos.schedule.model.Activity;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ActivityDefaultRepository.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogerifontes dot inf dot br
+ * 
+ */
 @ApplicationScoped
 public class ActivityDefaultRepository extends PersistenceBase<Activity, Long> implements ActivityRepository {
 
+    /* (non-Javadoc)
+     * @see br.com.uaijug.chronos.schedule.data.repository.ActivityRepository#findAllOrderedByName()
+     */
     public List<Activity> findAllOrderedByName() {
         CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
         CriteriaQuery<Activity> criteria = cb.createQuery(Activity.class);

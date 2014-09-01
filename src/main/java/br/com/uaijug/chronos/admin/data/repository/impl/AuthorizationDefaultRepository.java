@@ -27,9 +27,19 @@ import br.com.uaijug.chronos.admin.data.repository.AuthorizationRepository;
 import br.com.uaijug.chronos.admin.model.Authorization;
 import br.com.uaijug.chronos.persistence.base.PersistenceBase;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class AuthorizationDefaultRepository.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @ApplicationScoped
 public class AuthorizationDefaultRepository extends PersistenceBase<Authorization, Long> implements AuthorizationRepository {
 
+    /* (non-Javadoc)
+     * @see br.com.uaijug.chronos.admin.data.repository.AuthorizationRepository#findAllOrderedByName()
+     */
     public List<Authorization> findAllOrderedByName() {
         CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
         CriteriaQuery<Authorization> criteria = cb.createQuery(Authorization.class);

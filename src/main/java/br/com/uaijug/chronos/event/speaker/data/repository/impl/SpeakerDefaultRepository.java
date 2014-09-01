@@ -27,9 +27,19 @@ import br.com.uaijug.chronos.event.speaker.data.repository.SpeakerRepository;
 import br.com.uaijug.chronos.event.speaker.model.Speaker;
 import br.com.uaijug.chronos.persistence.base.PersistenceBase;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class SpeakerDefaultRepository.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogerifontes dot inf dot br
+ * 
+ */
 @ApplicationScoped
 public class SpeakerDefaultRepository extends PersistenceBase<Speaker, Long> implements SpeakerRepository {
 
+    /* (non-Javadoc)
+     * @see br.com.uaijug.chronos.event.speaker.data.repository.SpeakerRepository#findAllOrderedByName()
+     */
     public List<Speaker> findAllOrderedByName() {
         CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
         CriteriaQuery<Speaker> criteria = cb.createQuery(Speaker.class);

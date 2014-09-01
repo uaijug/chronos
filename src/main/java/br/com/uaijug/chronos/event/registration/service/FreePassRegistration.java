@@ -22,6 +22,12 @@ import br.com.uaijug.chronos.event.registration.model.FreePass;
 import br.com.uaijug.chronos.service.GenericRegistration;
 
 // The @Stateless annotation eliminates the need for manual transaction demarcation
+/**
+ * The Interface FreePassRegistration.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @Local
 public interface FreePassRegistration extends GenericRegistration<FreePass, Long> {
 

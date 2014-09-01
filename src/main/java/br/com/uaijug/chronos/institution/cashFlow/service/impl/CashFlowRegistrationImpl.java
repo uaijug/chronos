@@ -27,16 +27,28 @@ import br.com.uaijug.chronos.institution.cashFlow.model.CashFlow;
 import br.com.uaijug.chronos.institution.cashFlow.service.CashFlowRegistration;
 import br.com.uaijug.chronos.persistence.base.PersistenceBase;
 
+// TODO: Auto-generated Javadoc
 // The @Stateless annotation eliminates the need for manual transaction demarcation
+/**
+ * The Class CashFlowRegistrationImpl.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @Stateless
 public class CashFlowRegistrationImpl extends PersistenceBase<CashFlow, Long> implements CashFlowRegistration {
 
+    /** The log. */
     @Inject
     private Logger log;
     
+    /** The cash flow event src. */
     @Inject
     private Event<CashFlow> cashFlowEventSrc;
 
+    /* (non-Javadoc)
+     * @see br.com.uaijug.chronos.service.GenericRegistration#register(java.lang.Object)
+     */
     @Override
    	public Boolean register(CashFlow cashFlow) {
    		Boolean saved = false;

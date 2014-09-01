@@ -27,9 +27,19 @@ import br.com.uaijug.chronos.admin.data.repository.AddressRepository;
 import br.com.uaijug.chronos.admin.model.Address;
 import br.com.uaijug.chronos.persistence.base.PersistenceBase;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class AddressDefaultRepository.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @ApplicationScoped
 public class AddressDefaultRepository extends PersistenceBase<Address, Long> implements AddressRepository {
 
+    /* (non-Javadoc)
+     * @see br.com.uaijug.chronos.admin.data.repository.AddressRepository#findAllOrderedByName()
+     */
     public List<Address> findAllOrderedByName() {
         CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
         CriteriaQuery<Address> criteria = cb.createQuery(Address.class);

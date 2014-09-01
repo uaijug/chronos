@@ -27,17 +27,29 @@ import br.com.uaijug.chronos.persistence.base.PersistenceBase;
 import br.com.uaijug.chronos.project.task.model.TaskGroup;
 import br.com.uaijug.chronos.project.task.service.TaskGroupRegistration;
 
+// TODO: Auto-generated Javadoc
 //The @Stateless annotation eliminates the need for manual transaction demarcation
+/**
+ * The Class TaskGroupRegistrationImpl.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @Stateless
 public class TaskGroupRegistrationImpl extends
 		PersistenceBase<TaskGroup, Long> implements TaskGroupRegistration {
 
+	/** The log. */
 	@Inject
 	private Logger log;
 
+	/** The task group event src. */
 	@Inject
 	private Event<TaskGroup> taskGroupEventSrc;
 
+	/* (non-Javadoc)
+	 * @see br.com.uaijug.chronos.service.GenericRegistration#register(java.lang.Object)
+	 */
 	@Override
 	public Boolean register(TaskGroup taskGroup) {
 		Boolean saved = false;

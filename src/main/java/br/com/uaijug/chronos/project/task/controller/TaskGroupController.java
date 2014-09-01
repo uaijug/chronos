@@ -32,33 +32,50 @@ import br.com.uaijug.chronos.project.task.model.TaskGroup;
 import br.com.uaijug.chronos.project.task.model.TaskGroupCategory;
 import br.com.uaijug.chronos.project.task.service.TaskGroupRegistration;
 
+// TODO: Auto-generated Javadoc
 // The @Model stereotype is a convenience mechanism to make this a request-scoped bean that has an
 // EL name
 // Read more about the @Model stereotype in this FAQ:
 // http://sfwk.org/Documentation/WhatIsThePurposeOfTheModelAnnotation
+/**
+ * The Class TaskGroupController.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @Model
 public class TaskGroupController extends AbstractManageBeans {
 
+	/** The task group registration. */
 	@Inject
 	private TaskGroupRegistration taskGroupRegistration;
 
+	/** The task group repository. */
 	@Inject
 	private TaskGroupRepository taskGroupRepository;
 
+	/** The task group category repository. */
 	@Inject
 	private TaskGroupCategoryRepository taskGroupCategoryRepository;
 
+	/** The id task group. */
 	private Long idTaskGroup;
 
+	/** The task group. */
 	private TaskGroup taskGroup;
 
+	/** The task groups. */
 	List<TaskGroup> taskGroups;
 
+	/** The list task group category. */
 	private List<TaskGroupCategory> listTaskGroupCategory = null;
 
 	/** The itens state. */
 	List<SelectItem> itensTaskGroupCategory = null;
 
+	/**
+	 * Inits the new task group.
+	 */
 	@PostConstruct
 	public void initNewTaskGroup() {
 		taskGroup = new TaskGroup();
@@ -72,6 +89,11 @@ public class TaskGroupController extends AbstractManageBeans {
 		listTaskGroupCategory = new ArrayList<TaskGroupCategory>();
 	}
 
+	/**
+	 * Gets the task groups.
+	 *
+	 * @return the task groups
+	 */
 	public List<TaskGroup> getTaskGroups() {
 		return taskGroupRepository.findAll();
 	}
@@ -92,6 +114,12 @@ public class TaskGroupController extends AbstractManageBeans {
 		}
 	}
 
+	/**
+	 * Register.
+	 *
+	 * @return the string
+	 * @throws Exception the exception
+	 */
 	public String register() throws Exception {
 		try {
 
@@ -106,16 +134,29 @@ public class TaskGroupController extends AbstractManageBeans {
 		return null;
 	}
 
+	/**
+	 * Cancelar.
+	 *
+	 * @return the string
+	 */
 	public String cancelar() {
 		limpar();
 		return "list?faces-redirect=true";
 	}
 
+	/**
+	 * Limpar.
+	 */
 	private void limpar() {
 		idTaskGroup = null;
 		taskGroup = new TaskGroup();
 	}
 
+	/**
+	 * Gets the task group categorys.
+	 *
+	 * @return the task group categorys
+	 */
 	public List<SelectItem> getTaskGroupCategorys() {
 
 		setListTaskGroupCategory(taskGroupCategoryRepository.findAll());
@@ -125,35 +166,75 @@ public class TaskGroupController extends AbstractManageBeans {
 		return itensTaskGroupCategory;
 	}
 
+	/**
+	 * Gets the id task group.
+	 *
+	 * @return the id task group
+	 */
 	public Long getIdTaskGroup() {
 		return idTaskGroup;
 	}
 
+	/**
+	 * Sets the id task group.
+	 *
+	 * @param idTaskGroup the new id task group
+	 */
 	public void setIdTaskGroup(Long idTaskGroup) {
 		this.idTaskGroup = idTaskGroup;
 	}
 
+	/**
+	 * Gets the task group.
+	 *
+	 * @return the task group
+	 */
 	public TaskGroup getTaskGroup() {
 		return taskGroup;
 	}
 
+	/**
+	 * Sets the task group.
+	 *
+	 * @param taskGroup the new task group
+	 */
 	public void setTaskGroup(TaskGroup taskGroup) {
 		this.taskGroup = taskGroup;
 	}
 
+	/**
+	 * Gets the list task group category.
+	 *
+	 * @return the list task group category
+	 */
 	public List<TaskGroupCategory> getListTaskGroupCategory() {
 		return listTaskGroupCategory;
 	}
 
+	/**
+	 * Sets the list task group category.
+	 *
+	 * @param listTaskGroupCategory the new list task group category
+	 */
 	public void setListTaskGroupCategory(
 			List<TaskGroupCategory> listTaskGroupCategory) {
 		this.listTaskGroupCategory = listTaskGroupCategory;
 	}
 
+	/**
+	 * Gets the itens task group category.
+	 *
+	 * @return the itens task group category
+	 */
 	public List<SelectItem> getItensTaskGroupCategory() {
 		return itensTaskGroupCategory;
 	}
 
+	/**
+	 * Sets the itens task group category.
+	 *
+	 * @param itensTaskGroupCategory the new itens task group category
+	 */
 	public void setItensTaskGroupCategory(
 			List<SelectItem> itensTaskGroupCategory) {
 		this.itensTaskGroupCategory = itensTaskGroupCategory;

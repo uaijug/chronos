@@ -18,11 +18,13 @@ import javax.faces.model.SelectItem;
 import javax.faces.model.SelectItemGroup;
 
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class GenericConverter.
  *
- * @author Rogerio Fontes
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
  * How use: <f:converter converterId="br.com.uaijug.converter.GenericConverter" />
+ * 
  */
 //@FacesConverter("converter.GenericConverter")
 public class GenericConverter implements Converter {

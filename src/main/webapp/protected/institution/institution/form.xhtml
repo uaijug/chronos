@@ -31,6 +31,21 @@
 				<div class="row">
 					<div class="col-md-12">
 						<div class="form-group">
+							<h:outputLabel
+								value="#{msg['label.institution.institutionType']}:"
+								for="txtInstitutionType" styleClass="control-label" />
+							<p:selectOneMenu id="txtInstitutionType"
+								value="#{institutionController.institution.institutionType}"
+								converter="GenericConverter" styleClass="form-control">
+								<f:selectItems value="#{institutionController.institutionTypes}" />
+							</p:selectOneMenu>
+							<p:message id="msgInstitutionType" for="txtInstitutionType" errorClass="errorMessage" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
 							<h:outputLabel value="#{msg['label.institution.name']}:"
 								for="txtName" styleClass="control-label" />
 							<p:inputText value="#{institutionController.institution.name}"
@@ -59,21 +74,6 @@
 								value="#{institutionController.institution.description}"
 								id="txtDescription" required="true" maxlength="50" width="980" height="350"/>
 							<p:message id="msgDescription" for="txtDescription" errorClass="errorMessage" />
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-12">
-						<div class="form-group">
-							<h:outputLabel
-								value="#{msg['label.institution.institutionType']}:"
-								for="txtInstitutionType" styleClass="control-label" />
-							<p:selectOneMenu id="txtInstitutionType"
-								value="#{institutionController.institution.institutionType}"
-								converter="GenericConverter" styleClass="form-control">
-								<f:selectItems value="#{institutionController.institutionTypes}" />
-							</p:selectOneMenu>
-							<p:message id="msgInstitutionType" for="txtInstitutionType" errorClass="errorMessage" />
 						</div>
 					</div>
 				</div>

@@ -27,9 +27,19 @@ import br.com.uaijug.chronos.institution.cashFlow.data.repository.CashFlowReposi
 import br.com.uaijug.chronos.institution.cashFlow.model.CashFlow;
 import br.com.uaijug.chronos.persistence.base.PersistenceBase;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class CashFlowDefaultRepository.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @ApplicationScoped
 public class CashFlowDefaultRepository extends PersistenceBase<CashFlow, Long> implements CashFlowRepository {
 
+    /* (non-Javadoc)
+     * @see br.com.uaijug.chronos.institution.cashFlow.data.repository.CashFlowRepository#findAllOrderedByName()
+     */
     public List<CashFlow> findAllOrderedByName() {
         CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
         CriteriaQuery<CashFlow> criteria = cb.createQuery(CashFlow.class);

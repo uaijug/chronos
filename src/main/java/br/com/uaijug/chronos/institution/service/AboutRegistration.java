@@ -22,6 +22,12 @@ import br.com.uaijug.chronos.institution.model.About;
 import br.com.uaijug.chronos.service.GenericRegistration;
 
 // The @Stateless annotation eliminates the need for manual transaction demarcation
+/**
+ * The Interface AboutRegistration.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @Local
 public interface AboutRegistration extends GenericRegistration<About, Long> {
 

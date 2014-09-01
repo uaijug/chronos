@@ -43,34 +43,53 @@ import br.com.uaijug.chronos.event.speaker.data.repository.SpeakerRepository;
 import br.com.uaijug.chronos.event.speaker.model.Speaker;
 import br.com.uaijug.chronos.event.speaker.service.SpeakerRegistration;
 
+// TODO: Auto-generated Javadoc
 /**
  * JAX-RS Example
  * <p/>
  * This class produces a RESTful service to read/write the contents of the
  * speakers table.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogerifontes dot inf dot br
+ * 
  */
 @Path("/speakers")
 @RequestScoped
 public class SpeakerResource {
 
+	/** The log. */
 	@Inject
 	private Logger log;
 
+	/** The validator. */
 	@Inject
 	private Validator validator;
 
+	/** The repository. */
 	@Inject
 	private SpeakerRepository repository;
 
+	/** The registration. */
 	@Inject
 	SpeakerRegistration registration;
 
+	/**
+	 * List all speakers.
+	 *
+	 * @return the list
+	 */
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Speaker> listAllSpeakers() {
 		return repository.findAllOrderedByName();
 	}
 
+	/**
+	 * Lookup speaker by id.
+	 *
+	 * @param id the id
+	 * @return the speaker
+	 */
 	@GET
 	@Path("/{id:[0-9][0-9]*}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -86,6 +105,9 @@ public class SpeakerResource {
 	 * Creates a new speaker from the values provided. Performs validation, and
 	 * will return a JAX-RS response with either 200 ok, or with a map of
 	 * fields, and related errors.
+	 *
+	 * @param speaker the speaker
+	 * @return the response
 	 */
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)

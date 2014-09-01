@@ -29,26 +29,48 @@ import javax.inject.Named;
 import br.com.uaijug.chronos.blog.data.repository.PostCommentRepository;
 import br.com.uaijug.chronos.blog.model.PostComment;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class PostCommentListProducer.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @RequestScoped
 public class PostCommentListProducer {
 
+    /** The post comment repository. */
     @Inject
     private PostCommentRepository postCommentRepository;
 
+    /** The post comments. */
     private List<PostComment> postComments;
 
     // @Named provides access the return value via the EL variable name "posts" in the UI (e.g.
     // Facelets or JSP view)
+    /**
+     * Gets the post comments.
+     *
+     * @return the post comments
+     */
     @Produces
     @Named
     public List<PostComment> getPostComments() {
         return postComments;
     }
 
+    /**
+     * On post list changed.
+     *
+     * @param postComment the post comment
+     */
     public void onPostListChanged(@Observes(notifyObserver = Reception.IF_EXISTS) final PostComment postComment) {
     	retrieveAllPostsOrderedByTitle();
     }
 
+    /**
+     * Retrieve all posts ordered by title.
+     */
     @PostConstruct
     public void retrieveAllPostsOrderedByTitle() {
         postComments = postCommentRepository.findAllOrderedByName();

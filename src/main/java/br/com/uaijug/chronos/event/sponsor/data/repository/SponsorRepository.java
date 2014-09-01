@@ -21,6 +21,19 @@ import java.util.List;
 import br.com.uaijug.chronos.event.sponsor.model.Sponsor;
 import br.com.uaijug.chronos.persistence.Persistence;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Interface SponsorRepository.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogerifontes dot inf dot br
+ * 
+ */
 public interface SponsorRepository extends Persistence<Sponsor, Long> {
+	
+	/**
+	 * Find all ordered by name.
+	 *
+	 * @return the list
+	 */
 	List<Sponsor> findAllOrderedByName();
 }

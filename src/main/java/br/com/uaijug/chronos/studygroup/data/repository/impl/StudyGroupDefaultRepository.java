@@ -27,9 +27,19 @@ import br.com.uaijug.chronos.persistence.base.PersistenceBase;
 import br.com.uaijug.chronos.studygroup.data.repository.StudyGroupRepository;
 import br.com.uaijug.chronos.studygroup.model.StudyGroup;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class StudyGroupDefaultRepository.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @ApplicationScoped
 public class StudyGroupDefaultRepository extends PersistenceBase<StudyGroup, Long> implements StudyGroupRepository {
 
+    /* (non-Javadoc)
+     * @see br.com.uaijug.chronos.studygroup.data.repository.StudyGroupRepository#findAllOrderedByName()
+     */
     public List<StudyGroup> findAllOrderedByName() {
         CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
         CriteriaQuery<StudyGroup> criteria = cb.createQuery(StudyGroup.class);

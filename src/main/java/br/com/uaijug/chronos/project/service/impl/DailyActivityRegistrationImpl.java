@@ -27,16 +27,28 @@ import br.com.uaijug.chronos.persistence.base.PersistenceBase;
 import br.com.uaijug.chronos.project.model.DailyActivity;
 import br.com.uaijug.chronos.project.service.DailyActivityRegistration;
 
+// TODO: Auto-generated Javadoc
 // The @Stateless annotation eliminates the need for manual transaction demarcation
+/**
+ * The Class DailyActivityRegistrationImpl.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @Stateless
 public class DailyActivityRegistrationImpl extends PersistenceBase<DailyActivity, Long> implements DailyActivityRegistration {
 
+    /** The log. */
     @Inject
     private Logger log;
     
+    /** The daily activity event src. */
     @Inject
     private Event<DailyActivity> dailyActivityEventSrc;
 
+    /* (non-Javadoc)
+     * @see br.com.uaijug.chronos.service.GenericRegistration#register(java.lang.Object)
+     */
     @Override
    	public Boolean register(DailyActivity dailyActivity) {
    		Boolean saved = false;

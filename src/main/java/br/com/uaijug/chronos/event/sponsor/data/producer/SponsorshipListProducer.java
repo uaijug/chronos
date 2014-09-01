@@ -29,26 +29,48 @@ import javax.inject.Named;
 import br.com.uaijug.chronos.event.sponsor.data.repository.SponsorshipRepository;
 import br.com.uaijug.chronos.event.sponsor.model.Sponsorship;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class SponsorshipListProducer.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogerifontes dot inf dot br
+ * 
+ */
 @RequestScoped
 public class SponsorshipListProducer {
 
+	/** The sponsorship repository. */
 	@Inject
 	private SponsorshipRepository sponsorshipRepository;
 
+    /** The sponsorships. */
     private List<Sponsorship> sponsorships;
 
     // @Named provides access the return value via the EL variable name "sponsorships" in the UI (e.g.
     // Facelets or JSP view)
+    /**
+     * Gets the sponsorships.
+     *
+     * @return the sponsorships
+     */
     @Produces
     @Named
     public List<Sponsorship> getSponsorships() {
         return sponsorships;
     }
 
+    /**
+     * On sponsorship list changed.
+     *
+     * @param sponsorship the sponsorship
+     */
     public void onSponsorshipListChanged(@Observes(notifyObserver = Reception.IF_EXISTS) final Sponsorship sponsorship) {
         retrieveAllSponsorshipsOrderedByName();
     }
 
+    /**
+     * Retrieve all sponsorships ordered by name.
+     */
     @PostConstruct
     public void retrieveAllSponsorshipsOrderedByName() {
         sponsorships = sponsorshipRepository.findAllOrderedByName();

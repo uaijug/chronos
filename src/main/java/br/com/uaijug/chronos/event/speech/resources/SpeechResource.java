@@ -43,34 +43,53 @@ import br.com.uaijug.chronos.event.speech.data.repository.SpeechRepository;
 import br.com.uaijug.chronos.event.speech.model.Speech;
 import br.com.uaijug.chronos.event.speech.service.SpeechRegistration;
 
+// TODO: Auto-generated Javadoc
 /**
  * JAX-RS Example
  * <p/>
  * This class produces a RESTful service to read/write the contents of the
  * speechs table.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogerifontes dot inf dot br
+ * 
  */
 @Path("/speechs")
 @RequestScoped
 public class SpeechResource {
 
+	/** The log. */
 	@Inject
 	private Logger log;
 
+	/** The validator. */
 	@Inject
 	private Validator validator;
 
+	/** The repository. */
 	@Inject
 	private SpeechRepository repository;
 
+	/** The registration. */
 	@Inject
 	SpeechRegistration registration;
 
+	/**
+	 * List all speechs.
+	 *
+	 * @return the list
+	 */
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Speech> listAllSpeechs() {
 		return repository.findAllOrderedByName();
 	}
 
+	/**
+	 * Lookup speech by id.
+	 *
+	 * @param id the id
+	 * @return the speech
+	 */
 	@GET
 	@Path("/{id:[0-9][0-9]*}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -86,6 +105,9 @@ public class SpeechResource {
 	 * Creates a new speech from the values provided. Performs validation, and
 	 * will return a JAX-RS response with either 200 ok, or with a map of
 	 * fields, and related errors.
+	 *
+	 * @param speech the speech
+	 * @return the response
 	 */
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)

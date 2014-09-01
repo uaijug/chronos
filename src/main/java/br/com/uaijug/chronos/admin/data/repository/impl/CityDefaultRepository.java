@@ -27,9 +27,19 @@ import br.com.uaijug.chronos.admin.data.repository.CityRepository;
 import br.com.uaijug.chronos.admin.model.City;
 import br.com.uaijug.chronos.persistence.base.PersistenceBase;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class CityDefaultRepository.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @ApplicationScoped
 public class CityDefaultRepository extends PersistenceBase<City, Long> implements CityRepository {
 
+    /* (non-Javadoc)
+     * @see br.com.uaijug.chronos.admin.data.repository.CityRepository#findAllOrderedByName()
+     */
     public List<City> findAllOrderedByName() {
         CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
         CriteriaQuery<City> criteria = cb.createQuery(City.class);

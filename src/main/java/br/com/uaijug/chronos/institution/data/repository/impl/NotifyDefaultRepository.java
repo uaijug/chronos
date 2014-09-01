@@ -27,9 +27,19 @@ import br.com.uaijug.chronos.institution.data.repository.NotifyRepository;
 import br.com.uaijug.chronos.institution.model.Notify;
 import br.com.uaijug.chronos.persistence.base.PersistenceBase;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class NotifyDefaultRepository.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @ApplicationScoped
 public class NotifyDefaultRepository extends PersistenceBase<Notify, Long> implements NotifyRepository {
 
+    /* (non-Javadoc)
+     * @see br.com.uaijug.chronos.institution.data.repository.NotifyRepository#findAllOrderedByName()
+     */
     public List<Notify> findAllOrderedByName() {
         CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
         CriteriaQuery<Notify> criteria = cb.createQuery(Notify.class);

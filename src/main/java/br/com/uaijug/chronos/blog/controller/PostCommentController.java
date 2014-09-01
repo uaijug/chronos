@@ -16,37 +16,67 @@
  */
 package br.com.uaijug.chronos.blog.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Model;
+import javax.faces.model.SelectItem;
 import javax.inject.Inject;
 
+import br.com.uaijug.chronos.blog.data.repository.PostRepository;
 import br.com.uaijug.chronos.blog.data.repository.PostCommentRepository;
+import br.com.uaijug.chronos.blog.model.Post;
 import br.com.uaijug.chronos.blog.model.PostComment;
 import br.com.uaijug.chronos.blog.service.PostCommentRegistration;
 import br.com.uaijug.chronos.controller.AbstractManageBeans;
 
+// TODO: Auto-generated Javadoc
 // The @Model stereotype is a convenience mechanism to make this a request-scoped bean that has an
 // EL name
 // Read more about the @Model stereotype in this FAQ:
 // http://sfwk.org/Documentation/WhatIsThePurposeOfTheModelAnnotation
+/**
+ * The Class PostCommentController.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at
+ *         rogeriofontes dot inf dot br
+ * 
+ */
 @Model
 public class PostCommentController extends AbstractManageBeans {
 
+	/** The post comment registration. */
 	@Inject
 	private PostCommentRegistration postCommentRegistration;
 
+	/** The post comment repository. */
 	@Inject
 	private PostCommentRepository postCommentRepository;
 
+	/** The post  repository. */
+	@Inject
+	private PostRepository postRepository;
+
+	/** The id post comment. */
 	private Long idPostComment;
 
+	/** The post comment. */
 	private PostComment postComment;
 
+	/** The post comments. */
 	List<PostComment> postComments;
 
+	/** The list post . */
+	private List<Post> listPost = null;
+
+	/** The itens state. */
+	List<SelectItem> itensPost = null;
+
+	/**
+	 * Inits the new post comment.
+	 */
 	@PostConstruct
 	public void initNewPostComment() {
 		postComment = new PostComment();
@@ -55,8 +85,16 @@ public class PostCommentController extends AbstractManageBeans {
 				getFacesContext().getViewRoot().getLocale());
 
 		idPostComment = null;
+
+		itensPost = new ArrayList<SelectItem>();
+		listPost = new ArrayList<Post>();
 	}
 
+	/**
+	 * Gets the post comments.
+	 * 
+	 * @return the post comments
+	 */
 	public List<PostComment> getPostComments() {
 		return postCommentRepository.findAll();
 	}
@@ -77,6 +115,13 @@ public class PostCommentController extends AbstractManageBeans {
 		}
 	}
 
+	/**
+	 * Register.
+	 * 
+	 * @return the string
+	 * @throws Exception
+	 *             the exception
+	 */
 	public String register() throws Exception {
 		try {
 
@@ -91,30 +136,90 @@ public class PostCommentController extends AbstractManageBeans {
 		return null;
 	}
 
+	/**
+	 * Gets the post s.
+	 * 
+	 * @return the post s
+	 */
+	public List<SelectItem> getPosts() {
+
+		setListPost(postRepository.findAllOrderedByName());
+		for (Post p : listPost) {
+			itensPost.add(new SelectItem(p, p.getTitle()));
+		}
+		return itensPost;
+	}
+
+	/**
+	 * Cancelar.
+	 * 
+	 * @return the string
+	 */
 	public String cancelar() {
 		limpar();
 		return "list?faces-redirect=true";
 	}
 
+	/**
+	 * Limpar.
+	 */
 	private void limpar() {
 		idPostComment = null;
 		postComment = new PostComment();
 	}
 
+	/**
+	 * Gets the id post comment.
+	 * 
+	 * @return the id post comment
+	 */
 	public Long getIdPostComment() {
 		return idPostComment;
 	}
 
+	/**
+	 * Sets the id post comment.
+	 * 
+	 * @param idPostComment
+	 *            the new id post comment
+	 */
 	public void setIdPostComment(Long idPostComment) {
 		this.idPostComment = idPostComment;
 	}
 
+	/**
+	 * Gets the post comment.
+	 * 
+	 * @return the post comment
+	 */
 	public PostComment getPostComment() {
 		return postComment;
 	}
 
+	/**
+	 * Sets the post comment.
+	 * 
+	 * @param postComment
+	 *            the new post comment
+	 */
 	public void setPostComment(PostComment postComment) {
 		this.postComment = postComment;
+	}
+
+	public List<Post> getListPost() {
+		return listPost;
+	}
+
+	public void setListPost(List<Post> listPost) {
+		this.listPost = listPost;
+	}
+
+	public List<SelectItem> getItensPost() {
+		return itensPost;
+	}
+
+	public void setItensPost(List<SelectItem> itensPost) {
+		this.itensPost = itensPost;
 	}
 
 }

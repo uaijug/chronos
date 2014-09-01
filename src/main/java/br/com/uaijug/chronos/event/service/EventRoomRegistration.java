@@ -22,6 +22,12 @@ import br.com.uaijug.chronos.event.model.EventRoom;
 import br.com.uaijug.chronos.service.GenericRegistration;
 
 // The @Stateless annotation eliminates the need for manual transaction demarcation
+/**
+ * The Interface EventRoomRegistration.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogerifontes dot inf dot br
+ * 
+ */
 @Local
 public interface EventRoomRegistration extends GenericRegistration<EventRoom, Long> {
 

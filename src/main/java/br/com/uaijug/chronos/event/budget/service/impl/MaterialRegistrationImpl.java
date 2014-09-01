@@ -27,16 +27,28 @@ import br.com.uaijug.chronos.event.budget.model.Material;
 import br.com.uaijug.chronos.event.budget.service.MaterialRegistration;
 import br.com.uaijug.chronos.persistence.base.PersistenceBase;
 
+// TODO: Auto-generated Javadoc
 // The @Stateless annotation eliminates the need for manual transaction demarcation
+/**
+ * The Class MaterialRegistrationImpl.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @Stateless
 public class MaterialRegistrationImpl extends PersistenceBase<Material, Long> implements MaterialRegistration {
 
+    /** The log. */
     @Inject
     private Logger log;
     
+    /** The event material src. */
     @Inject
     private Event<Material> eventMaterialSrc;
 
+    /* (non-Javadoc)
+     * @see br.com.uaijug.chronos.service.GenericRegistration#register(java.lang.Object)
+     */
     @Override
    	public Boolean register(Material material) {
    		Boolean saved = false;

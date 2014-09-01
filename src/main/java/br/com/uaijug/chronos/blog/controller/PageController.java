@@ -28,25 +28,40 @@ import br.com.uaijug.chronos.blog.model.Page;
 import br.com.uaijug.chronos.blog.service.PageRegistration;
 import br.com.uaijug.chronos.controller.AbstractManageBeans;
 
+// TODO: Auto-generated Javadoc
 // The @Model stereotype is a convenience mechanism to make this a request-scoped bean that has an
 // EL name
 // Read more about the @Model stereotype in this FAQ:
 // http://sfwk.org/Documentation/WhatIsThePurposeOfTheModelAnnotation
+/**
+ * The Class PageController.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @Model
 public class PageController extends AbstractManageBeans {
 
+	/** The page registration. */
 	@Inject
 	private PageRegistration pageRegistration;
 
+	/** The page repository. */
 	@Inject
 	private PageRepository pageRepository;
 
+	/** The id page. */
 	private Long idPage;
 
+	/** The page. */
 	private Page page;
 
+	/** The pages. */
 	List<Page> pages;
 
+	/**
+	 * Inits the new page.
+	 */
 	@PostConstruct
 	public void initNewPage() {
 		page = new Page();
@@ -57,6 +72,11 @@ public class PageController extends AbstractManageBeans {
 		idPage = null;
 	}
 
+	/**
+	 * Gets the pages.
+	 *
+	 * @return the pages
+	 */
 	public List<Page> getPages() {
 		return pageRepository.findAll();
 	}
@@ -77,6 +97,12 @@ public class PageController extends AbstractManageBeans {
 		}
 	}
 
+	/**
+	 * Register.
+	 *
+	 * @return the string
+	 * @throws Exception the exception
+	 */
 	public String register() throws Exception {
 		try {
 
@@ -91,28 +117,56 @@ public class PageController extends AbstractManageBeans {
 		return null;
 	}
 
+	/**
+	 * Cancelar.
+	 *
+	 * @return the string
+	 */
 	public String cancelar() {
 		limpar();
 		return "list?faces-redirect=true";
 	}
 
+	/**
+	 * Limpar.
+	 */
 	private void limpar() {
 		idPage = null;
 		page = new Page();
 	}
 
+	/**
+	 * Gets the id page.
+	 *
+	 * @return the id page
+	 */
 	public Long getIdPage() {
 		return idPage;
 	}
 
+	/**
+	 * Sets the id page.
+	 *
+	 * @param idPage the new id page
+	 */
 	public void setIdPage(Long idPage) {
 		this.idPage = idPage;
 	}
 
+	/**
+	 * Gets the page.
+	 *
+	 * @return the page
+	 */
 	public Page getPage() {
 		return page;
 	}
 
+	/**
+	 * Sets the page.
+	 *
+	 * @param page the new page
+	 */
 	public void setPage(Page page) {
 		this.page = page;
 	}

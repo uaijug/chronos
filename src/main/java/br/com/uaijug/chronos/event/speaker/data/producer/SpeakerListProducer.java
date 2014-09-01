@@ -29,26 +29,48 @@ import javax.inject.Named;
 import br.com.uaijug.chronos.event.speaker.data.repository.SpeakerRepository;
 import br.com.uaijug.chronos.event.speaker.model.Speaker;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class SpeakerListProducer.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogerifontes dot inf dot br
+ * 
+ */
 @RequestScoped
 public class SpeakerListProducer {
 
+    /** The speaker repository. */
     @Inject
     private SpeakerRepository speakerRepository;
 
+    /** The speakers. */
     private List<Speaker> speakers;
 
     // @Named provides access the return value via the EL variable name "speakers" in the UI (e.g.
     // Facelets or JSP view)
+    /**
+     * Gets the speakers.
+     *
+     * @return the speakers
+     */
     @Produces
     @Named
     public List<Speaker> getSpeakers() {
         return speakers;
     }
 
+    /**
+     * On speaker list changed.
+     *
+     * @param speaker the speaker
+     */
     public void onSpeakerListChanged(@Observes(notifyObserver = Reception.IF_EXISTS) final Speaker speaker) {
         retrieveAllSpeakersOrderedByName();
     }
 
+    /**
+     * Retrieve all speakers ordered by name.
+     */
     @PostConstruct
     public void retrieveAllSpeakersOrderedByName() {
         speakers = speakerRepository.findAllOrderedByName();

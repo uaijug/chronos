@@ -27,9 +27,19 @@ import br.com.uaijug.chronos.persistence.base.PersistenceBase;
 import br.com.uaijug.chronos.project.data.repository.DailyActivityCategoryRepository;
 import br.com.uaijug.chronos.project.model.DailyActivityCategory;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class DailyActivityCategoryDefaultRepository.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @ApplicationScoped
 public class DailyActivityCategoryDefaultRepository extends PersistenceBase<DailyActivityCategory, Long> implements DailyActivityCategoryRepository {
 
+    /* (non-Javadoc)
+     * @see br.com.uaijug.chronos.project.data.repository.DailyActivityCategoryRepository#findAllOrderedByName()
+     */
     public List<DailyActivityCategory> findAllOrderedByName() {
         CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
         CriteriaQuery<DailyActivityCategory> criteria = cb.createQuery(DailyActivityCategory.class);

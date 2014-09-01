@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package br.com.uaijug.chronos.event.model;
 
 import java.io.Serializable;
@@ -18,8 +21,11 @@ import org.hibernate.annotations.FetchMode;
 
 import br.com.uaijug.chronos.model.AbstractEntity;
 
+// TODO: Auto-generated Javadoc
 /**
  * The persistent class for the uj_eventRoom database table.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
  * 
  */
 @Entity
@@ -27,52 +33,101 @@ import br.com.uaijug.chronos.model.AbstractEntity;
 @XmlRootElement
 @Table(name = "uj_event_room", uniqueConstraints = @UniqueConstraint(columnNames = "description"))
 @JsonIgnoreProperties(value = { "handler", "hibernateLazyInitializer" })
-@Cacheable(true)
+
 public class EventRoom extends AbstractEntity<Long> implements Serializable {
+	
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
+	/** The description. */
 	private String description;
 
+	/** The block. */
 	private String block;
 
+	/** The number. */
 	private String number;
 
+	/** The event. */
 	@Fetch(FetchMode.JOIN)
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "event_id")
 	private EventMain event;
 
+	/**
+	 * Instantiates a new event room.
+	 */
 	public EventRoom() {
 	}
 
+	/**
+	 * Gets the description.
+	 *
+	 * @return the description
+	 */
 	public String getDescription() {
 		return description;
 	}
 
+	/**
+	 * Sets the description.
+	 *
+	 * @param description the new description
+	 */
 	public void setDescription(String description) {
 		this.description = description;
 	}
 
+	/**
+	 * Gets the block.
+	 *
+	 * @return the block
+	 */
 	public String getBlock() {
 		return block;
 	}
 
+	/**
+	 * Sets the block.
+	 *
+	 * @param block the new block
+	 */
 	public void setBlock(String block) {
 		this.block = block;
 	}
 
+	/**
+	 * Gets the number.
+	 *
+	 * @return the number
+	 */
 	public String getNumber() {
 		return number;
 	}
 
+	/**
+	 * Sets the number.
+	 *
+	 * @param number the new number
+	 */
 	public void setNumber(String number) {
 		this.number = number;
 	}
 
+	/**
+	 * Gets the event.
+	 *
+	 * @return the event
+	 */
 	public EventMain getEvent() {
 		return event;
 	}
 
+	/**
+	 * Sets the event.
+	 *
+	 * @param event the new event
+	 */
 	public void setEvent(EventMain event) {
 		this.event = event;
 	}

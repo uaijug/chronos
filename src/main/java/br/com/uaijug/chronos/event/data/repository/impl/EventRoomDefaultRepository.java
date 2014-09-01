@@ -27,9 +27,19 @@ import br.com.uaijug.chronos.event.data.repository.EventRoomRepository;
 import br.com.uaijug.chronos.event.model.EventRoom;
 import br.com.uaijug.chronos.persistence.base.PersistenceBase;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class EventRoomDefaultRepository.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @ApplicationScoped
 public class EventRoomDefaultRepository extends PersistenceBase<EventRoom, Long> implements EventRoomRepository {
 
+    /* (non-Javadoc)
+     * @see br.com.uaijug.chronos.event.data.repository.EventRoomRepository#findAllOrderedByName()
+     */
     public List<EventRoom> findAllOrderedByName() {
         CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
         CriteriaQuery<EventRoom> criteria = cb.createQuery(EventRoom.class);

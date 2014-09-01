@@ -21,6 +21,19 @@ import java.util.List;
 import br.com.uaijug.chronos.event.budget.model.Material;
 import br.com.uaijug.chronos.persistence.Persistence;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Interface MaterialRepository.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 public interface MaterialRepository extends Persistence<Material, Long> {
+	
+	/**
+	 * Find all ordered by name.
+	 *
+	 * @return the list
+	 */
 	List<Material> findAllOrderedByName();
 }

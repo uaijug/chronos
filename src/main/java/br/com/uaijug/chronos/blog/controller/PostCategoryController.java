@@ -28,25 +28,40 @@ import br.com.uaijug.chronos.blog.model.PostCategory;
 import br.com.uaijug.chronos.blog.service.PostCategoryRegistration;
 import br.com.uaijug.chronos.controller.AbstractManageBeans;
 
+// TODO: Auto-generated Javadoc
 // The @Model stereotype is a convenience mechanism to make this a request-scoped bean that has an
 // EL name
 // Read more about the @Model stereotype in this FAQ:
 // http://sfwk.org/Documentation/WhatIsThePurposeOfTheModelAnnotation
+/**
+ * The Class PostCategoryController.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @Model
 public class PostCategoryController extends AbstractManageBeans {
 
+	/** The post category registration. */
 	@Inject
 	private PostCategoryRegistration postCategoryRegistration;
 
+	/** The post category repository. */
 	@Inject
 	private PostCategoryRepository postCategoryRepository;
 
+	/** The id post category. */
 	private Long idPostCategory;
 
+	/** The post category. */
 	private PostCategory postCategory;
 
+	/** The post categorys. */
 	List<PostCategory> postCategorys;
 
+	/**
+	 * Inits the new post category.
+	 */
 	@PostConstruct
 	public void initNewPostCategory() {
 		postCategory = new PostCategory();
@@ -58,6 +73,11 @@ public class PostCategoryController extends AbstractManageBeans {
 	
 	}
 
+	/**
+	 * Gets the post categorys.
+	 *
+	 * @return the post categorys
+	 */
 	public List<PostCategory> getPostCategorys() {
 		List<PostCategory> cds = postCategoryRepository.findAllOrderedByName();
 
@@ -80,10 +100,16 @@ public class PostCategoryController extends AbstractManageBeans {
 		}
 	}
 
+	/**
+	 * Register.
+	 *
+	 * @return the string
+	 * @throws Exception the exception
+	 */
 	public String register() throws Exception {
 		try {
 
-			postCategoryRepository.save(postCategory);
+			postCategoryRegistration.register(postCategory);
 			successMessage("label.postCategory.save");
 			limpar();
 			return "list?faces-redirect=true";
@@ -94,28 +120,56 @@ public class PostCategoryController extends AbstractManageBeans {
 		return null;
 	}
 
+	/**
+	 * Cancelar.
+	 *
+	 * @return the string
+	 */
 	public String cancelar() {
 		limpar();
 		return "list?faces-redirect=true";
 	}
 
+	/**
+	 * Limpar.
+	 */
 	private void limpar() {
 		idPostCategory = null;
 		postCategory = new PostCategory();
 	}
 
+	/**
+	 * Gets the id post category.
+	 *
+	 * @return the id post category
+	 */
 	public Long getIdPostCategory() {
 		return idPostCategory;
 	}
 
+	/**
+	 * Sets the id post category.
+	 *
+	 * @param idPostCategory the new id post category
+	 */
 	public void setIdPostCategory(Long idPostCategory) {
 		this.idPostCategory = idPostCategory;
 	}
 
+	/**
+	 * Gets the post category.
+	 *
+	 * @return the post category
+	 */
 	public PostCategory getPostCategory() {
 		return postCategory;
 	}
 
+	/**
+	 * Sets the post category.
+	 *
+	 * @param postCategory the new post category
+	 */
 	public void setPostCategory(PostCategory postCategory) {
 		this.postCategory = postCategory;
 	}

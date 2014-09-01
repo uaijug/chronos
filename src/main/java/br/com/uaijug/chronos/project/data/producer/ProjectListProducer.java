@@ -29,26 +29,48 @@ import javax.inject.Named;
 import br.com.uaijug.chronos.project.data.repository.ProjectRepository;
 import br.com.uaijug.chronos.project.model.Project;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ProjectListProducer.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @RequestScoped
 public class ProjectListProducer {
 
+	/** The project repository. */
 	@Inject
 	private ProjectRepository projectRepository;
 
+    /** The projects. */
     private List<Project> projects;
 
     // @Named provides access the return value via the EL variable name "projects" in the UI (e.g.
     // Facelets or JSP view)
+    /**
+     * Gets the projects.
+     *
+     * @return the projects
+     */
     @Produces
     @Named
     public List<Project> getProjects() {
         return projects;
     }
 
+    /**
+     * On project list changed.
+     *
+     * @param project the project
+     */
     public void onProjectListChanged(@Observes(notifyObserver = Reception.IF_EXISTS) final Project project) {
         retrieveAllProjectsOrderedByName();
     }
 
+    /**
+     * Retrieve all projects ordered by name.
+     */
     @PostConstruct
     public void retrieveAllProjectsOrderedByName() {
         projects = projectRepository.findAllOrderedByName();

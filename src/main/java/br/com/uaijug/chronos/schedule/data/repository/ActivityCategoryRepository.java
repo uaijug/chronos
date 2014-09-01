@@ -21,6 +21,19 @@ import java.util.List;
 import br.com.uaijug.chronos.persistence.Persistence;
 import br.com.uaijug.chronos.schedule.model.ActivityCategory;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Interface ActivityCategoryRepository.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogerifontes dot inf dot br
+ * 
+ */
 public interface ActivityCategoryRepository extends Persistence<ActivityCategory, Long> {
+	
+	/**
+	 * Find all ordered by name.
+	 *
+	 * @return the list
+	 */
 	List<ActivityCategory> findAllOrderedByName();
 }

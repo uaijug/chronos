@@ -27,14 +27,22 @@ import br.com.uaijug.chronos.persistence.base.PersistenceBase;
 import br.com.uaijug.chronos.schedule.data.repository.ActivityCategoryRepository;
 import br.com.uaijug.chronos.schedule.model.ActivityCategory;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ActivityCategoryDefaultRepository.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogerifontes dot inf dot br
+ * 
+ */
 @ApplicationScoped
 public class ActivityCategoryDefaultRepository extends PersistenceBase<ActivityCategory, Long> implements ActivityCategoryRepository {
 
-    /**
-	 * 
-	 */
+    /** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 6579856773257420769L;
 
+	/* (non-Javadoc)
+	 * @see br.com.uaijug.chronos.schedule.data.repository.ActivityCategoryRepository#findAllOrderedByName()
+	 */
 	public List<ActivityCategory> findAllOrderedByName() {
         CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
         CriteriaQuery<ActivityCategory> criteria = cb.createQuery(ActivityCategory.class);

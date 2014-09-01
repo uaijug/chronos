@@ -27,17 +27,29 @@ import br.com.uaijug.chronos.event.model.EventMain;
 import br.com.uaijug.chronos.event.service.EventMainRegistration;
 import br.com.uaijug.chronos.persistence.base.PersistenceBase;
 
+// TODO: Auto-generated Javadoc
 // The @Stateless annotation eliminates the need for manual transaction demarcation
+/**
+ * The Class EventMainRegistrationImpl.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogerifontes dot inf dot br
+ * 
+ */
 @Stateless
 public class EventMainRegistrationImpl extends PersistenceBase<EventMain, Long>
 		implements EventMainRegistration {
 
+	/** The log. */
 	@Inject
 	private Logger log;
 
+	/** The event event main src. */
 	@Inject
 	private Event<EventMain> eventEventMainSrc;
 
+	/* (non-Javadoc)
+	 * @see br.com.uaijug.chronos.service.GenericRegistration#register(java.lang.Object)
+	 */
 	@Override
 	public Boolean register(EventMain eventMain) {
 		Boolean saved = false;

@@ -36,49 +36,70 @@ import br.com.uaijug.chronos.project.task.model.Task;
 import br.com.uaijug.chronos.project.task.model.TaskCategory;
 import br.com.uaijug.chronos.project.task.service.TaskRegistration;
 
+// TODO: Auto-generated Javadoc
 // The @Model stereotype is a convenience mechanism to make this a request-scoped bean that has an
 // EL name
 // Read more about the @Model stereotype in this FAQ:
 // http://sfwk.org/Documentation/WhatIsThePurposeOfTheModelAnnotation
+/**
+ * The Class TaskController.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @Model
 public class TaskController extends AbstractManageBeans {
 
+	/** The task registration. */
 	@Inject
 	private TaskRegistration taskRegistration;
 
+	/** The task repository. */
 	@Inject
 	private TaskRepository taskRepository;
 
+	/** The project repository. */
 	@Inject
 	private ProjectRepository projectRepository;
 
+	/** The task category repository. */
 	@Inject
 	private TaskCategoryRepository taskCategoryRepository;
 
+	/** The member repository. */
 	@Inject
 	private MemberRepository memberRepository;
 
+	/** The id task. */
 	private Long idTask;
 
+	/** The task. */
 	private Task task;
 
+	/** The tasks. */
 	List<Task> tasks;
 
+	/** The list project. */
 	private List<Project> listProject = null;
 
 	/** The itens state. */
 	List<SelectItem> itensProject = null;
 
+	/** The list task category. */
 	private List<TaskCategory> listTaskCategory = null;
 
 	/** The itens state. */
 	List<SelectItem> itensTaskCategory = null;
 
+	/** The list member. */
 	private List<Member> listMember = null;
 
 	/** The itens state. */
 	List<SelectItem> itensMember = null;
 
+	/**
+	 * Inits the new task.
+	 */
 	@PostConstruct
 	public void initNewTask() {
 		task = new Task();
@@ -98,6 +119,11 @@ public class TaskController extends AbstractManageBeans {
 		listMember = new ArrayList<Member>();
 	}
 
+	/**
+	 * Gets the tasks.
+	 *
+	 * @return the tasks
+	 */
 	public List<Task> getTasks() {
 		return taskRepository.findAll();
 	}
@@ -118,6 +144,12 @@ public class TaskController extends AbstractManageBeans {
 		}
 	}
 
+	/**
+	 * Register.
+	 *
+	 * @return the string
+	 * @throws Exception the exception
+	 */
 	public String register() throws Exception {
 		try {
 
@@ -132,16 +164,29 @@ public class TaskController extends AbstractManageBeans {
 		return null;
 	}
 
+	/**
+	 * Cancelar.
+	 *
+	 * @return the string
+	 */
 	public String cancelar() {
 		limpar();
 		return "list?faces-redirect=true";
 	}
 
+	/**
+	 * Limpar.
+	 */
 	private void limpar() {
 		idTask = null;
 		task = new Task();
 	}
 
+	/**
+	 * Gets the projects.
+	 *
+	 * @return the projects
+	 */
 	public List<SelectItem> getProjects() {
 
 		setListProject(projectRepository.findAll());
@@ -151,6 +196,11 @@ public class TaskController extends AbstractManageBeans {
 		return itensProject;
 	}
 
+	/**
+	 * Gets the task categorys.
+	 *
+	 * @return the task categorys
+	 */
 	public List<SelectItem> getTaskCategorys() {
 
 		setListTaskCategory(taskCategoryRepository.findAll());
@@ -160,6 +210,11 @@ public class TaskController extends AbstractManageBeans {
 		return itensTaskCategory;
 	}
 
+	/**
+	 * Gets the members.
+	 *
+	 * @return the members
+	 */
 	public List<SelectItem> getMembers() {
 
 		setListMember(memberRepository.findAll());
@@ -169,6 +224,11 @@ public class TaskController extends AbstractManageBeans {
 		return itensMember;
 	}
 
+	/**
+	 * Gets the prioritys.
+	 *
+	 * @return the prioritys
+	 */
 	public List<SelectItem> getPrioritys() {
 		List<SelectItem> lst = new ArrayList<SelectItem>();
 		lst.add(new SelectItem("0", "Alto"));
@@ -177,66 +237,146 @@ public class TaskController extends AbstractManageBeans {
 		return lst;
 	}
 
+	/**
+	 * Gets the id task.
+	 *
+	 * @return the id task
+	 */
 	public Long getIdTask() {
 		return idTask;
 	}
 
+	/**
+	 * Sets the id task.
+	 *
+	 * @param idTask the new id task
+	 */
 	public void setIdTask(Long idTask) {
 		this.idTask = idTask;
 	}
 
+	/**
+	 * Gets the task.
+	 *
+	 * @return the task
+	 */
 	public Task getTask() {
 		return task;
 	}
 
+	/**
+	 * Sets the task.
+	 *
+	 * @param task the new task
+	 */
 	public void setTask(Task task) {
 		this.task = task;
 	}
 
+	/**
+	 * Gets the list project.
+	 *
+	 * @return the list project
+	 */
 	public List<Project> getListProject() {
 		return listProject;
 	}
 
+	/**
+	 * Sets the list project.
+	 *
+	 * @param listProject the new list project
+	 */
 	public void setListProject(List<Project> listProject) {
 		this.listProject = listProject;
 	}
 
+	/**
+	 * Gets the itens project.
+	 *
+	 * @return the itens project
+	 */
 	public List<SelectItem> getItensProject() {
 		return itensProject;
 	}
 
+	/**
+	 * Sets the itens project.
+	 *
+	 * @param itensProject the new itens project
+	 */
 	public void setItensProject(List<SelectItem> itensProject) {
 		this.itensProject = itensProject;
 	}
 
+	/**
+	 * Gets the list task category.
+	 *
+	 * @return the list task category
+	 */
 	public List<TaskCategory> getListTaskCategory() {
 		return listTaskCategory;
 	}
 
+	/**
+	 * Sets the list task category.
+	 *
+	 * @param listTaskCategory the new list task category
+	 */
 	public void setListTaskCategory(List<TaskCategory> listTaskCategory) {
 		this.listTaskCategory = listTaskCategory;
 	}
 
+	/**
+	 * Gets the itens task category.
+	 *
+	 * @return the itens task category
+	 */
 	public List<SelectItem> getItensTaskCategory() {
 		return itensTaskCategory;
 	}
 
+	/**
+	 * Sets the itens task category.
+	 *
+	 * @param itensTaskCategory the new itens task category
+	 */
 	public void setItensTaskCategory(List<SelectItem> itensTaskCategory) {
 		this.itensTaskCategory = itensTaskCategory;
 	}
 
+	/**
+	 * Gets the list member.
+	 *
+	 * @return the list member
+	 */
 	public List<Member> getListMember() {
 		return listMember;
 	}
 
+	/**
+	 * Sets the list member.
+	 *
+	 * @param listMember the new list member
+	 */
 	public void setListMember(List<Member> listMember) {
 		this.listMember = listMember;
 	}
 
+	/**
+	 * Gets the itens member.
+	 *
+	 * @return the itens member
+	 */
 	public List<SelectItem> getItensMember() {
 		return itensMember;
 	}
 
+	/**
+	 * Sets the itens member.
+	 *
+	 * @param itensMember the new itens member
+	 */
 	public void setItensMember(List<SelectItem> itensMember) {
 		this.itensMember = itensMember;
 	}

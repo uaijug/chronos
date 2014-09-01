@@ -1,23 +1,29 @@
 Chronos
 
 
-Chronos is admin project for management UaiJUG events, projects and all stuffs for Group. Chronos was create to teach Java EE by example in JSR's. It is  very important for learning and apots a JSR`s. Chronos is a GNU General Public License (LGPL v3), that allows everyone to use the code in their personal and professional projects.
+Chronos is a software for managing events, projects and other things that are organized by UaiJUg. Chronos was create to teach Java EE by example in JSR's. It is  very important for learning and adopts a JSR`s. 
+
+Chronos is a GNU General Public License (LGPL v3), that allows everyone to use the code in their personal and professional projects.
 
 |Contacts:
 
-       	Project Leader: Rogério Fontes
+       	Project Leader and Commit developer: Rogério Fontes
         Personal Blog: http://rogeriofontes.wordpress.com
-            Member of: UaiJUG (UaiJUG Java User Group) http://www.uaijug.com.br
+        Leader of: UaiJUG (UaiJUG Java User Group) http://www.uaijug.com.br
         Email Address: rogerio.fontes at uaijug.com.br
 
       	Project Website: http://chronos.uaijug.com.br
-       	Existing Deployments: http://www.uaijug.com.br/
-        Twitter: https://twitter.com/uaijug (Follow @uaijug)
+       	Twitter: https://twitter.com/uaijug (Follow @uaijug)
+        
+        Commit developer: Diego Silva
+        Leader of: UaiJUG (UaiJUG Java User Group) http://www.uaijug.com.br
+        Personal Blog: http://www.pognao.com.br
+        Email Address: diego.silva at uaijug.com.br
 
-        Commit developer developer:
-        Diego Silva 
-
-        Josenaldo Mattos
+        Commit developer: Josenaldo Mattos
+        Leader of: UaiJUG (UaiJUG Java User Group) http://www.uaijug.com.br
+        Personal Blog: http://www.jnaldo.com.br
+        Email Address: josenaldo.matos at uaijug.com.br
 
 Technologies In Use
 
@@ -35,9 +41,13 @@ JSF 2.2: JavaServer Faces
 
 Bootstrap: Bootstrap is a rich visual css/js components library.
 
+Angular.js: To front-end site
+
 iText 5.1: Library to generate PDF files.
 
 JUnit 4.11: Unit test framework.
+
+FlyWay 3.0: to Database Migrations
 
 Arquillian 1.1.4.Final: Integration test framework.
 

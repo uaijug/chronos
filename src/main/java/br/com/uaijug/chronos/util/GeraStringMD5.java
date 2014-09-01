@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package br.com.uaijug.chronos.util;
 
 import java.math.BigInteger;
@@ -5,15 +8,19 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class GeraStringMD5.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
  */
 public class GeraStringMD5 {
 	
 	/**
 	 * Md5.
 	 *
-	 * @param senha the senha
+	 * @param code the code
 	 * @return the string
 	 */
 	public static String md5(String code) {
@@ -33,6 +40,11 @@ public class GeraStringMD5 {
 	
 	}
 	
+	/**
+	 * Gets the hash by random code.
+	 *
+	 * @return the hash by random code
+	 */
 	public static String getHashByRandomCode(){
 		return md5(RandomCode.generatorRandomCode());
 	}

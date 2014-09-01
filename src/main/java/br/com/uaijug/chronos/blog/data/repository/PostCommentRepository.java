@@ -21,6 +21,19 @@ import java.util.List;
 import br.com.uaijug.chronos.blog.model.PostComment;
 import br.com.uaijug.chronos.persistence.Persistence;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Interface PostCommentRepository.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 public interface PostCommentRepository extends Persistence<PostComment, Long> {
+	
+	/**
+	 * Find all ordered by name.
+	 *
+	 * @return the list
+	 */
 	List<PostComment> findAllOrderedByName();
 }

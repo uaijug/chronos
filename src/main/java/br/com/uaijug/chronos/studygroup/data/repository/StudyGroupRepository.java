@@ -21,6 +21,19 @@ import java.util.List;
 import br.com.uaijug.chronos.persistence.Persistence;
 import br.com.uaijug.chronos.studygroup.model.StudyGroup;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Interface StudyGroupRepository.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 public interface StudyGroupRepository extends Persistence<StudyGroup, Long> {
+	
+	/**
+	 * Find all ordered by name.
+	 *
+	 * @return the list
+	 */
 	List<StudyGroup> findAllOrderedByName();
 }

@@ -27,16 +27,28 @@ import br.com.uaijug.chronos.event.model.EventProposal;
 import br.com.uaijug.chronos.event.service.EventProposalRegistration;
 import br.com.uaijug.chronos.persistence.base.PersistenceBase;
 
+// TODO: Auto-generated Javadoc
 // The @Stateless annotation eliminates the need for manual transaction demarcation
+/**
+ * The Class EventProposalRegistrationImpl.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogerifontes dot inf dot br
+ * 
+ */
 @Stateless
 public class EventProposalRegistrationImpl extends PersistenceBase<EventProposal, Long> implements EventProposalRegistration {
 
+    /** The log. */
     @Inject
     private Logger log;
     
+    /** The event event proposal src. */
     @Inject
     private Event<EventProposal> eventEventProposalSrc;
 
+    /* (non-Javadoc)
+     * @see br.com.uaijug.chronos.service.GenericRegistration#register(java.lang.Object)
+     */
     @Override
 	public Boolean register(EventProposal eventProposal) {
 		Boolean saved = false;

@@ -29,26 +29,48 @@ import javax.inject.Named;
 import br.com.uaijug.chronos.event.data.repository.EventSessionRepository;
 import br.com.uaijug.chronos.event.model.EventSession;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class EventSessionListProducer.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @RequestScoped
 public class EventSessionListProducer {
 
+    /** The event session repository. */
     @Inject
     private EventSessionRepository eventSessionRepository;
 
+    /** The event sessions. */
     private List<EventSession> eventSessions;
 
     // @Named provides access the return value via the EL variable name "eventSessions" in the UI (e.g.
     // Facelets or JSP view)
+    /**
+     * Gets the event sessions.
+     *
+     * @return the event sessions
+     */
     @Produces
     @Named
     public List<EventSession> getEventSessions() {
         return eventSessions;
     }
 
+    /**
+     * On event session list changed.
+     *
+     * @param eventSession the event session
+     */
     public void onEventSessionListChanged(@Observes(notifyObserver = Reception.IF_EXISTS) final EventSession eventSession) {
         retrieveAllEventSessionsOrderedByName();
     }
 
+    /**
+     * Retrieve all event sessions ordered by name.
+     */
     @PostConstruct
     public void retrieveAllEventSessionsOrderedByName() {
         eventSessions = eventSessionRepository.findAllOrderedByName();

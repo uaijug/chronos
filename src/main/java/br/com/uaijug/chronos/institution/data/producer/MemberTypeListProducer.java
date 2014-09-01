@@ -29,26 +29,48 @@ import javax.inject.Named;
 import br.com.uaijug.chronos.institution.data.repository.MemberTypeRepository;
 import br.com.uaijug.chronos.institution.model.MemberType;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class MemberTypeListProducer.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @RequestScoped
 public class MemberTypeListProducer {
 
+	/** The member type repository. */
 	@Inject
 	private MemberTypeRepository memberTypeRepository;
 
+    /** The member types. */
     private List<MemberType> memberTypes;
 
     // @Named provides access the return value via the EL variable name "memberTypes" in the UI (e.g.
     // Facelets or JSP view)
+    /**
+     * Gets the member types.
+     *
+     * @return the member types
+     */
     @Produces
     @Named
     public List<MemberType> getMemberTypes() {
         return memberTypes;
     }
 
+    /**
+     * On member type list changed.
+     *
+     * @param memberType the member type
+     */
     public void onMemberTypeListChanged(@Observes(notifyObserver = Reception.IF_EXISTS) final MemberType memberType) {
         retrieveAllMemberTypesOrderedByName();
     }
 
+    /**
+     * Retrieve all member types ordered by name.
+     */
     @PostConstruct
     public void retrieveAllMemberTypesOrderedByName() {
         memberTypes = memberTypeRepository.findAllOrderedByName();

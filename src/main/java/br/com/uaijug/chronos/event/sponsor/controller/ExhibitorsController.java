@@ -32,33 +32,50 @@ import br.com.uaijug.chronos.event.sponsor.data.repository.ExhibitorsRepository;
 import br.com.uaijug.chronos.event.sponsor.model.Exhibitors;
 import br.com.uaijug.chronos.event.sponsor.service.ExhibitorsRegistration;
 
+// TODO: Auto-generated Javadoc
 // The @Model stereotype is a convenience mechanism to make this a request-scoped bean that has an
 // EL name
 // Read more exhibitors the @Model stereotype in this FAQ:
 // http://sfwk.org/Documentation/WhatIsThePurposeOfTheModelAnnotation
+/**
+ * The Class ExhibitorsController.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogerifontes dot inf dot br
+ * 
+ */
 @Model
 public class ExhibitorsController extends AbstractManageBeans {
 
+	/** The exhibitors registration. */
 	@Inject
 	private ExhibitorsRegistration exhibitorsRegistration;
 
+	/** The exhibitors repository. */
 	@Inject
 	private ExhibitorsRepository exhibitorsRepository;
 
+	/** The id exhibitors. */
 	private Long idExhibitors;
 
+	/** The exhibitors. */
 	private Exhibitors exhibitors;
 
+	/** The exhibitorss. */
 	List<Exhibitors> exhibitorss;
 
+	/** The company repository. */
 	@Inject
 	private CompanyRepository companyRepository;
 
+	/** The list company. */
 	private List<Company> listCompany = null;
 
 	/** The itens state. */
 	List<SelectItem> itensCompany = null;
 
+	/**
+	 * Inits the new exhibitors.
+	 */
 	@PostConstruct
 	public void initNewExhibitors() {
 		exhibitors = new Exhibitors();
@@ -72,6 +89,11 @@ public class ExhibitorsController extends AbstractManageBeans {
 		listCompany = new ArrayList<Company>();
 	}
 
+	/**
+	 * Gets the exhibitorss.
+	 *
+	 * @return the exhibitorss
+	 */
 	public List<Exhibitors> getExhibitorss() {
 		return exhibitorsRepository.findAll();
 	}
@@ -92,6 +114,12 @@ public class ExhibitorsController extends AbstractManageBeans {
 		}
 	}
 
+	/**
+	 * Register.
+	 *
+	 * @return the string
+	 * @throws Exception the exception
+	 */
 	public String register() throws Exception {
 		try {
 
@@ -106,16 +134,29 @@ public class ExhibitorsController extends AbstractManageBeans {
 		return null;
 	}
 
+	/**
+	 * Cancelar.
+	 *
+	 * @return the string
+	 */
 	public String cancelar() {
 		limpar();
 		return "list?faces-redirect=true";
 	}
 
+	/**
+	 * Limpar.
+	 */
 	private void limpar() {
 		idExhibitors = null;
 		exhibitors = new Exhibitors();
 	}
 
+	/**
+	 * Gets the companys.
+	 *
+	 * @return the companys
+	 */
 	public List<SelectItem> getCompanys() {
 
 		setListCompany(companyRepository.findAll());
@@ -125,34 +166,74 @@ public class ExhibitorsController extends AbstractManageBeans {
 		return itensCompany;
 	}
 
+	/**
+	 * Gets the id exhibitors.
+	 *
+	 * @return the id exhibitors
+	 */
 	public Long getIdExhibitors() {
 		return idExhibitors;
 	}
 
+	/**
+	 * Sets the id exhibitors.
+	 *
+	 * @param idExhibitors the new id exhibitors
+	 */
 	public void setIdExhibitors(Long idExhibitors) {
 		this.idExhibitors = idExhibitors;
 	}
 
+	/**
+	 * Gets the exhibitors.
+	 *
+	 * @return the exhibitors
+	 */
 	public Exhibitors getExhibitors() {
 		return exhibitors;
 	}
 
+	/**
+	 * Sets the exhibitors.
+	 *
+	 * @param exhibitors the new exhibitors
+	 */
 	public void setExhibitors(Exhibitors exhibitors) {
 		this.exhibitors = exhibitors;
 	}
 
+	/**
+	 * Gets the list company.
+	 *
+	 * @return the list company
+	 */
 	public List<Company> getListCompany() {
 		return listCompany;
 	}
 
+	/**
+	 * Sets the list company.
+	 *
+	 * @param listCompany the new list company
+	 */
 	public void setListCompany(List<Company> listCompany) {
 		this.listCompany = listCompany;
 	}
 
+	/**
+	 * Gets the itens company.
+	 *
+	 * @return the itens company
+	 */
 	public List<SelectItem> getItensCompany() {
 		return itensCompany;
 	}
 
+	/**
+	 * Sets the itens company.
+	 *
+	 * @param itensCompany the new itens company
+	 */
 	public void setItensCompany(List<SelectItem> itensCompany) {
 		this.itensCompany = itensCompany;
 	}

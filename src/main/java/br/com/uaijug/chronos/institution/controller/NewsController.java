@@ -28,25 +28,40 @@ import br.com.uaijug.chronos.institution.data.repository.NewsRepository;
 import br.com.uaijug.chronos.institution.model.News;
 import br.com.uaijug.chronos.institution.service.NewsRegistration;
 
+// TODO: Auto-generated Javadoc
 // The @Model stereotype is a convenience mechanism to make this a request-scoped bean that has an
 // EL name
 // Read more news the @Model stereotype in this FAQ:
 // http://sfwk.org/Documentation/WhatIsThePurposeOfTheModelAnnotation
+/**
+ * The Class NewsController.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @Model
 public class NewsController extends AbstractManageBeans {
 
+	/** The news registration. */
 	@Inject
 	private NewsRegistration newsRegistration;
 
+	/** The news repository. */
 	@Inject
 	private NewsRepository newsRepository;
 
+	/** The id news. */
 	private Long idNews;
 
+	/** The news. */
 	private News news;
 
+	/** The newss. */
 	List<News> newss;
 
+	/**
+	 * Inits the new news.
+	 */
 	@PostConstruct
 	public void initNewNews() {
 		news = new News();
@@ -57,6 +72,11 @@ public class NewsController extends AbstractManageBeans {
 		idNews = null;
 	}
 
+	/**
+	 * Gets the newss.
+	 *
+	 * @return the newss
+	 */
 	public List<News> getNewss() {
 		return newsRepository.findAll();
 	}
@@ -77,6 +97,12 @@ public class NewsController extends AbstractManageBeans {
 		}
 	}
 
+	/**
+	 * Register.
+	 *
+	 * @return the string
+	 * @throws Exception the exception
+	 */
 	public String register() throws Exception {
 		try {
 
@@ -91,28 +117,56 @@ public class NewsController extends AbstractManageBeans {
 		return null;
 	}
 
+	/**
+	 * Cancelar.
+	 *
+	 * @return the string
+	 */
 	public String cancelar() {
 		limpar();
 		return "list?faces-redirect=true";
 	}
 
+	/**
+	 * Limpar.
+	 */
 	private void limpar() {
 		idNews = null;
 		news = new News();
 	}
 
+	/**
+	 * Gets the id news.
+	 *
+	 * @return the id news
+	 */
 	public Long getIdNews() {
 		return idNews;
 	}
 
+	/**
+	 * Sets the id news.
+	 *
+	 * @param idNews the new id news
+	 */
 	public void setIdNews(Long idNews) {
 		this.idNews = idNews;
 	}
 
+	/**
+	 * Gets the news.
+	 *
+	 * @return the news
+	 */
 	public News getNews() {
 		return news;
 	}
 
+	/**
+	 * Sets the news.
+	 *
+	 * @param news the new news
+	 */
 	public void setNews(News news) {
 		this.news = news;
 	}

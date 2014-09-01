@@ -29,26 +29,48 @@ import javax.inject.Named;
 import br.com.uaijug.chronos.project.data.repository.DailyActivityRepository;
 import br.com.uaijug.chronos.project.model.DailyActivity;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class DailyActivityListProducer.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @RequestScoped
 public class DailyActivityListProducer {
 
+	/** The daily activity repository. */
 	@Inject
 	private DailyActivityRepository dailyActivityRepository;
 
+    /** The daily activitys. */
     private List<DailyActivity> dailyActivitys;
 
     // @Named provides access the return value via the EL variable name "dailyActivitys" in the UI (e.g.
     // Facelets or JSP view)
+    /**
+     * Gets the daily activitys.
+     *
+     * @return the daily activitys
+     */
     @Produces
     @Named
     public List<DailyActivity> getDailyActivitys() {
         return dailyActivitys;
     }
 
+    /**
+     * On daily activity list changed.
+     *
+     * @param dailyActivity the daily activity
+     */
     public void onDailyActivityListChanged(@Observes(notifyObserver = Reception.IF_EXISTS) final DailyActivity dailyActivity) {
         retrieveAllDailyActivitysOrderedByName();
     }
 
+    /**
+     * Retrieve all daily activitys ordered by name.
+     */
     @PostConstruct
     public void retrieveAllDailyActivitysOrderedByName() {
         dailyActivitys = dailyActivityRepository.findAllOrderedByName();

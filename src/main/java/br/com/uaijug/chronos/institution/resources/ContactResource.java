@@ -43,34 +43,53 @@ import br.com.uaijug.chronos.institution.data.repository.ContactRepository;
 import br.com.uaijug.chronos.institution.model.Contact;
 import br.com.uaijug.chronos.institution.service.ContactRegistration;
 
+// TODO: Auto-generated Javadoc
 /**
  * JAX-RS Example
  * <p/>
  * This class produces a RESTful service to read/write the contents of the
  * contacts table.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
  */
 @Path("/contacts")
 @RequestScoped
 public class ContactResource {
 
+	/** The log. */
 	@Inject
 	private Logger log;
 
+	/** The validator. */
 	@Inject
 	private Validator validator;
 
+	/** The repository. */
 	@Inject
 	private ContactRepository repository;
 
+	/** The registration. */
 	@Inject
 	ContactRegistration registration;
 
+	/**
+	 * List all contacts.
+	 *
+	 * @return the list
+	 */
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Contact> listAllContacts() {
 		return repository.findAllOrderedByName();
 	}
 
+	/**
+	 * Lookup contact by id.
+	 *
+	 * @param id the id
+	 * @return the contact
+	 */
 	@GET
 	@Path("/{id:[0-9][0-9]*}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -86,6 +105,9 @@ public class ContactResource {
 	 * Creates a new contact from the values provided. Performs validation, and
 	 * will return a JAX-RS response with either 200 ok, or with a map of
 	 * fields, and related errors.
+	 *
+	 * @param contact the contact
+	 * @return the response
 	 */
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)

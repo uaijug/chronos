@@ -43,34 +43,53 @@ import br.com.uaijug.chronos.project.data.repository.DailyActivityCategoryReposi
 import br.com.uaijug.chronos.project.model.DailyActivityCategory;
 import br.com.uaijug.chronos.project.service.DailyActivityCategoryRegistration;
 
+// TODO: Auto-generated Javadoc
 /**
  * JAX-RS Example
  * <p/>
  * This class produces a RESTful service to read/write the contents of the
  * dailyActivityCategorys table.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
  */
 @Path("/dailyActivityCategorys")
 @RequestScoped
 public class DailyActivityCategoryResource {
 
+	/** The log. */
 	@Inject
 	private Logger log;
 
+	/** The validator. */
 	@Inject
 	private Validator validator;
 
+	/** The repository. */
 	@Inject
 	private DailyActivityCategoryRepository repository;
 
+	/** The registration. */
 	@Inject
 	DailyActivityCategoryRegistration registration;
 
+	/**
+	 * List all daily activity categorys.
+	 *
+	 * @return the list
+	 */
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<DailyActivityCategory> listAllDailyActivityCategorys() {
 		return repository.findAllOrderedByName();
 	}
 
+	/**
+	 * Lookup daily activity category by id.
+	 *
+	 * @param id the id
+	 * @return the daily activity category
+	 */
 	@GET
 	@Path("/{id:[0-9][0-9]*}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -86,6 +105,9 @@ public class DailyActivityCategoryResource {
 	 * Creates a new dailyActivityCategory from the values provided. Performs validation, and
 	 * will return a JAX-RS response with either 200 ok, or with a map of
 	 * fields, and related errors.
+	 *
+	 * @param dailyActivityCategory the daily activity category
+	 * @return the response
 	 */
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)

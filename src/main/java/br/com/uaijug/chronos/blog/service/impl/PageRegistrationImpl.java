@@ -27,16 +27,28 @@ import br.com.uaijug.chronos.blog.model.Page;
 import br.com.uaijug.chronos.blog.service.PageRegistration;
 import br.com.uaijug.chronos.persistence.base.PersistenceBase;
 
+// TODO: Auto-generated Javadoc
 // The @Stateless annotation eliminates the need for manual transaction demarcation
+/**
+ * The Class PageRegistrationImpl.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @Stateless
 public class PageRegistrationImpl extends PersistenceBase<Page, Long> implements PageRegistration {
 
+    /** The log. */
     @Inject
     private Logger log;
     
+    /** The page event src. */
     @Inject
     private Event<Page> pageEventSrc;
 
+    /* (non-Javadoc)
+     * @see br.com.uaijug.chronos.service.GenericRegistration#register(java.lang.Object)
+     */
     @Override
   	public Boolean register(Page page) {
   		Boolean saved = false;

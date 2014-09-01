@@ -43,34 +43,53 @@ import br.com.uaijug.chronos.admin.data.repository.StateRepository;
 import br.com.uaijug.chronos.admin.model.State;
 import br.com.uaijug.chronos.admin.service.StateRegistration;
 
+// TODO: Auto-generated Javadoc
 /**
  * JAX-RS Example
  * <p/>
  * This class produces a RESTful service to read/write the contents of the
  * states table.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
  */
 @Path("/states")
 @RequestScoped
 public class StateResource {
 
+	/** The log. */
 	@Inject
 	private Logger log;
 
+	/** The validator. */
 	@Inject
 	private Validator validator;
 
+	/** The repository. */
 	@Inject
 	private StateRepository repository;
 
+	/** The registration. */
 	@Inject
 	StateRegistration registration;
 
+	/**
+	 * List all states.
+	 *
+	 * @return the list
+	 */
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<State> listAllStates() {
 		return repository.findAllOrderedByName();
 	}
 
+	/**
+	 * Lookup state by id.
+	 *
+	 * @param id the id
+	 * @return the state
+	 */
 	@GET
 	@Path("/{id:[0-9][0-9]*}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -86,6 +105,9 @@ public class StateResource {
 	 * Creates a new state from the values provided. Performs validation, and
 	 * will return a JAX-RS response with either 200 ok, or with a map of
 	 * fields, and related errors.
+	 *
+	 * @param state the state
+	 * @return the response
 	 */
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)

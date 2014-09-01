@@ -9,7 +9,12 @@
 	
 		<p:panel header="#{msg['label.projects']}"
 					styleClass="panel-listagem" id="panelProjects">
-		 
+		 	<div class="row">
+				<a class="btn btn-success btn-lg"  href="${request.contextPath}/project">
+					<span class="text-white">Novo Projeto <span class="glyphicon glyphicon-plus-sign"></span></span>
+				</a>
+			</div>
+			<br />
 			<div class="row">
 			 
 			 <ui:repeat value="#{projectController.projects}" var="project">

@@ -43,34 +43,53 @@ import br.com.uaijug.chronos.event.registration.data.repository.FreePassReposito
 import br.com.uaijug.chronos.event.registration.model.FreePass;
 import br.com.uaijug.chronos.event.registration.service.FreePassRegistration;
 
+// TODO: Auto-generated Javadoc
 /**
  * JAX-RS Example
  * <p/>
  * This class produces a RESTful service to read/write the contents of the
  * freePasss table.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
  */
 @Path("/freePasss")
 @RequestScoped
 public class FreePassResource {
 
+	/** The log. */
 	@Inject
 	private Logger log;
 
+	/** The validator. */
 	@Inject
 	private Validator validator;
 
+	/** The repository. */
 	@Inject
 	private FreePassRepository repository;
 
+	/** The registration. */
 	@Inject
 	FreePassRegistration registration;
 
+	/**
+	 * List all free passs.
+	 *
+	 * @return the list
+	 */
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<FreePass> listAllFreePasss() {
 		return repository.findAllOrderedByName();
 	}
 
+	/**
+	 * Lookup free pass by id.
+	 *
+	 * @param id the id
+	 * @return the free pass
+	 */
 	@GET
 	@Path("/{id:[0-9][0-9]*}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -94,10 +113,13 @@ public class FreePassResource {
 	}*/
 	
 	/**
-	 * Creates a new freePass from the values provided. Performs validation, and
-	 * will return a JAX-RS response with either 200 ok, or with a map of
-	 * fields, and related errors.
-	 */
+ * Creates a new freePass from the values provided. Performs validation, and
+ * will return a JAX-RS response with either 200 ok, or with a map of
+ * fields, and related errors.
+ *
+ * @param freePass the free pass
+ * @return the response
+ */
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)

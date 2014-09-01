@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package br.com.uaijug.chronos.service;
 
 import java.util.logging.Level;
@@ -12,12 +15,28 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class SendMail.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @Stateless
 public class SendMail {
 	
+	/** The session. */
 	@Resource(name = "java:jboss/mail/gmail")
 	private Session session;
 
+	/**
+	 * Send.
+	 *
+	 * @param name the name
+	 * @param addresses the addresses
+	 * @param topic the topic
+	 * @param textMessage the text message
+	 */
 	public void send(String name, String addresses, String topic, String textMessage) {
 		try {
 

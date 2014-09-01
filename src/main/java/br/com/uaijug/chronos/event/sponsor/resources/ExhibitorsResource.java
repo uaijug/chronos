@@ -43,34 +43,53 @@ import br.com.uaijug.chronos.event.sponsor.data.repository.ExhibitorsRepository;
 import br.com.uaijug.chronos.event.sponsor.model.Exhibitors;
 import br.com.uaijug.chronos.event.sponsor.service.ExhibitorsRegistration;
 
+// TODO: Auto-generated Javadoc
 /**
  * JAX-RS Example
  * <p/>
  * This class produces a RESTful service to read/write the contents of the
  * exhibitorss table.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
  */
 @Path("/exhibitorss")
 @RequestScoped
 public class ExhibitorsResource {
 
+	/** The log. */
 	@Inject
 	private Logger log;
 
+	/** The validator. */
 	@Inject
 	private Validator validator;
 
+	/** The repository. */
 	@Inject
 	private ExhibitorsRepository repository;
 
+	/** The registration. */
 	@Inject
 	ExhibitorsRegistration registration;
 
+	/**
+	 * List all exhibitorss.
+	 *
+	 * @return the list
+	 */
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Exhibitors> listAllExhibitorss() {
 		return repository.findAllOrderedByName();
 	}
 
+	/**
+	 * Lookup exhibitors by id.
+	 *
+	 * @param id the id
+	 * @return the exhibitors
+	 */
 	@GET
 	@Path("/{id:[0-9][0-9]*}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -86,6 +105,9 @@ public class ExhibitorsResource {
 	 * Creates a new exhibitors from the values provided. Performs validation, and
 	 * will return a JAX-RS response with either 200 ok, or with a map of
 	 * fields, and related errors.
+	 *
+	 * @param exhibitors the exhibitors
+	 * @return the response
 	 */
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)

@@ -43,34 +43,53 @@ import br.com.uaijug.chronos.project.task.data.repository.TaskGroupRepository;
 import br.com.uaijug.chronos.project.task.model.TaskGroup;
 import br.com.uaijug.chronos.project.task.service.TaskGroupRegistration;
 
+// TODO: Auto-generated Javadoc
 /**
  * JAX-RS Example
  * <p/>
  * This class produces a RESTful service to read/write the contents of the
  * taskGroups table.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
  */
 @Path("/taskGroups")
 @RequestScoped
 public class TaskGroupResource {
 
+	/** The log. */
 	@Inject
 	private Logger log;
 
+	/** The validator. */
 	@Inject
 	private Validator validator;
 
+	/** The repository. */
 	@Inject
 	private TaskGroupRepository repository;
 
+	/** The registration. */
 	@Inject
 	TaskGroupRegistration registration;
 
+	/**
+	 * List all task groups.
+	 *
+	 * @return the list
+	 */
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<TaskGroup> listAllTaskGroups() {
 		return repository.findAllOrderedByName();
 	}
 
+	/**
+	 * Lookup task group by id.
+	 *
+	 * @param id the id
+	 * @return the task group
+	 */
 	@GET
 	@Path("/{id:[0-9][0-9]*}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -86,6 +105,9 @@ public class TaskGroupResource {
 	 * Creates a new taskGroup from the values provided. Performs validation, and
 	 * will return a JAX-RS response with either 200 ok, or with a map of
 	 * fields, and related errors.
+	 *
+	 * @param taskGroup the task group
+	 * @return the response
 	 */
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)

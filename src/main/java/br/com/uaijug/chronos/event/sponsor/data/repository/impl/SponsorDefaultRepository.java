@@ -27,9 +27,19 @@ import br.com.uaijug.chronos.event.sponsor.data.repository.SponsorRepository;
 import br.com.uaijug.chronos.event.sponsor.model.Sponsor;
 import br.com.uaijug.chronos.persistence.base.PersistenceBase;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class SponsorDefaultRepository.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogerifontes dot inf dot br
+ * 
+ */
 @ApplicationScoped
 public class SponsorDefaultRepository extends PersistenceBase<Sponsor, Long> implements SponsorRepository {
 
+    /* (non-Javadoc)
+     * @see br.com.uaijug.chronos.event.sponsor.data.repository.SponsorRepository#findAllOrderedByName()
+     */
     public List<Sponsor> findAllOrderedByName() {
         CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
         CriteriaQuery<Sponsor> criteria = cb.createQuery(Sponsor.class);

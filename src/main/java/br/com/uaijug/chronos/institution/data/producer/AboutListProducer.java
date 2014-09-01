@@ -29,26 +29,48 @@ import javax.inject.Named;
 import br.com.uaijug.chronos.institution.data.repository.AboutRepository;
 import br.com.uaijug.chronos.institution.model.About;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class AboutListProducer.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @RequestScoped
 public class AboutListProducer {
 
+	/** The about repository. */
 	@Inject
 	private AboutRepository aboutRepository;
 
+    /** The abouts. */
     private List<About> abouts;
 
     // @Named provides access the return value via the EL variable name "abouts" in the UI (e.g.
     // Facelets or JSP view)
+    /**
+     * Gets the abouts.
+     *
+     * @return the abouts
+     */
     @Produces
     @Named
     public List<About> getAbouts() {
         return abouts;
     }
 
+    /**
+     * On about list changed.
+     *
+     * @param about the about
+     */
     public void onAboutListChanged(@Observes(notifyObserver = Reception.IF_EXISTS) final About about) {
         retrieveAllAboutsOrderedByName();
     }
 
+    /**
+     * Retrieve all abouts ordered by name.
+     */
     @PostConstruct
     public void retrieveAllAboutsOrderedByName() {
         abouts = aboutRepository.findAllOrderedByName();

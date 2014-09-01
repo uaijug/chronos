@@ -27,13 +27,26 @@ import br.com.uaijug.chronos.blog.data.repository.PageRepository;
 import br.com.uaijug.chronos.blog.model.Page;
 import br.com.uaijug.chronos.persistence.base.PersistenceBase;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class PageDefaultRepository.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @ApplicationScoped
 public class PageDefaultRepository extends PersistenceBase<Page, Long> implements PageRepository {
 	
+	/* (non-Javadoc)
+	 * @see br.com.uaijug.chronos.blog.data.repository.PageRepository#findBySlug(java.lang.String)
+	 */
 	public Page findBySlug(String slug) {
         return (Page) getEntityManager().createNamedQuery("findPageBySlug").setParameter("slug", slug).getSingleResult();
     }
 
+    /* (non-Javadoc)
+     * @see br.com.uaijug.chronos.blog.data.repository.PageRepository#findAllOrderedByName()
+     */
     public List<Page> findAllOrderedByName() {
         CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
         CriteriaQuery<Page> criteria = cb.createQuery(Page.class);

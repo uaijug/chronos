@@ -21,6 +21,19 @@ import java.util.List;
 import br.com.uaijug.chronos.persistence.Persistence;
 import br.com.uaijug.chronos.project.model.Project;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Interface ProjectRepository.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 public interface ProjectRepository extends Persistence<Project, Long> {
+	
+	/**
+	 * Find all ordered by name.
+	 *
+	 * @return the list
+	 */
 	List<Project> findAllOrderedByName();
 }

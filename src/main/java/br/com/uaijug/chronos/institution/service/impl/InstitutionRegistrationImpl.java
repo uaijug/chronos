@@ -27,16 +27,28 @@ import br.com.uaijug.chronos.institution.model.Institution;
 import br.com.uaijug.chronos.institution.service.InstitutionRegistration;
 import br.com.uaijug.chronos.persistence.base.PersistenceBase;
 
+// TODO: Auto-generated Javadoc
 // The @Stateless annotation eliminates the need for manual transaction demarcation
+/**
+ * The Class InstitutionRegistrationImpl.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @Stateless
 public class InstitutionRegistrationImpl extends PersistenceBase<Institution, Long> implements InstitutionRegistration {
 
+    /** The log. */
     @Inject
     private Logger log;
     
+    /** The institution event src. */
     @Inject
     private Event<Institution> institutionEventSrc;
 
+    /* (non-Javadoc)
+     * @see br.com.uaijug.chronos.service.GenericRegistration#register(java.lang.Object)
+     */
     @Override
    	public Boolean register(Institution institution) {
    		Boolean saved = false;

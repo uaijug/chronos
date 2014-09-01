@@ -27,9 +27,19 @@ import br.com.uaijug.chronos.event.data.repository.EventScheduleRepository;
 import br.com.uaijug.chronos.event.model.EventSchedule;
 import br.com.uaijug.chronos.persistence.base.PersistenceBase;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class EventScheduleDefaultRepository.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @ApplicationScoped
 public class EventScheduleDefaultRepository extends PersistenceBase<EventSchedule, Long> implements EventScheduleRepository {
 
+    /* (non-Javadoc)
+     * @see br.com.uaijug.chronos.event.data.repository.EventScheduleRepository#findAllOrderedByName()
+     */
     public List<EventSchedule> findAllOrderedByName() {
         CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
         CriteriaQuery<EventSchedule> criteria = cb.createQuery(EventSchedule.class);

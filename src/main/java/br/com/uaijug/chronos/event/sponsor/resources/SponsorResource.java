@@ -43,34 +43,53 @@ import br.com.uaijug.chronos.event.sponsor.data.repository.SponsorRepository;
 import br.com.uaijug.chronos.event.sponsor.model.Sponsor;
 import br.com.uaijug.chronos.event.sponsor.service.SponsorRegistration;
 
+// TODO: Auto-generated Javadoc
 /**
  * JAX-RS Example
  * <p/>
  * This class produces a RESTful service to read/write the contents of the
  * sponsors table.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
  */
 @Path("/sponsors")
 @RequestScoped
 public class SponsorResource {
 
+	/** The log. */
 	@Inject
 	private Logger log;
 
+	/** The validator. */
 	@Inject
 	private Validator validator;
 
+	/** The repository. */
 	@Inject
 	private SponsorRepository repository;
 
+	/** The registration. */
 	@Inject
 	SponsorRegistration registration;
 
+	/**
+	 * List all sponsors.
+	 *
+	 * @return the list
+	 */
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Sponsor> listAllSponsors() {
 		return repository.findAllOrderedByName();
 	}
 
+	/**
+	 * Lookup sponsor by id.
+	 *
+	 * @param id the id
+	 * @return the sponsor
+	 */
 	@GET
 	@Path("/{id:[0-9][0-9]*}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -86,6 +105,9 @@ public class SponsorResource {
 	 * Creates a new sponsor from the values provided. Performs validation, and
 	 * will return a JAX-RS response with either 200 ok, or with a map of
 	 * fields, and related errors.
+	 *
+	 * @param sponsor the sponsor
+	 * @return the response
 	 */
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)

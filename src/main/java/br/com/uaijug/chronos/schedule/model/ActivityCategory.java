@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package br.com.uaijug.chronos.schedule.model;
 
 import java.io.Serializable;
@@ -24,8 +27,11 @@ import org.hibernate.annotations.FetchMode;
 import br.com.uaijug.chronos.event.model.EventMain;
 import br.com.uaijug.chronos.model.AbstractEntity;
 
+// TODO: Auto-generated Javadoc
 /**
  * The persistent class for the uj_studyGroup database table.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogerifontes dot inf dot br
  * 
  */
 @Entity
@@ -33,33 +39,44 @@ import br.com.uaijug.chronos.model.AbstractEntity;
 @JsonIgnoreProperties(value = { "handler", "hibernateLazyInitializer" })
 @XmlRootElement
 @Table(name = "uj_activity_category", uniqueConstraints = @UniqueConstraint(columnNames = "description"))
-@Cacheable(true)
+
 public class ActivityCategory extends AbstractEntity<Long> implements
 		Serializable {
+	
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
 	// bi-directional many-to-one association to Institution
+	/** The event. */
 	@Fetch(FetchMode.JOIN)
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "event_id")
 	private EventMain event;
 
+	/** The activity category type. */
 	private String activityCategoryType;
 
+	/** The title. */
 	private String title;
 
+	/** The description. */
 	private String description;
 
+	/** The end time. */
 	@Column(name = "end_time")
 	private String endTime;
 
+	/** The short description. */
 	private String shortDescription;
 
+	/** The start time. */
 	@Column(name = "start_time")
 	private String startTime;
 
+	/** The value. */
 	private String value;
 
+	/** The date. */
 	@Temporal(TemporalType.DATE)
 	@NotNull
 	private Date date;
@@ -70,77 +87,170 @@ public class ActivityCategory extends AbstractEntity<Long> implements
 	 * registrations;
 	 */// criar registro para o grupo de estudos
 
+	/**
+	 * Instantiates a new activity category.
+	 */
 	public ActivityCategory() {
 	}
 
+	/**
+	 * Gets the description.
+	 *
+	 * @return the description
+	 */
 	public String getDescription() {
 		return this.description;
 	}
 
+	/**
+	 * Sets the description.
+	 *
+	 * @param description the new description
+	 */
 	public void setDescription(String description) {
 		this.description = description;
 	}
 
+	/**
+	 * Gets the end time.
+	 *
+	 * @return the end time
+	 */
 	public String getEndTime() {
 		return this.endTime;
 	}
 
+	/**
+	 * Sets the end time.
+	 *
+	 * @param endTime the new end time
+	 */
 	public void setEndTime(String endTime) {
 		this.endTime = endTime;
 	}
 
+	/**
+	 * Gets the event.
+	 *
+	 * @return the event
+	 */
 	public EventMain getEvent() {
 		return event;
 	}
 
+	/**
+	 * Sets the event.
+	 *
+	 * @param event the new event
+	 */
 	public void setEvent(EventMain event) {
 		this.event = event;
 	}
 
+	/**
+	 * Gets the activity category type.
+	 *
+	 * @return the activity category type
+	 */
 	public String getActivityCategoryType() {
 		return activityCategoryType;
 	}
 
+	/**
+	 * Sets the activity category type.
+	 *
+	 * @param activityCategoryType the new activity category type
+	 */
 	public void setActivityCategoryType(String activityCategoryType) {
 		this.activityCategoryType = activityCategoryType;
 	}
 
+	/**
+	 * Gets the short description.
+	 *
+	 * @return the short description
+	 */
 	public String getShortDescription() {
 		return shortDescription;
 	}
 
+	/**
+	 * Sets the short description.
+	 *
+	 * @param shortDescription the new short description
+	 */
 	public void setShortDescription(String shortDescription) {
 		this.shortDescription = shortDescription;
 	}
 
+	/**
+	 * Gets the start time.
+	 *
+	 * @return the start time
+	 */
 	public String getStartTime() {
 		return startTime;
 	}
 
+	/**
+	 * Sets the start time.
+	 *
+	 * @param startTime the new start time
+	 */
 	public void setStartTime(String startTime) {
 		this.startTime = startTime;
 	}
 
+	/**
+	 * Gets the value.
+	 *
+	 * @return the value
+	 */
 	public String getValue() {
 		return value;
 	}
 
+	/**
+	 * Sets the value.
+	 *
+	 * @param value the new value
+	 */
 	public void setValue(String value) {
 		this.value = value;
 	}
 
+	/**
+	 * Gets the date.
+	 *
+	 * @return the date
+	 */
 	public Date getDate() {
 		return date;
 	}
 
+	/**
+	 * Sets the date.
+	 *
+	 * @param date the new date
+	 */
 	public void setDate(Date date) {
 		this.date = date;
 	}
 
+	/**
+	 * Gets the title.
+	 *
+	 * @return the title
+	 */
 	public String getTitle() {
 		return title;
 	}
 
+	/**
+	 * Sets the title.
+	 *
+	 * @param title the new title
+	 */
 	public void setTitle(String title) {
 		this.title = title;
 	}

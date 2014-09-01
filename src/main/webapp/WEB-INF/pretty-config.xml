@@ -59,7 +59,7 @@
 	</url-mapping>
 
 	<url-mapping id="sponsorFollowups">
-		<pattern value="/sponsorFollowup" />
+		<pattern value="/sponsorFollowups" />
 		<view-id value="/protected/sponsor/sponsorFollowup/list.jsf" />
 	</url-mapping>
 
@@ -174,8 +174,8 @@
 	</url-mapping>
 
 	<!-- Blog - Posts -Begin- -->
-	<url-mapping id="pages">
-		<pattern value="/pages" />
+	<url-mapping id="blogPages">
+		<pattern value="/blogPages" />
 		<view-id value="/protected/blog/page/list.jsf" />
 	</url-mapping>
 
@@ -233,6 +233,16 @@
 	<url-mapping id="members">
 		<pattern value="/members" />
 		<view-id value="/protected/institution/member/list.jsf" />
+	</url-mapping>
+	
+	<url-mapping id="memberview">
+		<pattern value="/memberview" />
+		<view-id value="/protected/institution/member/memberView.jsf" />
+	</url-mapping>
+	
+	<url-mapping id="dashmembers">
+		<pattern value="/dashmembers" />
+		<view-id value="/protected/institution/member/members.jsf" />
 	</url-mapping>
 
 	<url-mapping id="freePasses">
@@ -423,8 +433,8 @@
 	</url-mapping>
 
 	<!-- Blog - Posts -Begin- -->
-	<url-mapping id="page">
-		<pattern value="/page" />
+	<url-mapping id="blogPage">
+		<pattern value="/blogPage" />
 		<view-id value="/protected/blog/page/form.jsf" />
 	</url-mapping>
 

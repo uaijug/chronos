@@ -29,26 +29,48 @@ import javax.inject.Named;
 import br.com.uaijug.chronos.institution.data.repository.InstitutionRepository;
 import br.com.uaijug.chronos.institution.model.Institution;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class InstitutionListProducer.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @RequestScoped
 public class InstitutionListProducer {
 
+	/** The institution repository. */
 	@Inject
 	private InstitutionRepository institutionRepository;
 
+    /** The institutions. */
     private List<Institution> institutions;
 
     // @Named provides access the return value via the EL variable name "institutions" in the UI (e.g.
     // Facelets or JSP view)
+    /**
+     * Gets the institutions.
+     *
+     * @return the institutions
+     */
     @Produces
     @Named
     public List<Institution> getInstitutions() {
         return institutions;
     }
 
+    /**
+     * On institution list changed.
+     *
+     * @param institution the institution
+     */
     public void onInstitutionListChanged(@Observes(notifyObserver = Reception.IF_EXISTS) final Institution institution) {
         retrieveAllInstitutionsOrderedByName();
     }
 
+    /**
+     * Retrieve all institutions ordered by name.
+     */
     @PostConstruct
     public void retrieveAllInstitutionsOrderedByName() {
         institutions = institutionRepository.findAllOrderedByName();

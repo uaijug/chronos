@@ -27,16 +27,28 @@ import br.com.uaijug.chronos.admin.model.City;
 import br.com.uaijug.chronos.admin.service.CityRegistration;
 import br.com.uaijug.chronos.persistence.base.PersistenceBase;
 
+// TODO: Auto-generated Javadoc
 // The @Stateless annotation eliminates the need for manual transaction demarcation
+/**
+ * The Class CityRegistrationImpl.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @Stateless
 public class CityRegistrationImpl extends PersistenceBase<City, Long> implements CityRegistration {
 
+    /** The log. */
     @Inject
     private Logger log;
     
+    /** The city event src. */
     @Inject
     private Event<City> cityEventSrc;
 
+    /* (non-Javadoc)
+     * @see br.com.uaijug.chronos.service.GenericRegistration#register(java.lang.Object)
+     */
     @Override
   	public Boolean register(City city) {
   		Boolean saved = false;

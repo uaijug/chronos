@@ -33,32 +33,50 @@ import br.com.uaijug.chronos.event.data.repository.EventMainRepository;
 import br.com.uaijug.chronos.event.model.EventMain;
 import br.com.uaijug.chronos.model.types.ResourceType;
 
+// TODO: Auto-generated Javadoc
 // The @Model stereotype is a convenience mechanism to make this a request-scoped bean that has an
 // EL name
 // Read more about the @Model stereotype in this FAQ:
 // http://sfwk.org/Documentation/WhatIsThePurposeOfTheModelAnnotation
+/**
+ * The Class MaterialController.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @Model
 public class MaterialController extends AbstractManageBeans {
 
+	/** The material registration. */
 	@Inject
 	private MaterialRegistration materialRegistration;
 
+	/** The material repository. */
 	@Inject
 	private MaterialRepository materialRepository;
 
+	/** The event repository. */
 	@Inject
 	private EventMainRepository eventRepository;
 
+	/** The id material. */
 	private Long idMaterial;
 
+	/** The material. */
 	private Material material;
 
+	/** The materials. */
 	List<Material> materials;
 
+	/** The list event. */
 	private List<EventMain> listEvent = null;
 
+	/** The itens event. */
 	List<SelectItem> itensEvent = null;
 
+	/**
+	 * Inits the new material.
+	 */
 	@PostConstruct
 	public void initNewMaterial() {
 		material = new Material();
@@ -72,6 +90,11 @@ public class MaterialController extends AbstractManageBeans {
 		listEvent = new ArrayList<EventMain>();
 	}
 
+	/**
+	 * Gets the materials.
+	 *
+	 * @return the materials
+	 */
 	public List<Material> getMaterials() {
 		return materialRepository.findAll();
 	}
@@ -92,6 +115,12 @@ public class MaterialController extends AbstractManageBeans {
 		}
 	}
 
+	/**
+	 * Register.
+	 *
+	 * @return the string
+	 * @throws Exception the exception
+	 */
 	public String register() throws Exception {
 		try {
 
@@ -106,16 +135,29 @@ public class MaterialController extends AbstractManageBeans {
 		return null;
 	}
 
+	/**
+	 * Cancelar.
+	 *
+	 * @return the string
+	 */
 	public String cancelar() {
 		limpar();
 		return "list?faces-redirect=true";
 	}
 
+	/**
+	 * Limpar.
+	 */
 	private void limpar() {
 		idMaterial = null;
 		material = new Material();
 	}
 
+	/**
+	 * Gets the resource types.
+	 *
+	 * @return the resource types
+	 */
 	public List<SelectItem> getResourceTypes() {
 		List<SelectItem> items = new ArrayList<SelectItem>();
 		for (ResourceType type : ResourceType.values()) {
@@ -124,6 +166,11 @@ public class MaterialController extends AbstractManageBeans {
 		return items;
 	}
 
+	/**
+	 * Gets the events.
+	 *
+	 * @return the events
+	 */
 	public List<SelectItem> getEvents() {
 
 		setListEvent(eventRepository.findAll());
@@ -133,34 +180,74 @@ public class MaterialController extends AbstractManageBeans {
 		return itensEvent;
 	}
 
+	/**
+	 * Gets the list event.
+	 *
+	 * @return the list event
+	 */
 	public List<EventMain> getListEvent() {
 		return listEvent;
 	}
 
+	/**
+	 * Sets the list event.
+	 *
+	 * @param listEvent the new list event
+	 */
 	public void setListEvent(List<EventMain> listEvent) {
 		this.listEvent = listEvent;
 	}
 
+	/**
+	 * Gets the itens event.
+	 *
+	 * @return the itens event
+	 */
 	public List<SelectItem> getItensEvent() {
 		return itensEvent;
 	}
 
+	/**
+	 * Sets the itens event.
+	 *
+	 * @param itensEvent the new itens event
+	 */
 	public void setItensEvent(List<SelectItem> itensEvent) {
 		this.itensEvent = itensEvent;
 	}
 
+	/**
+	 * Gets the id material.
+	 *
+	 * @return the id material
+	 */
 	public Long getIdMaterial() {
 		return idMaterial;
 	}
 
+	/**
+	 * Sets the id material.
+	 *
+	 * @param idMaterial the new id material
+	 */
 	public void setIdMaterial(Long idMaterial) {
 		this.idMaterial = idMaterial;
 	}
 
+	/**
+	 * Gets the material.
+	 *
+	 * @return the material
+	 */
 	public Material getMaterial() {
 		return material;
 	}
 
+	/**
+	 * Sets the material.
+	 *
+	 * @param material the new material
+	 */
 	public void setMaterial(Material material) {
 		this.material = material;
 	}

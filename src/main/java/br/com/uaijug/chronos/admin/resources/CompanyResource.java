@@ -43,34 +43,53 @@ import br.com.uaijug.chronos.admin.data.repository.CompanyRepository;
 import br.com.uaijug.chronos.admin.model.Company;
 import br.com.uaijug.chronos.admin.service.CompanyRegistration;
 
+// TODO: Auto-generated Javadoc
 /**
  * JAX-RS Example
  * <p/>
  * This class produces a RESTful service to read/write the contents of the
  * companys table.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
  */
 @Path("/companys")
 @RequestScoped
 public class CompanyResource {
 
+	/** The log. */
 	@Inject
 	private Logger log;
 
+	/** The validator. */
 	@Inject
 	private Validator validator;
 
+	/** The repository. */
 	@Inject
 	private CompanyRepository repository;
 
+	/** The registration. */
 	@Inject
 	CompanyRegistration registration;
 
+	/**
+	 * List all companys.
+	 *
+	 * @return the list
+	 */
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Company> listAllCompanys() {
 		return repository.findAllOrderedByName();
 	}
 
+	/**
+	 * Lookup company by id.
+	 *
+	 * @param id the id
+	 * @return the company
+	 */
 	@GET
 	@Path("/{id:[0-9][0-9]*}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -86,6 +105,9 @@ public class CompanyResource {
 	 * Creates a new company from the values provided. Performs validation, and
 	 * will return a JAX-RS response with either 200 ok, or with a map of
 	 * fields, and related errors.
+	 *
+	 * @param company the company
+	 * @return the response
 	 */
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)

@@ -28,25 +28,40 @@ import br.com.uaijug.chronos.event.supplier.data.repository.SupplierProvidesMate
 import br.com.uaijug.chronos.event.supplier.model.SupplierProvidesMaterials;
 import br.com.uaijug.chronos.event.supplier.service.SupplierProvidesMaterialsRegistration;
 
+// TODO: Auto-generated Javadoc
 // The @Model stereotype is a convenience mechanism to make this a request-scoped bean that has an
 // EL name
 // Read more supplierProvidesMaterials the @Model stereotype in this FAQ:
 // http://sfwk.org/Documentation/WhatIsThePurposeOfTheModelAnnotation
+/**
+ * The Class SupplierProvidesMaterialsController.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @Model
 public class SupplierProvidesMaterialsController extends AbstractManageBeans {
 
+	/** The supplier provides materials registration. */
 	@Inject
 	private SupplierProvidesMaterialsRegistration supplierProvidesMaterialsRegistration;
 
+	/** The supplier provides materials repository. */
 	@Inject
 	private SupplierProvidesMaterialsRepository supplierProvidesMaterialsRepository;
 
+	/** The id supplier provides materials. */
 	private Long idSupplierProvidesMaterials;
 
+	/** The supplier provides materials. */
 	private SupplierProvidesMaterials supplierProvidesMaterials;
 
+	/** The supplier provides materialss. */
 	List<SupplierProvidesMaterials> supplierProvidesMaterialss;
 
+	/**
+	 * Inits the new supplier provides materials.
+	 */
 	@PostConstruct
 	public void initNewSupplierProvidesMaterials() {
 		supplierProvidesMaterials = new SupplierProvidesMaterials();
@@ -57,6 +72,11 @@ public class SupplierProvidesMaterialsController extends AbstractManageBeans {
 		idSupplierProvidesMaterials = null;
 	}
 
+	/**
+	 * Gets the supplier provides materialss.
+	 *
+	 * @return the supplier provides materialss
+	 */
 	public List<SupplierProvidesMaterials> getSupplierProvidesMaterialss() {
 		return supplierProvidesMaterialsRepository.findAll();
 	}
@@ -77,6 +97,12 @@ public class SupplierProvidesMaterialsController extends AbstractManageBeans {
 		}
 	}
 
+	/**
+	 * Register.
+	 *
+	 * @return the string
+	 * @throws Exception the exception
+	 */
 	public String register() throws Exception {
 		try {
 
@@ -91,28 +117,56 @@ public class SupplierProvidesMaterialsController extends AbstractManageBeans {
 		return null;
 	}
 
+	/**
+	 * Cancelar.
+	 *
+	 * @return the string
+	 */
 	public String cancelar() {
 		limpar();
 		return "list?faces-redirect=true";
 	}
 
+	/**
+	 * Limpar.
+	 */
 	private void limpar() {
 		idSupplierProvidesMaterials = null;
 		supplierProvidesMaterials = new SupplierProvidesMaterials();
 	}
 
+	/**
+	 * Gets the id supplier provides materials.
+	 *
+	 * @return the id supplier provides materials
+	 */
 	public Long getIdSupplierProvidesMaterials() {
 		return idSupplierProvidesMaterials;
 	}
 
+	/**
+	 * Sets the id supplier provides materials.
+	 *
+	 * @param idSupplierProvidesMaterials the new id supplier provides materials
+	 */
 	public void setIdSupplierProvidesMaterials(Long idSupplierProvidesMaterials) {
 		this.idSupplierProvidesMaterials = idSupplierProvidesMaterials;
 	}
 
+	/**
+	 * Gets the supplier provides materials.
+	 *
+	 * @return the supplier provides materials
+	 */
 	public SupplierProvidesMaterials getSupplierProvidesMaterials() {
 		return supplierProvidesMaterials;
 	}
 
+	/**
+	 * Sets the supplier provides materials.
+	 *
+	 * @param supplierProvidesMaterials the new supplier provides materials
+	 */
 	public void setSupplierProvidesMaterials(SupplierProvidesMaterials supplierProvidesMaterials) {
 		this.supplierProvidesMaterials = supplierProvidesMaterials;
 	}

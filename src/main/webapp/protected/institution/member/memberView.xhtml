@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<ui:composition template="/WEB-INF/layout/template.xhtml">
+	<ui:define name="body">
+		<p:panel header="#{msg['label.members']}" styleClass="panel-listagem"
+			id="panelMembers">
+			<div class="row">
+				<div class="col-md-6">
+					<div class="form-group">
+						<strong>Nome:</strong><br />
+						<h:outputText value="#{memberController.member.name}" />
+						<br />
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="form-group">
+						<strong>email:</strong><br />
+						<h:outputText value="#{memberController.member.email}" />
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="form-group">
+						<strong>twitter:</strong><br />
+						<h:outputText value="#{memberController.member.twitter}" />
+						<br />
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6">
+					<div class="form-group">
+						<strong>Data nascimento:</strong><br />
+						<h:outputText value="#{memberController.member.bornDate}" />
+						<br />
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="form-group">
+						<strong>Facebook:</strong><br />
+						<h:outputText value="#{memberController.member.facebook}" />
+						<br />
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="form-group">
+						<strong>Endereco:</strong><br />
+						<h:outputText value="#{memberController.member.address}" />
+						<br />
+					</div>
+				</div>
+			</div>
+		</p:panel>
+	</ui:define>
+</ui:composition>
+</html>

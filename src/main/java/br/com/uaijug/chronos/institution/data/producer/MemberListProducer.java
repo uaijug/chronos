@@ -29,26 +29,48 @@ import javax.inject.Named;
 import br.com.uaijug.chronos.institution.data.repository.MemberRepository;
 import br.com.uaijug.chronos.institution.model.Member;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class MemberListProducer.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @RequestScoped
 public class MemberListProducer {
 
+	/** The member repository. */
 	@Inject
 	private MemberRepository memberRepository;
 
+    /** The members. */
     private List<Member> members;
 
     // @Named provides access the return value via the EL variable name "members" in the UI (e.g.
     // Facelets or JSP view)
+    /**
+     * Gets the members.
+     *
+     * @return the members
+     */
     @Produces
     @Named
     public List<Member> getMembers() {
         return members;
     }
 
+    /**
+     * On member list changed.
+     *
+     * @param member the member
+     */
     public void onMemberListChanged(@Observes(notifyObserver = Reception.IF_EXISTS) final Member member) {
         retrieveAllMembersOrderedByName();
     }
 
+    /**
+     * Retrieve all members ordered by name.
+     */
     @PostConstruct
     public void retrieveAllMembersOrderedByName() {
         members = memberRepository.findAllOrderedByName();

@@ -43,34 +43,53 @@ import br.com.uaijug.chronos.event.data.repository.EventProposalRepository;
 import br.com.uaijug.chronos.event.model.EventProposal;
 import br.com.uaijug.chronos.event.service.EventProposalRegistration;
 
+// TODO: Auto-generated Javadoc
 /**
  * JAX-RS Example
  * <p/>
  * This class produces a RESTful service to read/write the contents of the
  * eventProposals table.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogerifontes dot inf dot br
+ * 
  */
 @Path("/eventProposals")
 @RequestScoped
 public class EventProposalResource {
 
+	/** The log. */
 	@Inject
 	private Logger log;
 
+	/** The validator. */
 	@Inject
 	private Validator validator;
 
+	/** The repository. */
 	@Inject
 	private EventProposalRepository repository;
 
+	/** The registration. */
 	@Inject
 	EventProposalRegistration registration;
 
+	/**
+	 * List all event proposals.
+	 *
+	 * @return the list
+	 */
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<EventProposal> listAllEventProposals() {
 		return repository.findAllOrderedByName();
 	}
 
+	/**
+	 * Lookup event proposal by id.
+	 *
+	 * @param id the id
+	 * @return the event proposal
+	 */
 	@GET
 	@Path("/{id:[0-9][0-9]*}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -94,10 +113,13 @@ public class EventProposalResource {
 	}*/
 	
 	/**
-	 * Creates a new eventProposal from the values provided. Performs validation, and
-	 * will return a JAX-RS response with either 200 ok, or with a map of
-	 * fields, and related errors.
-	 */
+ * Creates a new eventProposal from the values provided. Performs validation, and
+ * will return a JAX-RS response with either 200 ok, or with a map of
+ * fields, and related errors.
+ *
+ * @param eventProposal the event proposal
+ * @return the response
+ */
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)

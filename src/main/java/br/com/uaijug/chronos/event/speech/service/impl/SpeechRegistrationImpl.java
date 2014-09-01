@@ -27,16 +27,28 @@ import br.com.uaijug.chronos.event.speech.model.Speech;
 import br.com.uaijug.chronos.event.speech.service.SpeechRegistration;
 import br.com.uaijug.chronos.persistence.base.PersistenceBase;
 
+// TODO: Auto-generated Javadoc
 // The @Stateless annotation eliminates the need for manual transaction demarcation
+/**
+ * The Class SpeechRegistrationImpl.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogerifontes dot inf dot br
+ * 
+ */
 @Stateless
 public class SpeechRegistrationImpl extends PersistenceBase<Speech, Long> implements SpeechRegistration {
 
+    /** The log. */
     @Inject
     private Logger log;
     
+    /** The speech event src. */
     @Inject
     private Event<Speech> speechEventSrc;
 
+    /* (non-Javadoc)
+     * @see br.com.uaijug.chronos.service.GenericRegistration#register(java.lang.Object)
+     */
     @Override
    	public Boolean register(Speech speech) {
    		Boolean saved = false;

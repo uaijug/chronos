@@ -27,9 +27,19 @@ import br.com.uaijug.chronos.event.registration.data.repository.FreePassReposito
 import br.com.uaijug.chronos.event.registration.model.FreePass;
 import br.com.uaijug.chronos.persistence.base.PersistenceBase;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class FreePassDefaultRepository.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @ApplicationScoped
 public class FreePassDefaultRepository extends PersistenceBase<FreePass, Long> implements FreePassRepository {
 
+    /* (non-Javadoc)
+     * @see br.com.uaijug.chronos.event.registration.data.repository.FreePassRepository#findAllOrderedByName()
+     */
     public List<FreePass> findAllOrderedByName() {
         CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
         CriteriaQuery<FreePass> criteria = cb.createQuery(FreePass.class);

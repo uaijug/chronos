@@ -21,6 +21,19 @@ import java.util.List;
 import br.com.uaijug.chronos.persistence.Persistence;
 import br.com.uaijug.chronos.project.model.DailyActivityCategory;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Interface DailyActivityCategoryRepository.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 public interface DailyActivityCategoryRepository extends Persistence<DailyActivityCategory, Long> {
+	
+	/**
+	 * Find all ordered by name.
+	 *
+	 * @return the list
+	 */
 	List<DailyActivityCategory> findAllOrderedByName();
 }

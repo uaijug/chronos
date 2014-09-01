@@ -27,9 +27,19 @@ import br.com.uaijug.chronos.persistence.base.PersistenceBase;
 import br.com.uaijug.chronos.project.data.repository.ProjectRepository;
 import br.com.uaijug.chronos.project.model.Project;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ProjectDefaultRepository.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @ApplicationScoped
 public class ProjectDefaultRepository extends PersistenceBase<Project, Long> implements ProjectRepository {
 
+    /* (non-Javadoc)
+     * @see br.com.uaijug.chronos.project.data.repository.ProjectRepository#findAllOrderedByName()
+     */
     public List<Project> findAllOrderedByName() {
         CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
         CriteriaQuery<Project> criteria = cb.createQuery(Project.class);

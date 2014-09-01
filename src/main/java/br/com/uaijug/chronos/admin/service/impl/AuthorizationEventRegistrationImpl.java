@@ -27,16 +27,28 @@ import br.com.uaijug.chronos.admin.model.AuthorizationEvent;
 import br.com.uaijug.chronos.admin.service.AuthorizationEventRegistration;
 import br.com.uaijug.chronos.persistence.base.PersistenceBase;
 
+// TODO: Auto-generated Javadoc
 // The @Stateless annotation eliminates the need for manual transaction demarcation
+/**
+ * The Class AuthorizationEventRegistrationImpl.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @Stateless
 public class AuthorizationEventRegistrationImpl extends PersistenceBase<AuthorizationEvent, Long> implements AuthorizationEventRegistration {
 
+    /** The log. */
     @Inject
     private Logger log;
     
+    /** The authorization event event src. */
     @Inject
     private Event<AuthorizationEvent> authorizationEventEventSrc;
     
+    /* (non-Javadoc)
+     * @see br.com.uaijug.chronos.service.GenericRegistration#register(java.lang.Object)
+     */
     @Override
   	public Boolean register(AuthorizationEvent authorizationEvent) {
   		Boolean saved = false;

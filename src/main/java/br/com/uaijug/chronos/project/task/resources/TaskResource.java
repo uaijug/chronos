@@ -43,34 +43,53 @@ import br.com.uaijug.chronos.project.task.data.repository.TaskRepository;
 import br.com.uaijug.chronos.project.task.model.Task;
 import br.com.uaijug.chronos.project.task.service.TaskRegistration;
 
+// TODO: Auto-generated Javadoc
 /**
  * JAX-RS Example
  * <p/>
  * This class produces a RESTful service to read/write the contents of the
  * tasks table.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
  */
 @Path("/tasks")
 @RequestScoped
 public class TaskResource {
 
+	/** The log. */
 	@Inject
 	private Logger log;
 
+	/** The validator. */
 	@Inject
 	private Validator validator;
 
+	/** The repository. */
 	@Inject
 	private TaskRepository repository;
 
+	/** The registration. */
 	@Inject
 	TaskRegistration registration;
 
+	/**
+	 * List all tasks.
+	 *
+	 * @return the list
+	 */
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Task> listAllTasks() {
 		return repository.findAllOrderedByName();
 	}
 
+	/**
+	 * Lookup task by id.
+	 *
+	 * @param id the id
+	 * @return the task
+	 */
 	@GET
 	@Path("/{id:[0-9][0-9]*}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -86,6 +105,9 @@ public class TaskResource {
 	 * Creates a new task from the values provided. Performs validation, and
 	 * will return a JAX-RS response with either 200 ok, or with a map of
 	 * fields, and related errors.
+	 *
+	 * @param task the task
+	 * @return the response
 	 */
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)

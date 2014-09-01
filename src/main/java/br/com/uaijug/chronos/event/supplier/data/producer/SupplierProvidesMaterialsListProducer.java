@@ -29,26 +29,48 @@ import javax.inject.Named;
 import br.com.uaijug.chronos.event.supplier.data.repository.SupplierProvidesMaterialsRepository;
 import br.com.uaijug.chronos.event.supplier.model.SupplierProvidesMaterials;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class SupplierProvidesMaterialsListProducer.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @RequestScoped
 public class SupplierProvidesMaterialsListProducer {
 
+	/** The supplier provides materials repository. */
 	@Inject
 	private SupplierProvidesMaterialsRepository supplierProvidesMaterialsRepository;
 
+    /** The supplier provides materialss. */
     private List<SupplierProvidesMaterials> supplierProvidesMaterialss;
 
     // @Named provides access the return value via the EL variable name "supplierProvidesMaterialss" in the UI (e.g.
     // Facelets or JSP view)
+    /**
+     * Gets the supplier provides materialss.
+     *
+     * @return the supplier provides materialss
+     */
     @Produces
     @Named
     public List<SupplierProvidesMaterials> getSupplierProvidesMaterialss() {
         return supplierProvidesMaterialss;
     }
 
+    /**
+     * On supplier provides materials list changed.
+     *
+     * @param supplierProvidesMaterials the supplier provides materials
+     */
     public void onSupplierProvidesMaterialsListChanged(@Observes(notifyObserver = Reception.IF_EXISTS) final SupplierProvidesMaterials supplierProvidesMaterials) {
         retrieveAllSupplierProvidesMaterialssOrderedByName();
     }
 
+    /**
+     * Retrieve all supplier provides materialss ordered by name.
+     */
     @PostConstruct
     public void retrieveAllSupplierProvidesMaterialssOrderedByName() {
         supplierProvidesMaterialss = supplierProvidesMaterialsRepository.findAllOrderedByName();

@@ -29,26 +29,48 @@ import javax.inject.Named;
 import br.com.uaijug.chronos.event.supplier.data.repository.SupplierRepository;
 import br.com.uaijug.chronos.event.supplier.model.Supplier;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class SupplierListProducer.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @RequestScoped
 public class SupplierListProducer {
 
+	/** The supplier repository. */
 	@Inject
 	private SupplierRepository supplierRepository;
 
+    /** The suppliers. */
     private List<Supplier> suppliers;
 
     // @Named provides access the return value via the EL variable name "suppliers" in the UI (e.g.
     // Facelets or JSP view)
+    /**
+     * Gets the suppliers.
+     *
+     * @return the suppliers
+     */
     @Produces
     @Named
     public List<Supplier> getSuppliers() {
         return suppliers;
     }
 
+    /**
+     * On supplier list changed.
+     *
+     * @param supplier the supplier
+     */
     public void onSupplierListChanged(@Observes(notifyObserver = Reception.IF_EXISTS) final Supplier supplier) {
         retrieveAllSuppliersOrderedByName();
     }
 
+    /**
+     * Retrieve all suppliers ordered by name.
+     */
     @PostConstruct
     public void retrieveAllSuppliersOrderedByName() {
         suppliers = supplierRepository.findAllOrderedByName();

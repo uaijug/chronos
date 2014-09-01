@@ -43,34 +43,53 @@ import br.com.uaijug.chronos.project.task.data.repository.TaskGroupCategoryRepos
 import br.com.uaijug.chronos.project.task.model.TaskGroupCategory;
 import br.com.uaijug.chronos.project.task.service.TaskGroupCategoryRegistration;
 
+// TODO: Auto-generated Javadoc
 /**
  * JAX-RS Example
  * <p/>
  * This class produces a RESTful service to read/write the contents of the
  * taskGroupCategorys table.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
  */
 @Path("/taskGroupCategorys")
 @RequestScoped
 public class TaskGroupCategoryResource {
 
+	/** The log. */
 	@Inject
 	private Logger log;
 
+	/** The validator. */
 	@Inject
 	private Validator validator;
 
+	/** The repository. */
 	@Inject
 	private TaskGroupCategoryRepository repository;
 
+	/** The registration. */
 	@Inject
 	TaskGroupCategoryRegistration registration;
 
+	/**
+	 * List all task group categorys.
+	 *
+	 * @return the list
+	 */
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<TaskGroupCategory> listAllTaskGroupCategorys() {
 		return repository.findAllOrderedByName();
 	}
 
+	/**
+	 * Lookup task group category by id.
+	 *
+	 * @param id the id
+	 * @return the task group category
+	 */
 	@GET
 	@Path("/{id:[0-9][0-9]*}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -86,6 +105,9 @@ public class TaskGroupCategoryResource {
 	 * Creates a new taskGroupCategory from the values provided. Performs validation, and
 	 * will return a JAX-RS response with either 200 ok, or with a map of
 	 * fields, and related errors.
+	 *
+	 * @param taskGroupCategory the task group category
+	 * @return the response
 	 */
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)

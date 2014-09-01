@@ -43,34 +43,53 @@ import br.com.uaijug.chronos.event.supplier.data.repository.SupplierRepository;
 import br.com.uaijug.chronos.event.supplier.model.Supplier;
 import br.com.uaijug.chronos.event.supplier.service.SupplierRegistration;
 
+// TODO: Auto-generated Javadoc
 /**
  * JAX-RS Example
  * <p/>
  * This class produces a RESTful service to read/write the contents of the
  * suppliers table.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
  */
 @Path("/suppliers")
 @RequestScoped
 public class SupplierResource {
 
+	/** The log. */
 	@Inject
 	private Logger log;
 
+	/** The validator. */
 	@Inject
 	private Validator validator;
 
+	/** The repository. */
 	@Inject
 	private SupplierRepository repository;
 
+	/** The registration. */
 	@Inject
 	SupplierRegistration registration;
 
+	/**
+	 * List all suppliers.
+	 *
+	 * @return the list
+	 */
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Supplier> listAllSuppliers() {
 		return repository.findAllOrderedByName();
 	}
 
+	/**
+	 * Lookup supplier by id.
+	 *
+	 * @param id the id
+	 * @return the supplier
+	 */
 	@GET
 	@Path("/{id:[0-9][0-9]*}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -86,6 +105,9 @@ public class SupplierResource {
 	 * Creates a new supplier from the values provided. Performs validation, and
 	 * will return a JAX-RS response with either 200 ok, or with a map of
 	 * fields, and related errors.
+	 *
+	 * @param supplier the supplier
+	 * @return the response
 	 */
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)

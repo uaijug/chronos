@@ -22,6 +22,12 @@ import br.com.uaijug.chronos.event.speech.model.SpeechType;
 import br.com.uaijug.chronos.service.GenericRegistration;
 
 // The @Stateless annotation eliminates the need for manual transaction demarcation
+/**
+ * The Interface SpeechTypeRegistration.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogerifontes dot inf dot br
+ * 
+ */
 @Local
 public interface SpeechTypeRegistration extends GenericRegistration<SpeechType, Long> {
 

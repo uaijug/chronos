@@ -29,26 +29,48 @@ import javax.inject.Named;
 import br.com.uaijug.chronos.admin.data.repository.ProfileRepository;
 import br.com.uaijug.chronos.admin.model.Profile;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ProfileListProducer.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @RequestScoped
 public class ProfileListProducer {
 
+	/** The profile repository. */
 	@Inject
 	private ProfileRepository profileRepository;
 
+    /** The profiles. */
     private List<Profile> profiles;
 
     // @Named provides access the return value via the EL variable name "profiles" in the UI (e.g.
     // Facelets or JSP view)
+    /**
+     * Gets the profiles.
+     *
+     * @return the profiles
+     */
     @Produces
     @Named
     public List<Profile> getProfiles() {
         return profiles;
     }
 
+    /**
+     * On profile list changed.
+     *
+     * @param profile the profile
+     */
     public void onProfileListChanged(@Observes(notifyObserver = Reception.IF_EXISTS) final Profile profile) {
         retrieveAllProfilesOrderedByName();
     }
 
+    /**
+     * Retrieve all profiles ordered by name.
+     */
     @PostConstruct
     public void retrieveAllProfilesOrderedByName() {
         profiles = profileRepository.findAllOrderedByName();

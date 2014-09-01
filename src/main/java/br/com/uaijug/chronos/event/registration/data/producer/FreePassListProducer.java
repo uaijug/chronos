@@ -29,26 +29,48 @@ import javax.inject.Named;
 import br.com.uaijug.chronos.event.registration.data.repository.FreePassRepository;
 import br.com.uaijug.chronos.event.registration.model.FreePass;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class FreePassListProducer.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @RequestScoped
 public class FreePassListProducer {
 
+    /** The free pass repository. */
     @Inject
     private FreePassRepository freePassRepository;
 
+    /** The free passes. */
     private List<FreePass> freePasses;
 
     // @Named provides access the return value via the EL variable name "events" in the UI (e.g.
     // Facelets or JSP view)
+    /**
+     * Gets the free passes.
+     *
+     * @return the free passes
+     */
     @Produces
     @Named
     public List<FreePass> getFreePasses() {
         return freePasses;
     }
 
+    /**
+     * On event list changed.
+     *
+     * @param freePass the free pass
+     */
     public void onEventListChanged(@Observes(notifyObserver = Reception.IF_EXISTS) final FreePass freePass) {
         retrieveAllEventsOrderedByName();
     }
 
+    /**
+     * Retrieve all events ordered by name.
+     */
     @PostConstruct
     public void retrieveAllEventsOrderedByName() {
     	freePasses = freePassRepository.findAllOrderedByName();

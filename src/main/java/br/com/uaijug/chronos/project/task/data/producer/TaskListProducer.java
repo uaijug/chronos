@@ -29,26 +29,48 @@ import javax.inject.Named;
 import br.com.uaijug.chronos.project.task.data.repository.TaskRepository;
 import br.com.uaijug.chronos.project.task.model.Task;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class TaskListProducer.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @RequestScoped
 public class TaskListProducer {
 
+	/** The task repository. */
 	@Inject
 	private TaskRepository taskRepository;
 
+    /** The tasks. */
     private List<Task> tasks;
 
     // @Named provides access the return value via the EL variable name "tasks" in the UI (e.g.
     // Facelets or JSP view)
+    /**
+     * Gets the tasks.
+     *
+     * @return the tasks
+     */
     @Produces
     @Named
     public List<Task> getTasks() {
         return tasks;
     }
 
+    /**
+     * On task list changed.
+     *
+     * @param task the task
+     */
     public void onTaskListChanged(@Observes(notifyObserver = Reception.IF_EXISTS) final Task task) {
         retrieveAllTasksOrderedByName();
     }
 
+    /**
+     * Retrieve all tasks ordered by name.
+     */
     @PostConstruct
     public void retrieveAllTasksOrderedByName() {
         tasks = taskRepository.findAllOrderedByName();

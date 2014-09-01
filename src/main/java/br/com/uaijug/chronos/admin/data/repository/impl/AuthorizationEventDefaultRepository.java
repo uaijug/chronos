@@ -27,9 +27,19 @@ import br.com.uaijug.chronos.admin.data.repository.AuthorizationEventRepository;
 import br.com.uaijug.chronos.admin.model.AuthorizationEvent;
 import br.com.uaijug.chronos.persistence.base.PersistenceBase;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class AuthorizationEventDefaultRepository.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @ApplicationScoped
 public class AuthorizationEventDefaultRepository extends PersistenceBase<AuthorizationEvent, Long> implements AuthorizationEventRepository {
 
+    /* (non-Javadoc)
+     * @see br.com.uaijug.chronos.admin.data.repository.AuthorizationEventRepository#findAllOrderedByName()
+     */
     public List<AuthorizationEvent> findAllOrderedByName() {
         CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
         CriteriaQuery<AuthorizationEvent> criteria = cb.createQuery(AuthorizationEvent.class);

@@ -27,16 +27,28 @@ import br.com.uaijug.chronos.event.speaker.model.Speaker;
 import br.com.uaijug.chronos.event.speaker.service.SpeakerRegistration;
 import br.com.uaijug.chronos.persistence.base.PersistenceBase;
 
+// TODO: Auto-generated Javadoc
 // The @Stateless annotation eliminates the need for manual transaction demarcation
+/**
+ * The Class SpeakerRegistrationImpl.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogerifontes dot inf dot br
+ * 
+ */
 @Stateless
 public class SpeakerRegistrationImpl extends PersistenceBase<Speaker, Long> implements SpeakerRegistration {
 
+    /** The log. */
     @Inject
     private Logger log;
     
+    /** The speaker event src. */
     @Inject
     private Event<Speaker> speakerEventSrc;
 
+    /* (non-Javadoc)
+     * @see br.com.uaijug.chronos.service.GenericRegistration#register(java.lang.Object)
+     */
     @Override
    	public Boolean register(Speaker speaker) {
    		Boolean saved = false;

@@ -27,16 +27,28 @@ import br.com.uaijug.chronos.event.sponsor.model.Exhibitors;
 import br.com.uaijug.chronos.event.sponsor.service.ExhibitorsRegistration;
 import br.com.uaijug.chronos.persistence.base.PersistenceBase;
 
+// TODO: Auto-generated Javadoc
 // The @Stateless annotation eliminates the need for manual transaction demarcation
+/**
+ * The Class ExhibitorsRegistrationImpl.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @Stateless
 public class ExhibitorsRegistrationImpl extends PersistenceBase<Exhibitors, Long> implements ExhibitorsRegistration {
 
+    /** The log. */
     @Inject
     private Logger log;
     
+    /** The exhibitors event src. */
     @Inject
     private Event<Exhibitors> exhibitorsEventSrc;
 
+    /* (non-Javadoc)
+     * @see br.com.uaijug.chronos.service.GenericRegistration#register(java.lang.Object)
+     */
     @Override
    	public Boolean register(Exhibitors exhibitors) {
    		Boolean saved = false;

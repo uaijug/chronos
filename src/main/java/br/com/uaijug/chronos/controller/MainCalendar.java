@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package br.com.uaijug.chronos.controller;
 
 import java.io.Serializable;
@@ -19,19 +22,31 @@ import org.primefaces.model.LazyScheduleModel;
 import org.primefaces.model.ScheduleEvent;
 import org.primefaces.model.ScheduleModel;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class MainCalendar.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @Model
 public class MainCalendar extends AbstractManageBeans implements Serializable {
-	/**
-	 * 
-	 */
+	
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = -1287565448776005482L;
 
+	/** The event model. */
 	private ScheduleModel eventModel;
 
+	/** The lazy event model. */
 	private ScheduleModel lazyEventModel;
 
+	/** The event. */
 	private ScheduleEvent event = new DefaultScheduleEvent();
 
+	/**
+	 * Inits the.
+	 */
 	@PostConstruct
 	public void init() {
 		eventModel = new DefaultScheduleModel();
@@ -55,6 +70,12 @@ public class MainCalendar extends AbstractManageBeans implements Serializable {
 		};
 	}
 
+	/**
+	 * Gets the random date.
+	 *
+	 * @param base the base
+	 * @return the random date
+	 */
 	public Date getRandomDate(Date base) {
 		Calendar date = Calendar.getInstance();
 		date.setTime(base);
@@ -65,6 +86,11 @@ public class MainCalendar extends AbstractManageBeans implements Serializable {
 		return date.getTime();
 	}
 
+	/**
+	 * Gets the initial date.
+	 *
+	 * @return the initial date
+	 */
 	public Date getInitialDate() {
 		Calendar calendar = Calendar.getInstance();
 		calendar.set(calendar.get(Calendar.YEAR), Calendar.FEBRUARY,
@@ -73,14 +99,29 @@ public class MainCalendar extends AbstractManageBeans implements Serializable {
 		return calendar.getTime();
 	}
 
+	/**
+	 * Gets the event model.
+	 *
+	 * @return the event model
+	 */
 	public ScheduleModel getEventModel() {
 		return eventModel;
 	}
 
+	/**
+	 * Gets the lazy event model.
+	 *
+	 * @return the lazy event model
+	 */
 	public ScheduleModel getLazyEventModel() {
 		return lazyEventModel;
 	}
 
+	/**
+	 * Today.
+	 *
+	 * @return the calendar
+	 */
 	private Calendar today() {
 		Calendar calendar = Calendar.getInstance();
 		calendar.set(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH),
@@ -89,6 +130,11 @@ public class MainCalendar extends AbstractManageBeans implements Serializable {
 		return calendar;
 	}
 
+	/**
+	 * Previous day8 pm.
+	 *
+	 * @return the date
+	 */
 	private Date previousDay8Pm() {
 		Calendar t = (Calendar) today().clone();
 		t.set(Calendar.AM_PM, Calendar.PM);
@@ -98,6 +144,11 @@ public class MainCalendar extends AbstractManageBeans implements Serializable {
 		return t.getTime();
 	}
 
+	/**
+	 * Previous day11 pm.
+	 *
+	 * @return the date
+	 */
 	private Date previousDay11Pm() {
 		Calendar t = (Calendar) today().clone();
 		t.set(Calendar.AM_PM, Calendar.PM);
@@ -107,6 +158,11 @@ public class MainCalendar extends AbstractManageBeans implements Serializable {
 		return t.getTime();
 	}
 
+	/**
+	 * Today1 pm.
+	 *
+	 * @return the date
+	 */
 	private Date today1Pm() {
 		Calendar t = (Calendar) today().clone();
 		t.set(Calendar.AM_PM, Calendar.PM);
@@ -115,6 +171,11 @@ public class MainCalendar extends AbstractManageBeans implements Serializable {
 		return t.getTime();
 	}
 
+	/**
+	 * The day after3 pm.
+	 *
+	 * @return the date
+	 */
 	private Date theDayAfter3Pm() {
 		Calendar t = (Calendar) today().clone();
 		t.set(Calendar.DATE, t.get(Calendar.DATE) + 2);
@@ -124,6 +185,11 @@ public class MainCalendar extends AbstractManageBeans implements Serializable {
 		return t.getTime();
 	}
 
+	/**
+	 * Today6 pm.
+	 *
+	 * @return the date
+	 */
 	private Date today6Pm() {
 		Calendar t = (Calendar) today().clone();
 		t.set(Calendar.AM_PM, Calendar.PM);
@@ -132,6 +198,11 @@ public class MainCalendar extends AbstractManageBeans implements Serializable {
 		return t.getTime();
 	}
 
+	/**
+	 * Next day9 am.
+	 *
+	 * @return the date
+	 */
 	private Date nextDay9Am() {
 		Calendar t = (Calendar) today().clone();
 		t.set(Calendar.AM_PM, Calendar.AM);
@@ -141,6 +212,11 @@ public class MainCalendar extends AbstractManageBeans implements Serializable {
 		return t.getTime();
 	}
 
+	/**
+	 * Next day11 am.
+	 *
+	 * @return the date
+	 */
 	private Date nextDay11Am() {
 		Calendar t = (Calendar) today().clone();
 		t.set(Calendar.AM_PM, Calendar.AM);
@@ -150,6 +226,11 @@ public class MainCalendar extends AbstractManageBeans implements Serializable {
 		return t.getTime();
 	}
 
+	/**
+	 * Four days later3pm.
+	 *
+	 * @return the date
+	 */
 	private Date fourDaysLater3pm() {
 		Calendar t = (Calendar) today().clone();
 		t.set(Calendar.AM_PM, Calendar.PM);
@@ -159,14 +240,29 @@ public class MainCalendar extends AbstractManageBeans implements Serializable {
 		return t.getTime();
 	}
 
+	/**
+	 * Gets the event.
+	 *
+	 * @return the event
+	 */
 	public ScheduleEvent getEvent() {
 		return event;
 	}
 
+	/**
+	 * Sets the event.
+	 *
+	 * @param event the new event
+	 */
 	public void setEvent(ScheduleEvent event) {
 		this.event = event;
 	}
 
+	/**
+	 * Adds the event.
+	 *
+	 * @param actionEvent the action event
+	 */
 	public void addEvent(ActionEvent actionEvent) {
 		if (event.getId() == null)
 			eventModel.addEvent(event);
@@ -176,15 +272,30 @@ public class MainCalendar extends AbstractManageBeans implements Serializable {
 		event = new DefaultScheduleEvent();
 	}
 
+	/**
+	 * On event select.
+	 *
+	 * @param selectEvent the select event
+	 */
 	public void onEventSelect(SelectEvent selectEvent) {
 		event = (ScheduleEvent) selectEvent.getObject();
 	}
 
+	/**
+	 * On date select.
+	 *
+	 * @param selectEvent the select event
+	 */
 	public void onDateSelect(SelectEvent selectEvent) {
 		event = new DefaultScheduleEvent("", (Date) selectEvent.getObject(),
 				(Date) selectEvent.getObject());
 	}
 
+	/**
+	 * On event move.
+	 *
+	 * @param event the event
+	 */
 	public void onEventMove(ScheduleEntryMoveEvent event) {
 		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO,
 				"Event moved", "Day delta:" + event.getDayDelta()
@@ -193,6 +304,11 @@ public class MainCalendar extends AbstractManageBeans implements Serializable {
 		addMessage(message);
 	}
 
+	/**
+	 * On event resize.
+	 *
+	 * @param event the event
+	 */
 	public void onEventResize(ScheduleEntryResizeEvent event) {
 		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO,
 				"Event resized", "Day delta:" + event.getDayDelta()
@@ -201,6 +317,11 @@ public class MainCalendar extends AbstractManageBeans implements Serializable {
 		addMessage(message);
 	}
 
+	/**
+	 * Adds the message.
+	 *
+	 * @param message the message
+	 */
 	private void addMessage(FacesMessage message) {
 		FacesContext.getCurrentInstance().addMessage(null, message);
 	}

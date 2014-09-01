@@ -27,9 +27,19 @@ import br.com.uaijug.chronos.event.data.repository.EventSessionRepository;
 import br.com.uaijug.chronos.event.model.EventSession;
 import br.com.uaijug.chronos.persistence.base.PersistenceBase;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class EventSessionDefaultRepository.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @ApplicationScoped
 public class EventSessionDefaultRepository extends PersistenceBase<EventSession, Long> implements EventSessionRepository {
 
+    /* (non-Javadoc)
+     * @see br.com.uaijug.chronos.event.data.repository.EventSessionRepository#findAllOrderedByName()
+     */
     public List<EventSession> findAllOrderedByName() {
         CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
         CriteriaQuery<EventSession> criteria = cb.createQuery(EventSession.class);

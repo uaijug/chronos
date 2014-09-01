@@ -28,25 +28,40 @@ import br.com.uaijug.chronos.institution.cashFlow.data.repository.CashFlowCatego
 import br.com.uaijug.chronos.institution.cashFlow.model.CashFlowCategory;
 import br.com.uaijug.chronos.institution.cashFlow.service.CashFlowCategoryRegistration;
 
+// TODO: Auto-generated Javadoc
 // The @Model stereotype is a convenience mechanism to make this a request-scoped bean that has an
 // EL name
 // Read more cashFlowCategory the @Model stereotype in this FAQ:
 // http://sfwk.org/Documentation/WhatIsThePurposeOfTheModelAnnotation
+/**
+ * The Class CashFlowCategoryController.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @Model
 public class CashFlowCategoryController extends AbstractManageBeans {
 
+	/** The cash flow category registration. */
 	@Inject
 	private CashFlowCategoryRegistration cashFlowCategoryRegistration;
 
+	/** The cash flow category repository. */
 	@Inject
 	private CashFlowCategoryRepository cashFlowCategoryRepository;
 
+	/** The id cash flow category. */
 	private Long idCashFlowCategory;
 
+	/** The cash flow category. */
 	private CashFlowCategory cashFlowCategory;
 
+	/** The cash flow categorys. */
 	List<CashFlowCategory> cashFlowCategorys;
 
+	/**
+	 * Inits the new cash flow category.
+	 */
 	@PostConstruct
 	public void initNewCashFlowCategory() {
 		cashFlowCategory = new CashFlowCategory();
@@ -57,6 +72,11 @@ public class CashFlowCategoryController extends AbstractManageBeans {
 		idCashFlowCategory = null;
 	}
 
+	/**
+	 * Gets the cash flow categorys.
+	 *
+	 * @return the cash flow categorys
+	 */
 	public List<CashFlowCategory> getCashFlowCategorys() {
 		return cashFlowCategoryRepository.findAll();
 	}
@@ -77,6 +97,12 @@ public class CashFlowCategoryController extends AbstractManageBeans {
 		}
 	}
 
+	/**
+	 * Register.
+	 *
+	 * @return the string
+	 * @throws Exception the exception
+	 */
 	public String register() throws Exception {
 		try {
 
@@ -91,28 +117,56 @@ public class CashFlowCategoryController extends AbstractManageBeans {
 		return null;
 	}
 
+	/**
+	 * Cancelar.
+	 *
+	 * @return the string
+	 */
 	public String cancelar() {
 		limpar();
 		return "list?faces-redirect=true";
 	}
 
+	/**
+	 * Limpar.
+	 */
 	private void limpar() {
 		idCashFlowCategory = null;
 		cashFlowCategory = new CashFlowCategory();
 	}
 
+	/**
+	 * Gets the id cash flow category.
+	 *
+	 * @return the id cash flow category
+	 */
 	public Long getIdCashFlowCategory() {
 		return idCashFlowCategory;
 	}
 
+	/**
+	 * Sets the id cash flow category.
+	 *
+	 * @param idCashFlowCategory the new id cash flow category
+	 */
 	public void setIdCashFlowCategory(Long idCashFlowCategory) {
 		this.idCashFlowCategory = idCashFlowCategory;
 	}
 
+	/**
+	 * Gets the cash flow category.
+	 *
+	 * @return the cash flow category
+	 */
 	public CashFlowCategory getCashFlowCategory() {
 		return cashFlowCategory;
 	}
 
+	/**
+	 * Sets the cash flow category.
+	 *
+	 * @param cashFlowCategory the new cash flow category
+	 */
 	public void setCashFlowCategory(CashFlowCategory cashFlowCategory) {
 		this.cashFlowCategory = cashFlowCategory;
 	}

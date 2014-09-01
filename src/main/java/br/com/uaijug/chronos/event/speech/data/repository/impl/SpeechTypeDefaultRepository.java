@@ -27,9 +27,16 @@ import br.com.uaijug.chronos.event.speech.data.repository.SpeechTypeRepository;
 import br.com.uaijug.chronos.event.speech.model.SpeechType;
 import br.com.uaijug.chronos.persistence.base.PersistenceBase;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class SpeechTypeDefaultRepository.
+ */
 @ApplicationScoped
 public class SpeechTypeDefaultRepository extends PersistenceBase<SpeechType, Long> implements SpeechTypeRepository {
 
+    /* (non-Javadoc)
+     * @see br.com.uaijug.chronos.event.speech.data.repository.SpeechTypeRepository#findAllOrderedByName()
+     */
     public List<SpeechType> findAllOrderedByName() {
         CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
         CriteriaQuery<SpeechType> criteria = cb.createQuery(SpeechType.class);

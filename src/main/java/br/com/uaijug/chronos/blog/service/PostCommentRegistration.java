@@ -22,6 +22,12 @@ import br.com.uaijug.chronos.blog.model.PostComment;
 import br.com.uaijug.chronos.service.GenericRegistration;
 
 // The @Stateless annotation eliminates the need for manual transaction demarcation
+/**
+ * The Interface PostCommentRegistration.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @Local
 public interface PostCommentRegistration extends GenericRegistration<PostComment, Long> {
 

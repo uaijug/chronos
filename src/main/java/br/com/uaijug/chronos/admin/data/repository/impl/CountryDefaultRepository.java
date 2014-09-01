@@ -27,9 +27,19 @@ import br.com.uaijug.chronos.admin.data.repository.CountryRepository;
 import br.com.uaijug.chronos.admin.model.Country;
 import br.com.uaijug.chronos.persistence.base.PersistenceBase;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class CountryDefaultRepository.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @ApplicationScoped
 public class CountryDefaultRepository extends PersistenceBase<Country, Long> implements CountryRepository {
 
+    /* (non-Javadoc)
+     * @see br.com.uaijug.chronos.admin.data.repository.CountryRepository#findAllOrderedByName()
+     */
     public List<Country> findAllOrderedByName() {
         CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
         CriteriaQuery<Country> criteria = cb.createQuery(Country.class);

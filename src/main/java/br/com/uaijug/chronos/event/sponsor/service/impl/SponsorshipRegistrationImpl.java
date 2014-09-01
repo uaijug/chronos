@@ -27,16 +27,28 @@ import br.com.uaijug.chronos.event.sponsor.model.Sponsorship;
 import br.com.uaijug.chronos.event.sponsor.service.SponsorshipRegistration;
 import br.com.uaijug.chronos.persistence.base.PersistenceBase;
 
+// TODO: Auto-generated Javadoc
 // The @Stateless annotation eliminates the need for manual transaction demarcation
+/**
+ * The Class SponsorshipRegistrationImpl.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @Stateless
 public class SponsorshipRegistrationImpl extends PersistenceBase<Sponsorship, Long> implements SponsorshipRegistration {
 
+    /** The log. */
     @Inject
     private Logger log;
     
+    /** The sponsorship event src. */
     @Inject
     private Event<Sponsorship> sponsorshipEventSrc;
 
+    /* (non-Javadoc)
+     * @see br.com.uaijug.chronos.service.GenericRegistration#register(java.lang.Object)
+     */
     @Override
    	public Boolean register(Sponsorship sponsorship) {
    		Boolean saved = false;

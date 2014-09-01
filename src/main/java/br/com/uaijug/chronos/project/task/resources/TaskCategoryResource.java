@@ -43,34 +43,53 @@ import br.com.uaijug.chronos.project.task.data.repository.TaskCategoryRepository
 import br.com.uaijug.chronos.project.task.model.TaskCategory;
 import br.com.uaijug.chronos.project.task.service.TaskCategoryRegistration;
 
+// TODO: Auto-generated Javadoc
 /**
  * JAX-RS Example
  * <p/>
  * This class produces a RESTful service to read/write the contents of the
  * taskCategorys table.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
  */
 @Path("/taskCategorys")
 @RequestScoped
 public class TaskCategoryResource {
 
+	/** The log. */
 	@Inject
 	private Logger log;
 
+	/** The validator. */
 	@Inject
 	private Validator validator;
 
+	/** The repository. */
 	@Inject
 	private TaskCategoryRepository repository;
 
+	/** The registration. */
 	@Inject
 	TaskCategoryRegistration registration;
 
+	/**
+	 * List all task categorys.
+	 *
+	 * @return the list
+	 */
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<TaskCategory> listAllTaskCategorys() {
 		return repository.findAllOrderedByName();
 	}
 
+	/**
+	 * Lookup task category by id.
+	 *
+	 * @param id the id
+	 * @return the task category
+	 */
 	@GET
 	@Path("/{id:[0-9][0-9]*}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -86,6 +105,9 @@ public class TaskCategoryResource {
 	 * Creates a new taskCategory from the values provided. Performs validation, and
 	 * will return a JAX-RS response with either 200 ok, or with a map of
 	 * fields, and related errors.
+	 *
+	 * @param taskCategory the task category
+	 * @return the response
 	 */
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)

@@ -29,26 +29,48 @@ import javax.inject.Named;
 import br.com.uaijug.chronos.event.data.repository.EventMainRepository;
 import br.com.uaijug.chronos.event.model.EventMain;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class EventMainListProducer.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @RequestScoped
 public class EventMainListProducer {
 
+    /** The event main repository. */
     @Inject
     private EventMainRepository eventMainRepository;
 
+    /** The event mains. */
     private List<EventMain> eventMains;
 
     // @Named provides access the return value via the EL variable name "events" in the UI (e.g.
     // Facelets or JSP view)
+    /**
+     * Gets the event mains.
+     *
+     * @return the event mains
+     */
     @Produces
     @Named
     public List<EventMain> getEventMains() {
         return eventMains;
     }
 
+    /**
+     * On event list changed.
+     *
+     * @param event the event
+     */
     public void onEventListChanged(@Observes(notifyObserver = Reception.IF_EXISTS) final EventMain event) {
         retrieveAllEventsOrderedByName();
     }
 
+    /**
+     * Retrieve all events ordered by name.
+     */
     @PostConstruct
     public void retrieveAllEventsOrderedByName() {
     	eventMains = eventMainRepository.findAllOrderedByName();

@@ -27,16 +27,28 @@ import br.com.uaijug.chronos.event.model.EventRoom;
 import br.com.uaijug.chronos.event.service.EventRoomRegistration;
 import br.com.uaijug.chronos.persistence.base.PersistenceBase;
 
+// TODO: Auto-generated Javadoc
 // The @Stateless annotation eliminates the need for manual transaction demarcation
+/**
+ * The Class EventRoomRegistrationImpl.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogerifontes dot inf dot br
+ * 
+ */
 @Stateless
 public class EventRoomRegistrationImpl extends PersistenceBase<EventRoom, Long> implements EventRoomRegistration {
 
+    /** The log. */
     @Inject
     private Logger log;
     
+    /** The event event room src. */
     @Inject
     private Event<EventRoom> eventEventRoomSrc;
 
+    /* (non-Javadoc)
+     * @see br.com.uaijug.chronos.service.GenericRegistration#register(java.lang.Object)
+     */
     @Override
 	public Boolean register(EventRoom eventRoom) {
 		Boolean saved = false;

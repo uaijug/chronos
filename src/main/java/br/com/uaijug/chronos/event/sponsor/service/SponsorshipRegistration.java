@@ -22,6 +22,12 @@ import br.com.uaijug.chronos.event.sponsor.model.Sponsorship;
 import br.com.uaijug.chronos.service.GenericRegistration;
 
 // The @Stateless annotation eliminates the need for manual transaction demarcation
+/**
+ * The Interface SponsorshipRegistration.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @Local
 public interface SponsorshipRegistration extends GenericRegistration<Sponsorship, Long> {
 

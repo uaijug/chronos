@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package br.com.uaijug.chronos.controller;
 
 import java.io.IOException;
@@ -9,9 +12,17 @@ import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.context.Flash;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class AbstractManageBeans.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 public abstract class AbstractManageBeans {
 
 	// bundle com as mensagens internacionalizaveis
+	/** The bundle. */
 	protected ResourceBundle bundle;
 	
 	/** The ext context. */
@@ -43,10 +54,20 @@ public abstract class AbstractManageBeans {
 	 * public FacesContext getFacesContext() { return facesContext; }
 	 */
 
+	/**
+	 * Success message.
+	 *
+	 * @param message the message
+	 */
 	protected void successMessage(String message) {
 		addMessageFromBundleInFlash(FacesMessage.SEVERITY_INFO, message);
 	}
 
+	/**
+	 * Un success message.
+	 *
+	 * @param message the message
+	 */
 	protected void unSuccessMessage(String message) {
 		getFacesContext().addMessage(
 				null,
@@ -54,14 +75,19 @@ public abstract class AbstractManageBeans {
 						.getString(message)));
 	}
 
+	/**
+	 * Gets the faces context.
+	 *
+	 * @return the faces context
+	 */
 	protected FacesContext getFacesContext() {
 		return FacesContext.getCurrentInstance();
 	}
 
 	/**
-	 * Faz o redirecionamento para uma pagina (caminho relativo)
-	 * 
-	 * @param pagina
+	 * Faz o redirecionamento para uma pagina (caminho relativo).
+	 *
+	 * @param pagina the pagina
 	 */
 	protected void redirect(String pagina) {
 		try {
@@ -74,9 +100,9 @@ public abstract class AbstractManageBeans {
 	/**
 	 * Recebe como parametro uma chave, faz a traducao da chave para a mensagem
 	 * olhando o bundle e a adiciona no escopo {@link Flash} da aplicacao.
-	 * 
-	 * @param chave
-	 * @param severidade
+	 *
+	 * @param severidade the severidade
+	 * @param chave the chave
 	 */
 	public void addMessageFromBundleInFlash(Severity severidade, String chave) {
 		Flash flash = getFacesContext().getExternalContext().getFlash();

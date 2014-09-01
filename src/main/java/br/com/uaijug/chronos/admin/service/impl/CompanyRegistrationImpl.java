@@ -27,16 +27,28 @@ import br.com.uaijug.chronos.admin.model.Company;
 import br.com.uaijug.chronos.admin.service.CompanyRegistration;
 import br.com.uaijug.chronos.persistence.base.PersistenceBase;
 
+// TODO: Auto-generated Javadoc
 // The @Stateless annotation eliminates the need for manual transaction demarcation
+/**
+ * The Class CompanyRegistrationImpl.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @Stateless
 public class CompanyRegistrationImpl extends PersistenceBase<Company, Long> implements CompanyRegistration {
 
+    /** The log. */
     @Inject
     private Logger log;
     
+    /** The company event src. */
     @Inject
     private Event<Company> companyEventSrc;
 
+    /* (non-Javadoc)
+     * @see br.com.uaijug.chronos.service.GenericRegistration#register(java.lang.Object)
+     */
     @Override
   	public Boolean register(Company company) {
   		Boolean saved = false;

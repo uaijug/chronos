@@ -28,25 +28,40 @@ import br.com.uaijug.chronos.event.data.repository.EventScheduleRepository;
 import br.com.uaijug.chronos.event.model.EventSchedule;
 import br.com.uaijug.chronos.event.service.EventScheduleRegistration;
 
+// TODO: Auto-generated Javadoc
 // The @Model stereotype is a convenience mechanism to make this a request-scoped bean that has an
 // EL name
 // Read more about the @Model stereotype in this FAQ:
 // http://sfwk.org/Documentation/WhatIsThePurposeOfTheModelAnnotation
+/**
+ * The Class EventScheduleController.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @Model
 public class EventScheduleController extends AbstractManageBeans {
 
+	/** The event schedule registration. */
 	@Inject
 	private EventScheduleRegistration eventScheduleRegistration;
 
+	/** The event schedule repository. */
 	@Inject
 	private EventScheduleRepository eventScheduleRepository;
 
+	/** The id event schedule. */
 	private Long idEventSchedule;
 
+	/** The event schedule. */
 	private EventSchedule eventSchedule;
 
+	/** The event schedules. */
 	List<EventSchedule> eventSchedules;
 
+	/**
+	 * Inits the new event schedule.
+	 */
 	@PostConstruct
 	public void initNewEventSchedule() {
 		eventSchedule = new EventSchedule();
@@ -57,6 +72,11 @@ public class EventScheduleController extends AbstractManageBeans {
 		idEventSchedule = null;
 	}
 
+	/**
+	 * Gets the event schedules.
+	 *
+	 * @return the event schedules
+	 */
 	public List<EventSchedule> getEventSchedules() {
 		return eventScheduleRepository.findAll();
 	}
@@ -77,6 +97,12 @@ public class EventScheduleController extends AbstractManageBeans {
 		}
 	}
 
+	/**
+	 * Register.
+	 *
+	 * @return the string
+	 * @throws Exception the exception
+	 */
 	public String register() throws Exception {
 		try {
 
@@ -91,28 +117,56 @@ public class EventScheduleController extends AbstractManageBeans {
 		return null;
 	}
 
+	/**
+	 * Cancelar.
+	 *
+	 * @return the string
+	 */
 	public String cancelar() {
 		limpar();
 		return "list?faces-redirect=true";
 	}
 
+	/**
+	 * Limpar.
+	 */
 	private void limpar() {
 		idEventSchedule = null;
 		eventSchedule = new EventSchedule();
 	}
 
+	/**
+	 * Gets the id event schedule.
+	 *
+	 * @return the id event schedule
+	 */
 	public Long getIdEventSchedule() {
 		return idEventSchedule;
 	}
 
+	/**
+	 * Sets the id event schedule.
+	 *
+	 * @param idEventSchedule the new id event schedule
+	 */
 	public void setIdEventSchedule(Long idEventSchedule) {
 		this.idEventSchedule = idEventSchedule;
 	}
 
+	/**
+	 * Gets the event schedule.
+	 *
+	 * @return the event schedule
+	 */
 	public EventSchedule getEventSchedule() {
 		return eventSchedule;
 	}
 
+	/**
+	 * Sets the event schedule.
+	 *
+	 * @param eventSchedule the new event schedule
+	 */
 	public void setEventSchedule(EventSchedule eventSchedule) {
 		this.eventSchedule = eventSchedule;
 	}

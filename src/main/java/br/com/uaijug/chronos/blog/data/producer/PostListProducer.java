@@ -29,26 +29,48 @@ import javax.inject.Named;
 import br.com.uaijug.chronos.blog.data.repository.PostRepository;
 import br.com.uaijug.chronos.blog.model.Post;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class PostListProducer.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @RequestScoped
 public class PostListProducer {
 
+    /** The post repository. */
     @Inject
     private PostRepository postRepository;
 
+    /** The posts. */
     private List<Post> posts;
 
     // @Named provides access the return value via the EL variable name "posts" in the UI (e.g.
     // Facelets or JSP view)
+    /**
+     * Gets the posts.
+     *
+     * @return the posts
+     */
     @Produces
     @Named
     public List<Post> getPosts() {
         return posts;
     }
 
+    /**
+     * On post list changed.
+     *
+     * @param post the post
+     */
     public void onPostListChanged(@Observes(notifyObserver = Reception.IF_EXISTS) final Post post) {
         retrieveAllPostsOrderedByName();
     }
 
+    /**
+     * Retrieve all posts ordered by name.
+     */
     @PostConstruct
     public void retrieveAllPostsOrderedByName() {
         posts = postRepository.findAllOrderedByName();

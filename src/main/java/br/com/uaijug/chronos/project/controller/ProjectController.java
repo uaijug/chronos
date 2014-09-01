@@ -34,33 +34,50 @@ import br.com.uaijug.chronos.project.data.repository.ProjectRepository;
 import br.com.uaijug.chronos.project.model.Project;
 import br.com.uaijug.chronos.project.service.ProjectRegistration;
 
+// TODO: Auto-generated Javadoc
 // The @Model stereotype is a convenience mechanism to make this a request-scoped bean that has an
 // EL name
 // Read more about the @Model stereotype in this FAQ:
 // http://sfwk.org/Documentation/WhatIsThePurposeOfTheModelAnnotation
+/**
+ * The Class ProjectController.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
+ */
 @Model
 public class ProjectController extends AbstractManageBeans {
 
+	/** The project registration. */
 	@Inject
 	private ProjectRegistration projectRegistration;
 
+	/** The project repository. */
 	@Inject
 	private ProjectRepository projectRepository;
 
+	/** The member repository. */
 	@Inject
 	private MemberRepository memberRepository;
 
+	/** The id project. */
 	private Long idProject;
 
+	/** The project. */
 	private Project project;
 
+	/** The projects. */
 	List<Project> projects;
 
+	/** The list member. */
 	private List<Member> listMember = null;
 
 	/** The itens state. */
 	List<SelectItem> itensMember = null;
 
+	/**
+	 * Inits the new project.
+	 */
 	@PostConstruct
 	public void initNewProject() {
 		project = new Project();
@@ -74,6 +91,11 @@ public class ProjectController extends AbstractManageBeans {
 		listMember = new ArrayList<Member>();
 	}
 
+	/**
+	 * Gets the projects.
+	 *
+	 * @return the projects
+	 */
 	public List<Project> getProjects() {
 		return projectRepository.findAllOrderedByName();
 	}
@@ -94,6 +116,12 @@ public class ProjectController extends AbstractManageBeans {
 		}
 	}
 
+	/**
+	 * Register.
+	 *
+	 * @return the string
+	 * @throws Exception the exception
+	 */
 	public String register() throws Exception {
 		try {
 
@@ -108,16 +136,29 @@ public class ProjectController extends AbstractManageBeans {
 		return null;
 	}
 
+	/**
+	 * Cancelar.
+	 *
+	 * @return the string
+	 */
 	public String cancelar() {
 		limpar();
 		return "list?faces-redirect=true";
 	}
 
+	/**
+	 * Limpar.
+	 */
 	private void limpar() {
 		idProject = null;
 		project = new Project();
 	}
 
+	/**
+	 * Gets the members.
+	 *
+	 * @return the members
+	 */
 	public List<SelectItem> getMembers() {
 
 		setListMember(memberRepository.findAllOrderedByName());
@@ -127,26 +168,56 @@ public class ProjectController extends AbstractManageBeans {
 		return itensMember;
 	}
 
+	/**
+	 * Gets the id project.
+	 *
+	 * @return the id project
+	 */
 	public Long getIdProject() {
 		return idProject;
 	}
 
+	/**
+	 * Sets the id project.
+	 *
+	 * @param idProject the new id project
+	 */
 	public void setIdProject(Long idProject) {
 		this.idProject = idProject;
 	}
 
+	/**
+	 * Gets the project.
+	 *
+	 * @return the project
+	 */
 	public Project getProject() {
 		return project;
 	}
 
+	/**
+	 * Sets the project.
+	 *
+	 * @param project the new project
+	 */
 	public void setProject(Project project) {
 		this.project = project;
 	}
 
+	/**
+	 * Gets the list member.
+	 *
+	 * @return the list member
+	 */
 	public List<Member> getListMember() {
 		return listMember;
 	}
 
+	/**
+	 * Sets the list member.
+	 *
+	 * @param listMember the new list member
+	 */
 	public void setListMember(List<Member> listMember) {
 		this.listMember = listMember;
 	}

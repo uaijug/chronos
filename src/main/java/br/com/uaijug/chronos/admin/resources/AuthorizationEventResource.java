@@ -43,34 +43,53 @@ import br.com.uaijug.chronos.admin.data.repository.AuthorizationEventRepository;
 import br.com.uaijug.chronos.admin.model.AuthorizationEvent;
 import br.com.uaijug.chronos.admin.service.AuthorizationEventRegistration;
 
+// TODO: Auto-generated Javadoc
 /**
  * JAX-RS Example
  * <p/>
  * This class produces a RESTful service to read/write the contents of the
  * authorizationEvents table.
+ * 
+ * @author Rogerio Fontes - http://www.rogeriofontes.inf.br - rogerio.fontes at rogeriofontes dot inf dot br
+ * 
  */
 @Path("/authorizationEvents")
 @RequestScoped
 public class AuthorizationEventResource {
 
+	/** The log. */
 	@Inject
 	private Logger log;
 
+	/** The validator. */
 	@Inject
 	private Validator validator;
 
+	/** The repository. */
 	@Inject
 	private AuthorizationEventRepository repository;
 
+	/** The registration. */
 	@Inject
 	AuthorizationEventRegistration registration;
 
+	/**
+	 * List all authorization events.
+	 *
+	 * @return the list
+	 */
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<AuthorizationEvent> listAllAuthorizationEvents() {
 		return repository.findAllOrderedByName();
 	}
 
+	/**
+	 * Lookup authorization event by id.
+	 *
+	 * @param id the id
+	 * @return the authorization event
+	 */
 	@GET
 	@Path("/{id:[0-9][0-9]*}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -86,6 +105,9 @@ public class AuthorizationEventResource {
 	 * Creates a new authorizationEvent from the values provided. Performs validation, and
 	 * will return a JAX-RS response with either 200 ok, or with a map of
 	 * fields, and related errors.
+	 *
+	 * @param authorizationEvent the authorization event
+	 * @return the response
 	 */
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
