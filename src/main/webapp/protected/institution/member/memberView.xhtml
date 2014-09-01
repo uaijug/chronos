@@ -6,6 +6,10 @@
 	xmlns:p="http://primefaces.org/ui">
 <ui:composition template="/WEB-INF/layout/template.xhtml">
 	<ui:define name="body">
+		<f:metadata>
+			<f:viewParam name="id" value="#{memberController.idMember}" />
+			<f:event listener="#{memberController.load}" type="preRenderView" />
+		</f:metadata>
 		<p:panel header="#{msg['label.members']}" styleClass="panel-listagem"
 			id="panelMembers">
 			<div class="row">
